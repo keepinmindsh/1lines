@@ -1,5 +1,5 @@
 {
-    "title": "SB Admin",
+    "title": "1lines",
     "name": "startbootstrap-sb-admin",
     "version": "5.0.2",
     "description": "A one page app landing page HTML theme for Bootstrap.",
@@ -19,7 +19,7 @@
         "email": "feedback@startbootstrap.com"
     },
     "license": "MIT",
-    "author": "Start Bootstrap",
+    "author": "1 Lines",
     "contributors": [
         "David Miller (http://davidmiller.io/)"
     ],
