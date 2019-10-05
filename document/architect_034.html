@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin - Charts</title>
+
+    <!-- Bootstrap core CSS-->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template-->
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Page level plugin CSS-->
+    <link href="../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="../css/sb-admin.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../styles/default.css">
+    <script src="../highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </head>
+
+  <body id="page-top">
+
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+
+      <a class="navbar-brand mr-1" href="index.html">Start Bootstrap</a>
+
+      <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Navbar Search -->
+      <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Navbar -->
+      <ul class="navbar-nav ml-auto ml-md-0">
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-bell fa-fw"></i>
+            <span class="badge badge-danger">9+</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-envelope fa-fw"></i>
+            <span class="badge badge-danger">7</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user-circle fa-fw"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+            <a class="dropdown-item" href="#">Settings</a>
+            <a class="dropdown-item" href="#">Activity Log</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+          </div>
+        </li>
+      </ul>
+
+    </nav>
+
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <ul class="sidebar navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>요약</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>목록</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header">서론</h6>
+            <a class="dropdown-item" href="../document/architect_001.html">서론</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">사례연구</h6>
+            <a class="dropdown-item" href="../document/architect_002.html">사례연구</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">생성 패턴</h6>
+            <a class="dropdown-item" href="../document/architect_003.html">추상 팩토리</a>
+            <a class="dropdown-item" href="../document/architect_004.html">빌더</a>
+            <a class="dropdown-item" href="../document/architect_005.html">팩토리 메서드</a>
+            <a class="dropdown-item" href="../document/architect_006.html">원형</a>
+            <a class="dropdown-item" href="../document/architect_007.html">단일체</a>
+            <a class="dropdown-item" href="../document/architect_008.html">생성 패턴에 대한 논의</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">구조 패턴</h6>
+            <a class="dropdown-item" href="../document/architect_009.html">적응자</a>
+            <a class="dropdown-item" href="../document/architect_010.html">가교</a>
+            <a class="dropdown-item" href="../document/architect_011.html">복합체</a>
+            <a class="dropdown-item" href="../document/architect_012.html">장식자</a>
+            <a class="dropdown-item" href="../document/architect_013.html">퍼사드</a>
+            <a class="dropdown-item" href="../document/architect_014.html">플라이급</a>
+            <a class="dropdown-item" href="../document/architect_015.html">프록시</a>
+            <a class="dropdown-item" href="../document/architect_016.html">구조패턴에 대한 논의</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">행동 패턴</h6>
+            <a class="dropdown-item" href="../document/architect_017.html">책임 연쇄</a>
+            <a class="dropdown-item" href="../document/architect_018.html">명령</a>
+            <a class="dropdown-item" href="../document/architect_019.html">해석자</a>
+            <a class="dropdown-item" href="../document/architect_020.html">반복자</a>
+            <a class="dropdown-item" href="../document/architect_021.html">중재자</a>
+            <a class="dropdown-item" href="../document/architect_022.html">메멘토</a>
+            <a class="dropdown-item" href="../document/architect_023.html">감시자</a>
+            <a class="dropdown-item" href="../document/architect_024.html">상태</a>
+            <a class="dropdown-item" href="../document/architect_025.html">전략</a>
+            <a class="dropdown-item" href="../document/architect_026.html">템플릿 메서드</a>
+            <a class="dropdown-item" href="../document/architect_027.html">방문자</a>
+            <a class="dropdown-item" href="../document/architect_028.html">행동 패턴에 대한 논의</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">결론</h6>
+            <a class="dropdown-item" href="../document/architect_029.html">디자인 패턴에서 무엇을<br> 기대할 수 있는가?</a>
+            <a class="dropdown-item" href="../document/architect_030.html">간략한 역사</a>
+            <a class="dropdown-item" href="../document/architect_031.html">패턴 커뮤니티</a>
+            <a class="dropdown-item" href="../document/architect_032.html">초대의 글</a>
+            <a class="dropdown-item" href="../document/architect_033.html">책을 마무리하며</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">System Archtecture</h6>
+            <a class="dropdown-item" href="../document/architect_053.html">API with Zuul</a>
+            <a class="dropdown-item" href="../document/architect_037.html">Cloud System</a>
+            <a class="dropdown-item" href="../document/architect_047.html">Cassandra</a>
+            <a class="dropdown-item" href="../document/architect_036.html">DevOps</a>
+            <a class="dropdown-item" href="../document/architect_045.html">IAC</a>
+            <a class="dropdown-item" href="../document/architect_043.html">Kuberneties</a>
+            <a class="dropdown-item" href="../document/architect_034.html">MVC</a>
+            <a class="dropdown-item" href="../document/architect_049.html">MSA</a>
+            <a class="dropdown-item" href="../document/architect_044.html">MOM</a>
+            <a class="dropdown-item" href="../document/architect_039.html">PAAS</a>
+            <a class="dropdown-item" href="../document/architect_035.html">REST API</a>
+            <a class="dropdown-item" href="../document/architect_046.html">SAAS</a>
+            <a class="dropdown-item" href="../document/architect_040.html">SCA</a>
+            <a class="dropdown-item" href="../document/architect_042.html">SOA</a>
+            <a class="dropdown-item" href="../document/architect_041.html">TDD(DDD)</a>
+            <a class="dropdown-item" href="../document/architect_048.html">Web Cache</a>
+            <a class="dropdown-item" href="../document/architect_050.html">Various Pattern</a>
+          </div>
+        </li>
+      </ul>
+
+      <div id="content-wrapper">
+        <div class="container-fluid">
+          <!-- Breadcrumbs-->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">Charts</li>
+          </ol>
+
+          <!-- Area Chart Example-->
+          <div class="card mb-3">
+            <div class="card-header">
+              MVC를 활용한 디자인 패턴 </div>
+            <div class="card-body">
+            <hr>
+                <img src="MVC-Process.svg.png" height="400px" />
+            <hr>
+              MVC는 제록스 팰러앨토 연구소에서 스몰토크 관련 일을 하던 Trygve Reenskaug에 의해 1979년에 처음으로 설명되었다. <br>
+              관련 구현은 영향력있는 논문인 《스몰토크-80에서의 애플리케이션 프로그래밍: 모델-뷰-컨트롤러를 사용하는 방법》에서 깊이 있게 설명되었다.<br>
+
+              <div class="card w-75">
+                <div class="card-body">
+                  <h5 class="card-title">Small Talk</h5>
+                  <p class="card-text">
+                      1970년대 초, 미국 제록스(XEROX)사의 팰러 앨토 연구 센터(PARC)에서 개발한 객체 지향 프로그래밍 언어.<br>
+                     C++, Java와 같은 객체 지향 프로그램의 시초이다.[1] 이 외에도 Ruby, Python, AppleScript, Dylan, Perl, Scala 같은 수많은 프로그래밍 언어에 영향을 주었으며, <br>
+                     그 외에 최초로 GUI(그래픽 사용자 인터페이스)를 제공하는 언어로 매킨토시의 GUI에 영향을 준, 쉽게 말하자면 프로그래밍 언어의 한 획을 그은 언어.<br>
+                     <pre>
+                       <code class="cpp">
+  "Smalltalk if statement"
+  time > 120 
+      ifTrue: [Transcript show: 'Time expired.'; cr.
+              time := 0]
+      ifFalse: [Transcript show: 'Time remaining: ', 
+                (120 - time) printString, ' minutes'; cr]
+  
+  # Python if statement
+  if time > 120:
+      print 'Time expired.'
+      time = 0
+  else:
+      print 'Time remaining: ', 120 - time, ' minutes'
+  
+  /* C language if statement */
+  if (time > 120) {
+      printf("Time expired.\n");
+      time = 0;
+  }
+  else
+      printf("Time remaining: %i minutes\n", 120 - time);
+                       </code>
+                     </pre>
+                  </p>
+               
+                </div>
+              </div>
+            <hr>
+              <ul>
+                <li>모델 : 어플리케이션이 "무엇"을 할 것인지를 정의한다. 내부 비즈니스 로직을 처리하기 위한 역할을 할 것</li>
+                <li>뷰 : 화면에 무엇인가를 "보여주기 위한" 역할을 할 것  </li>
+                <li>컨트롤러 : 모델이 "어떻게" 처리할 지를 알려주는 역할을 할 것, Controller는 Model과 View가 각각 무엇을 해야할지를 알고 있고, 통제합니다. <br> 비지니스 로직을 처리하는 Model과 완전히 UI에 의존적인 View가 서로 직접 이야기할 수 없게 합니다. </li>
+
+              </ul>
+              사용자 인터페이스로부터 비즈니스 로직을 분리하여 App의 시각적 요소나 그 이면에서 실행되는 비즤스 로직을 서로 영향 없이 쉽게 고칠수 있는 App을 개발할 수 있다. 
+            
+            <hr>
+              <div class="card" style="width: 80rem;">
+                <img src="../document/MVC_Model1.png" width="600"  >
+                <div class="card-body">
+                  <h5 class="card-title">MVC Model 1 패턴</h5>
+                  <p class="card-text">
+                      모델1 구조는 사용자의 요청을 JSP가 전부 다 처리합니다.  <br> 
+                      웹브라우저 사용자의 요청을 받은 JSP는 자바빈이나 서비스 클래스를 사용하여 웹브라우저가  <br> 
+                      요청한 작업을 처리하고 그 결과를 출력해줍니다. <br> 
+                  </p>
+                </div>
+              </div>
+            <hr>
+              <div class="card" style="width: 80rem;">
+                <img src="../document/MVC_Model2.png" width="600"  >
+                <div class="card-body">
+                    <h5 class="card-title">MVC Model 2 패턴</h5>
+                  <p class="card-text">
+                      모델 2 구조는 모델 1구조와 달리 웹브라우저 사용자의 요청을 서블릿이 받습니다. <br>
+                      서블릿은 웹브라우저의 요청을 받아 View로 보여줄것인지 Model로 보내줄것인지 정하여 전송해줍니다. <br> 
+                      여기서 View페이지는 사용자에게 보여주는 역할만 담당하고 실질적인 기능의 부분은 Model에서 담당합니다.  <br>
+                      모델2 방식의 경우 실질적으로 보여지는 HTML과 JAVA 소스를 분리 해놓았기 때문에  <br>
+                      모델1방식에 비해 개발을 확장시키기도 쉽고 유지보수하기도 쉽습니다.  <br>
+                  </p>
+                </div>
+              </div>
+            <hr>
+              <div class="card" style="width: 80rem;">
+                <img src="../document/MVC_Pattern.png" width="600"  >
+                <div class="card-body">
+                  <p class="card-text">
+                      Composite - 모든 View는 동일한 규칙 아래에서 생성되어 협력한다. 테이블뷰, 개별 뷰, 버튼 등은 모두 사용자의 입력을 허용하고 다양한 레벨의 결과물을 보여준다.<br>
+                      Strategy - Controller는 하나 이상의 View 객체의 전략을 구현(model에 이벤트 전달, View의 데이터 업데이트 등)한다.<br>
+                      Observer - Model은 View의 상태에 대한 알림을 준다.<br>
+                  </p>
+                </div>
+              </div>
+            <hr>
+              <div class="card" style="width: 30rem;">
+               <div class="card-body">
+                 <h5 class="card-title">MVC의 취약점</h5>
+                 <p class="card-text">
+                   Massive ViewController - 대규모 MVC 어플리케이션 <br>
+                   기본적으로 Controller와 View는 강하게 결합되어 있습니다. <br>
+
+                 </p>
+               </div>
+             </div>
+            <hr>
+              <div class="card" style="width: 80rem;">
+                <img src="../document/CompoundDisgnPattern.png" width="600"  >
+                <div class="card-body">
+                  <p class="card-text">
+                      Apple의 Concepts in Objective-C Programming<br>
+                      전통적인 MVC는 실제 코드 구현에 있어서도 문제가 있습니다. <br>
+                      Cocoa MVC에서 Mediating Controller의 역할을 수행하도록 만들어진 것이 NSController의 SubClass입니다. <br>
+                      이 클래스는 Mediating Design Pattern을 적용할 수 있도록 기능을 제공합니다. <br>
+                      그런데 이를 사용하지 않는다면 View는 Model의 notification에 대해 반응하는 코드를 custom으로 작성해야 합니다.<br>
+                  </p>
+                </div>
+              </div>
+            <hr>
+            </div>
+            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+          </div>
+          <div class="alert alert-success" role="alert">
+              <h4 class="alert-heading">MVC로 프로젝트하기 </h4>
+              <p><a class="dropdown-item" href="../document/architect_034_VueJS.html">Vue JS</a></p>
+              <hr>
+              <p><a class="dropdown-item" href="../document/architect_034_SpringVueJS.html">Spring Boot와 Vue JS</a></p>
+              <hr>
+              <p><a class="dropdown-item" href="../document/architect_034_NodeJSVueJS.html">NodeJS/Express와 Vue JS</a></p>
+              <hr>
+              <p><a class="dropdown-item" href="../document/architect_034_PythonVueJS.html">Python와 Vue JS</a></p>
+              <hr>
+              <p><a class="dropdown-item" href="../document/architect_034_GoVueJS.html">Go와 Vue JS</a></p>
+              <hr>
+              <p><a class="dropdown-item" href="../document/architect_034_CSharpVueJS.html">C#와 Vue JS</a></p>
+              <hr>
+              <p><a class="dropdown-item" href="../document/architect_034_CPlusVueJS.html">C++와 Vue JS</a></p>
+              <hr>
+              <p><a class="dropdown-item" href="../document/architect_034_RustVueJS.html">Rust와 Vue JS</a></p>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright © Your Website 2018</span>
+            </div>
+          </div>
+        </footer>
+
+      </div>
+      <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="login.html">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Page level plugin JavaScript-->
+    <script src="../vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="../js/sb-admin.min.js"></script>
+
+    <!-- Demo scripts for this page-->
+    <script src="../js/demo/chart-area-demo.js"></script>
+    <script src="../js/demo/chart-bar-demo.js"></script>
+    <script src="../js/demo/chart-pie-demo.js"></script>
+
+  </body>
+
+</html>

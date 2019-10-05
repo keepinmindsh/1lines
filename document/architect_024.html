@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>1Lines - Architecture</title>
+
+    <!-- Bootstrap core CSS-->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template-->
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Page level plugin CSS-->
+    <link href="../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="../css/sb-admin.css" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/default.css">
+    <script src="../highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </head>
+
+  <body id="page-top">
+
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+
+      <a class="navbar-brand mr-1" href="../index.html">Start Bootstrap</a>
+
+      <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Navbar Search -->
+      <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Navbar -->
+      <ul class="navbar-nav ml-auto ml-md-0">
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-bell fa-fw"></i>
+            <span class="badge badge-danger">9+</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-envelope fa-fw"></i>
+            <span class="badge badge-danger">7</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user-circle fa-fw"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+            <a class="dropdown-item" href="#">Settings</a>
+            <a class="dropdown-item" href="#">Activity Log</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+          </div>
+        </li>
+      </ul>
+
+    </nav>
+
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <ul class="sidebar navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>요약</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>목록</span>
+          </a>
+          <div class="dropdown-menu show" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header">서론</h6>
+            <a class="dropdown-item" href="../document/architect_001.html">서론</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">사례연구</h6>
+            <a class="dropdown-item" href="../document/architect_002.html">사례연구</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">생성 패턴</h6>
+            <a class="dropdown-item" href="../document/architect_003.html">추상 팩토리</a>
+            <a class="dropdown-item" href="../document/architect_004.html">빌더</a>
+            <a class="dropdown-item" href="../document/architect_005.html">팩토리 메서드</a>
+            <a class="dropdown-item" href="../document/architect_006.html">원형</a>
+            <a class="dropdown-item" href="../document/architect_007.html">단일체</a>
+            <a class="dropdown-item" href="../document/architect_008.html">생성 패턴에 대한 논의</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">구조 패턴</h6>
+            <a class="dropdown-item" href="../document/architect_009.html">적응자</a>
+            <a class="dropdown-item" href="../document/architect_010.html">가교</a>
+            <a class="dropdown-item" href="../document/architect_011.html">복합체</a>
+            <a class="dropdown-item" href="../document/architect_012.html">장식자</a>
+            <a class="dropdown-item" href="../document/architect_013.html">퍼사드</a>
+            <a class="dropdown-item" href="../document/architect_014.html">플라이급</a>
+            <a class="dropdown-item" href="../document/architect_015.html">프록시</a>
+            <a class="dropdown-item" href="../document/architect_016.html">구조패턴에 대한 논의</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">행동 패턴</h6>
+            <a class="dropdown-item" href="../document/architect_017.html">책임 연쇄</a>
+            <a class="dropdown-item" href="../document/architect_018.html">명령</a>
+            <a class="dropdown-item" href="../document/architect_019.html">해석자</a>
+            <a class="dropdown-item" href="../document/architect_020.html">반복자</a>
+            <a class="dropdown-item" href="../document/architect_021.html">중재자</a>
+            <a class="dropdown-item" href="../document/architect_022.html">메멘토</a>
+            <a class="dropdown-item" href="../document/architect_023.html">감시자</a>
+            <a class="dropdown-item" href="../document/architect_024.html">상태</a>
+            <a class="dropdown-item" href="../document/architect_025.html">전략</a>
+            <a class="dropdown-item" href="../document/architect_026.html">템플릿 메서드</a>
+            <a class="dropdown-item" href="../document/architect_027.html">방문자</a>
+            <a class="dropdown-item" href="../document/architect_028.html">행동 패턴에 대한 논의</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">결론</h6>
+            <a class="dropdown-item" href="../document/architect_029.html">디자인 패턴에서 무엇을<br> 기대할 수 있는가?</a>
+            <a class="dropdown-item" href="../document/architect_030.html">간략한 역사</a>
+            <a class="dropdown-item" href="../document/architect_031.html">패턴 커뮤니티</a>
+            <a class="dropdown-item" href="../document/architect_032.html">초대의 글</a>
+            <a class="dropdown-item" href="../document/architect_033.html">책을 마무리하며</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">System Archtecture</h6>
+            <a class="dropdown-item" href="../document/architect_053.html">API with Zuul</a>
+            <a class="dropdown-item" href="../document/architect_037.html">Cloud System</a>
+            <a class="dropdown-item" href="../document/architect_047.html">Cassandra</a>
+            <a class="dropdown-item" href="../document/architect_036.html">DevOps</a>
+            <a class="dropdown-item" href="../document/architect_045.html">IAC</a>
+            <a class="dropdown-item" href="../document/architect_043.html">Kuberneties</a>
+            <a class="dropdown-item" href="../document/architect_034.html">MVC</a>
+            <a class="dropdown-item" href="../document/architect_049.html">MSA</a>
+            <a class="dropdown-item" href="../document/architect_044.html">MOM</a>
+            <a class="dropdown-item" href="../document/architect_039.html">PAAS</a>
+            <a class="dropdown-item" href="../document/architect_035.html">REST API</a>
+            <a class="dropdown-item" href="../document/architect_046.html">SAAS</a>
+            <a class="dropdown-item" href="../document/architect_040.html">SCA</a>
+            <a class="dropdown-item" href="../document/architect_042.html">SOA</a>
+            <a class="dropdown-item" href="../document/architect_041.html">TDD(DDD)</a>
+            <a class="dropdown-item" href="../document/architect_048.html">Web Cache</a>
+            <a class="dropdown-item" href="../document/architect_050.html">Various Pattern</a>
+          </div>
+        </li>
+      </ul>
+
+      <div id="content-wrapper">
+        <div class="container-fluid">
+          <!-- Breadcrumbs-->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">State</li>
+          </ol>
+        <!-- Area Chart Example-->
+        <div class="card mb-3">
+          <div class="card-header">
+            State
+          </div>
+          <div class="card-body">
+              <p class="card-text">
+                  <div class="accordion" id="accordionExample">
+                      <div class="card">
+                        <div class="card-header" id="headingOne">
+                          <h2 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                              의도 
+                            </button>
+                          </h2>
+                        </div>
+                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                          <div class="card-body">
+                             객체의 내부 상태에 따라 스스로 행동을 변경할 수 있게 허가하는 패턴으로, 이렇게하면 객체는 마치 자신의 클래스를 바꾸는 것 처럼 보입니다. 
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-header" id="headingTwo">
+                          <h2 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                              동기
+                            </button>
+                          </h2>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                          <div class="card-body">
+                            네트워크 연결을 추상화한 TCPConnection 클래스를 생각해봅시다. TCPConnection 객체를 여러 상태를 가질 수 있습니다. 간단히 예를 들어, 연결 성공 , 대기, 연결 종료 <br>
+                            의 상태를 갖습니다. TCPConnection 객체는 다른 객체에서 동일한 요청을 받을 때, 자신이 현재 상태에 따라 다르게 받응합니다. 예를 들어, Open 요청은 연결 상태가 "연결 종료" 또는 "연결 성공" 상태인지에 따라 처리하는 결과가 다릅니다. <br>
+                            이 때 상태 패턴을 사용합니다. 상태 패턴을 사용하면 TCPConnection 클래스가 각 상태에서 어떨게 다르게 반응하는지 관리할 수 있습니다. 
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-header" id="headingThree">
+                          <h2 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                              활용성
+                            </button>
+                          </h2>
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                          <div class="card-body">
+                            <img src="../document/State.png" width="900" alt="">
+                              <hr>
+                              <hr>
+                              <ul>
+                                <li>
+                                  객체의 행동이 상태에 따라서 달라질 수 있고, 객체의 상태에 따라서 런타임에 행동이 바뀌어야 합니다. 
+                                </li>
+                                <hr>
+                                <li>
+                                  어떤 연산에 그 객체의 상태에 따라 달라지는 다중 분기 조건 처리가 너무 많이 들어 있을 때. 객체의 상태를 표현하기 위해 상태를 하나 이상이 나열할 상수로 정의해야합니다.  <br>
+                                  동일한 조건 문장들을 하나 이상의 연산에 중복 정의해야 할 때도 잦습니다. 이때, 객체의 상태를 별도의 객체로 정의하면, 다른 객체들과 상관없이 그 객체의 상태를 다양화 시킬 수 있습니다.                
+                                </li>
+                              </ul>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                          <div class="card-header" id="headingFour">
+                            <h2 class="mb-0">
+                              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                항목에 대한 설명
+                              </button>
+                            </h2>
+                          </div>
+                          <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <div class="card" >
+                                  <div class="card-body">
+                                      <h5 class="card-title">Context</h5>
+                                      <h6 class="card-subtitle mb-2 text-muted">TCPConnection</h6>
+                                      <p class="card-text">
+                                        사용자가 관심 있는 인터페이스를 정의합니다. 객체의 현재 상태를 정의한 ConcreteState 서브 클래스의 인스턴스를 유지, 관리합니다. 
+                                      </p>
+                                  </div>
+                                </div> 
+                                <div class="card" >
+                                  <div class="card-body">
+                                      <h5 class="card-title">State</h5>
+                                      <h6 class="card-subtitle mb-2 text-muted">TCPState</h6>
+                                      <p class="card-text">
+                                        Context 의 각 상태 별로 필요한 행동을 캡슐화하여 인터페이스로 정의합니다. 
+                                      </p>
+                                  </div>
+                                </div> 
+                                <div class="card" >
+                                  <div class="card-body">
+                                      <h5 class="card-title">ConcreteState 서브 클래스들</h5>
+                                      <h6 class="card-subtitle mb-2 text-muted">TCPEstablished, TCPListen, TCPClosed</h6>
+                                      <p class="card-text">
+                                          각 서브 클래스들은 Context 의 상태에 따라 처리되어야 할 실제 행동을 구현합니다. 
+                                      </p>
+                                  </div>
+                                </div> 
+                                
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card">
+                          <div class="card-header" id="heading5">
+                            <h2 class="mb-0">
+                              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                                협력방법 
+                              </button>
+                            </h2>
+                          </div>
+                          <div id="collapse5" class="collapse" aria-labelledby="heading5" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <ul>
+                                  <li>상태에 따라 다른 요청을 받으면 Context 클래스는 현재의 ConcreteState 객체로 전달합니다. 이 ConcreateState 클래스의 객체는 State 클래스를 상속하는 서브 클래스들 중 하나의 인스턴스 일 것이다. </li>
+                                  <li>Context 클래스는 실제 연산을 처리할 State 객체에 자신을 매개변수로 전달합니다. 이로써 State 객체는 Context 클래스에 정의된 정보에 접근할 수 있게 됩니다. </li>
+                                  <li>
+                                    Context 클래스는 사용자가 사용할 수 있는 기본 인터페이스를 제공합니다. 사용자는 상태 객체를 Context 객체와 연결 시킵니다. 즉, Context 클래스에 현재 상태를 정의하는 것입니다.  <br>
+                                    이렇게 Context 객체를 만들고 나면 사용자는 State 객체를 직접 다루지 않고 Context 객체에 요청을 보내기만 하면 됩니다. 
+                                  </li>
+                                  <li>
+                                    Context 클래스 또는 ConcreteState 서브클래스들은 자기 다음의 상태가 무엇이고, 어떤 환경에서 다음 상태로 가는지 결정할 수 있습니다. <br>
+                                    즉, 상태는 상태 전의 규칙이 있으므로, 각각 한 상태에서 다른 상태로 전이하는 규칙을 알아야 합니다. 
+                                  </li>
+                                </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card">
+                          <div class="card-header" id="heading6">
+                            <h2 class="mb-0">
+                              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
+                                결과 
+                              </button>
+                            </h2>
+                          </div>
+                          <div id="collapse6" class="collapse" aria-labelledby="heading6" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <ul>
+                                  <li>상태에 따른 행동을 국소화하며, 서로 다른 상태에 대한 행동을 별도의 객체로 관리합니다. </li>
+                                  <li>상태 전이를 명확하게 만듭니다. </li>
+                                  <li>
+                                    상태 객체는 공유될 수 있습니다. <br>
+                                    상태는 단지 타입으로만 표현되므로, State 객체는 인스턴스 변수 없이 여러 Context 클래스의 인스턴스로도 객체를 공유할 수 있습니다. <br>
+                                    상태가 이런 식으로 공유될 때, 이 공유된 상태는 실질적으로 플라이급 객체라고 해도 됩니다. 행동만 있는 플라이급 객체를 말하는 것이다. 
+                                  </li>
+                                </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="headingFive">
+                              <h2 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                  코드 예제
+                                </button>
+                              </h2>
+                            </div>
+                            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+                              <pre>
+                                <code class="java" >
+  
+                                    
+                                </code>
+                              </pre>
+                              <hr>
+                              <hr>
+                              <pre>
+                                <code class="Java" >
+  
+  
+                                </code>
+                              </pre>
+                            </div>
+                          </div>
+  
+                          <div class="card">
+                            <div class="card-header" id="headingSix">
+                              <h2 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                  문제를 풉시다.  제한시간 : 30분 
+                                </button>
+                              </h2>
+                            </div>
+                            <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
+                              <div class="card-body">
+                                배틀 크루져가 뮤탈리스크 10마리와 싸우고 있다. <br>
+                                배틀 크루져는 아래의 기능이 기본적으로 존재한다. <br>
+                                <hr>
+                                <ul>
+                                  <li>야마토 건</li>
+                                  <li>공대공 레이저포대</li>
+                                  <li>공대지 레이저포대</li>
+                                  <li>이동</li>
+                                  <li>방어력</li>
+                                </ul>
+                                <hr>
+                                뮤탈리스크의 공격력 : 7 <br>
+                                뮤탈리스크의 방어력 : 5 <br>
+                                뮤탈리스크의 체력 : 70 <br>
+                                <hr>
+                                배틀 크루저의 야마토 포 : 150 <br>
+                                배틀 크루저의 공대지 : 30 <br>
+                                배틀 크루저의 공대공 : 40 <br>
+                                배틀 크루저의 방어력 : 5 <br>
+                                배틀 크루저의 체력 : 500 <br>
+                                <hr>
+                                뮤탈리스크는 각각 1초마다 공격이 가능하다. <br>
+                                베틀크루저의 야마토 포는 10초마다 사용이 가능하다. <br>
+                                베틀크루저의 공대공/공대지 공격은 2초마다 가능하다. <br>
+                                베틀크루저의 체력이 300 이하로 떨어지면 방어력이 사라진다. <br>
+                                베틀크루저의 체력이 250 이하로 떨어지면 야마토 포를 사용할 수 없다. <br>
+                                <hr>
+                                초당 뮤탈리스크와 베틀크루저의 공격은 계속되고, 베틀 크루저의 상태에 따라서 초당 메세지에 방어력 제거/야마토포 사용 불가는 계속 표기되어야 한다. <br>
+                                예 : 베틀크루저 - 체력 : { }  , 뮤탈리스크 - { } 마리 , 전체 체력 :{ } , 뮤탈리스크가 { }만큼 베틀크루저에게 {} 데미지를 입혔습니다. , 베틀 크루저의 체력은 { }입니다. <br>
+                                예 : 10초 마다 : 베틑 크루저가 야마토포를 사용했습니다 또는 시스템 고장으로 야마토포 사용이 불가능합니다. <br>
+
+                                <span id="time1" ></span>
+                                  <a  id="btnStart" class="btn btn-primary">코드 시작! 30분</a>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+                </p>
+          </div>
+      </div>
+      <!-- /.container-fluid -->
+
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright © Your Website 2018</span>
+            </div>
+          </div>
+        </footer>
+
+      </div>
+      <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="login.html">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Page level plugin JavaScript-->
+    <script src="../vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="../js/sb-admin.min.js"></script>
+
+    <!-- Demo scripts for this page-->
+    <script src="../js/demo/chart-area-demo.js"></script>
+    <script src="../js/demo/chart-bar-demo.js"></script>
+    <script src="../js/demo/chart-pie-demo.js"></script>
+
+  </body>
+
+</html>

@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin - Vue JS</title>
+
+    <!-- Bootstrap core CSS-->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template-->
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Page level plugin CSS-->
+    <link href="../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="../css/sb-admin.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../styles/default.css">
+    <script src="../highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </head>
+
+  <body id="page-top">
+
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+
+      <a class="navbar-brand mr-1" href="index.html">Start Bootstrap</a>
+
+      <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Navbar Search -->
+      <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Navbar -->
+      <ul class="navbar-nav ml-auto ml-md-0">
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-bell fa-fw"></i>
+            <span class="badge badge-danger">9+</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-envelope fa-fw"></i>
+            <span class="badge badge-danger">7</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user-circle fa-fw"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+            <a class="dropdown-item" href="#">Settings</a>
+            <a class="dropdown-item" href="#">Activity Log</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+          </div>
+        </li>
+      </ul>
+
+    </nav>
+
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <ul class="sidebar navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>요약</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>목록</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header">Vue JS</h6>
+            <a class="dropdown-item" href="../vue/vuejs_001.html">Vue의 시작</a>
+            <a class="dropdown-item" href="../vue/vue_startPage.html">Vue의 예제</a>
+            <a class="dropdown-item" href="../vue/vuejs_003.html"></a>
+            <a class="dropdown-item" href="../vue/vuejs_004.html"></a>
+            <a class="dropdown-item" href="../vue/vuejs_005.html"></a>
+            <a class="dropdown-item" href="../vue/vuejs_006.html"></a>
+            <a class="dropdown-item" href="../vue/vuejs_007.html"></a>
+            <a class="dropdown-item" href="../vue/vuejs_008.html"></a>          
+            <a class="dropdown-item" href="../vue/vuejs_009.html"></a>
+            <a class="dropdown-item" href="../vue/vuejs_010.html"></a>
+            <a class="dropdown-item" href="../vue/vuejs_011.html"></a>
+            <a class="dropdown-item" href="../vue/vuejs_012.html"></a>
+            <a class="dropdown-item" href="../vue/vuejs_013.html"></a>
+            <a class="dropdown-item" href="../vue/vuejs_014.html"></a>
+            <a class="dropdown-item" href="../vue/vuejs_015.html"></a>
+            <a class="dropdown-item" href="../vue/vuejs_016.html"></a>
+            <a class="dropdown-item" href="../vue/vuejs_017.html"></a>
+            <a class="dropdown-item" href="../vue/vuejs_018.html"></a>
+            <a class="dropdown-item" href="../vue/vuejs_019.html"></a>
+            <a class="dropdown-item" href="../vue/vuejs_020.html"></a>
+            <a class="dropdown-item" href="../vue/vuejs_021.html"></a>
+            <a class="dropdown-item" href="../vue/vuejs_022.html"></a>
+            <a class="dropdown-item" href="../vue/vuejs_023.html"></a>
+            <a class="dropdown-item" href="../vue/vuejs_024.html"></a>
+            <a class="dropdown-item" href="../vue/vuejs_025.html"></a>
+            <a class="dropdown-item" href="../vue/vuejs_026.html"></a>
+            <a class="dropdown-item" href="../vue/vuejs_027.html"></a>
+            <a class="dropdown-item" href="../vue/vuejs_028.html"></a>
+            <a class="dropdown-item" href="../vue/vuejs_029.html"></a>
+            <a class="dropdown-item" href="../vue/vuejs_030.html"></a>
+            <a class="dropdown-item" href="../vue/vuejs_031.html"></a>
+            <a class="dropdown-item" href="../vue/vuejs_032.html"></a>
+            <a class="dropdown-item" href="../vue/vuejs_033.html"></a>
+          </div>
+        </li>
+      </ul>
+
+      <div id="content-wrapper">
+        <div class="container-fluid">
+          <!-- Breadcrumbs-->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">Vue JS</li>
+          </ol>
+
+          <!-- Area Chart Example-->
+          <div class="card mb-3">
+            <div class="card-header">
+                Vue JS 의 시작
+              </div>
+            <div class="card-body">
+              <img src="../vue/vuejs_lifecycle.png" width="600" alt="">
+              <hr>
+              <div class="alert alert-primary" role="alert">
+                  <a href="vue_startPage.html">Vue의 활용</a>
+              </div> 
+              <hr>
+              <div class="accordion" id="accordionExample">
+                <div class="card">
+                  <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                          보간법
+                      </button>
+                    </h2>
+                  </div>
+              
+                  <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                        컴포넌트 템플릿에 컴포넌트의 상태 값을 보여주거나, HTML 태그의 속성 값에 컴포넌트의 상태 값을 <br> 
+                        설정하는 모든 방법을 말한다. 템플릿에 사용하는 보간 법은 문자열 보간, 속성 보간으로 나눕니다. 
+                        <hr>
+
+                        <ul>
+                          <li>문자열 보간 : 태그의 내용 일부 또는 전체에 컴포넌트 상태값을 끼워 넣을 수 있는 머스태시 문법과 내용 전체를 변경하는 디렉티브를 사용합니다. </li>
+                          <li>속성 보간 : 태그 속성의 값으로 컴포넌트 상태 값을 설정할 때 사용합니다.</li>
+                        </ul>
+                        <hr>
+                          <p>
+                            <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1"> 문자열</a>
+                            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">원시 HTML</button>
+                            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample3">속성</button>
+                            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample4" aria-expanded="false" aria-controls="multiCollapseExample4">JavaScript 표현식 사용</button>
+                            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">Toggle both elements</button>
+                          </p>
+                          <div class="row">
+                            <div class="col">
+                              <div class="collapse multi-collapse" id="multiCollapseExample1">
+                                <div class="card card-body">
+                                    <pre>
+                                        <code class="html" >
+  &lt;span&gt; 메시지: {{ msg }} &lt;/span&gt;
+                                        </code>
+                                    </pre>  
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col">
+                              <div class="collapse multi-collapse" id="multiCollapseExample2">
+                                <div class="card card-body">
+                                    <pre>
+                                        <code class="html" >
+&lt;p&gt;Using mustaches: {{ rawHtml }}&lt;/p&gt;
+&lt;p&gt;Using v-html directive: &lt;span v-html="rawHtml">&lt;/span&gt;&lt;/p&gt;
+                                        </code>
+                                    </pre> 
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col">
+                              <div class="collapse multi-collapse" id="multiCollapseExample3">
+                                <div class="card card-body">
+                                    <pre>
+                                        <code class="html" > 
+&lt;div v-bind:id="dynamicId"&gt;&lt;/div&gt;
+                                      </code>
+                                    </pre>    
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col">
+                              <div class="collapse multi-collapse" id="multiCollapseExample4">
+                                <div class="card card-body">
+                                    <pre>
+                                      <code class="JavaScript" > 
+{{ number + 1 }}
+
+{{ ok ? 'YES' : 'NO' }}
+
+{{ message.split('').reverse().join('') }}      
+                                      </code>
+                                    </pre>   
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingTwo">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                          디렉티브
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body">
+                        디렉티브는 v- 접두사가 있는 특수 속성이다. 디렉티브 속성 값은 단일 <br>
+                        JavaScript 표현식이 됩니다. 디렉티브의 역할은 표현식의 값이 변경 될 때 <br>
+                        사이드이펙트를 반응적으로 Dom에 적용하는 것입니다. 
+                        <hr>
+                        디렉티브는 컴포넌트 템플릿에 사용한 태그의 기능을 확장하는 데 사용하는 Vue.JS 의 특수 속성입니다. <br>
+                        Vue.JS 가 제공하는 디렉티브는 컴포넌트의 상태와 연관되어 엘리먼트의 동작에 영향을 줍니다.
+                      
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingThree">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Collapsible Group Item #3
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div class="card-body">
+                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <ul>
+                <li>전달인자
+                  <hr>
+                  일부 디렉티브는 콜론으로 표시되는 “전달인자”를 사용할 수 있습니다. <br>
+                  예를 들어, v-bind 디렉티브는 반응적으로 HTML 속성을 갱신하는데 사용됩니다. <br>
+                </li><br>
+                <li>상태옵션 
+                    <hr>
+                    <div class="media">
+                        <div class="media-body">
+                          <h5 class="mt-0">Data 옵션</h5>
+                          <p>
+                            data 옵션은 컴포넌트의 상태 값을 관리합니다. data 옵션에 설정한 컴포넌트의 상태 값은 Vue 객체를 초기화한 이후에만 접근해서 참조할 수 있습니다. Vue 템플릿에 출력할 <br>
+                            컴포넌트의 상태 값을 찾지 못하면 Vue 컴포넌트가 에러 메시지를 표시하고 동작하지 않으므로 Vue 컴포넌트의 여러가지 옵션 중에 가장 중요합니다. <br>  
+                            <hr>
+                            <pre>
+                              <code class="javascript" >
+var vm = new Vue({
+  data : {
+    counter : 0
+  }
+})
+                              </code>
+                            </pre>     
+                            
+                          </p>
+                          
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="media">
+                          <div class="media-body">
+                            <h5 class="mt-0">Props 옵션</h5>
+                            <p>
+                              props 옵션은 컴포넌트 태그의 속성 이름을 리터럴 배역로 정의합니다.  <br>
+                              이때 컴포넌트 태그의 속성값은 상위 컴포넌트의 상태 값 또는 리터럴 값입니다. <br>  
+                              <hr>
+                              <pre>
+                                <code class="javascript" >
+Vue.component('props-simple', {
+  props : [ 'msg' , 'hello']
+})                          
+                                </code>
+                              </pre>     
+                              
+                            </p>
+                            
+                          </div>
+                        </div>    
+                  </li><br>
+                <li>수식어
+                  <hr>
+                  수식어는 점으로 표시되는 특수 접미사로, 디렉티브를 특별한 방법으로 바인딩 해야 함을 나타냅니다. <br>
+                  예를 들어, .prevent 수식어는 트리거된 이벤트에서 event.preventDefault()를 호출하도록 <br>
+                  v-on 디렉티브에게 알려줍니다. <br>
+                </li><br>
+                <li>약어
+                  <hr>
+                  v- 접두사는 템플릿의 Vue 특정 속성을 식별하기 위한 시각적인 신호 역할을 합니다. <br>
+                  이 기능은 Vue.js를 사용하여 기존의 마크업에 동적인 동작을 적용할 때 유용하지만 <br>
+                  일부 자주 사용되는 디렉티브에 대해 너무 장황하다고 느껴질 수 있습니다. <br>
+                  동시에 Vue.js가 모든 템플릿을 관리하는 SPA를 만들 때 v- <br>
+                  접두어의 필요성이 떨어집니다. 따라서 가장 자주 사용되는 두개의 디렉티브인<br>
+                   v-bind와 v-on에 대해 특별한 약어를 제공합니다.<br>
+                  <hr>
+                  <pre>
+                    <code class="html">
+<!-- 전체 문법 -->
+&lt;a v-bind:href="url"> ... &lt;/a>
+
+<!-- 약어 -->
+&lt;a :href="url"> ... &lt;/a>
+
+<!-- 전체 문법 -->
+&lt;a v-on:click="doSomething"> ... &lt;/a>
+
+<!-- 약어 -->
+&lt;a @click="doSomething"> ... &lt;/a>
+
+                    </code>
+                  </pre>
+                </li><br>
+                <li>
+                  디렉티브 목록 
+                  <hr>
+                    <div class="jumbotron jumbotron-fluid">
+                      <div class="container">
+                        <h1 class="display-10">v-text</h1>
+                        <p class="lead">
+                            {{ name }}
+                            이것과 같은 기능을 {{ }} 를 사용하는 대신에 v-text 라는 디렉티브를 사용하여 구현해보겠습니다.
+                            <pre>
+                              <code class="html" >
+&lt;!DOCTYPE html>
+&lt;html>
+&lt;head>
+  &lt;meta charset="utf-8">
+  &lt;meta name="viewport" content="width=device-width">
+  &lt;title>JS Bin&lt;/title>
+&lt;/head>
+&lt;body>
+  
+  &lt;div id="app">
+    &lt;h1>Hello 
+      &lt;span v-text="name">&lt;/span>
+    &lt;/h1>
+  &lt;/div>
+  
+  &lt;script src="https://unpkg.com/vue/dist/vue.js">&lt;/script>
+&lt;/body>
+&lt;/html>
+                              </code>
+                            </pre>
+                            <pre>
+                                <code class="javascript" >
+var app = new Vue({
+  el: '#app', // 어떤 엘리먼트에 적용을 할 지 정합니다
+  // data 는 해당 뷰에서 사용할 정보를 지닙니다
+  data: {
+    name: '<i>이탈릭</i>',
+    visible: true
+  }   
+});
+                                </code>                            
+                            </pre>    
+                        </p>
+                      </div>
+                    </div>
+                    <div class="jumbotron jumbotron-fluid">
+                      <div class="container">
+                        <h1 class="display-10">v-html</h1>
+                        <p class="lead">
+                            HTML 을 기본적으로 텍스트형태로만 렌더링되게 해주기때문에 태그를 막고, 또 XSS 같은것도 차단하기에 유용하겠죠? 따로 코드를 쓰지 않아도, 라이브러리를 쓰지 않아도 되니까요.
+                            하지만, 가끔씩은 html 을 렌더링 해야 할 때도 있습니다. 그럴 땐, “여기서 렌더링 할 건 html 형식이야” 라는걸 지정하기 위해서 v-html 이라는 디렉티브를 사용합니다.
+
+                            <pre>
+                                <code class="html" >
+  &lt;!DOCTYPE html>
+  &lt;html>
+  &lt;head>
+    &lt;meta charset="utf-8">
+    &lt;meta name="viewport" content="width=device-width">
+    &lt;title>JS Bin&lt;/title>
+  &lt;/head>
+  &lt;body>
+    
+    &lt;div id="app">
+      &lt;h1>Hello 
+        &lt;span v-html="name">&lt;/span>
+      &lt;/h1>
+    &lt;/div>
+    
+    &lt;script src="https://unpkg.com/vue/dist/vue.js">&lt;/script>
+  &lt;/body>
+  &lt;/html>
+                                </code>
+                              </pre>
+                        </p>
+                      </div>
+                    </div>
+                    <div class="jumbotron jumbotron-fluid">
+                      <div class="container">
+                        <h1 class="display-10">v-show</h1>
+                        <p class="lead">
+                          해당 엘리먼트가 보여질지, 보여지지 않을지 true / false 값으로 지정 할 수 있습니다. 
+                          <pre>
+                            <code class="html" >
+&lt;!DOCTYPE html>
+&lt;html>
+&lt;head>
+  &lt;meta charset="utf-8">
+  &lt;meta name="viewport" content="width=device-width">
+  &lt;title>JS Bin&lt;/title>
+&lt;/head>
+&lt;body>
+  
+  &lt;div id="app">
+    &lt;h1>Hello 
+      &lt;span v-show="visible" v-html="name">&lt;/span>
+    &lt;/h1>
+  &lt;/div>
+  
+  &lt;script src="https://unpkg.com/vue/dist/vue.js">&lt;/script>
+&lt;/body>
+&lt;/html>                         
+                            </code>
+                          </pre>
+                          <pre>
+                              <code class="javascript" >
+// 새로운 뷰를 정의합니다
+var app = new Vue({
+  el: '#app', // 어떤 엘리먼트에 적용을 할 지 정합니다
+  // data 는 해당 뷰에서 사용할 정보를 지닙니다
+  data: {
+    name: '&lt;i>이탈릭&lt;/i>',
+    visible: true
+  }   
+});
+                              </code>                            
+                          </pre>                            
+                        </p>
+                      </div>
+                    </div>
+                    <div class="jumbotron jumbotron-fluid">
+                      <div class="container">
+                        <h1 class="display-10">v-if</h1>
+                        <p class="lead">
+                            v-if 디렉티브는 위에서 배운 디렉티브와 살짝 비슷한데, 여기에 변수명 대신에 조건문을 씁니다 
+                            <pre>
+                                <code class="html" >
+&lt;!DOCTYPE html>
+&lt;html>
+&lt;head>
+  &lt;meta charset="utf-8">
+  &lt;meta name="viewport" content="width=device-width">
+  &lt;title>JS Bin&lt;/title>
+&lt;/head>
+&lt;body>
+  
+  &lt;div id="app">
+    &lt;h1 v-if="value > 5">value 가 5보다 크군요&lt;/h1>
+  &lt;/div>
+  
+  &lt;script src="https://unpkg.com/vue/dist/vue.js">&lt;/script>
+&lt;/body>
+&lt;/html>                         
+                                </code>
+                              </pre>  
+                              <pre>
+                                  <code class="javascript" >
+// 새로운 뷰를 정의합니다
+var app = new Vue({
+  el: '#app', // 어떤 엘리먼트에 적용을 할 지 정합니다
+  // data 는 해당 뷰에서 사용할 정보를 지닙니다
+  data: {
+    value: 0
+  }   
+});
+                                  </code>                            
+                              </pre>                                                          
+                        </p>
+                      </div>
+                    </div>
+                    <div class="jumbotron jumbotron-fluid">
+                      <div class="container">
+                        <h1 class="display-10">v-else</h1>
+                        <p class="lead">
+                            v-if 디렉티브를 사용 했을때 그 아래에 v-else 디렉티브를 사용하는 엘리먼트를 넣어주면, 윗부분의 조건문이 만족하지 않을때 보여진답니다.
+                            <pre>
+                                <code class="html" >
+&lt;!DOCTYPE html>
+&lt;html>
+&lt;head>
+  &lt;meta charset="utf-8">
+  &lt;meta name="viewport" content="width=device-width">
+  &lt;title>JS Bin&lt;/title>
+&lt;/head>
+&lt;body>
+  
+  &lt;div id="app">
+    &lt;h1 v-if="value > 5">value 가 5보다 크군요&lt;/h1>
+    &lt;h1 v-else>value 가  5 보다 작아요&lt;/h1>
+  &lt;/div>
+  
+  &lt;script src="https://unpkg.com/vue/dist/vue.js">&lt;/script>
+&lt;/body>
+&lt;/html>                        
+                                </code>
+                              </pre>                             
+                        </p>
+                      </div>
+                    </div>
+                    <div class="jumbotron jumbotron-fluid">
+                      <div class="container">
+                        <h1 class="display-10">v-else-if</h1>
+                        <p class="lead">
+                            v-else-if 는 첫번째 조건문의 값이 참이 아닐 때, 다른 조건문을 체크하여 다른 결과물을 보여줄 수 있게 해줍니다. 
+                            <pre>
+                                <code class="html" >
+&lt;!DOCTYPE html>
+&lt;html>
+&lt;head>
+  &lt;meta charset="utf-8">
+  &lt;meta name="viewport" content="width=device-width">
+  &lt;title>JS Bin&lt;/title>
+&lt;/head>
+&lt;body>
+  
+  &lt;div id="app">
+    &lt;h1 v-if="value > 5">value 가 5보다 크군요&lt;/h1>
+    &lt;h1 v-else-if="value === 5">값이 5네요&lt;/h1>
+    &lt;h1 v-else>value 가  5보다 작아요&lt;/h1>
+  &lt;/div>
+  
+  &lt;script src="https://unpkg.com/vue/dist/vue.js">&lt;/script>
+&lt;/body>
+&lt;/html>                       
+                                </code>
+                              </pre>                              
+                        </p>
+                      </div>
+                    </div>
+                    <div class="jumbotron jumbotron-fluid">
+                      <div class="container">
+                        <h1 class="display-10">v-pre</h1>
+                        <p class="lead">
+                            이 디렉티브는 특정 엘리먼트를 무시하는데에 사용 됩니다. <br>
+                            이걸 사용하므로서, Vue 시스템에서 해당 엘리먼트는 지시문이 없다는걸 인식하게 되어 <br>
+                            그 엘리먼트 내부의 자식엘리먼트들을 신경쓰지 않고 그냥 건너뜁니다. <br>
+                            이렇게 함으로써, 컴파일 속도가 빨라집니다.
+                            <pre>
+                                <code class="html" >
+&lt;!DOCTYPE html>
+&lt;html>
+&lt;head>
+  &lt;meta charset="utf-8">
+  &lt;meta name="viewport" content="width=device-width">
+  &lt;title>JS Bin&lt;/title>
+&lt;/head>
+&lt;body>
+  
+  &lt;div id="app">
+    &lt;h1 v-if="value > 5">value 가 5보다 크군요&lt;/h1>
+    &lt;h1 v-else-if="value === 5">값이 5네요&lt;/h1>
+    &lt;h1 v-else>value 가  5보다 작아요&lt;/h1>
+    &lt;h1 v-pre>{{ 이건 그대로 렌더링해줘요 }}&lt;/h1>
+  &lt;/div>
+  
+  &lt;script src="https://unpkg.com/vue/dist/vue.js">&lt;/script>
+&lt;/body>
+&lt;/html>                
+                                </code>
+                              </pre>     
+                        </p>
+                      </div>
+                    </div>
+                    <div class="jumbotron jumbotron-fluid">
+                      <div class="container">
+                        <h1 class="display-10">v-cloak</h1>
+                        <p class="lead">
+                            위 GIF 파일의 FPS가 좀 낮아서 제대로 도중에 한번밖에 안타나나는 현상이지만, <br>
+                            이 버튼이 클릭되면서, 자바스크립트가 다시 실행이 되는데요. <br> 
+                            그 과정에서 가끔씩 저희가 숨겨놨던 엘리먼트들이 정말 짧은순간 동안 깜박이는 현상이 있습니다.<br>
+                            그 이유는, 아직 자바스크립트 코드가 실행되기 전이여서 그렇습니다. <br>
+                            한번 그냥 단순히 Auto-run JS 체크박스를 잠깐 설정해제해보세요. <br>
+                            자바스크립트가 실행되지 않으니 보여야하지 말아야할게 그대로 보이죠? <br>
+                            지금은 머스태쉬 태그를 작성하지 않았지만, 만약에 템플릿에 머스태쉬 코드를 <br>
+                            작성했더라면 그 머스태쉬 태그가 그대로 나타났을겁니다. <br>
+                            만약에 자바스크립트가 실행 되기전에, 그러니까, Vue 인스턴스가 제대로 준비되기 <br>
+                            전 까지 우리의 템플렛을 위한 HTML 코드를 숨기고 싶을 때 이 v-cloak 이라는 디렉티브를 사용합니다.<br>
+                            <pre>
+                                <code class="html" >
+&lt;!DOCTYPE html>
+&lt;html>
+&lt;head>
+  &lt;meta charset="utf-8">
+  &lt;meta name="viewport" content="width=device-width">
+  &lt;title>JS Bin&lt;/title>
+&lt;/head>
+&lt;body>
+  
+  &lt;div id="app" v-cloak>
+      &lt;h1 v-if="value > 5">value 가 5보다 크군요&lt;/h1>
+      &lt;h1 v-else-if="value === 5">값이 5네요&lt;/h1>
+      &lt;h1 v-else>value 가  5보다 작아요&lt;/h1>
+      &lt;h1 v-pre>{{ 이건 그대로 렌더링해줘요 }}&lt;/h1>
+  &lt;/div>
+  
+  &lt;script src="https://unpkg.com/vue/dist/vue.js">&lt;/script>
+&lt;/body>
+&lt;/html>         
+                                </code>
+                              </pre>   
+                        </p>
+                      </div>
+                    </div>
+                    <div class="jumbotron jumbotron-fluid">
+                      <div class="container">
+                        <h1 class="display-10">v-once</h1>
+                        <p class="lead">
+                            이 디렉티브를 사용하면, 컴포넌트를 초기에 딱 한번만 렌더링합니다. 즉, 자바스크립트에서 사용하는 데이터를 사용하긴하는데, 변동이 없고 한결같은 정적인 부분을 보여줄 떄 사용하는거죠.
+                            <pre>
+                                <code class="html" >
+&lt;!DOCTYPE html>
+&lt;html>
+&lt;head>
+  &lt;meta charset="utf-8">
+  &lt;meta name="viewport" content="width=device-width">
+  &lt;title>JS Bin&lt;/title>
+&lt;/head>
+&lt;body>
+  
+  &lt;div id="app" v-cloak>
+      &lt;h1 v-once v-if="value > 5">value 가 5보다 크군요&lt;/h1>
+      &lt;h1 v-else-if="value === 5">값이 5네요&lt;/h1>
+      &lt;h1 v-else>value 가  5보다 작아요&lt;/h1>.
+      &lt;h2 v-once>초기 값: {{ value }}&lt;/h2>
+      &lt;h2>현재 값: {{ value }}&lt;/h2>
+      &lt;h1 v-pre>{{ 이건 그대로 렌더링해줘요 }}&lt;/h1>   
+  &lt;/div>
+  
+  &lt;script src="https://unpkg.com/vue/dist/vue.js">&lt;/script>
+&lt;/body>
+&lt;/html>       
+                                </code>
+                              </pre>                               
+                        </p>
+                      </div>
+                    </div>
+                    <div class="jumbotron jumbotron-fluid">
+                        <div class="container">
+                          <h1 class="display-10">v-for</h1>
+                          <p class="lead">
+                              <pre>
+                                <code class="html" >
+
+&lt;!DOCTYPE html>
+&lt;html>
+&lt;head>
+  &lt;meta charset="utf-8">
+  &lt;meta name="viewport" content="width=device-width">
+  &lt;title>JS Bin&lt;/title>
+&lt;/head>
+&lt;body>
+  
+  &lt;div id="app">
+    &lt;h2>오늘 할 일&lt;/h2>
+    &lt;ul>
+      &lt;li v-for="todo in todos">{{ todo.text }}&lt;/li>
+    &lt;/ul>
+  &lt;/div>
+  
+  &lt;script src="https://unpkg.com/vue/dist/vue.js">&lt;/script>
+&lt;/body>
+&lt;/html>
+                                </code>
+                              </pre>
+                          </p>
+                        </div>
+                      </div>
+                      <div class="jumbotron jumbotron-fluid">
+                          <div class="container">
+                            <h1 class="display-10">v-model</h1>
+                            <p class="lead">
+                                데이터 → 뷰 의 형태로 바인딩이 되어있어서, 데이터의 값이 변하면  바로 바로 업데이트가 되죠? 이게 바로 단 방향 바인딩입니다. 한쪽으로만 데이터가 흐른다는거죠.
+
+                                그러면 양 방향 바인딩은 무엇일까요?
+                                
+                                뷰 ⇄ 데이터 형태로 바인딩하여 데이터가 양 방향으로 흐르게 해주는 것 입니다. 즉, 데이터에 있는 값이 뷰에 나타나고, 이 뷰의 값이 바뀌면 데이터의 값도 바뀌는것이죠.
+                                                                
+                                <pre>
+                                  <code class="html" > 
+&lt;!DOCTYPE html>
+&lt;html>
+&lt;head>
+  &lt;meta charset="utf-8">
+  &lt;meta name="viewport" content="width=device-width">
+  &lt;title>JS Bin&lt;/title>
+&lt;/head>
+&lt;body>
+  
+  &lt;div id="app">
+    &lt;h1>Hello, {{ name }}&lt;/h1>
+    &lt;h3>&lt;input type="checkbox" v-model="smile"/>웃어요 개구리&lt;/h3>
+    &lt;img :src="smile ? feelsgood : feelsbad"/>
+  &lt;/div>
+  
+  &lt;script src="https://unpkg.com/vue/dist/vue.js">&lt;/script>
+&lt;/body>
+&lt;/html>
+                                  </code>
+                                </pre>
+                            </p>
+                          </div>
+                        </div>
+                </li>           
+              </ul>
+
+              <hr>
+                Computed And Watch
+              <hr>
+              computed 속성 대신 메소드와 같은 함수를 정의할 수도 있습니다. 최종 결과에 대해 두 가지 접근 방식은 서로 동일합니다. 차이점은 computed 속성은 종속 대상을 따라 저장(캐싱)된다는 것 입니다. computed 속성은 해당 속성이 종속된 대상이 변경될 때만 함수를 실행합니다. 즉 message가 변경되지 않는 한, computed 속성인 reversedMessage를 여러 번 요청해도 계산을 다시 하지 않고 계산되어 있던 결과를 즉시 반환합니다.
+              <hr>
+              <Strong>computed 속성 vs watch 속성</Strong><br>
+                Vue는 Vue 인스턴스의 데이터 변경을 관찰하고 이에 반응하는 보다 일반적인 watch 속성을 제공합니다. 
+                다른 데이터 기반으로 변경할 필요가 있는 데이터가 있는 경우, 특히 AngularJS를 사용하던 경우 watch를 남용하는 경우가 있습니다. 
+                하지만 명령적인 watch 콜백보다 계산된 속성을 사용하는 것이 더 좋습니다.(역자 주: watch 속성은 감시할 데이터를 지정하고 그 데이터가 바뀌면 이런 함수를 실행하라는 방식으로 소프트웨어 공학에서 이야기하는 ‘명령형 프로그래밍’ 방식.
+                 computed 속성은 계산해야 하는 목표 데이터를 정의하는 방식으로 소프트웨어 공학에서 이야기하는 ‘선언형 프로그래밍’ 방식.)
+              <pre>
+                <code class="html" >
+&lt;div id="example">
+    &lt;p>원본 메시지: "{{ message }}"&lt;/p>
+    &lt;p>역순으로 표시한 메시지: "{{ reversedMessage }}"&lt;/p>
+&lt;/div>
+                </code>
+              </pre>
+              <pre>
+                <code class="javascript" >
+var vm = new Vue({
+  el: '#example',
+  data: {
+    message: '안녕하세요'
+  },
+  computed: {
+    // 계산된 getter
+    reversedMessage: function () {
+      // `this` 는 vm 인스턴스를 가리킵니다.
+      return this.message.split('').reverse().join('')
+    }
+  }
+})
+                </code>
+              </pre>
+              <hr>
+              이 경우 watch 옵션을 사용하면 비동기 연산 (API 엑세스)를 수행하고, 우리가 그 연산을 얼마나 자주 수행하는지 제한하고, 최종 응답을 얻을 때까지 중간 상태를 설정할 수 있습니다. 계산된 속성은 이러한 기능을 수행할 수 없습니다.
+              <pre>
+                <code class="html" >
+&lt;div id="watch-example">
+  &lt;p>
+    yes/no 질문을 물어보세요:
+    &lt;input v-model="question">
+  &lt;/p>
+  &lt;p>{{ answer }}&lt;/p>
+&lt;/div>
+                </code>
+              </pre>
+              <pre>
+                  <code class="javascript" >
+  <!-- 이미 Ajax 라이브러리의 풍부한 생태계와 범용 유틸리티 메소드 컬렉션이 있기 때문에, -->
+<!-- Vue 코어는 다시 만들지 않아 작게 유지됩니다. -->
+<!-- 이것은 이미 익숙한 것을 선택할 수 있는 자유를 줍니다. -->
+&lt;script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js">&lt;/script>
+&lt;script src="https://unpkg.com/lodash@4.13.1/lodash.min.js">&lt;/script>
+&lt;script&gt;
+var watchExampleVM = new Vue({
+  el: '#watch-example',
+  data: {
+    question: '',
+    answer: '질문을 하기 전까지는 대답할 수 없습니다.'
+  },
+  watch: {
+    // 질문이 변경될 때 마다 이 기능이 실행됩니다.
+    question: function (newQuestion) {
+      this.answer = '입력을 기다리는 중...'
+      this.getAnswer()
+    }
+  },
+  methods: {
+    // _.debounce는 lodash가 제공하는 기능으로
+    // 특히 시간이 많이 소요되는 작업을 실행할 수 있는 빈도를 제한합니다.
+    // 이 경우, 우리는 yesno.wtf/api 에 액세스 하는 빈도를 제한하고,
+    // 사용자가 ajax요청을 하기 전에 타이핑을 완전히 마칠 때까지 기다리길 바랍니다.
+    // _.debounce 함수(또는 이와 유사한 _.throttle)에 대한
+    // 자세한 내용을 보려면 https://lodash.com/docs#debounce 를 방문하세요.
+    getAnswer: _.debounce(
+      function () {
+        if (this.question.indexOf('?') === -1) {
+          this.answer = '질문에는 일반적으로 물음표가 포함 됩니다. ;-)'
+          return
+        }
+        this.answer = '생각중...'
+        var vm = this
+        axios.get('https://yesno.wtf/api')
+          .then(function (response) {
+            vm.answer = _.capitalize(response.data.answer)
+          })
+          .catch(function (error) {
+            vm.answer = '에러! API 요청에 오류가 있습니다. ' + error
+          })
+      },
+      // 사용자가 입력을 기다리는 시간(밀리세컨드) 입니다.
+      500
+    )
+  }
+})
+&lt;/script&gt;
+                  </code>
+                </pre>
+            </div>
+            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+          </div>
+          
+        <!-- /.container-fluid -->
+
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright © Your Website 2018</span>
+            </div>
+          </div>
+        </footer>
+
+      </div>
+      <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="cleancode">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="login.html">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Page level plugin JavaScript-->
+    <script src="../vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="../js/sb-admin.min.js"></script>
+
+    <!-- Demo scripts for this page-->
+    <script src="../js/demo/chart-area-demo.js"></script>
+    <script src="../js/demo/chart-bar-demo.js"></script>
+    <script src="../js/demo/chart-pie-demo.js"></script>
+
+  </body>
+
+</html>

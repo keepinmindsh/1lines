@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>1Lines - Clean Code</title>
+
+    <!-- Bootstrap core CSS-->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template-->
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Page level plugin CSS-->
+    <link href="../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="../css/sb-admin.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../styles/default.css">
+    <script src="../highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </head>
+
+  <body id="page-top">
+
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+
+      <a class="navbar-brand mr-1" href="../index.html">Clean Code</a>
+
+      <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Navbar Search -->
+      <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Navbar -->
+      <ul class="navbar-nav ml-auto ml-md-0">
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-bell fa-fw"></i>
+            <span class="badge badge-danger">9+</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-envelope fa-fw"></i>
+            <span class="badge badge-danger">7</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user-circle fa-fw"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+            <a class="dropdown-item" href="#">Settings</a>
+            <a class="dropdown-item" href="#">Activity Log</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+          </div>
+        </li>
+      </ul>
+
+    </nav>
+
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <ul class="sidebar navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="../index.html">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>요약</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>목록</span>
+          </a>
+          <div class="dropdown-menu show" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header">Clean Code</h6>
+            <a class="dropdown-item" href="../cleancode/cleancode_001.html">코딩 기본</a>
+            <a class="dropdown-item" href="../cleancode/cleancode_002.html">객체자료/예외/경계</a>
+            <a class="dropdown-item" href="../cleancode/cleancode_003.html">클래스</a>
+            <a class="dropdown-item" href="../cleancode/cleancode_004.html">시스템</a>
+            <a class="dropdown-item" href="../cleancode/cleancode_005.html">테스트</a>
+            <a class="dropdown-item" href="../cleancode/cleancode_006.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_007.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_008.html"></a>          
+            <a class="dropdown-item" href="../cleancode/cleancode_009.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_010.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_011.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_012.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_013.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_014.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_015.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_016.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_017.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_018.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_019.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_020.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_021.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_022.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_023.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_024.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_025.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_026.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_027.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_028.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_029.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_030.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_031.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_032.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_033.html"></a>
+          </div>
+        </li>
+      </ul>
+
+      <div id="content-wrapper">
+        <div class="container-fluid">
+          <!-- Breadcrumbs-->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">Clean Code</li>
+          </ol>
+
+          <!-- Area Chart Example-->
+          <div class="card mb-3">
+            <div class="card-header">
+              </div>
+            <div class="card-body">
+              <div class="accordion" id="accordionExample">
+                <div class="card">
+                  <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        태도
+                      </button>
+                    </h2>
+                  </div>
+              
+                  <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                        나쁜 코드의 위험을 이해햐지 못하는 관리자의 말을 그대로 따르는 행동은 전문가 답지 못하다. 
+                        <hr>
+                        <ul>
+                          <li>깨끗한 코드는 '보기에 즐거운' 코드다. 깨끗한 코드는 한가지에 집중한다. </li>
+                          <li>코드는 추측이 아니라 사실에 기반해야한다. 반드시 필요한 내용만 담아야 한다. </li>
+                          <li>깨끗한 코드란 다른 사람이 고치기 쉽다고 단언한다. 테스트케이스가 없는 코드는 깨끗한 코드가 아니다. </li>
+                          <li>깨끗한 코드는 주의 깊게 작성한 코드다. 누군가 시간을 들여 깔끔하고 단정하게 정리한 코드다. 세세한 사항까지 꼼꼼하게 신경쓴 코드다. </li>
+                          <li>모든 테스트를 통과한다. 중복이 없다. 시스템 내 모든 설계 아이디어를 표현한다. 클래스, 메서드, 함수등을 최대한 줄인다. <br>
+                              중복 줄이기, 표현력 높이기, 초반부터 간단한 추상화 고려하기. 
+                          </li>
+                          <li>
+                            깨끗한 코드는 읽으면서 놀랄 일이 없어야 한다고 워드는 말한다. 코드를 독해하느라 머리를 쥐어짤 필요가 없어야 한다. 읽으면서 짐작한대로 돌아가는 코드가 깨끗한 코드다. 
+                          </li>
+                        </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingTwo">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        의미 있는 이름 
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body">
+                      <ul>
+                        <li>
+                          의도를 분명히 밝혀라. 
+                          <div class="card">
+                            <div class="card-body">
+                              변수나 함수 그리고 클래스 이름은 다음과 같은 굵직한 질문에 모두 답해야 한다. <br>
+                              <ul>
+                                <li>변수(혹은 함수나 클래스)의 존재이유는? </li>
+                                <li>수행 기능은?</li>
+                                <li>사용 방법은?</li>
+                                <li>따로 주석이 필요하다면 의도를 분명히 드러내지 못했다는 이야기이다.</li>
+                              </ul>
+                            </div>
+                          </div>
+                          <hr>
+                          그릇된 정보는 피하라. 
+                          <div class="card">
+                              <div class="card-body">
+                                프로그래머는 코드에 그릇된 단서를 남겨서는 안된다. <br>
+                                그릇된 단서는 코드 의미를 흐린다. <br>
+                                나름 대로 널리 쓰이는 의미가 있는 단어를 다른의미로 사용해도 안된다. <br>
+                              </div>
+                          </div>
+                          <hr>
+                          의미 있게 구분하라. 
+                          <div class="card">
+                              <div class="card-body">
+                                읽는 사람이 차이를 알도록 이름을 지어라. 
+                              </div>
+                          </div>
+                          <hr>
+                          발음하기 쉬운 이름을 사용하라. 
+                          <hr>
+                          검색하기 위운 이름을 사용하라. 
+                          <div class="card">
+                              <div class="card-body">
+                                문자로 사용하는 이름과 상수는 텍스크 코드에서 쉽게 눈에 띄지 않는다는 문제점이 있다. <br>
+                                MAX_CLASSES_PER_STUDENT 는 grep으로 찾기 쉽지만, 숫자 7은 은근히 까다롭다. <br>
+                                간단한 메서드에서 로컬 변수만 한 문자를 사용한다. 이름 길이는 범위 크기에 비례해야한다. <br>
+                                변수나 상수를 코드 여러곳에서 사용한다면 검색하기 쉬운 이름이 바람직 하다. 
+                              </div>
+                          </div>
+                          <hr>
+                          인코딩을 피하라. 
+                          <div class="card">
+                              <div class="card-body">
+                                변수 이름이 타입을 인코딩할 필요가 없다. 객체는 강한 타입이며 IDE는 코드를 컴파일 하지 않고도 타입 오류를 감지할 정도로 발전했다. <br>
+                                멤버 변수에 m_ 이라는 접두어를 붙일 필요도 없다. <br>
+                                인터페이스 클래스와 구체 클래스를 사용할 경우에, I라는 접두어보다는 구체 클래스에 SubjectImp , Imp라고 붙이는 것이 더욱 효과적이다. <br>
+                              </div>
+                          </div>
+                          <hr>
+                          자신의 기억력을 자랑하지 마라. 
+                          <div class="card">
+                              <div class="card-body">
+                                명료함이 최고 <br>
+                                일반적으로 문제 영역이나 해법 영역에서 사용하지 않는 이름을 선택했기 때문에 생기는 문제이다. <br>
+                              </div>
+                          </div>
+                          <hr>
+                          클래스이름 : 클래스이름과 객체이름은 명사나 명사구가 적합하다. 동사는 사용하지 않는다. 
+                          <hr>
+                          메서드 이름 : 동사나 동사구가 적합하다. 
+                          <div class="card">
+                              <div class="card-body">
+                                생성자(Constructor)를 중복 정의할 때는 정적 팩토리 메서드를 사용한다.<br>
+                              </div>
+                          </div>
+                          <hr>
+                          기발한 이름은 피하라. 
+                          <ul>
+                            <li>재미난 이름보다 명료한 이름을 선택하라.</li>
+                          </ul>
+                          <hr>
+                          한 개념에 한 단어를 사용하라.
+                          <ul>
+                            <li>추상적인 개념 하나에 단어 하나를 선택해 이를 고수한다.</li>
+                            <li>일관성 있는 어휘는 코드를 사용할 프로그래머가 반갑게 여길 선물이다.</li>
+                          </ul>
+                          <hr>
+                          말장난을 하지마라. 
+                          <ul>
+                            <li>한 단어를 두가지 목적으로 사용하지 마라. 다름 개념에 같은 단어를 사용한다면 그것은 말장난에 불과하다. </li>
+                          </ul>
+                          <hr>
+                          해법 영역에서 가져온 이름을 사용하라. 
+                          <ul>
+                            <li>코드를 읽는 사람도 프로그래머라는 사실을 명심한다.</li>
+                            <li>전산 용어, 알고리즘 이름, 패턴 이름, 수학 용어등을 사용해도 괜찮다.</li>
+                          </ul>
+                          <hr>
+                          문제 영역에서 가져온 이름을 사용하라. 
+                          <ul>
+                            <li>적절한 '프로그래머 용어'가 없다면 문제 역역에서 이름을 가져온다. </li>
+                            <li>우수한 프로그래머와 설계자라면 해법 영역과 문제 영역을 구분할 줄 알아야 한다. </li>
+                          </ul>
+                          <hr>
+                          의미있는 맥락을 추가하라. 
+                          <ul>
+                            <li>스스로 의미가 분명한 이름이 없지 않다.</li>
+                            <li>클래스, 함수, 이름 공간에 넣어 맥락을 부여한다. </li>
+                            <li>
+                              <pre>
+                                <code class="Java" >
+public class GuessStatisticsMessage {
+  private String number;
+  private String verb;
+  private String pluralModifier;
+
+  public String make(char candidate, int count){
+    createPluralDependentMessageParts(count);
+    return String.format(
+      "There %s %s %s%s", verb, number, candidate, pluralModifier
+    );
+  }
+}
+                                </code>
+                              </pre>
+                             
+                            </li>
+                          </ul>
+                          <hr>
+                          불필요한 맥락을 없애라 
+                          <ul>
+                            <li>일반적으로 짧은 이름이 긴 이름보다 좋다. 단, 의미가 분명한 경웨 한해서다. 이름에 불필요한 맥락을 추가하지 않도록 한다. </li>
+                            
+                          </ul>
+                        </li>
+                      </ul>
+                      <hr>
+                      <div class="alert alert-dark" role="alert">
+                        좋은 이름을 선택하려면 설명 능력이 뛰어나야 하고 문화적인 배경이 같아야 한다. 이것이 제일 어렵다. <br>
+                        좋은 이름을 선택하는 능력은 기술, 비즈니스, 관리 문제가 아니라 교육 문제다. 우리 분야 사람들이 이름 짓는 방법을 제대로 익히지 못하는 이유가 바로 여기에 있다. 
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingThree">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        작게 만들어라!
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div class="card-body">
+                      함수를 만드는 첫번째 규칙은 '작게!' 다. 함수를 만드는 둘째 규칙은 '더 작게!' 다. <br>
+                      20줄에서 30줄 정도인 함수도 길다!. <br>
+                      <div class="alert alert-dark" role="alert">
+                        켄트가 코드를 보여줬을 때 나는 함수가 너무도 작아 깜짝 놀랐다. 그때까지 나는 장환하게 긴 스윙 프로그램 함수에 익숙했다. <br>
+                        그런데 Sparkle은 모든 함수가 2줄, 3줄, 4줄 정보였다. 각 함수가 너무도 명백했다. 각 함수가 이야기 하나를 표현했다. <br>
+                        각 함수가 너무도 멋지게 다음 무대를 준비했다. 바로 이것이 답이다. 
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingFour">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseTwo">
+                        블록과 들여쓰기 
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                    <div class="card-body">
+                      if 문/else 문/while 문 등에 들어가는 블록은 한줄이어야 한다는 의미. <br>
+                      대게 거기서 함수를 호출한다. 그러면 바깥을 감싸는 함수가 작아질 뿐만 아니라, 블록 안에서 호출하는 함수 이름을 적절히 짓는다면, 코드를 이해하기 쉬워진다. <br>
+                      이 말은 중첩 구조가 생길만큼 함수가 커져서는 안된다는 뜻이다. 당연한 말이지만 함수는 읽고 이해하기 쉬워진다. 
+                    </div>
+                  </div>
+                </div>  
+                <div class="card">
+                  <div class="card-header" id="heading5">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                        한 가지만 해라!
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapse5" class="collapse" aria-labelledby="heading5" data-parent="#accordionExample">
+                    <div class="card-body">
+                      함수는 한 가지를 해야한다. 그 한 가지를 잘 해야 한다. 그 한 가지만을 해야한다. <br>
+                      우리가 함수를 만드는 이유는 큰 개념을 다음 추상화 수준에서 여러 단계로 나눠 수행하기 위해서 일것이다. <br>
+                      함수가 '한가지' 만 하는지 판단하는 방법이 하나더 있다. 단순히 다른 표현이 아니라 의미 있는 이름으로 다른 함수를 추출할 수 있다면 <br>
+                      그 함수는 여러 작업을 하는 셈이다. <br>   
+                    </div>
+                  </div>
+                </div>  
+                <div class="card">
+                  <div class="card-header" id="heading7">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
+                        함수당 추상화 수준은 하나로 !
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapse7" class="collapse" aria-labelledby="heading7" data-parent="#accordionExample">
+                    <div class="card-body">
+                      함수가 확실히 '한 가지' 작업만 하려면 함수 내 모든 문장의 추상화 수준이 동일해야 한다. <br>
+                      한 함수 내에서 추상화 수준을 섞으면 코드를 읽는 사람이 헷갈린다. <br>
+                      근본 개념과 세부 사항을 뒤섞기 시작하면, 깨어진 창문처럼 사람들이 함수에 세부사항을 점점 더 추가한다. <br>  
+                    </div>
+                  </div>
+                </div> 
+                <div class="card">
+                  <div class="card-header" id="heading8">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapse8">
+                        위래서 아래로 코드 읽기 - 내려가기 규칙 
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapse8" class="collapse" aria-labelledby="heading8" data-parent="#accordionExample">
+                    <div class="card-body">
+                      코드는 위에서 아래로 이야기처럼 읽혀야 좋다. 한 함수 다음에는 추상화 수준이 한단계 낮은 함수가 온다.  <br>
+                      죽, 위에서 아래로 프로그램을 읽으면 함수 추상화 수준이 한 번에 한 단계씩 낮아진다. 이것을 내려가기 규칙이라고 한다. <br>
+
+                    </div>
+                  </div>
+                </div> 
+                <div class="card">
+                  <div class="card-header" id="heading9">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse9" aria-expanded="false" aria-controls="collapse9">
+                        Switch 문  
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapse9" class="collapse" aria-labelledby="heading9" data-parent="#accordionExample">
+                    <div class="card-body">
+                      switch 문은 작게 만들기 어렵다. case 분기가 단 두 개인 switch 문도 내 취향에는 너무 길며, 단일 블록이나 함수를 선호한다. 본질적으로 switch 문은 N가지의 일을 처리한다. <br>
+                      하지만 각 switch 문을 저차원 클래스로 숨기고 절대로 반복하지 않는 방법은 있다. 물론 다형성을 이용한다. 
+                      <hr>
+                      <pre>
+                        <code class="java" >
+public Money calculatePay(Employee e) throws InvalidEmployeeType {
+  switch (e.type) {
+    case COMMISSIONED :
+      return calculateCommissionPay(e);
+    case HOURLY :
+      return calculateHourlyPay(e);
+    case SALARIED :
+      return calcualateSalariedPay(e);
+    default :
+      throw new InvalidEmployeeType(e.type);  
+  }
+}                          
+
+// calculatePay와 동일한 구조의 코드 
+public Money isPayday(Employee e, Date data);
+
+// calculatePay와 동일한 구조의 코드 
+public Money deliverPay(Employee e, Money money);
+                        </code>
+                      </pre>
+위의 함수는 여러가지 문제가 있는데, 함수가 길며, '한가지' 작업만 수행하지 않으며, SRP를 위한반다. OCP를 위반한다. 
+                      <hr>
+                      <pre>
+                        <code class="java" >
+public abtract class Employee {
+  public abstract boolean isPayday();
+  public abstract Money calculatePay();
+  public abstract void deliverpay(Money pay);
+}
+
+public interface EmployeeFactory {
+  pulic Employee makeEmployee(EmployeeRecord r) throws InvalidEmployeeType;
+}
+
+public class EmployeeFactoryImpl implements EmployeeFactory {
+  public Employee makeEmployee(EmployRecord r) throws InvalidEmployeeType {
+    switch ( r.type ){
+      case COMMISSIONED :
+        return new CommissionEmployee(r);
+      case HOURLY :
+        return new HourlyEmployee(r);
+      case SALARIED :
+        return new SalariedEmployee(r);
+      default : 
+        throw new InvalidEmployeeType(r.type);
+
+    }
+  }
+}
+                        </code>
+                      </pre>
+                      switch 문은 다형적 객체를 생성하는 코드 안에서 단 한 번만 참아 줄 수 있다. 
+                    </div>
+                  </div>
+                </div> 
+                <div class="card">
+                  <div class="card-header" id="heading10">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse10" aria-expanded="false" aria-controls="collapse10">
+                        서술적인 이름을 사용하라!  
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapse10" class="collapse" aria-labelledby="heading10" data-parent="#accordionExample">
+                    <div class="card-body">
+                      testableHtml -> SetupTearDownIncluder.render <br>
+                      함수가 하는 일을 좀 더 잘 표현하므로 훨씬 좋은 이름이다. <br>
+                      "코드를 읽으면서 짐작했던 기능을 각 루틴이 수행한다면 깨끗한 코드라 불러도 되겠다." <br>
+                      이름이 길어도 괜찮다. 길고 서술적인 이름이 짧고 어려운 이름보다 좋다. 길고 서술적인 이름이 길고 서술적인 주석보다 좋다. <br>
+                      함수 이름을 정할 때는 여러 단어가 쉽게 읽히는 명명법을 사용한다. 그런 다음, 여러 단어를 사용해 함수 기능을 잘 표현하는 이름을 선택한다. <br>
+                    </div>
+                  </div>
+                </div> 
+                <div class="card">
+                  <div class="card-header" id="heading11">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse11" aria-expanded="false" aria-controls="collapse11">
+                        함수 인수 
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapse11" class="collapse" aria-labelledby="heading11" data-parent="#accordionExample">                        
+                    <div class="card-body">
+                      함수에서 이상적인 인수 개수는 0개 ( 무항 ) 이다. <br>
+                      다음은 1개(단항)고, 다음은 2개(이항)다. 3개(삼항)는 가능한 피하는게 좋다. <br>
+                      최선은 입력 인수가 없는 경우이며, 차선은 입력 인수가 1개뿐인 경우다. <br>
+                      SetupTeardownIncluder.render(pageData)는 이해하기 쉽다. pageData 객체 내용을 렌더링하겠다는 뜻이다. <br>
+                      인수가 2~3개가 필요하면 일부를 독자적인 클래스 변수라 선언할 가능성을 짚어본다. <br> 
+                    </div>
+                  </div>
+                </div> 
+                <div class="card">
+                  <div class="card-header" id="heading12">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse12" aria-expanded="false" aria-controls="collapse12">
+                        부수 효과를 일으키지 마라!  
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapse12" class="collapse" aria-labelledby="heading12" data-parent="#accordionExample">
+                    <div class="card-body">
+                      부수 효과는 거짓말이다. 함수에서는 한가지를 하겠다고 하고선 남몰래 다른 짓도 하기 때문이다. <br>
+                      함수 내부에 의도하지 않은 추가적인 역할이 존재한다는 것은 개발자로 하여금 혼란을 야기할 수 있다. <br>
+                    </div>
+                  </div>
+                </div> 
+                <div class="card">
+                  <div class="card-header" id="heading13">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse13" aria-expanded="false" aria-controls="collapse13">
+                        명령과 조회를 분리하라  
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapse13" class="collapse" aria-labelledby="heading13" data-parent="#accordionExample">
+                    <div class="card-body">
+                        함수는 뭔가를 수행하거나 뭔가에 답하거나 둘 중 하나만 해야한다. 둘 다 하면 안된다. <br>
+                        객체 상태를 변경하거나 아니면 객체 정보를 반환하거나 둘 중 하나다. <br>
+                        둘 다 하면 혼란을 초래한다. 
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="heading14">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse14" aria-expanded="false" aria-controls="collapse14">
+                        오류 코드 보다 예외를 사용하라. 
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapse14" class="collapse" aria-labelledby="heading14" data-parent="#accordionExample">
+                    <div class="card-body">
+                        오류 코드 대신 예외를 사용하면 오류 처리 코드가 원래 코드에서 분리되므로 코드가 깔끔해진다. 
+                        <hr>
+                        <pre>
+                          <code class="Java" >
+public void delete(Page page) {
+  try {
+    deletePageAndAllReferences(page);
+  }
+  catch(Exception e){
+    logError(e)
+  }
+}     
+
+private void deletePageAndAllReferences(Page page) throws Exception {
+  deletePage(page);
+  registry.deleteReference(page.name);
+  configKeys.deleteKey(page.name.makeKey());
+}
+
+private void logError(Exception e){
+  logger.log(e.getMessage());
+}
+                          </code>
+                        </pre>
+                    </div>
+                  </div>
+                </div>  
+                <div class="card">
+                  <div class="card-header" id="heading15">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse15" aria-expanded="false" aria-controls="collapse15">
+                        오류 처리도 한가지 작업이다. 
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapse15" class="collapse" aria-labelledby="heading15" data-parent="#accordionExample">
+                    <div class="card-body">
+                      함수는 '한 가지' 작업만 해야 한다. 오류 처리도 '한 가지' 작업에 속한다. <br>
+                      그러므로 오류를 처리하는 함수는 오류만 처리해야 마땅한다. <br>
+                      오류 코드 대신 예외를 사용하면 새 예외는 Exception 클래스에서 파생된다. 따라서 재 컴파일/재배치 없이도 새 예외 클래스를 추가할 수 있다. <br>
+                    </div>
+                  </div>
+                </div> 
+                <div class="card">
+                  <div class="card-header" id="heading16">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse16" aria-expanded="false" aria-controls="collapse16">
+                        반복하지 마라 ( DRY - Don't Repeat Yourself )
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapse16" class="collapse" aria-labelledby="heading16" data-parent="#accordionExample">
+                    <div class="card-body">
+                      중복은 소프트웨어에서 모든 악의 근원이다. 많은 원칙과 기법이 중복을 없애거나 제어할 목적으로 나왔다. <br>
+                      객체 지향 프로그램은 코드를 부모 클래스로 몰아 중복을 없앤다. <br>
+                      구조적 프로그래밍, AOP( Aspect Oriented Programming), COP ( Component Oriented Programming) 모두 어떤 면에서는 중복 제거 전략이다. 
+                    </div>
+                  </div>
+                </div> 
+                <div class="card">
+                  <div class="card-header" id="heading17">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse17" aria-expanded="false" aria-controls="collapse17">
+                        구조적 프로그래밍 
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapse17" class="collapse" aria-labelledby="heading17" data-parent="#accordionExample">
+                    <div class="card-body">
+                      모든 함수와 함수 내 모든 블록에 입구와 출구가 하나만 존재해야 한다고 말했다. <br>
+                      즉, 함수는 return 문이 하나여야 한다는 말이다. 루프 안에서 break나 continue를 사용해선 안되며 goto는 절대로,절대로 안된다. 
+                    </div>
+                  </div>
+                </div>  
+                <div class="card">
+                  <div class="card-header" id="heading18">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse18" aria-expanded="false" aria-controls="collapse18">
+                        함수를 어떻게 짜죠? 
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapse18" class="collapse" aria-labelledby="heading18" data-parent="#accordionExample">
+                    <div class="card-body">
+                      소프트웨어를 짜는 행위는 여느 글짓기와 비슷하다. 논문이나 기사를 작성할 때는 먼제 생각을 기록한 후 읽기 좋게 만든다. <br>
+                      초안은 대개 서투르고 어수선하므로 원하는 대로 읽힐 때까지 말을 다음도 문장을 고치고 문단을 정리한다. 함수도 이와 동일한다. 
+                      <hr>
+                      대가 프로그래머는 시스템을 구현할 프로그램이 아니라 풀어갈 이야기로 여긴다. <br>
+                      프로그래밍 언어라는 수단을 사용해 좀 더 풍부하고 좀 더 표현젹이 강한 언어를 만들어 이야기를 풀어간다. <br>
+                      시스템에서 발생하는 모든 동작을 설명하는 함수 계층이 바로 그 언어에 속한다. 
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="heading19">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse19" aria-expanded="false" aria-controls="collapse19">
+                        주석은 나쁜 코드를 보완하지 못한다. 
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapse19" class="collapse" aria-labelledby="heading19" data-parent="#accordionExample">
+                    <div class="card-body">
+                      <div class="alert alert-primary" role="alert">
+                        코드로 의도를 표현하라! 
+                      </div>
+                      <hr>
+                      코드에 주석을 포함하는 일반적인 이유는 코드 품질이 나쁘기 때문이다. <br>
+                      모듈을 짜고 보니 짜임새가 엉망이고 알아먹기 어렵다. <br>
+                      표현력이 풍부하고 깔끔하며 주석이 거의 없는 코드가, 복잡하고 어수선하며 주석이 많이 <br>
+                      달린 코드보다 훨씬 좋다. 
+                      <pre>
+                        <code class="Java" >
+package TEST.CommentSample;
+
+public class CommentSample {
+
+    public static Flag flag;
+
+    public static void main(String[] args) {
+        // 직원의 복지 혜택 자격 여부를 검사한다.
+        if(  (worker.flags & Flag.HOURLY_FLAG == flag) && ( worker.ages > 65) ){
+            System.out.println("문법을 통과했어~!");
+        }
+
+
+        if(worker.isEligiableForFullBenefits()){
+            System.out.println("문법을 통과했어~!");
+        }
+
+    }
+
+}
+
+class worker {
+    public static boolean flags = true;
+    public static int ages = 70;
+    public static Flag flag;
+
+    public static boolean isEligiableForFullBenefits(){
+        return (worker.flags & Flag.HOURLY_FLAG == flag) && ( worker.ages > 65);
+    }
+
+}
+
+enum Flag {
+    HOURLY_FLAG
+}                          
+                        </code>
+                      </pre>
+                    </div>
+                  </div>
+                </div> 
+                <div class="card">
+                  <div class="card-header" id="heading20">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse20" aria-expanded="false" aria-controls="collapse20">
+                        좋은 주석
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapse20" class="collapse" aria-labelledby="heading20" data-parent="#accordionExample">
+                    <div class="card-body">
+                      <ul>
+                        <li>법적인 주석</li>
+                        <li>정보를 제공하는 주석</li>
+                        <li>의도를 설명하는 주석</li>
+                        <li>의미를 명료하게 밝히는 주석</li>
+                        <li>결과를 경고하는 주석 </li>
+                        <li>TODO 주석</li>
+                        <li>중요성을 강조하는 주석</li>
+                        <li>공개 API에서 Javadocs</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="heading21">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse21" aria-expanded="false" aria-controls="collapse21">
+                        나쁜 주석
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapse21" class="collapse" aria-labelledby="heading21" data-parent="#accordionExample">
+                    <div class="card-body">
+                      <ul>
+                        <li>주절거리는 주석</li>
+                        <li>같은 이야기를 중복하는 주석</li>
+                        <li>오해할 여지가 있는 주석</li>
+                        <li>의무적으로 다는 주석</li>
+                        <li>있으나 마나 한 주석</li>
+                        <li>무서운 잡음</li>
+                        <li>함수나 변수로 표현할 수 있다면 주석을 달지 마라</li>
+                        <li>닫는 괄호에 다는 주석</li>
+                        <li>위치를 표시하는 주석</li>
+                        <li>주석으로 처리한 코드</li>
+                        <li>HTML 주석</li>
+                        <li>전역정보</li>
+                        <li>너무 많은 정보</li>
+                        <li>모호한 관계</li>
+                        <li>함수 헤더</li>
+                        <li>비공개 코드에서 Javadocs</li>
+                      </ul>  
+                    </div>
+                  </div>
+                </div>   
+                <div class="card">
+                  <div class="card-header" id="heading22">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse22" aria-expanded="false" aria-controls="collapse22">
+                        코드의 형식
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapse22" class="collapse" aria-labelledby="heading22" data-parent="#accordionExample">
+                    <div class="card-body">
+                      <ul>
+                        <li>적절한 행 길이를 유지하라.
+                          <hr>
+
+                        </li>
+                        <li>신문 기사처럼 작성하라.
+                          <hr>
+                          아주 좋은 신문 기사를 떠올려라. 족자는 위에서 아래로 기사를 읽는다. <br>
+                          최상단에 기사를 몇 마디로 요약하는 표제가 나온다. <br>
+                          독자는 표제를 보고서 기사를 읽을지 말지 결정한다. <br>
+                          첫 문단은 전체 기사 내용을 요약한다. <br>
+                          세세한 사실은 숨기고 커다란 그림을 보여준다. <br>
+                          쭉 읽으며 내려가면 세세한 사실이 조금씩 드러난다. <br>
+                          <hr>
+                        </li>
+                        <li>개념은 빈 행으로 분리하라.
+                          <hr>
+                        </li>
+                        <li>
+                          세로 밀집도
+                          <hr>
+                          줄바꿈이 개념을 분리한다면 세로 밀집도는 연관성을 의미한다. 
+                          <hr>
+                        </li>
+                        <li>
+                          수직거리 
+                          <hr>
+                          <Strong>변수선언</Strong><br>
+                          변수는 사용하는 위치에 최대한 가까이 선언한다. 우리가 만든 함수는 매우 <br>
+                          짧으므로 지역 변수는 각 함수 맨 처음에 선언한다. 
+                          <hr>
+                          <Strong>인스턴스변수</Strong><br>
+                          인스턴스 변수는 클래스 맨 처음에 선언한다. 변수 간에 새로로 거리를 두지 않는다. <br>
+                          잘 설계한 클래스는 많은 클래스 메서드가 인스턴스 변수를 사용하기 때문이다. <br>
+                          <hr>
+                          <Strong>종속함수</Strong><br>
+                          한 함수가 다른 함수를 호출한다면 두 함수는 세로로 가까이 배치한다. <br>
+                          또한 가능하다면 호출하는 함수를 호출되는 함수보다 먼저 배치한다. <br>
+                          그러면 프로그램이 자연스럽게 읽힌다. <br>
+                          <hr>
+                        </li>
+                        <li>
+                          개념적 유사성 : 어떤 코드는 서로 끌어 당긴다. 개념적인 친화도가 높기 때문이다. 친화도가 높을 수록 코드를 가까이 배치한다. 
+                          <hr>
+                          <Strong>세로순서</Strong><br>
+                          일반적으로 함수 호출 종속성은 아래 방향으로 유지한다. 다시 말해, 호출되는 함수를 호출하는 함수보다 나중에 배치한다. <br>
+                          그러면 소스 코드 모듈이 고차원에서 저차원으로 자연스럽게 내려간다. <br>
+                          <hr>
+                          <Strong>가로 형식 맞추기</Strong><br>
+                          한 행은 가로로 얼마나 길어야 적당할까? 한 행에 글자수는 120자 이하가 적합하다. <br>
+                          <hr>
+                          <strong>가로 공백과 밀집도</strong><br>
+                          가로로는 공백을 사용해 밀접한 개념과 느슨한 개념을 표현한다. 
+                          <hr>
+                          <strong>가로 정렬</strong><br>
+                          <hr>
+                          <strong>들여쓰기</strong><br>
+                          소스 파일은 윤곽도와 계층이 비슷하다. 파일 전체에 적용되는 정보가 있고, 파일 내 개별 클래스에 적용되는 정보가 있고, <br>
+                          클래스 내 각 메서드에 적용되는 정보가 있고, 블록내 블록에 재귀적으로 적용되는 정보가 있다. <br>
+                          계층에서 각 수즌은 이름을 선언하는 범위이자 선언문과 실행문을 해석하는 범위다. 
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>  
+                <div class="card">
+                  <div class="card-header" id="heading23">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse23" aria-expanded="false" aria-controls="collapse23">
+                        올바르게 작성한 코드 
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapse23" class="collapse" aria-labelledby="heading23" data-parent="#accordionExample">
+                    <div class="card-body">
+                      <pre>
+                        <code class="Java">
+import javax.naming.directory.Attributes;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
+
+public class CodeAnalyzer implements JavaFileAnalysis {
+  private int lineCount;
+  private int maxLineWidth;
+  private int widestLineNumber;
+  private LineWidthHistogram lineWidthHistogram;
+  private int totalChars;
+
+  public CodeAnalyzer() {
+    lineWidthHistogram = new LineWidthHistogram();
+  }
+
+  public static List&lt;File> findJavaFiles(File parentDirectory) {
+    List&lt;File> files = new ArrayList&lt;File>();
+    findJavaFiles(parentDirectory, files);
+    return files;
+  }
+
+  private static void findJavaFiles(File parentDirectory, List&lt;File> files) {
+    for (File file : parentDirectory.listFiles()) {
+      if (file.getName().endsWith(".java"))
+        files.add(file);
+      else if (file.isDirectory())
+        findJavaFiles(file, files);
+    }
+  }
+
+  public void analyzeFile(File javaFile) throws Exception {
+    BufferedReader br = new BufferedReader(new FileReader(javaFile));
+    String line;
+    while ((line = br.readLine()) != null)
+      measureLine(line);
+  }
+
+  private void measureLine(String line) {
+    lineCount++;
+    int lineSize = line.length();
+    totalChars += lineSize;
+    lineWidthHistogram.addLine(lineSize, lineCount);
+    recordWidestLine(lineSize);
+  }
+
+  private void recordWidestLine(int lineSize) {
+    if (lineSize > maxLineWidth) {
+      maxLineWidth = lineSize;
+      widestLineNumber = lineCount;
+    }
+  }
+
+  public int getLineCount() {
+    return lineCount;
+  }
+
+  public int getMaxLineWidth() {
+    return maxLineWidth;
+  }
+
+  public int getWidestLineNumber() {
+    return widestLineNumber;
+  }
+
+  public LineWidthHistogram getLineWidthHistogram() {
+    return lineWidthHistogram;
+  }
+
+  public double getMeanLineWidth() {
+    return (double)totalChars/lineCount;
+  }
+
+  public int getMedianLineWidth() {
+    Integer[] sortedWidths = getSortedWidths();
+    int cumulativeLineCount = 0;
+    for (int width : sortedWidths) {
+      cumulativeLineCount += lineCountForWidth(width);
+      if (cumulativeLineCount > lineCount/2)
+        return width;
+    }
+    throw new Error("Cannot get here");
+  }
+
+  private int lineCountForWidth(int width) {
+    return lineWidthHistogram.getLinesforWidth(width).size();
+  }
+
+  private Integer[] getSortedWidths() {
+    Set&lt;Integer> widths = lineWidthHistogram.getWidths();
+    Integer[] sortedWidths = (widths.toArray(new Integer[0]));
+    Arrays.sort(sortedWidths);
+    return sortedWidths;
+  }
+}
+
+
+interface JavaFileAnalysis {
+
+}
+
+class LineWidthHistogram {
+  public void addLine(int lineSize, int lineCount) {
+    //TODO: Auto-generated
+  }
+
+  public Attributes getLinesforWidth(int width) {
+    return null;  //TODO: Auto-generated
+  }
+
+  public Set&lt;Integer> getWidths() {
+    return null;  //TODO: Auto-generated
+  }
+}
+                        </code>
+                      </pre>
+                    </div>
+                  </div>
+                </div>                      
+              </div>
+            </div>
+            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+          </div>
+          
+        </div>
+        <!-- /.container-fluid -->
+
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright © Your Website 2018</span>
+            </div>
+          </div>
+        </footer>
+
+      </div>
+      <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="cleancode">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="login.html">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Page level plugin JavaScript-->
+    <script src="../vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="../js/sb-admin.min.js"></script>
+
+    <!-- Demo scripts for this page-->
+    <script src="../js/demo/chart-area-demo.js"></script>
+    <script src="../js/demo/chart-bar-demo.js"></script>
+    <script src="../js/demo/chart-pie-demo.js"></script>
+
+  </body>
+
+</html>

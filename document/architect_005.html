@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>1Lines - Architecture</title>
+
+    <!-- Bootstrap core CSS-->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template-->
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Page level plugin CSS-->
+    <link href="../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="../css/sb-admin.css" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/default.css">
+    <script src="../highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </head>
+
+  <body id="page-top">
+
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+
+      <a class="navbar-brand mr-1" href="../index.html">Start Bootstrap</a>
+
+      <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Navbar Search -->
+      <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Navbar -->
+      <ul class="navbar-nav ml-auto ml-md-0">
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-bell fa-fw"></i>
+            <span class="badge badge-danger">9+</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-envelope fa-fw"></i>
+            <span class="badge badge-danger">7</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user-circle fa-fw"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+            <a class="dropdown-item" href="#">Settings</a>
+            <a class="dropdown-item" href="#">Activity Log</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+          </div>
+        </li>
+      </ul>
+
+    </nav>
+
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <ul class="sidebar navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>요약</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>목록</span>
+          </a>
+          <div class="dropdown-menu show" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header">서론</h6>
+            <a class="dropdown-item" href="../document/architect_001.html">서론</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">사례연구</h6>
+            <a class="dropdown-item" href="../document/architect_002.html">사례연구</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">생성 패턴</h6>
+            <a class="dropdown-item" href="../document/architect_003.html">추상 팩토리</a>
+            <a class="dropdown-item" href="../document/architect_004.html">빌더</a>
+            <a class="dropdown-item" href="../document/architect_005.html">팩토리 메서드</a>
+            <a class="dropdown-item" href="../document/architect_006.html">원형</a>
+            <a class="dropdown-item" href="../document/architect_007.html">단일체</a>
+            <a class="dropdown-item" href="../document/architect_008.html">생성 패턴에 대한 논의</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">구조 패턴</h6>
+            <a class="dropdown-item" href="../document/architect_009.html">적응자</a>
+            <a class="dropdown-item" href="../document/architect_010.html">가교</a>
+            <a class="dropdown-item" href="../document/architect_011.html">복합체</a>
+            <a class="dropdown-item" href="../document/architect_012.html">장식자</a>
+            <a class="dropdown-item" href="../document/architect_013.html">퍼사드</a>
+            <a class="dropdown-item" href="../document/architect_014.html">플라이급</a>
+            <a class="dropdown-item" href="../document/architect_015.html">프록시</a>
+            <a class="dropdown-item" href="../document/architect_016.html">구조패턴에 대한 논의</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">행동 패턴</h6>
+            <a class="dropdown-item" href="../document/architect_017.html">책임 연쇄</a>
+            <a class="dropdown-item" href="../document/architect_018.html">명령</a>
+            <a class="dropdown-item" href="../document/architect_019.html">해석자</a>
+            <a class="dropdown-item" href="../document/architect_020.html">반복자</a>
+            <a class="dropdown-item" href="../document/architect_021.html">중재자</a>
+            <a class="dropdown-item" href="../document/architect_022.html">메멘토</a>
+            <a class="dropdown-item" href="../document/architect_023.html">감시자</a>
+            <a class="dropdown-item" href="../document/architect_024.html">상태</a>
+            <a class="dropdown-item" href="../document/architect_025.html">전략</a>
+            <a class="dropdown-item" href="../document/architect_026.html">템플릿 메서드</a>
+            <a class="dropdown-item" href="../document/architect_027.html">방문자</a>
+            <a class="dropdown-item" href="../document/architect_028.html">행동 패턴에 대한 논의</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">결론</h6>
+            <a class="dropdown-item" href="../document/architect_029.html">디자인 패턴에서 무엇을<br> 기대할 수 있는가?</a>
+            <a class="dropdown-item" href="../document/architect_030.html">간략한 역사</a>
+            <a class="dropdown-item" href="../document/architect_031.html">패턴 커뮤니티</a>
+            <a class="dropdown-item" href="../document/architect_032.html">초대의 글</a>
+            <a class="dropdown-item" href="../document/architect_033.html">책을 마무리하며</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">System Archtecture</h6>
+            <a class="dropdown-item" href="../document/architect_053.html">API with Zuul</a>
+            <a class="dropdown-item" href="../document/architect_037.html">Cloud System</a>
+            <a class="dropdown-item" href="../document/architect_047.html">Cassandra</a>
+            <a class="dropdown-item" href="../document/architect_036.html">DevOps</a>
+            <a class="dropdown-item" href="../document/architect_045.html">IAC</a>
+            <a class="dropdown-item" href="../document/architect_043.html">Kuberneties</a>
+            <a class="dropdown-item" href="../document/architect_034.html">MVC</a>
+            <a class="dropdown-item" href="../document/architect_049.html">MSA</a>
+            <a class="dropdown-item" href="../document/architect_044.html">MOM</a>
+            <a class="dropdown-item" href="../document/architect_039.html">PAAS</a>
+            <a class="dropdown-item" href="../document/architect_035.html">REST API</a>
+            <a class="dropdown-item" href="../document/architect_046.html">SAAS</a>
+            <a class="dropdown-item" href="../document/architect_040.html">SCA</a>
+            <a class="dropdown-item" href="../document/architect_042.html">SOA</a>
+            <a class="dropdown-item" href="../document/architect_041.html">TDD(DDD)</a>
+            <a class="dropdown-item" href="../document/architect_048.html">Web Cache</a>
+            <a class="dropdown-item" href="../document/architect_050.html">Various Pattern</a>
+          </div>
+        </li>
+      </ul>
+
+      <div id="content-wrapper">
+        <div class="container-fluid">
+          <!-- Breadcrumbs-->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">Factory Method</li>
+          </ol>
+
+          <!-- Area Chart Example-->
+          <div class="card mb-3">
+            <div class="card-header">
+                Factory Method 
+            </div>
+            <div class="card-body">
+              <div class="accordion" id="accordionExample">
+                <div class="card">
+                  <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        의도 
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                        객체를 생성하기 위해서 인터페이스를 정의하지만, 어떤 클래스의 인스턴스를 생성할 지에 대한 결정은 서브 클래스가 내리도록 합니다. 
+                        Factory 하나에 대한 객체의 종류에 따라 인스턴스를 반환할 수 있게 처리한다.  
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingTwo">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        동기
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body">
+
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingThree">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        활용성
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div class="card-body">
+                      <div class="alert alert-success" role="alert">
+                        <p>
+                          프레임 워크는 추상 클래스를 사용하여 객체 간의 관련성을 정의하고 유지할 수 있습니다. 또한 프레임워크는 이들 객체를 생성할 책임을 지니기도 합니다. <br>
+                          프레임 워크는 이들 추상 클래스 간의 상호작용을 책임져서 전체 시스템의 기본 동작 방식을 정의힙니다. 
+                          <hr>
+                          <pre>
+                            <code class="java" >
+@Configuration
+@EnableWebMvc
+public class WebMvcConfig implements WebMvcConfigurer {
+@Override
+public void addFormatters(FormatterRegistry formatterRegistry) {
+  formatterRegistry.addConverter(new MyConverter());
+}
+
+@Override
+public void configureMessageConverters(List&lt;HttpMessageConverter> converters) {
+  converters.add(new MyHttpMessageConverter());
+}
+}
+                            </code>
+                          </pre>
+                        </p>
+                        <hr>
+                          아래의 Package 설계 범위를 보면, 핵심 뼈대와 실제 구현을 분리한다. <br>
+                          Framework 개발 시에 기본 틀/구성에 대해서 고민해볼 수 있는 구조이다. 
+                        <hr>
+                        <img src="../document/factory_method_folder_structure.png" width="400" alt="">
+                        <hr>
+                      </div>  
+                      <hr>
+                      <img src="../document/FactoryMethod.png" class="card-img" alt="">
+                      <hr>
+                      <Strong>상세 설명</Strong>
+                      <ul>
+                        <li>Product ( Document ) : 팩토리 메서드가 생성하는 객체의 인터페이스를 정의합니다. </li>
+                        <li>ConcreteProduct( MyDocument ) : Product 클래스에 정의된 인터페이스를 실제로 구현합니다. </li>
+                        <li>
+                            Creator ( Application ) : Product 타입의 객체를 반환하는 팩토리 메서드를 선언합니다. <br>
+                            Creator 클래스는 팩토리 메서드를 기본적으로 구현하는데, 이 구현에서는 ConcreteProduct객체를 반환합니다. <br>
+                            또한 Product 객체의 생성을 위해 팩토리 메서드를 호출합니다.  
+                        </li>
+                        <li>ConcreteCreator ( MyApplication ) : 팩토리 메서드를 재정의하여 ConcreteProduct의 인스턴스를 반환합니다. </li>
+                      </ul>
+                      <hr>
+                      팩토리 메서드를 사용하는 시점
+                      <hr>
+                      <ul>
+                        <li>어떤 클래스가 자신이 생성해야 하는 객체의 클래스를 예측할 수 없을 때, </li>
+                        <li>생성할 객체를 기술하는 책임을 자신의 서브 클래스가 지정했으면 할 때,</li>
+                        <li>객체 생성의 책임을 몇 개의 보조 서브 클래스 가운데 하나에게 위임하고, 어떤 서브 클래스가 위임자인지에 대한 정보를 국소화 시키고 싶을 때</li>
+                      </ul>  
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingFour">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        항목에 대한 설명
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                    <div class="card-body">
+                        
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingFive">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        코드 예제
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+                      <div class="card-body"> 
+            <pre>
+                <code class="java" >
+package AbstractFactory;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
+
+public abstract class AbstractSendor {
+
+public void sendDataToInterface(Object param, QuerySelector qeurySelector) throws SQLException{
+  Map<String, String> connectionMap = (HashMap<String, String>)param;
+
+  Connection conn = null;
+  PreparedStatement psmt = null;
+  ResultSet rs = null;
+
+  conn = getConnection(connectionMap);
+
+  psmt = getStatment(conn, qeurySelector.excuteQueryByString(connectionMap.get("queryID")));
+
+  rs = executeQuery(connectionMap);
+
+  printResult(rs);
+}
+
+public abstract Connection getConnection(Object param);
+
+public abstract PreparedStatement getStatment(Connection conn, String stringQuery);
+
+public abstract ResultSet executeQuery(Map<String, String> parameter);
+
+public abstract void printResult(ResultSet rs) throws SQLException;
+}                       
+                </code>
+              </pre>
+              <pre>
+                  <code class="java" >
+package FactoryMethod;
+
+import java.sql.Connection;
+
+public class FactoryMethod {
+
+public static void main(String[] args) {
+DBCaller dbCaller = new OracleDBCaller();
+
+dbCaller.AnOperation();
+}
+
+}
+
+
+interface Connector{
+public Connection DBConnector();
+}
+
+
+class OracleConnector implements Connector{
+
+public Connection DBConnector() {
+return null;
+}
+}
+
+class MssqlConenctor implements Connector{
+public Connection DBConnector(){
+return null;
+}
+}
+
+abstract class DBCaller {
+
+abstract Connector CallDBConnector();
+
+public void AnOperation(){
+CallDBConnector();
+}
+}
+
+class OracleDBCaller extends DBCaller{
+
+@Override
+Connector CallDBConnector() {
+return new OracleConnector();
+}
+}              
+                  </code>
+                </pre>
+                <hr>
+                            
+              
+<hr>
+<Strong>마린의 훈련 과정</Strong><br>
+마린이 기본적으로 배워할 기능에 대해서 Barrack을 통해서 배울 수 있어야 한다. <br>
+이는 기계가 아닌 지상 유닛의 경우 공격형 유닛에 대해서 모두 해당된다. 
+<hr>
+요구 사항의 공통화 <br>
+- 지상 유닛이 동일하게 처리하는 프로세스에 대해서 공통화/추상화
+<hr>
+<pre>
+<code class="java">
+package DesignPattern.gof_factoryMethod.sample001;
+
+public abstract class SoldierUnitCreator {
+
+public Soldier createUnit(Soldier unit) {
+
+enhanceHealthSoldier(unit);
+
+EquipmentWear(unit);
+
+EquipmentWeapon(unit);
+
+BattleTraining(unit);
+
+return unit;
+}
+
+protected abstract void enhanceHealthSoldier(Soldier soldier);
+
+protected abstract void EquipmentWear(Soldier soldier);
+
+protected abstract void EquipmentWeapon(Soldier soldier);
+
+protected abstract void BattleTraining(Soldier soldier);
+}      
+</code>
+</pre>
+<pre>
+<code class="java" >
+package DesignPattern.gof_factoryMethod.sample001;
+
+public class Barrack extends SoldierUnitCreator {
+
+@Override
+protected void enhanceHealthSoldier(Soldier soldier) {
+
+}
+@Override
+protected void EquipmentWear(Soldier soldier) {
+
+}
+@Override
+protected void EquipmentWeapon(Soldier soldier) {
+
+}
+@Override
+protected void BattleTraining(Soldier soldier) {
+
+}
+}    
+</code>
+</pre>
+<pre>
+<code class="java" >
+package DesignPattern.gof_factoryMethod.sample001;
+
+public interface Unit {
+
+public void attack();
+
+public void destroyed();
+
+public void depend();
+}          
+</code>
+</pre>
+<pre>
+<code class="java" >
+package DesignPattern.gof_factoryMethod.sample001;
+
+public interface Soldier extends Unit {
+void getEnhancePower();
+
+void getEquipmentWear();
+
+void getEquipmentWeapon();
+
+void getBattleTraining();
+}                
+</code>
+</pre>
+<pre>
+<code class="java" >
+package DesignPattern.gof_factoryMethod.sample001;
+
+public class Marine implements Soldier {
+public void getEnhancePower() {
+
+}
+
+public void getEquipmentWear() {
+
+}
+
+public void getEquipmentWeapon() {
+
+}
+
+public void getBattleTraining() {
+
+}
+
+public void attack() {
+
+}
+
+public void destroyed() {
+
+}
+
+public void depend() {
+
+}
+}                           
+</code>
+</pre>
+<pre>
+  <code class="java" >
+package DesignPattern.gof_factoryMethod.sample001.application;
+
+import DesignPattern.gof_factoryMethod.sample001.*;
+
+public class TraningCenter {
+
+public static Soldier createUnitOrNull(String UnitType){
+
+switch (UnitType){
+    case "Marine" :
+        SoldierUnitCreator barrack = new Barrack();
+
+        Soldier marine1 = new Marine();
+
+        return barrack.createUnit(marine1);
+    default:
+        return null;
+
+}
+}
+}                                        
+  </code>
+</pre>
+<pre>
+    <code class="java" >
+package DesignPattern.gof_factoryMethod.sample001.application;
+
+import DesignPattern.gof_factoryMethod.sample001.Soldier;
+
+public class Client {
+
+public static void main(String[] args) {
+Soldier marine1 = TraningCenter.createUnitOrNull("Marine");
+
+marine1.attack();
+
+marine1.getBattleTraining();
+marine1.getEnhancePower();
+}
+}                                                       
+    </code>
+  </pre>
+  <hr>
+  <p>
+      <Strong>팩토리 메소드 패턴의 효용</Strong><br>
+      팩토리 메소드 패턴을 사용하는 이유는 클래스간의 결합도를 낮추기 위한것입니다.  <br>
+      결합도라는 것은 간단히 말해 클래스의 변경점이 생겼을 때 얼마나 다른 클래스에도 영향을 주는가입니다. <br>
+      팩토리 메소드 패턴을 사용하는 경우 직접 객체를 생성해 사용하는 것을 방지하고 서브 클래스에 위임함으로써 보다 효율적인 코드 제어를 할 수 있고 의존성을 제거합니다.<br>
+      결과적으로 결합도 또한 낮출 수 있습니다.<br>
+  </p> 
+  
+<pre>
+<code class="java" >
+package DesignPattern.gof_factoryMethod.client.Sample002Application;
+
+import DesignPattern.gof_factoryMethod.client.Sample002Application.ACCToWav.AACFile;
+import DesignPattern.gof_factoryMethod.client.Sample002Application.ACCToWav.WavAudioConverter;
+import DesignPattern.gof_factoryMethod.sample002.AudioConverter;
+import DesignPattern.gof_factoryMethod.sample002.MFCCObject;
+import DesignPattern.gof_factoryMethod.client.Sample002Application.ACCToWav.WavConfig;
+
+public class Client {
+
+public static void main(String[] args) {
+
+    WavConfig.Builder wavConfig = new WavConfig.Builder("/home/user/");
+
+    AudioConverter wavConverter = new WavAudioConverter(wavConfig.setWavFileName("wav.wav").build());
+
+    MFCCObject mfccObject = wavConverter.parsingAudio(new AACFile());
+}
+}    
+</code>
+</pre>
+<pre>
+<code class="java" >
+package DesignPattern.gof_factoryMethod.client.Sample002Application.ACCToWav;
+
+import DesignPattern.gof_factoryMethod.sample002.Config;
+
+public class WavConfig implements Config {
+  private final String wavFilePath;
+
+  private final String wavFileName;
+
+  public static class Builder {
+
+      // 필수 값
+      private final String wavFilePath;
+
+      private String wavFileName;
+
+      public Builder(String wavFilePath){
+          this.wavFilePath = wavFilePath;
+      }
+
+      public Builder setWavFileName(String wavFileName){
+          wavFileName = wavFileName;
+          return this;
+      }
+
+      public WavConfig build(){
+          return new WavConfig(this);
+      }
+  }
+
+  private WavConfig(Builder builder){
+      wavFilePath = builder.wavFilePath;
+      wavFileName = builder.wavFileName;
+  }
+
+  public String getWavFileName() {
+      return wavFileName;
+  }
+}      
+</code>
+</pre>  
+<pre>
+<code class="java" >
+package DesignPattern.gof_factoryMethod.client.Sample002Application.ACCToWav;
+
+import DesignPattern.gof_factoryMethod.sample002.AudioFile;
+
+public class AACFile implements AudioFile {
+}
+    
+</code>
+</pre> 
+<pre>
+<code class="java" >
+package DesignPattern.gof_factoryMethod.client.Sample002Application.ACCToWav;
+
+import DesignPattern.gof_factoryMethod.sample002.AudioConverter;
+import DesignPattern.gof_factoryMethod.sample002.AudioFile;
+import DesignPattern.gof_factoryMethod.sample002.Config;
+import DesignPattern.gof_factoryMethod.sample002.MFCCObject;
+
+public class WavAudioConverter extends AudioConverter {
+
+private Config config = null;
+
+public WavAudioConverter(Config config){
+    this.config = config;
+}
+
+protected Config AudioFileByConverter(AudioFile audioFile) {
+
+    config.getWavFileName();
+
+    return config;
+}
+
+protected MFCCObject AnalizeAudioFile(Config config) {
+    return null;
+}
+}    
+</code>
+</pre>   
+
+<pre>
+<code class="java" >
+package DesignPattern.gof_factoryMethod.client.Sample002Application.ACCToWav;
+
+import DesignPattern.gof_factoryMethod.sample002.MFCCObject;
+
+public class WavMFCCObject implements MFCCObject {
+}
+    
+</code>
+</pre>
+<pre>
+<code class="java">
+package DesignPattern.gof_factoryMethod.sample002;
+
+public abstract class AudioConverter {
+
+protected abstract Config AudioFileByConverter(AudioFile audioFile);
+
+protected abstract MFCCObject AnalizeAudioFile(Config audioFile);
+
+public MFCCObject parsingAudio(AudioFile audioFile){
+
+    Config config = AudioFileByConverter(audioFile);
+
+    return AnalizeAudioFile(config);
+}
+}      
+</code>
+</pre> 
+<pre>
+<code class="java">
+package DesignPattern.gof_factoryMethod.sample002;
+
+public interface AudioFile {
+}   
+</code>
+</pre>
+<pre>
+<code class="java" >
+package DesignPattern.gof_factoryMethod.sample002;
+
+public interface Config {
+public String getWavFileName();
+}
+  
+</code>
+</pre>
+
+<pre>
+<code class="java">
+package DesignPattern.gof_factoryMethod.sample002;
+
+public interface MFCCObject {
+}      
+</code>
+</pre>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingSix">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                        Static Factory Method에 대하여 
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
+                    <div class="card-body">
+                      
+        <ul>
+            <hr>
+              생성자 대신 정적 팩터리 메서드를 사용할 수 없는지 생각해 보라.
+            <hr>
+            <li>
+정적 팩터리 메서드를 사용하면, 불변 객체에 대해서 new 생성자가 아닌 캐시해서 사용이 가능하다. 
+<pre>
+<code class="java" >
+  public static final BigInteger ZERO = new BigInteger(new int[0], 0);
+
+  private final static int MAX_CONSTANT = 16;
+  private static BigInteger posConst[] = new BigInteger[MAX_CONSTANT+1];
+  private static BigInteger negConst[] = new BigInteger[MAX_CONSTANT+1];
+  
+  public static BigInteger valueOf(long val) {
+      if (val == 0)
+          return ZERO;
+      if (val > 0 && val <= MAX_CONSTANT)
+          return posConst[(int) val];
+      else if (val < 0 && val >= -MAX_CONSTANT)
+          return negConst[(int) -val];
+  
+      return new BigInteger(val);
+  }
+</code>
+</pre>
+            </li>
+            <li>
+                정적 팩터리 메서드를 사용하면, 가독성이 높아진다. 
+                <pre>
+                  <code class="java" >
+public class WarpCharacter {
+public static Airship InterceptorWarp(Map mapObj , int xPostion, int yPostion){
+  return new Interceptor();
+}
+
+public static Airship ScouterWarp(Map mapObj , int xPostion, int yPostion) {
+  return new Scouter();
+}
+
+public static Airship ArbiterWarp(Map mapObj , int xPostion, int yPostion){
+  return new Arbiter();
+}
+}                      
+                  </code>
+                </pre>
+              </li>
+              <li>
+                  정적 팩터리 메서드를 사용하면, 다형성의 원칙에 따라 하위 자료형을 사용하게 만들 수 있다.  
+                  <pre>
+                    <code class="java" >
+package DesignPattern.gof_factoryMethod.staticfactorymethod;
+
+public interface Airship {
+
+public void Attack();
+
+public void Retreat();
+
+public void Destory();
+}
+
+package DesignPattern.gof_factoryMethod.staticfactorymethod;
+
+public class Arbiter implements Airship {
+public void Attack() {
+
+}
+
+public void Retreat() {
+
+}
+
+public void Destory() {
+
+}
+}
+
+package DesignPattern.gof_factoryMethod.staticfactorymethod;
+
+public class WarpCharacter {
+public static Airship InterceptorWarp(Map mapObj , int xPostion, int yPostion){
+    return new Interceptor();
+}
+
+public static Airship ScouterWarp(Map mapObj , int xPostion, int yPostion) {
+    return new Scouter();
+}
+
+public static Airship ArbiterWarp(Map mapObj , int xPostion, int yPostion){
+    return new Arbiter();
+}
+}                                         
+                    </code>
+                  </pre>
+                </li>  
+                <li>
+                    정적 팩터리 메서드를 사용하면, 형인자 자료형 객체를 만들 때 편리하다. 
+                    <pre>
+                      <code class="java" >
+// 정적 팩토리 메서드: type inference를 이용한다
+public static <K, V> HashMap<K, V> newInstance() {
+return new HashMap<K, V>();
+}              
+
+// 1.7 이후 부터는 아래와 같이 쓸수 있게 되면서 형인자 자료형 객체에 의한 정적 팩토리는 힘을 잃었다. 
+Map&lt;String, List&lt;String>> list = new HashMap&lt;>();
+                      </code>
+                    </pre>
+                </li>   
+                <li>
+                  Client 에서 실제로 함수를 호출할 때 
+                  <hr>
+                  <pre>
+                    <code class="java" >
+package DesignPattern.gof_factoryMethod.staticfactorymethod;
+
+public class Battle {
+
+public static void main(String[] args) {
+
+    Map map = new Map();
+
+    Airship arbiter1 =  WarpCharacter.ArbiterWarp(map, 10, 60);
+
+    Airship interceptor1 = WarpCharacter.InterceptorWarp(map, 60, 800);
+
+    Airship scouter1 = WarpCharacter.ScouterWarp(map, 300, 1024);
+
+    arbiter1.Attack();
+
+    interceptor1.Attack();
+
+    scouter1.Attack();
+}
+}
+                    </code>
+                  </pre>
+                </li>             
+          </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card mb-3">
+            <div class="card-header">
+                Factory Method
+            </div>
+            <div class="card-body">
+              <div class="card-header">
+                <hr>
+                  게이트웨이가 1개가 있고, 해당 게이트 웨이에서 질럿, 하이템플러, 다크템플러, 드라군을 1마리씩 뽑았다. <br>
+                  각 유닛들은 Attack, Retreat 라는 명령에 의해서 공격 및 후퇴가 가능하다. <br>
+                  게이트웨이는 한번 건설되면 해당 게이트웨이를 변경할 수 없고, 게이트 웨이를 만들기 위해서 필요한 것은 <br>
+                  Prove, Mineral, Pylon이 있어야 한다. <br>
+                  위의 값이 하나라도 없다면 건물을 생성할 수 없다. <br>
+                  게이트웨이에서 유닛을 생성할 때는 Mineral, Pylon이 필요하고, 생산하는 과정은 <br>
+                  유닛 선택, 유닛 트레이닝 단계 ( 질럿, 하이템플러, 다크 템플러, 드라군) 설정, 훈련, 생산 완료 및 반환 <br>
+                  위의 예제를 이용해서 클래스 설계를 진행하세요 <br>
+                <hr>
+                <Strong><span id="time1" >
+                </span></Strong>
+                <input type="button" id="btnStart" value="타이머 시작" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.container-fluid -->
+
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span></span>
+            </div>
+          </div>
+        </footer>
+
+      </div>
+      <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="login.html">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script language="JavaScript">
+
+      var timerID;      // 타이머를 핸들링하기 위한 전역 변수
+      var time = 1800;   // 타이머 시작시의 시간
+  
+      document.getElementById("btnStart").addEventListener("click", function(){
+        start_timer();
+      });
+  
+      /* 타이머를 시작하는 함수 */
+      function start_timer() { 
+        timerID = setInterval("decrementTime()", 1000);
+  
+      }
+  
+      /* 남은 시간을 감소시키는 함수 */
+  
+      function decrementTime() { 
+  
+        var x1 = document.getElementById("time1");
+  
+        x1.innerHTML = toHourMinSec(time);
+  
+        if(time > 0){
+          time--;
+        } else { 
+  
+          // 시간이 0이 되었으므로 타이머를 중지함
+          clearInterval(timerID);
+          x1.innerHTML = "종료!!"
+        }
+      }
+  
+      /* 정수형 숫자(초 단위)를 "시:분:초" 형태로 표현하는 함수 */
+      function toHourMinSec(t) { 
+        var hour;
+        var min;
+        var sec;
+  
+        // 정수로부터 남은 시, 분, 초 단위 계산
+        hour = Math.floor(t / 3600);
+        min = Math.floor( (t-(hour*3600)) / 60 );
+        sec = t - (hour*3600) - (min*60);
+  
+        // hh:mm:ss 형태를 유지하기 위해 한자리 수일 때 0 추가
+        if(hour < 10) hour = "0" + hour;
+        if(min < 10) min = "0" + min;
+        if(sec < 10) sec = "0" + sec;
+  
+        return(hour + ":" + min + ":" + sec);
+  
+      }
+  
+    </script>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Page level plugin JavaScript-->
+    <script src="../vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="../js/sb-admin.min.js"></script>
+
+    <!-- Demo scripts for this page-->
+    <script src="../js/demo/chart-area-demo.js"></script>
+    <script src="../js/demo/chart-bar-demo.js"></script>
+    <script src="../js/demo/chart-pie-demo.js"></script>
+
+  </body>
+
+</html>

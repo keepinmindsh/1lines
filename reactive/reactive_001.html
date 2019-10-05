@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin - reactiveing</title>
+
+    <!-- Bootstrap core CSS-->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template-->
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Page level plugin CSS-->
+    <link href="../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="../css/sb-admin.css" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/default.css">
+    <script src="../highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </head>
+
+  <body id="page-top">
+
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+
+      <a class="navbar-brand mr-1" href="../index.html">Reactive Programming</a>
+
+      <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Navbar Search -->
+      <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+    </nav>
+
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <ul class="sidebar navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="../index.html">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>요약</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>목록</span>
+          </a>
+          <div class="dropdown-menu show" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header">Reactive Programming</h6>
+            <a class="dropdown-item" href="../reactive/reactive_001.html">Reactive with Java</a>
+            <a class="dropdown-item" href="../reactive/reactive_002.html"></a>
+            <a class="dropdown-item" href="../reactive/reactive_003.html"></a>
+            <a class="dropdown-item" href="../reactive/reactive_004.html"></a>
+            <a class="dropdown-item" href="../reactive/reactive_005.html"></a>
+            <a class="dropdown-item" href="../reactive/reactive_006.html"></a>
+            <a class="dropdown-item" href="../reactive/reactive_007.html"></a>
+            <a class="dropdown-item" href="../reactive/reactive_008.html"></a>          
+            <a class="dropdown-item" href="../reactive/reactive_009.html"></a>
+            <a class="dropdown-item" href="../reactive/reactive_010.html"></a>
+            <a class="dropdown-item" href="../reactive/reactive_011.html"></a>
+            <a class="dropdown-item" href="../reactive/reactive_012.html"></a>
+            <a class="dropdown-item" href="../reactive/reactive_013.html"></a>
+            <a class="dropdown-item" href="../reactive/reactive_014.html"></a>
+            <a class="dropdown-item" href="../reactive/reactive_015.html"></a>
+            <a class="dropdown-item" href="../reactive/reactive_016.html"></a>
+            <a class="dropdown-item" href="../reactive/reactive_017.html"></a>
+            <a class="dropdown-item" href="../reactive/reactive_018.html"></a>
+            <a class="dropdown-item" href="../reactive/reactive_019.html"></a>
+            <a class="dropdown-item" href="../reactive/reactive_020.html"></a>
+            <a class="dropdown-item" href="../reactive/reactive_021.html"></a>
+            <a class="dropdown-item" href="../reactive/reactive_022.html"></a>
+            <a class="dropdown-item" href="../reactive/reactive_023.html"></a>
+            <a class="dropdown-item" href="../reactive/reactive_024.html"></a>
+            <a class="dropdown-item" href="../reactive/reactive_025.html"></a>
+            <a class="dropdown-item" href="../reactive/reactive_026.html"></a>
+            <a class="dropdown-item" href="../reactive/reactive_027.html"></a>
+            <a class="dropdown-item" href="../reactive/reactive_028.html"></a>
+            <a class="dropdown-item" href="../reactive/reactive_029.html"></a>
+            <a class="dropdown-item" href="../reactive/reactive_030.html"></a>
+            <a class="dropdown-item" href="../reactive/reactive_031.html"></a>
+            <a class="dropdown-item" href="../reactive/reactive_032.html"></a>
+            <a class="dropdown-item" href="../reactive/reactive_033.html"></a>
+          </div>
+        </li>
+      </ul>
+
+      <div id="content-wrapper">
+        <div class="container-fluid">
+          <!-- Breadcrumbs-->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">Reactive Programming</li>
+          </ol>
+
+          <!-- Area Chart Example-->
+          <div class="card mb-3">
+            <div class="card-header">
+              Reactive Java
+            </div>
+            <div class="card-body">
+                <div class="accordion" id="accordionExample">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                          Reactive Java 
+                        </button>
+                      </h2>
+                    </div>
+                
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                      <div class="card-body">
+                        "외부의 어떤 이벤트나 데이터가 발생하면 거기에 대응하면 방식으로 동작하는 프로그램을 만드는 것" <br>
+                        "데이터 플로우와 상태 변경을 전파한다는 생각에 근간을 둔 프로그래밍 패러다임" <br>
+                        "막힘 없이 흘러다니는 데이터(이벤트)를 통해 사용자에게 자연스러운 응답을 주고, 규모 탄력적으로 리소스를 사용하며 실패에 있어서 유연하게 대처한다."
+                        <hr>
+                        <ul class="list-group">
+                          <li class="list-group-item" >Reactive
+                            <hr>
+                              Responsive : 사용자에 대한 반응 
+                            <hr>
+                              Scalable(Elastic) : 부하에 대한 반응
+                            <hr>
+                              Resillent : 실패 상황에 대한 반응
+                            <hr>
+                              Event-Driven : 이벤트에 대한 반응
+                            <hr>
+                          </li>
+                          <li class="list-group-item">
+                            Functional Reactive Programming
+                          </li>
+                          <li class="list-group-item">
+                            Rx : 비동기와 이벤트 기반 프로그램을 작성하는데 필요한 Observable 시퀀스 처리 라이브러리
+                            <hr>
+                            2009:RxNet, 2010:RxJS, 2013:RxJava
+                          </li>
+                          <li class="list-group-item">RFP</li>
+                          <li class="list-group-item">에릭마이어
+                            <hr>
+                            - <strong>Duality</strong> <br>
+                            <div class="alert alert-dark" role="alert">
+                                어떤 체계 간에 존재하는 다음과 같은 논리적 성질. 각각 1:1로 대응하는 개념 xi와 yi(i＝1, 2, …)로 <br>
+                                이루어진 체계 S1＝{x1, x2, …}, S2＝{y1, y2, …} 등이 있다고 하자. <br>
+                                여기서 S1과 S2는 전체로서는 같은 체계라도 괜찮다. <br>
+                                S1에 관하여 명제 r(x1, x2, …, xn)가 성립될 때 이 명제에 있어서 각 xi를 대응하는 yi로 치환한 <br>
+                                명제 P(y1, y2, …, yn)가 S2에 관하여 성립된다. S1, S2 간에 존재 하는 이와 같은 논리적 성질을 <br>
+                                쌍대성이라 하고 xi, yi를 쌍대인 개 념 r(x1, x2, …), P(y1, y2, …)를 쌍대 명제라 한다. <br>
+                                전기 회로에서 는 표와 같이 대응할 때마다 쌍대성이 존재하여 중요하다. <br>
+                                [네이버 지식백과] 쌍대성 [duality] (IT용어사전, 한국정보통신기술협회)<br>
+                            </div>
+                            <hr>
+                            - Observer <br>
+                            - Reactive Streams - 표준 ( 유수의 기업들이 모여 표준을 만듬 - Netflix, Pivotal, etc ) > Java 9의 표준으로 적용됨 <br>
+                          </li>
+                        </ul>
+                        <hr>
+                        <strong> Reactive Programming의 핵심은 비동기(Async) 이벤트와 Observer 디자인 패턴입니다. </strong>
+                        <hr>
+                        <div class="card">
+                          <div class="card-header">
+                            비동기 ( Aynchronous ) 
+                          </div>
+                          <div class="card-body">
+                            <p class="card-text">
+                                비동기 이벤트란 프로그램에서 다양한 작업들이 동시에 수행되는 중에 <br>
+                                어떤 작업이 완료되는 것과 같은 이벤트를 말합니다. 앱에서 발생하는 비동기적인 이벤트는 정말 다양합니다. <br>
+                                즉, 유저가 앱에 로그인 하는 행위, 로그인해서 유저가 올린 이미지를 조회하는 행위, <br>
+                                모바일 카메라를 작동하는 행위, 다른 사람이 올린 이미지를 조회하는 행위, 다름사람에게 글과 그림을 공유하는 행위 <br>
+                                등이 일어나 앱이 서버와 교신 할 때 마다 알레 모르게 비동기적인 이벤트가 발생하게 됩니다. 
+                            </p>
+                          </div>
+                        </div>
+                        <hr>
+                        <div class="card">
+                          <div class="card-header">
+                            Oservation 
+                          </div>
+                          <div class="card-body">
+                            <p class="card-text">
+                              Reactive Programming을 위해서 유저가 입력할 때마다 즉각적으로 반응하려면, 프로그램이 지속적으로 <br>
+                              값을 관찰(Observe)해야하고, 값에 변화가 일어날 때 마다 특정 연산이 수행되어야 합니다. <br>
+                              이러한 관찰 패턴을 Observer 또는 Observation 디자인 패턴이라고 하며, <br>
+                              비동기 이벤트를 처리하는 Reactive Programming의 근간이 됩니다. 
+                            </p>
+                          </div>
+                        </div>
+                        <hr>
+                        <strong>Functional Reactive Programming</strong>
+                        <hr>
+                        <div class="card">
+                            <div class="card-header">
+                              Functional Reactive Programming  
+                            </div>
+                            <div class="card-body">
+                              <p class="card-text">
+                                Functional Reactive Programming 은 위에서 살펴본 Reactive Programming을 Functional Programming의 원리를 통해 구현하는 것을 말합니다. 
+                                쉽게 말하자면, 비동기적인 데이터 처리를 간단한 함수를 통해 수행하는 프로그래밍을 말합니다. 
+                                <hr>
+                                여기에서 Functional Programming에 대해서 먼저 알아보고 가야하는데, Functional Programming이란 어떤 문제를 해결하는데 있어서 그 과정이나 공식에 
+                                매몰되기보다는 그냥 이미 만들어진 함수를 활용하는 방식을 말합니다. 다만, 무조건 활용하는 것이 아니라 함수 자체가 '숨겨진 input과 output'이 없도록
+                                설계되어야 하는 것이 전제 조건입니다. 
+                                <pre>
+                                  <code class="c" >
+// side-cause와 side-effect가 존재하는 함수 
+// 함수를 콜할 때 implementation detail을 살펴보지 못한다면 무엇이 어떻게 변할지 알 수 없음                                     
+func add() {
+  number = 5
+  letter = "S"
+  title = title + " \ (number) " + letter 
+}                                         
+
+// 숨겨진 input/ouput이 없는 함수
+func add(numberOnt: Int, numberTwo: Int) -> Int {
+  return numberOne + numberTwo
+}
+                                  </code>
+                                </pre>
+                                <hr>
+                                결국 Functional Programming이라는 것은, 결과에 집중하는 실용적인 함수를 정의하고 활용하되, 
+                                이러한 함수안에 숨겨진 input과 output이 최대한 없을 수 있도록 선언하는 프로그래밍 패러다임입니다. 
+                              </p>
+                            </div>
+                          </div>
+                          <hr>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header" id="headingTwo">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                          Duality 
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                      <div class="card-body">
+                        
+                        1~5까지의 숫자를 이용해서 리스트를 생성하고, 이를 <strong>가져와서(pull)</strong> 출력을 한다.  
+                        <pre>
+                          <code class="Java" >
+// List Type 은 Iterable 의 sub type 이다.
+List&lt;Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+
+// 이것은 Iterable 이기 때문에 여기에서 List 를 사용할 수 있는 것임
+for (Integer i : list) { 
+    System.out.println(i);
+}
+
+// Iterable 로 받아도 문제가 없음
+Iterable&lt;Integer> iter = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+// 이터레이터를 통해서 반복적으로 사용할 수 있게 하려면 1.5 이전에는 아래와 같이 사용해야 했다. 
+for (Iterator&lt;Integer> it = iter.iterator(); it.hasNext(); ) {
+    System.out.println(((Iterator) it).next());
+}
+
+// Lamda 의 관심은 함수 하나
+// 1부터 10까지를 계속해서 호출해서 쓸 수 있음
+Iterable&lt;Integer> iter1 = () ->
+  new Iterator&lt;Integer>() {  
+
+      int i = 0;
+      final static int MAX = 10;
+
+      @Override
+      public boolean hasNext() {
+          return i &lt; MAX;
+      }
+
+      @Override
+      public Integer next() {
+          return ++i;
+      }
+  };
+
+// 1.5 이상은 아래와 같이 사용 가능하다. 
+for (Integer i : iter1) {
+    System.out.println(i);
+}
+                          </code>
+                        </pre>
+                        <hr>
+                        Observer 패턴을 이용한 필요한 데이터를 <strong>전달(push)</strong>해서 출력한다.
+                        <pre>
+                          <code class="Java" >
+public class Ob {
+
+  public static void main(String[] args) {        
+    // notifyObservers 호출이되면 update 가 호출이 된다.
+    Observer ob = new Observer() {
+        @Override
+        public void update(Observable o, Object arg) {
+            System.out.println(arg);
+
+            // Thread는 풀에 있는 스레드를 받게 처리되는 것은 ExecutorService 의 Thread를 메인스레드에서 분리해서 사용할 수 있다.
+            System.out.println(Thread.currentThread().getName() + " " + arg);
+        }
+    };
+
+    IntObservable observable = new IntObservable();
+
+    observable.addObserver(ob);
+
+    // Event Driven에서 주로 사용하는 방식인 감시자 패턴
+    // 메인 스레드에서 동작하게 하고 있음
+    observable.run();
+  }
+
+  static class IntObservable extends Observable implements Runnable {
+
+    @Override
+    public void run() {
+        for (int i = 0; i &lt; 10; i++) {
+            setChanged();
+            // 아래의 두개는 Duality 라고 이야기 할 수 있다.
+            notifyObservers(i);    // push  method(DATA)
+            // int i = it.next()   // pull  DATA method(void)
+        }
+    }
+  }
+}
+                          </code>
+                        </pre>
+                        <hr>
+                        <div class="alert alert-dark" role="alert">
+                          Iterable &lt;------> Observable ( 쌍대성 ) - Duality : 비슷한 구조를 가진다. <br>
+                          <hr>
+                          Iterable 은 Pulling 방식 <br>
+                          Observable 은 Push 방식 <br>
+                          Observable 와 Iterable 이 쌍대성을 가지는 구조 <br>
+                          처리하려는 기능은 같지만 처리 과정에 있어서 서로 상반되는 부분을 duality라고 하면 좀 더 이해가 쉬울 수 있다. 
+                          <hr>
+                          Pulling, Push 의 차이 <br>
+                          <hr>
+                          옵저버 패턴의 장점 <br>
+                          다이내믹하게 구성할 때 장점이 있음 <br>
+                          관심이 있어하는 모든 옵저버에게 멀티 캐스트와 브로드 캐스팅이 가능하다. <br>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header" id="headingFour">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseTwo">
+                          Reactive Streams 표준 
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                      <div class="card-body">
+                          <a href="https://github.com/reactive-streams/reactive-streams-jvm/blob/v1.0.0/README.md#specification" >Reactive Stream의 API Component 규칙</a>
+                          <hr>
+                          <ul class="list-group">
+                            <li class="list-group-item">Subscriber
+                              <hr>
+                                Subscriber는 Observer 입니다. 
+                              <hr>
+                              <pre>
+                                <code class="java" >
+// 아래의 4개의 메소드는 반드시 implement 되어야 합니다.                                   
+public interface Subscriber {
+  public void onSubscribe(Subscription s);
+  public void onNext(T t);
+  public void onError(Throwable t);
+  public void onComplete();
+}                                  
+                                </code>
+                              </pre>
+                              <hr>
+                              <img src="../reactive/Subscriber_Process.png" class="img-fluid" alt="" srcset="">
+                              <hr>
+                              <ul>
+                                <li>onSubscribe : 최초 호출되는 메소드, Subscriber를 사용할 때는 무조건 처음에 호출해야합니다.</li>
+                                <li>onNext : 기존의 Observer에서 update와 같은 역할을 합니다. 데이터를 받을 때 사용합니다. </li>
+                                <li>onComplete : 완료 되었을 때, </li>
+                                <li>onError : 에러가 발생했을 때,</li>
+                              </ul>
+                            </li>
+                            <li class="list-group-item">
+                              Publisher
+                              <hr>
+                              Publisher는 Observable 입니다. Subscriber 는 Publisher 의 subscribe를 통해 등록합니다. 
+                              <pre>
+                                <code class="java" >
+public interface Publisher {
+  public void subscribe(Subscriber&lt;? super T> s);
+}
+                                </code>
+                              </pre>
+                            </li>
+                            <li class="list-group-item">
+                              Subscription
+                              <hr>
+                              <pre>
+                                <code class="java" >
+public interface Subscription {
+  public void request(long n);
+  public void cancel();
+}
+                                </code>
+                              </pre>
+                              <hr>
+                              request는 long 타입의 파라미터를 받고 있는데 Subscriber가 이 메소드를 통해 요청을 하게 됩니다. 
+                              만약 5개의 데이터를 필요하다고 가정했을 때, reqeust 에 5를 넣어서 호출하면 Subscription은 5개를 호출하게 됩니다. 
+                              즉, 10개의 데이터가 있을 때, reqeust가 5를 받아 처리한다면 5개 -> 5개 를 보내줄 수 있게 처리합니다. 
+
+                            </li>
+                            <li class="list-group-item">
+                              Processor
+                            </li>
+                          </ul>
+                          <hr>
+                          <strong>Reactive Basic Flow : Publisher - Subscriber - Subscription</strong>
+                          <hr>
+                          <img src="../reactive/Reactive Basic Flow.png" class="img-fluid" alt="" srcset="">
+                          <hr>
+                          Subscriber가 Publisher에게 subscribe 하면 Publisher가 데이터 또는 시퀀스를 전달하게 된다. 전달하기 전에 Publisher는 Subscribe에 정의된 onSubscribe()를 호출하고, 
+                          Subscriber는 request(n)를 호출하여 몇 개의 데이터를 보내달라고 요청하게 된다. 이때 Subscription을 사용하는데, Request(n)을 호출하여 데이터 전송 요청을 하게 되면
+                          Publisher에서는 0에서 N의 데이터 또는 시퀀스를 Subscriber에게 전달하게 된다. 
+                          <hr>
+                          Link : https://brunch.co.kr/@springboot/153 <br>
+                          Link : https://m.blog.naver.com/jdub7138/220983291803s
+                          <hr>
+                          Link : https://brunch.co.kr/@oemilk/79 <br>
+                          Link : http://www.zdnet.co.kr/view/?no=20161010104628
+                      </div>
+                    </div>
+                  </div> 
+                  <div class="card">
+                    <div class="card-header" id="headingThree">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Reactive Programming with Java , Basic   
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                      <div class="card-body">
+                        <pre>
+                          <code class="Java" >
+package com.reactive.reactive;
+
+import org.reactivestreams.Publisher;
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
+
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+
+// Reactive Programming - Event Driven
+// 동시성을 구현하는 예제
+// GRPC
+public class PubSub {
+    public static void main(String[] args) throws InterruptedException {
+
+        //  Publisher  &lt;- Observable
+        //  Subscriber  &lt;- Observer
+
+        Iterable&lt;Integer> itr = Arrays.asList(1,2,3,4,5);
+
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+
+        Publisher p = new Publisher() {
+            @Override
+            public void subscribe(Subscriber subscriber) {
+
+                Iterator&lt;Integer> it = itr.iterator();
+
+                // 반드시 호출해야하는 것은 onSubscribe 이다
+                // Subscription 을 통해서 구독하겠다는 등록을 한다. - 반드시 등록되어야 한다. 
+                // Subscription 을 통해서 속도 제어 및 조절이 가능하다.
+                subscriber.onSubscribe(new Subscription() {
+                    @Override
+                    public void request(long n) {
+
+                        // 자바 언어의 일관성을 지키기 위해서 자유변수를 할당하는 데 사용 할 수 없음 : 쓰레드 한정 법칙 위배
+                        executorService.submit(() -> {
+                            int i = 0;
+
+                            try{
+                                while(i++ &lt; n){
+                                    if(it.hasNext()){
+                                        subscriber.onNext(it.next());
+                                    }else{
+                                        subscriber.onComplete();
+                                        break;
+                                    }
+                                }
+                            }catch(RuntimeException e){
+                                subscriber.onError(e.fillInStackTrace());
+                            }
+                        });
+
+                    }
+
+                    @Override
+                    public void cancel() {
+
+                    }
+                });
+            }
+        };
+
+        // Subscriber 는 순차적으로 데이터가 전달될 것으로 가정한다.
+        Subscriber&lt;Integer> s = new Subscriber&lt;Integer>() {
+            Subscription subscription;
+
+            @Override
+            public void onSubscribe(Subscription subscription) {
+                System.out.println("onSubscribe");
+                this.subscription = subscription;
+                this.subscription.request(Long.MAX_VALUE);
+            }
+
+            int bufferSize = 2;
+
+            @Override
+            public void onNext(Integer integer) {
+                // Observer 패턴의 Update 와 동일함.
+                System.out.println( Thread.currentThread().getName() + "  OnNext " + integer);
+
+                // 다음 것을 호출 할 것인지를 여기에서 처리가 가능함.
+                // 버퍼 사이즈를 지정하고 그 사이즈가 모두 차면 진행할 수 있는 방식으로 처리 가능.
+                if(--bufferSize &lt;= 0){
+                    bufferSize = 2; // 버퍼 사이즈에 따라서 처리할 수 있는 방식
+                    subscription.request(2);
+                }
+
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+                // Observer 패턴에는 에러가 났을 때가 없는데 이를 처리하는 부분
+                System.out.println( Thread.currentThread().getName() + "  OnError : " +  throwable.getMessage());
+            }
+
+            @Override
+            public void onComplete() {
+                // Observer 패턴에는 완료가되었다는 메세지가 없음
+                System.out.println("OnComplete");
+            }
+        };
+
+        p.subscribe(s);
+
+        executorService.awaitTermination(10, TimeUnit.HOURS);
+        executorService.shutdown();
+
+    }
+}                          
+                          </code>
+                        </pre>
+                      </div>
+                    </div>
+                  </div>               
+                  <div class="card">
+                    <div class="card-header" id="heading5">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                           Reactive Programming 기본 개발 예제
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse5" class="collapse" aria-labelledby="heading5" data-parent="#accordionExample">
+                      <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item">
+                            Generics를 이용한 Sub/Pub 예제
+                          </li>
+                          <li class="list-group-item">
+                            Operator를 연결하는 처리 예제 
+                          </li>
+                          <li class="list-group-item">
+                            Bloking IO를 사용하거나 수행이 느린 경우 : SubscribeOn
+                          </li>
+                          <li class="list-group-item">
+                            데이터 생성은 빠르지만 데이터를 소모하는 과정이 소요시간이 발생하는 경우 : PublishOn  
+                          </li>
+                          <li class="list-group-item">
+                            SubscribeOn 과 PublishOn을 같이 사용하면서 Thread를 종료시키는 예제
+                          </li>
+                          <li class="list-group-item">
+                            Flux에 적용해보는 예제 
+                          </li>
+                          <li class="list-group-item">
+                            Interval과 특정 조건에서 종료 시키기  
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>  
+                  <div class="card">
+                    <div class="card-header" id="heading7">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
+                         
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse7" class="collapse" aria-labelledby="heading7" data-parent="#accordionExample">
+                      <div class="card-body">
+                        
+                      </div>
+                    </div>
+                  </div> 
+                  <div class="card">
+                    <div class="card-header" id="heading8">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapse8">
+                          
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse8" class="collapse" aria-labelledby="heading8" data-parent="#accordionExample">
+                      <div class="card-body">
+
+                      </div>
+                    </div>
+                  </div> 
+                  <div class="card">
+                    <div class="card-header" id="heading9">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse9" aria-expanded="false" aria-controls="collapse9">
+                          
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse9" class="collapse" aria-labelledby="heading9" data-parent="#accordionExample">
+                      <div class="card-body">
+                        
+                      </div>
+                    </div>
+                  </div> 
+                  <div class="card">
+                    <div class="card-header" id="heading10">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse10" aria-expanded="false" aria-controls="collapse10">
+                          
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse10" class="collapse" aria-labelledby="heading10" data-parent="#accordionExample">
+                      <div class="card-body">
+                        
+                      </div>
+                    </div>
+                  </div> 
+                  <div class="card">
+                    <div class="card-header" id="heading11">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse11" aria-expanded="false" aria-controls="collapse11">
+                          
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse11" class="collapse" aria-labelledby="heading11" data-parent="#accordionExample">                        
+                      <div class="card-body">
+                            
+                      </div>
+                    </div>
+                  </div> 
+                  <div class="card">
+                    <div class="card-header" id="heading12">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse12" aria-expanded="false" aria-controls="collapse12">
+                          
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse12" class="collapse" aria-labelledby="heading12" data-parent="#accordionExample">
+                      <div class="card-body">
+                        
+                      </div>
+                    </div>
+                  </div> 
+                  <div class="card">
+                    <div class="card-header" id="heading13">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse13" aria-expanded="false" aria-controls="collapse13">
+                          
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse13" class="collapse" aria-labelledby="heading13" data-parent="#accordionExample">
+                      <div class="card-body">
+                        
+                      </div>
+                    </div>
+                  </div> 
+                </div>                    
+            </div>
+            <div class="card-footer small text-muted"></div>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright © Your Website 2018</span>
+            </div>
+          </div>
+        </footer>
+
+      </div>
+      <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="cleancode">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="login.html">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script language="JavaScript">
+
+        var timerID;      // 타이머를 핸들링하기 위한 전역 변수
+        var time = 600;   // 타이머 시작시의 시간
+    
+        document.getElementById("btnStart1").addEventListener("click", function(){
+          start_timer("time1");
+        });
+
+        document.getElementById("btnStart2").addEventListener("click", function(){
+          start_timer("time2");
+        });
+
+        document.getElementById("btnStart3").addEventListener("click", function(){
+          start_timer("time3");
+        });
+    
+        /* 타이머를 시작하는 함수 */
+        function start_timer(itemId) { 
+          timerID = setInterval(function(){
+            decrementTime(itemId)
+          }, 1000);
+    
+        }
+    
+        /* 남은 시간을 감소시키는 함수 */
+    
+        function decrementTime(itemId) { 
+    
+          var x1 = document.getElementById(itemId);
+    
+          x1.innerHTML = toHourMinSec(time);
+    
+          if(time > 0){
+            time--;
+          } else { 
+    
+            // 시간이 0이 되었으므로 타이머를 중지함
+            clearInterval(timerID);
+            x1.innerHTML = "종료!!"
+          }
+        }
+    
+        /* 정수형 숫자(초 단위)를 "시:분:초" 형태로 표현하는 함수 */
+        function toHourMinSec(t) { 
+          var hour;
+          var min;
+          var sec;
+    
+          // 정수로부터 남은 시, 분, 초 단위 계산
+          hour = Math.floor(t / 3600);
+          min = Math.floor( (t-(hour*3600)) / 60 );
+          sec = t - (hour*3600) - (min*60);
+    
+          // hh:mm:ss 형태를 유지하기 위해 한자리 수일 때 0 추가
+          if(hour < 10) hour = "0" + hour;
+          if(min < 10) min = "0" + min;
+          if(sec < 10) sec = "0" + sec;
+    
+          return(hour + ":" + min + ":" + sec);
+    
+        }
+    </script>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Page level plugin JavaScript-->
+    <script src="../vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="../js/sb-admin.min.js"></script>
+
+  </body>
+
+</html>

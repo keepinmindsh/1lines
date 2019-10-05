@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>1Lines - Architecture</title>
+
+    <!-- Bootstrap core CSS-->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template-->
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Page level plugin CSS-->
+    <link href="../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="../css/sb-admin.css" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/default.css">
+    <script src="../highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </head>
+
+  <body id="page-top">
+
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+
+      <a class="navbar-brand mr-1" href="index.html">Start Bootstrap</a>
+
+      <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Navbar Search -->
+      <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Navbar -->
+      <ul class="navbar-nav ml-auto ml-md-0">
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-bell fa-fw"></i>
+            <span class="badge badge-danger">9+</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-envelope fa-fw"></i>
+            <span class="badge badge-danger">7</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user-circle fa-fw"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+            <a class="dropdown-item" href="#">Settings</a>
+            <a class="dropdown-item" href="#">Activity Log</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+          </div>
+        </li>
+      </ul>
+
+    </nav>
+
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <ul class="sidebar navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>요약</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>목록</span>
+          </a>
+          <div class="dropdown-menu show" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header">서론</h6>
+            <a class="dropdown-item" href="../document/architect_001.html">서론</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">사례연구</h6>
+            <a class="dropdown-item" href="../document/architect_002.html">사례연구</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">생성 패턴</h6>
+            <a class="dropdown-item" href="../document/architect_003.html">추상 팩토리</a>
+            <a class="dropdown-item" href="../document/architect_004.html">빌더</a>
+            <a class="dropdown-item" href="../document/architect_005.html">팩토리 메서드</a>
+            <a class="dropdown-item" href="../document/architect_006.html">원형</a>
+            <a class="dropdown-item" href="../document/architect_007.html">단일체</a>
+            <a class="dropdown-item" href="../document/architect_008.html">생성 패턴에 대한 논의</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">구조 패턴</h6>
+            <a class="dropdown-item" href="../document/architect_009.html">적응자</a>
+            <a class="dropdown-item" href="../document/architect_010.html">가교</a>
+            <a class="dropdown-item" href="../document/architect_011.html">복합체</a>
+            <a class="dropdown-item" href="../document/architect_012.html">장식자</a>
+            <a class="dropdown-item" href="../document/architect_013.html">퍼사드</a>
+            <a class="dropdown-item" href="../document/architect_014.html">플라이급</a>
+            <a class="dropdown-item" href="../document/architect_015.html">프록시</a>
+            <a class="dropdown-item" href="../document/architect_016.html">구조패턴에 대한 논의</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">행동 패턴</h6>
+            <a class="dropdown-item" href="../document/architect_017.html">책임 연쇄</a>
+            <a class="dropdown-item" href="../document/architect_018.html">명령</a>
+            <a class="dropdown-item" href="../document/architect_019.html">해석자</a>
+            <a class="dropdown-item" href="../document/architect_020.html">반복자</a>
+            <a class="dropdown-item" href="../document/architect_021.html">중재자</a>
+            <a class="dropdown-item" href="../document/architect_022.html">메멘토</a>
+            <a class="dropdown-item" href="../document/architect_023.html">감시자</a>
+            <a class="dropdown-item" href="../document/architect_024.html">상태</a>
+            <a class="dropdown-item" href="../document/architect_025.html">전략</a>
+            <a class="dropdown-item" href="../document/architect_026.html">템플릿 메서드</a>
+            <a class="dropdown-item" href="../document/architect_027.html">방문자</a>
+            <a class="dropdown-item" href="../document/architect_028.html">행동 패턴에 대한 논의</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">결론</h6>
+            <a class="dropdown-item" href="../document/architect_029.html">디자인 패턴에서 무엇을<br> 기대할 수 있는가?</a>
+            <a class="dropdown-item" href="../document/architect_030.html">간략한 역사</a>
+            <a class="dropdown-item" href="../document/architect_031.html">패턴 커뮤니티</a>
+            <a class="dropdown-item" href="../document/architect_032.html">초대의 글</a>
+            <a class="dropdown-item" href="../document/architect_033.html">책을 마무리하며</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">System Archtecture</h6>
+            <a class="dropdown-item" href="../document/architect_053.html">API with Zuul</a>
+            <a class="dropdown-item" href="../document/architect_037.html">Cloud System</a>
+            <a class="dropdown-item" href="../document/architect_047.html">Cassandra</a>
+            <a class="dropdown-item" href="../document/architect_036.html">DevOps</a>
+            <a class="dropdown-item" href="../document/architect_045.html">IAC</a>
+            <a class="dropdown-item" href="../document/architect_043.html">Kuberneties</a>
+            <a class="dropdown-item" href="../document/architect_034.html">MVC</a>
+            <a class="dropdown-item" href="../document/architect_049.html">MSA</a>
+            <a class="dropdown-item" href="../document/architect_044.html">MOM</a>
+            <a class="dropdown-item" href="../document/architect_039.html">PAAS</a>
+            <a class="dropdown-item" href="../document/architect_035.html">REST API</a>
+            <a class="dropdown-item" href="../document/architect_046.html">SAAS</a>
+            <a class="dropdown-item" href="../document/architect_040.html">SCA</a>
+            <a class="dropdown-item" href="../document/architect_042.html">SOA</a>
+            <a class="dropdown-item" href="../document/architect_041.html">TDD(DDD)</a>
+            <a class="dropdown-item" href="../document/architect_048.html">Web Cache</a>
+            <a class="dropdown-item" href="../document/architect_050.html">Various Pattern</a>
+          </div>
+        </li>
+      </ul>
+
+      <div id="content-wrapper">
+        <div class="container-fluid">
+          <!-- Breadcrumbs-->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">Mediator</li>
+          </ol>
+
+        <!-- Area Chart Example-->
+        <div class="card mb-3">
+          <div class="card-header">
+            Mediator
+          </div>
+          <div class="card-body">
+              <p class="card-text">
+                  <div class="accordion" id="accordionExample">
+                      <div class="card">
+                        <div class="card-header" id="headingOne">
+                          <h2 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                              의도 
+                            </button>
+                          </h2>
+                        </div>
+                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                          <div class="card-body">
+                             한 집합에 속해 있는 객체의 상호작용을 캡슐화하는 객체를 정의합니다. <br>
+                             객체들이 직접 서로를 참조하지 않도록 하여 객체 사이의 소결합을 촉진시키며, 개발자가 객체의 상호작용을  독립적으로 다양화시킬 수 있게 만듭니다. 
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-header" id="headingTwo">
+                          <h2 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                              동기
+                            </button>
+                          </h2>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                          <div class="card-body">
+                            객체지향 개발 방법론에서는 행동을 여러 객체에게 분산시켜 처리하도록 권하고 있습니다. 이러한 행동의 분산으로 객체 구조는 수많은 연결 관계가 객체 사이에 <br>
+                            존재하는 모습이 됩니다. 게다가, 시스템은 자신의 행동을 처리하기 위해 다른 모든 객체에 대한 참조자를 관리해야 하는 최악의 상황에 직면할지도 모릅니다. <br>
+                            <hr>
+                            물론 시스템을 여러 객체로 분할하게 되면 객체의 재사용을 증대 시킬 수 있습니다. 그러나 이러한 시스템의 객체 분할이 객체 간 상호작용의 급증을 유발하고 이 때문에 <br>
+                            재 사용성이 저하될 수도 있습니다. 또한 어떤 일 하나를 처리하기 위해서도 수많은 상호작용은 필요하므로 객체는 독립적이어야 한다는 객체의 특성이 유명무실해져 버릴 수 있습니다. <br>
+                            분할 했다고는 하지만 시스템은 하나의 거대한 덩어리 처럼 동작해야 합니다. <br>
+                            예 ) 그래픽 사용자 인터페이스 안의 대화상자를 구현하는 예제
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-header" id="headingThree">
+                          <h2 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                              활용성
+                            </button>
+                          </h2>
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                          <div class="card-body">
+                              <img src="../document/Mediator.png" width="700" alt=""> 
+                              <hr>
+                              <hr>
+                              <ul>
+                                <li>
+                                  여러 객체가 잘 정의된 형태이기는 하지만 복잡한 상호작용을 가질 때. 객체 간의 의존성이 구조화되지 않으며, 잘 이해하기 어려울 때
+                                </li>
+                                <hr>
+                                <li>
+                                  한 객체가 다른 객체를 너무 많이 참조하고, 너무 많은 의사소통을 수행해서 그 객체를 재사용하기 힘들 때
+                                </li>
+                                <hr>
+                                <li>
+                                  여러 클래스에 분산된 행동들이 상속 없이 상황에 맞게 수정되어야 할 때
+                                </li>
+                              </ul>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                          <div class="card-header" id="headingFour">
+                            <h2 class="mb-0">
+                              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                항목에 대한 설명
+                              </button>
+                            </h2>
+                          </div>
+                          <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <div class="card" >
+                                  <div class="card-body">
+                                      <h5 class="card-title">Mediator</h5>
+                                      <h6 class="card-subtitle mb-2 text-muted">DialogDirector</h6>
+                                      <p class="card-text">
+                                        Colleague 객체와 교류하는 데 필요한 인터페이스를 정의합니다. 
+                                      </p>
+                                  </div>
+                                </div> 
+                                <div class="card" >
+                                  <div class="card-body">
+                                      <h5 class="card-title">ConcreteMediator</h5>
+                                      <h6 class="card-subtitle mb-2 text-muted">FontDialogDirector</h6>
+                                      <p class="card-text">
+                                        Colleague 객체와 조화를 이뤄서 협력 행동을 구현하며, 자신이 맡은 동료(Colleague)를 파악하고 관리합니다. 
+                                      </p>
+                                  </div>
+                                </div> 
+                                <div class="card" >
+                                  <div class="card-body">
+                                      <h5 class="card-title">Colleague 클래스들</h5>
+                                      <h6 class="card-subtitle mb-2 text-muted">ListBox, EntryField</h6>
+                                      <p class="card-text">
+                                        자신의 중재자 객체가 무엇인지 파악합니다. 다른 객체와 통신이 필요하면 그 중재자를 통해 통신되도록 하는 동료 객체를 나타내는 클래스입니다.     
+                                      </p>
+                                  </div>
+                                </div> 
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card">
+                          <div class="card-header" id="heading5">
+                            <h2 class="mb-0">
+                              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                                협력방법 
+                              </button>
+                            </h2>
+                          </div>
+                          <div id="collapse5" class="collapse" aria-labelledby="heading5" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <ul>
+                                  <li>Colleague 는 Mediator에서 요청을 송수신합니다. Mediator는 필요한 Colleague 사이에 요청을 전달할 의무가 있습니다.</li>
+                                </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card">
+                          <div class="card-header" id="heading6">
+                            <h2 class="mb-0">
+                              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
+                                결과 
+                              </button>
+                            </h2>
+                          </div>
+                          <div id="collapse6" class="collapse" aria-labelledby="heading6" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <ul>
+                                  <li>서브 클래싱을 제한합니다.<br>
+                                    중재자는 다른 객체 사이에 분산된 객체의 행동들을 하나의 객체로 국한합니다. 이 행동 들을 변경하고자 한다면 Mediator 클래스를 상속하는 <br>
+                                    서브 클래스만 만들면 됩니다. Colleague 클래스는 여전히 재사용 가능합니다. 
+                                  </li>
+                                  <li>Colleague 객체 사이의 종속성을 줄입니다.<br>
+                                    중재자는 행동에 참여하는 객체 간의 소결합을 증진시킵니다. 이로써 Mediator 클래스와 Colleague 클래스 각각을 독립적으로 다양화시킬 수 있고 <br>
+                                    재사용할 수 있습니다.
+                                  </li>
+                                  <li>객체 프로토콜을 단순화 합니다.<br>
+                                    중재자는 다 대 다의 관계를 일 대 다의 관계로 축소시킵니다. 일 대 다의 관계가 훨씬 이해하기 쉬울 뿐만 아니라 유지하거나 <br>
+                                    확장하기 쉽습니다. 
+                                  </li>
+                                  <li>객체 간의 협력 방법을 추상화합니다.<br>
+                                    객체 사이의 중재를 독립적인 개념으로 만들고 이것을 캡슐화함으로써, 사용자는 각 객체의 행동과 상관 없이 객체 간 연결 방법에만 <br>
+                                    집중할 수 있습니다. 결과적으로, 시스템에서 객체가 어떻게 동작하는지를 좀더 명확히 하는 데 도움이 됩니다.
+                                  </li>
+                                  <li>통제가 집중됩니다.<br>
+                                    중재자 패턴은 상호작용의 복잡한 모든 것들이 자신 내부에서만 오가게 합니다. 중재자 객체는 동료 객체 간의 상호작용에 관련된 프로토콜을 <br>
+                                    모두 캡슐화하기 때문에 어느 동료 객체보다도 훨씬 복잡해질 수 있습니다. 이 때문에 Mediator 클래스 자체의 유지보수가 어려워지게 될 때도 있습니다. 
+                                  </li>
+                                </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="headingFive">
+                              <h2 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                  코드 예제
+                                </button>
+                              </h2>
+                            </div>
+                            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+                              <pre>
+                                <code class="java" >
+  
+                                    
+                                </code>
+                              </pre>
+                              <hr>
+                              <hr>
+                              <pre>
+                                <code class="Java" >
+  
+  
+                                </code>
+                              </pre>
+                            </div>
+                          </div>
+  
+                          <div class="card">
+                            <div class="card-header" id="headingSix">
+                              <h2 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                  문제를 풉시다.  제한시간 : 30분 
+                                </button>
+                              </h2>
+                            </div>
+                            <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
+                              <div class="card-body">
+                                
+                                <hr>
+                                <span id="time1" ></span>
+                                  <a  id="btnStart" class="btn btn-primary">코드 시작! 30분</a>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+                </p>
+          </div>
+      </div>
+      <!-- /.container-fluid -->
+
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright © Your Website 2018</span>
+            </div>
+          </div>
+        </footer>
+
+      </div>
+      <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="login.html">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Page level plugin JavaScript-->
+    <script src="../vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="../js/sb-admin.min.js"></script>
+
+    <!-- Demo scripts for this page-->
+    <script src="../js/demo/chart-area-demo.js"></script>
+    <script src="../js/demo/chart-bar-demo.js"></script>
+    <script src="../js/demo/chart-pie-demo.js"></script>
+
+  </body>
+
+</html>

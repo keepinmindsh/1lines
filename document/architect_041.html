@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>1Lines - Test Driven Development</title>
+
+    <!-- Bootstrap core CSS-->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template-->
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Page level plugin CSS-->
+    <link href="../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="../css/sb-admin.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../styles/default.css">
+    <script src="../highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </head>
+
+  <body id="page-top">
+
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+
+      <a class="navbar-brand mr-1" href="../index.html">Start Bootstrap</a>
+
+      <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Navbar Search -->
+      <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Navbar -->
+      <ul class="navbar-nav ml-auto ml-md-0">
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-bell fa-fw"></i>
+            <span class="badge badge-danger">9+</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-envelope fa-fw"></i>
+            <span class="badge badge-danger">7</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user-circle fa-fw"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+            <a class="dropdown-item" href="#">Settings</a>
+            <a class="dropdown-item" href="#">Activity Log</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+          </div>
+        </li>
+      </ul>
+
+    </nav>
+
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <ul class="sidebar navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>요약</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>목록</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header">서론</h6>
+            <a class="dropdown-item" href="../document/architect_001.html">서론</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">사례연구</h6>
+            <a class="dropdown-item" href="../document/architect_002.html">사례연구</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">생성 패턴</h6>
+            <a class="dropdown-item" href="../document/architect_003.html">추상 팩토리</a>
+            <a class="dropdown-item" href="../document/architect_004.html">빌더</a>
+            <a class="dropdown-item" href="../document/architect_005.html">팩토리 메서드</a>
+            <a class="dropdown-item" href="../document/architect_006.html">원형</a>
+            <a class="dropdown-item" href="../document/architect_007.html">단일체</a>
+            <a class="dropdown-item" href="../document/architect_008.html">생성 패턴에 대한 논의</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">구조 패턴</h6>
+            <a class="dropdown-item" href="../document/architect_009.html">적응자</a>
+            <a class="dropdown-item" href="../document/architect_010.html">가교</a>
+            <a class="dropdown-item" href="../document/architect_011.html">복합체</a>
+            <a class="dropdown-item" href="../document/architect_012.html">장식자</a>
+            <a class="dropdown-item" href="../document/architect_013.html">퍼사드</a>
+            <a class="dropdown-item" href="../document/architect_014.html">플라이급</a>
+            <a class="dropdown-item" href="../document/architect_015.html">프록시</a>
+            <a class="dropdown-item" href="../document/architect_016.html">구조패턴에 대한 논의</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">행동 패턴</h6>
+            <a class="dropdown-item" href="../document/architect_017.html">책임 연쇄</a>
+            <a class="dropdown-item" href="../document/architect_018.html">명령</a>
+            <a class="dropdown-item" href="../document/architect_019.html">해석자</a>
+            <a class="dropdown-item" href="../document/architect_020.html">반복자</a>
+            <a class="dropdown-item" href="../document/architect_021.html">중재자</a>
+            <a class="dropdown-item" href="../document/architect_022.html">메멘토</a>
+            <a class="dropdown-item" href="../document/architect_023.html">감시자</a>
+            <a class="dropdown-item" href="../document/architect_024.html">상태</a>
+            <a class="dropdown-item" href="../document/architect_025.html">전략</a>
+            <a class="dropdown-item" href="../document/architect_026.html">템플릿 메서드</a>
+            <a class="dropdown-item" href="../document/architect_027.html">방문자</a>
+            <a class="dropdown-item" href="../document/architect_028.html">행동 패턴에 대한 논의</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">결론</h6>
+            <a class="dropdown-item" href="../document/architect_029.html">디자인 패턴에서 무엇을<br> 기대할 수 있는가?</a>
+            <a class="dropdown-item" href="../document/architect_030.html">간략한 역사</a>
+            <a class="dropdown-item" href="../document/architect_031.html">패턴 커뮤니티</a>
+            <a class="dropdown-item" href="../document/architect_032.html">초대의 글</a>
+            <a class="dropdown-item" href="../document/architect_033.html">책을 마무리하며</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">System Archtecture</h6>
+            <a class="dropdown-item" href="../document/architect_053.html">API with Zuul</a>
+            <a class="dropdown-item" href="../document/architect_037.html">Cloud System</a>
+            <a class="dropdown-item" href="../document/architect_047.html">Cassandra</a>
+            <a class="dropdown-item" href="../document/architect_036.html">DevOps</a>
+            <a class="dropdown-item" href="../document/architect_045.html">IAC</a>
+            <a class="dropdown-item" href="../document/architect_043.html">Kuberneties</a>
+            <a class="dropdown-item" href="../document/architect_034.html">MVC</a>
+            <a class="dropdown-item" href="../document/architect_049.html">MSA</a>
+            <a class="dropdown-item" href="../document/architect_044.html">MOM</a>
+            <a class="dropdown-item" href="../document/architect_039.html">PAAS</a>
+            <a class="dropdown-item" href="../document/architect_035.html">REST API</a>
+            <a class="dropdown-item" href="../document/architect_046.html">SAAS</a>
+            <a class="dropdown-item" href="../document/architect_040.html">SCA</a>
+            <a class="dropdown-item" href="../document/architect_042.html">SOA</a>
+            <a class="dropdown-item" href="../document/architect_041.html">TDD(DDD)</a>
+            <a class="dropdown-item" href="../document/architect_048.html">Web Cache</a>
+            <a class="dropdown-item" href="../document/architect_050.html">Various Pattern</a>
+          </div>
+        </li>
+      </ul>
+
+      <div id="content-wrapper">
+        <div class="container-fluid">
+          <!-- Breadcrumbs-->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active"> TDD</li>
+          </ol>
+
+          <!-- Area Chart Example-->
+          <div class="card mb-3">
+            <div class="card-header">
+               TDD(Test Driven Development) </div>
+            <div class="card-body">
+                <div class="accordion" id="accordionExample">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                          TDD
+                        </button>
+                      </h2>
+                    </div>
+                
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                      <div class="card-body">
+                        테스트는 빠른 시점에 피드백을 받을 수 있는 유용한 도구 이다. <br>
+                        TDD를 해야하는 이유 <br>
+                        <ul>
+                          <li>TDD는 프로그램을 코드 단위로 잘게 쪼개서 실행해볼 수 있는 좋은 방법이다. 작은 단위로 내 의도대로 실행되는지 입력과 결과를 관찰한다. 단, 테스트를 먼저 작성하는 것으로 코드가 동작하지 않는 상태임을 명확하게 확인한다.</li>
+                          <li>빌드가 되지 않는 상태에서 빨간 불이 들어오도록 최소 코드를 작성하는 것, 이 빨간 불을 초록 불로 최대한 빠르게 바꾸기 위해 매직 넘버도 서슴치 않고 사용하는 것, 초록 불이 들어온 후에 작성한 테스트를 통해 리팩토링 하는 과정을 따른다.</li>
+                          <li>매직 넘버를 반환하는 메소드는 삼각측량으로 고친다. 즉 동일한 메소드를 다른 입력과 결과로 테스트를 작성했을 때 두 케이스를 모두 만족하기 위한 리팩토링을 수행한다.</li>
+                          <li>결과를 하드코딩 하는 것은 죄악으로 일반적으로는 죄악으로 여겨지는 일이지만 필요할 때 사용할 수 있어야 한다. <br>
+                            이 단계를 생각하지 않고 먼저 큰 코드를 작성해버리면 당장은 테스트의 단계를 줄일 수 있겠다. <br>
+                            문제는 그렇게 작성한 코드가 생각대로 동작하지 않았을 때 테스트 작성도 어려워지고 고민해야 할 단위도 커진다는 점이다. <br>
+                            이럴 때 다시 매직 넘버를 반환하는 수준으로 돌아올 수 있어야 하는데 생각의 단위를 가볍게 돌리는 일은 쉽지 않다. <br>
+                            테스트를 작성하면서 코드와 멀어진다는 생각을 하게 되는 지점이었는데 이 단순한 답이 큰 도움되었다.
+                          </li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header" id="headingTwo">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                          TDD 기본 규칙
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                      <div class="card-body">
+                        <ul>
+                          <li>정확한 프로그래밍 목적을 디자인 단계에서 반드시 미리 정의해야만 하고 또 무엇을 미리 정의해야하만 한다.</li>
+                          <li>테스트 하기 어려운 코드를 테스트하기 쉬운 코드로 설계하는 감각</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header" id="headingThree">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                           JUnit 
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                      <div class="card-body">
+                        <ul>
+                          <li>범용적으로 사용되는 단위 테스트 Framework </li>
+                          <li>Java 언어의 단위 테스트를 위해서 사용된다. </li>
+                        </ul>  
+                      </div>
+                    </div>
+                  </div>
+                </div> 
+                <div class="card">
+                  <div class="card-header" id="heading3-1">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse3-1" aria-expanded="false" aria-controls="collapse3-1">
+                        TDD를 위한 적절한 시기
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapse3-1" class="collapse" aria-labelledby="heading3-1" data-parent="#accordionExample">
+                    <div class="card-body">
+                        TDD는 테스트 대상이 되는 코드를 작성하기 직전에 작성하는 것이 좋다. 
+                    </div>
+                  </div>
+                </div> 
+                <div class="card">
+                  <div class="card-header" id="heading3-2">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse3-2" aria-expanded="false" aria-controls="collapse3-2">
+                        TDD를 위한 절차 
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapse3-2" class="collapse" aria-labelledby="heading3-2" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                              테스트 추가하기 : 인터페이스 설계하기
+                              <hr>
+                              <table>
+                                <tbody>
+                                  <tr>
+                                    <th>입력데이터</th>
+                                    <td>:</td>
+                                    <td>적당한 입력 값은 무엇인가?</td>
+                                  </tr>
+                                  <tr>
+                                    <th>출력데이터</th>
+                                    <td>:</td>
+                                    <td>적당한 출력 값은 무엇인가?</td>
+                                  </tr>
+                                  <tr>
+                                    <th>인터페이스</th>
+                                    <td>:</td>
+                                    <td>어떤 방식으로 사용할 것인가 </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </li>
+                            <li class="list-group-item">테스트 통과 시키기 : 가짜로 구현하기 </li>
+                            <li class="list-group-item">중복코드 제거하기 : 구현코드 설계하기 </li>
+                          </ul>
+                    </div>
+                  </div>
+                </div> 
+                <div class="card">
+                  <div class="card-header" id="headingFour">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        Spring Boot Test 
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                    <div class="card-body">
+                      Spring Boot는 애플리케이션을 테스트 하기 위한 많은 기능을 제공한다. 
+                      <ul>
+                        <li>Junit</li>
+                        <li>Spring Test & Spring Boot Test</li>
+                        <li>AssertJ</li>
+                        <li>Hamcrest</li>
+                        <li>Mockito</li>
+                        <li>JSONassert</li>
+                        <li>JsonPath</li>
+                      </ul>
+                      <hr>
+                      @SpringBootTest 
+                      <pre>
+                        <code class="java" >
+package com.junitsample.demo;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+
+@RunWith(SpringRunner.class)  // @SpringBootTest는 반드시 @RunWith(SpringRunner.class) 와 함께 사용해야 한다는 점입니다. 
+@SpringBootTest
+public class JunitApplicationTests {
+
+    @Test
+    public void contextLoads() {
+    }
+
+}                      
+                        </code>
+                      </pre>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingFive">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFour">
+                     
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+                    <div class="card-body">
+                        
+                    </div>
+                  </div>
+                </div>
+              </div>   
+              <div class="card-footer small text-muted">https://gmlwjd9405.github.io/2018/09/21/rest-and-restful.html 참고, 조대협 사이트 https://bcho.tistory.com/914 참고 </div>      
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright © Your Website 2018</span>
+            </div>
+          </div>
+        </footer>
+
+      </div>
+      <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="login.html">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Page level plugin JavaScript-->
+    <script src="../vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="../js/sb-admin.min.js"></script>
+
+    <!-- Demo scripts for this page-->
+    <script src="../js/demo/chart-area-demo.js"></script>
+    <script src="../js/demo/chart-bar-demo.js"></script>
+    <script src="../js/demo/chart-pie-demo.js"></script>
+
+  </body>
+
+</html>

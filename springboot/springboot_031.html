@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin - Charts</title>
+
+    <!-- Bootstrap core CSS-->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template-->
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Page level plugin CSS-->
+    <link href="../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="../css/sb-admin.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../styles/default.css">
+    <script src="../highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </head>
+
+  <body id="page-top">
+
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+
+      <a class="navbar-brand mr-1" href="index.html">Start Bootstrap</a>
+
+      <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Navbar Search -->
+      <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Navbar -->
+      <ul class="navbar-nav ml-auto ml-md-0">
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-bell fa-fw"></i>
+            <span class="badge badge-danger">9+</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-envelope fa-fw"></i>
+            <span class="badge badge-danger">7</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user-circle fa-fw"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+            <a class="dropdown-item" href="#">Settings</a>
+            <a class="dropdown-item" href="#">Activity Log</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+          </div>
+        </li>
+      </ul>
+
+    </nav>
+
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <ul class="sidebar navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>요약</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>목록</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header">Clean Code</h6>
+            <a class="dropdown-item" href="../springboot/springboot_001.html">스프링 부트란?</a>
+            <a class="dropdown-item" href="../springboot/springboot_002.html">스프링 프로젝트 만들기</a>
+            <a class="dropdown-item" href="../springboot/springboot_003.html"></a>
+            <a class="dropdown-item" href="../springboot/springboot_004.html"></a>
+            <a class="dropdown-item" href="../springboot/springboot_005.html"></a>
+            <a class="dropdown-item" href="../springboot/springboot_006.html"></a>
+            <a class="dropdown-item" href="../springboot/springboot_007.html"></a>
+            <a class="dropdown-item" href="../springboot/springboot_008.html"></a>          
+            <a class="dropdown-item" href="../springboot/springboot_009.html"></a>
+            <a class="dropdown-item" href="../springboot/springboot_010.html"></a>
+            <a class="dropdown-item" href="../springboot/springboot_011.html"></a>
+            <a class="dropdown-item" href="../springboot/springboot_012.html"></a>
+            <a class="dropdown-item" href="../springboot/springboot_013.html"></a>
+            <a class="dropdown-item" href="../springboot/springboot_014.html"></a>
+            <a class="dropdown-item" href="../springboot/springboot_015.html"></a>
+            <a class="dropdown-item" href="../springboot/springboot_016.html"></a>
+            <a class="dropdown-item" href="../springboot/springboot_017.html"></a>
+            <a class="dropdown-item" href="../springboot/springboot_018.html"></a>
+            <a class="dropdown-item" href="../springboot/springboot_019.html"></a>
+            <a class="dropdown-item" href="../springboot/springboot_020.html"></a>
+            <a class="dropdown-item" href="../springboot/springboot_021.html"></a>
+            <a class="dropdown-item" href="../springboot/springboot_022.html"></a>
+            <a class="dropdown-item" href="../springboot/springboot_023.html"></a>
+            <a class="dropdown-item" href="../springboot/springboot_024.html"></a>
+            <a class="dropdown-item" href="../springboot/springboot_025.html"></a>
+            <a class="dropdown-item" href="../springboot/springboot_026.html"></a>
+            <a class="dropdown-item" href="../springboot/springboot_027.html"></a>
+            <a class="dropdown-item" href="../springboot/springboot_028.html"></a>
+            <a class="dropdown-item" href="../springboot/springboot_029.html"></a>
+            <a class="dropdown-item" href="../springboot/springboot_030.html"></a>
+            <a class="dropdown-item" href="../springboot/springboot_031.html"></a>
+            <a class="dropdown-item" href="../springboot/springboot_032.html"></a>
+            <a class="dropdown-item" href="../springboot/springboot_033.html"></a>
+          </div>
+        </li>
+      </ul>
+
+      <div id="content-wrapper">
+        <div class="container-fluid">
+          <!-- Breadcrumbs-->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">Spring Boot</li>
+          </ol>
+          <div class="card mb-3">
+              <div class="card-header">
+                  스프링 부트에 대해서 
+                </div>
+  
+              <div class="card-body">
+                  <pre>
+                    <code class="java" >
+  /**
+  DB를 당장 사용하지 않고 SpringBoot를 사용해야 하는 경우, 
+  굳이 DB설정을 하지 않고 아래와 같이 SpringBoot 메인클래스에 Annotation을
+  추가함으로써 SpringBoot시작시 실행되는 Auto Configuration작업중 
+  DatatSource 설정부분을 제외시킬 수 있다.
+  */
+  @EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
+                    </code>
+                  </pre>
+              </div>
+              <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+            </div>
+          <!-- Area Chart Example-->
+          <div class="card mb-3">
+            <div class="card-header">
+                Reactive Web
+            </div>
+            <div class="card-body">
+              Reactive 
+              <hr>
+              Spring 5와 Spring Boot 2.0의 큰 변화는 이전까지는 동기 통신이었고, MVC 기반의 모노리틱 <br>
+              아키텍처가 적합한 프레임워크 였다면, 이번 업데이트에서 완전히 비동기 통신에 MSA에 적합한 구조로 <br>
+              탈바꿈 하였다. 
+              <hr>
+              <div class="card">
+                  <h5 class="card-header">DBCP</h5>
+                  <div class="card-body">
+                    <h5 class="card-title">DataBase Connection Pool</h5>
+                    <p class="card-text">
+                      데이터베이스와 애플리케이션을 효율적으로 연결하는 커넥션 풀(connection pool) 라이브러리는 웹 애플리케이션에서 필수 요소입니다. 
+                      웹 애플리케이션 서버로 상용 제품을 사용하다면 보통 제조사에서 제공하는 커넥션 풀 구현체를 사용합니다. 
+                      그 외에 오픈소스 라이브러리로 Apache의 Commons DBCP와 Tomcat-JDBC, BoneCP, HikariCP 등이 있습니다.
+                      <ul>
+                        <li>initialSize : BasicDataSource 클래스 생성 후 최초로 getConnection() 메서드를 호출할 때 커넥션 풀에 채워 넣을 커넥션 개수</li>
+                        <li>maxActive : 	동시에 사용할 수 있는 최대 커넥션 개수(기본값: 8)</li>
+                        <li>maxIdle : 커넥션 풀에 반납할 때 최대로 유지될 수 있는 커넥션 개수(기본값: 8)</li>
+                        <li>minIdle : 최소한으로 유지할 커넥션 개수(기본값: 0)</li>
+                      </ul>
+
+                      <ul>
+                        <li>maxActive >= initialSize
+                          <hr>
+                          maxActive = 10이고 initialSize = 20이라고 가정하면 최초에 커넥션을 생성할 때 initialSize 값이 최대 커넥션 개수인 maxActive 값보다 커서 논리적으로 오류가 있는 설정이다.
+                          <hr>
+                        </li>
+                        <li>maxIdle >= minIdle
+                          <hr>
+                          maxIdle < minIdle로 설정할 수는 있지만 최솟값이 최댓값보다 커서 논리적으로 오류가 있는 설정이다.
+                          <hr>
+                        </li>
+                        <li>
+                            maxActive = maxIdle 
+                          <hr>
+                          maxActive 값과 maxIdle 값이 같은 것이 바람직하다. maxActive = 10이고 maxIdle = 5라고 가정해 보자. 항상 커넥션을 동시에 5개는 사용하고 있는 상황에서 1개의 커넥션이 추가로 요청된다면 maxActive = 10이므로 1개의 추가 커넥션을 데이터베이스에 연결한 후 풀은 비즈니스 로직으로 커넥션을 전달한다. 이후 비즈니스 로직이 커넥션을 사용 후 풀에 반납할 경우, maxIdle=5에 영향을 받아 커넥션을 실제로 닫아버리므로, 일부 커넥션을 매번 생성했다 닫는 비용이 발생할 수 있다.
+                          <hr>
+                        </li>
+                      </ul>
+                      <hr>
+                      initialSize와 maxActive, maxIdle, minIdle 항목을 동일한 값으로 통일해도 무방하다. 커넥션 개수와 관련된 가장 중요한 성능 요소는 일반적으로 커넥션의 최대 개수다. 4개 항목의 설정 값 차이는 성능을 좌우하는 중요 변수는 아니다.
+                    </p>
+                    
+                  </div>
+                </div>
+            </div>
+            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+          </div>
+          
+        <!-- /.container-fluid -->
+
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright © Your Website 2018</span>
+            </div>
+          </div>
+        </footer>
+
+      </div>
+      <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="cleancode">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="login.html">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Page level plugin JavaScript-->
+    <script src="../vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="../js/sb-admin.min.js"></script>
+
+    <!-- Demo scripts for this page-->
+    <script src="../js/demo/chart-area-demo.js"></script>
+    <script src="../js/demo/chart-bar-demo.js"></script>
+    <script src="../js/demo/chart-pie-demo.js"></script>
+
+  </body>
+
+</html>

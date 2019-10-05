@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>1Lines - Architecture</title>
+
+    <!-- Bootstrap core CSS-->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template-->
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Page level plugin CSS-->
+    <link href="../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="../css/sb-admin.css" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/default.css">
+    <script src="../highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </head>
+
+  <body id="page-top">
+
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+
+      <a class="navbar-brand mr-1" href="index.html">Start Bootstrap</a>
+
+      <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Navbar Search -->
+      <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Navbar -->
+      <ul class="navbar-nav ml-auto ml-md-0">
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-bell fa-fw"></i>
+            <span class="badge badge-danger">9+</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-envelope fa-fw"></i>
+            <span class="badge badge-danger">7</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user-circle fa-fw"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+            <a class="dropdown-item" href="#">Settings</a>
+            <a class="dropdown-item" href="#">Activity Log</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+          </div>
+        </li>
+      </ul>
+
+    </nav>
+
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <ul class="sidebar navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>요약</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>목록</span>
+          </a>
+          <div class="dropdown-menu show" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header">서론</h6>
+            <a class="dropdown-item" href="../document/architect_001.html">서론</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">사례연구</h6>
+            <a class="dropdown-item" href="../document/architect_002.html">사례연구</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">생성 패턴</h6>
+            <a class="dropdown-item" href="../document/architect_003.html">추상 팩토리</a>
+            <a class="dropdown-item" href="../document/architect_004.html">빌더</a>
+            <a class="dropdown-item" href="../document/architect_005.html">팩토리 메서드</a>
+            <a class="dropdown-item" href="../document/architect_006.html">원형</a>
+            <a class="dropdown-item" href="../document/architect_007.html">단일체</a>
+            <a class="dropdown-item" href="../document/architect_008.html">생성 패턴에 대한 논의</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">구조 패턴</h6>
+            <a class="dropdown-item" href="../document/architect_009.html">적응자</a>
+            <a class="dropdown-item" href="../document/architect_010.html">가교</a>
+            <a class="dropdown-item" href="../document/architect_011.html">복합체</a>
+            <a class="dropdown-item" href="../document/architect_012.html">장식자</a>
+            <a class="dropdown-item" href="../document/architect_013.html">퍼사드</a>
+            <a class="dropdown-item" href="../document/architect_014.html">플라이급</a>
+            <a class="dropdown-item" href="../document/architect_015.html">프록시</a>
+            <a class="dropdown-item" href="../document/architect_016.html">구조패턴에 대한 논의</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">행동 패턴</h6>
+            <a class="dropdown-item" href="../document/architect_017.html">책임 연쇄</a>
+            <a class="dropdown-item" href="../document/architect_018.html">명령</a>
+            <a class="dropdown-item" href="../document/architect_019.html">해석자</a>
+            <a class="dropdown-item" href="../document/architect_020.html">반복자</a>
+            <a class="dropdown-item" href="../document/architect_021.html">중재자</a>
+            <a class="dropdown-item" href="../document/architect_022.html">메멘토</a>
+            <a class="dropdown-item" href="../document/architect_023.html">감시자</a>
+            <a class="dropdown-item" href="../document/architect_024.html">상태</a>
+            <a class="dropdown-item" href="../document/architect_025.html">전략</a>
+            <a class="dropdown-item" href="../document/architect_026.html">템플릿 메서드</a>
+            <a class="dropdown-item" href="../document/architect_027.html">방문자</a>
+            <a class="dropdown-item" href="../document/architect_028.html">행동 패턴에 대한 논의</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">결론</h6>
+            <a class="dropdown-item" href="../document/architect_029.html">디자인 패턴에서 무엇을<br> 기대할 수 있는가?</a>
+            <a class="dropdown-item" href="../document/architect_030.html">간략한 역사</a>
+            <a class="dropdown-item" href="../document/architect_031.html">패턴 커뮤니티</a>
+            <a class="dropdown-item" href="../document/architect_032.html">초대의 글</a>
+            <a class="dropdown-item" href="../document/architect_033.html">책을 마무리하며</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">System Archtecture</h6>
+            <a class="dropdown-item" href="../document/architect_053.html">API with Zuul</a>
+            <a class="dropdown-item" href="../document/architect_037.html">Cloud System</a>
+            <a class="dropdown-item" href="../document/architect_047.html">Cassandra</a>
+            <a class="dropdown-item" href="../document/architect_036.html">DevOps</a>
+            <a class="dropdown-item" href="../document/architect_045.html">IAC</a>
+            <a class="dropdown-item" href="../document/architect_043.html">Kuberneties</a>
+            <a class="dropdown-item" href="../document/architect_034.html">MVC</a>
+            <a class="dropdown-item" href="../document/architect_049.html">MSA</a>
+            <a class="dropdown-item" href="../document/architect_044.html">MOM</a>
+            <a class="dropdown-item" href="../document/architect_039.html">PAAS</a>
+            <a class="dropdown-item" href="../document/architect_035.html">REST API</a>
+            <a class="dropdown-item" href="../document/architect_046.html">SAAS</a>
+            <a class="dropdown-item" href="../document/architect_040.html">SCA</a>
+            <a class="dropdown-item" href="../document/architect_042.html">SOA</a>
+            <a class="dropdown-item" href="../document/architect_041.html">TDD(DDD)</a>
+            <a class="dropdown-item" href="../document/architect_048.html">Web Cache</a>
+            <a class="dropdown-item" href="../document/architect_050.html">Various Pattern</a>
+          </div>
+        </li>
+      </ul>
+
+      <div id="content-wrapper">
+        <div class="container-fluid">
+          <!-- Breadcrumbs-->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">Template Method</li>
+          </ol>
+
+
+        <!-- Area Chart Example-->
+        <div class="card mb-3">
+          <div class="card-header">
+            Template Method
+          </div>
+          <div class="card-body">
+              <p class="card-text">
+                  <div class="accordion" id="accordionExample">
+                      <div class="card">
+                        <div class="card-header" id="headingOne">
+                          <h2 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                              의도 
+                            </button>
+                          </h2>
+                        </div>
+                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                          <div class="card-body">
+                             객체의 연산이 알고리즘의 뼈대 만들 정의하고 각 단계에서 수행할 구체적 처리는 서브 클래스 쪽에서 미룹니다. 
+                             알고리즘의 구조 자체는 그대로 놔둔 채 알고리즘 각 단계의 처리를 서브 클래스에서 처리할 수 있게 합니다. 
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-header" id="headingTwo">
+                          <h2 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                              동기
+                            </button>
+                          </h2>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                          <div class="card-body">
+                            Application 클래스와 Draw 클래스를 제공하는 응용 프로그램 프레임워크를 생각해 봅시다. Application 클래스는 파일이나 특정한 외부 형식으로 저장된 문서를 <br>
+                            열 수 있고, Document 객체를 파일에서 읽은 문서에 정보를 나타냅니다. <br>
+                            특정한 요구나 따라서 프레임워크 정의한 Application 클래스와 Document 클래스를 상속한 서브 클래스를 정의하여 새로운 응용 프로그램을 구축할 수 있을 것입니다. <br>
+                            예를 들어, 그림 그리기 응용 프로그램은 DrawApplication 클래스와 DrawDocument 클래스를 정의할 수 있을 것이고, 스프레드 시트 응용프로그램은 SpreadsheetApplication 클래스와 <br>
+                            SpreadsheetDocument 클래스를 정의할 수 있습니다. 이와 같은 패턴을 구현할 때 사용하는 것이 탬플릿 메서드라고 합니다. 
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-header" id="headingThree">
+                          <h2 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                              활용성
+                            </button>
+                          </h2>
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                          <div class="card-body">
+                            <img src="../document/TemplateMethod.png" width="800" alt="">
+                              <hr>
+                              <hr>
+                              <ul>
+                                <li>
+                                  어떤 한 알고리즘을 이루는 부분 중 변하지 않는 부분을 한 번 정의해 놓고 다양해질 수 있는 부분을 서브 클래스에서 정의할 수 있도록 남겨주고자 할 때
+                                </li>
+                                <hr>
+                                <li>
+                                  서브 클래스 사이의 공통 적인 행동을 추출하여 하나의 공통 클래스에 몰아둠으로써 코드 중복을 피하고 싶을 때. <br>
+                                  먼저, 기존 코드에서 나타나는 차이점을 뽑아 이를 별도의 새로운 연산들로 구분해 놓습니다. 그런 뒤 달라진 코드 부분을 이 새로운 연산을 호출 하는 템플릿 메서드로 대체하는 것입니다. 
+                                </li>
+                                <hr>
+                                <li>
+                                  서브 클래스의 확장을 제어할 수 있습니다. 템플릿 메서드가 어떤 특정한 시점에 "훅(hook)" 연산을 호출하도록 정의함으로써, 그 특정 시점에서만 확장되도록 합니다. 
+                                </li>
+                              </ul>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                          <div class="card-header" id="headingFour">
+                            <h2 class="mb-0">
+                              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                항목에 대한 설명
+                              </button>
+                            </h2>
+                          </div>
+                          <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <div class="card" >
+                                  <div class="card-body">
+                                      <h5 class="card-title">AbstractClass</h5>
+                                      <h6 class="card-subtitle mb-2 text-muted">Application</h6>
+                                      <p class="card-text">
+                                        서브 클래스들이 재정의를 통해 구현해야 하는 알고리즘 처리 단계 내의 기본 연산을 정의합니다. <br>
+                                        그리고 알고리즘의 뼈대를 정의하는 템플릿 메서드를 구현합니다. 템플릿 메서드는 AbstractClass 에 정의된 연산 또는 다른 객체 뿐만 아니라 기본 연산도 호출합니다. 
+                                      </p>
+                                  </div>
+                                </div> 
+                                <div class="card" >
+                                  <div class="card-body">
+                                      <h5 class="card-title">ConcreteClass</h5>
+                                      <h6 class="card-subtitle mb-2 text-muted">MyApplication</h6>
+                                      <p class="card-text">
+                                          서브 클래스마다 달라진 알고리즘 처리 단계를 수행하기 위한 기본 연산을 구현합니다. 
+                                      </p>
+                                  </div>
+                                </div> 
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card">
+                          <div class="card-header" id="heading5">
+                            <h2 class="mb-0">
+                              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                                협력방법 
+                              </button>
+                            </h2>
+                          </div>
+                          <div id="collapse5" class="collapse" aria-labelledby="heading5" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <ul>
+                                  <li>ConcreteClass는 AbstractClass를 통하여 알고리즘의 변하지 않는 처리 단계를 구현합니다. </li>
+                                </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card">
+                          <div class="card-header" id="heading6">
+                            <h2 class="mb-0">
+                              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
+                                결과 
+                              </button>
+                            </h2>
+                          </div>
+                          <div id="collapse6" class="collapse" aria-labelledby="heading6" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <ul>
+                                  <li>
+                                    템플릿 메서드는 "할리우드 원칙"이라는 제어 역전의 구조를 끌어냅니다. "전화하지 마세요. 우리가 연락할게요." 라는 것입니다. <br>
+                                    다시 말해, 부모 클래스는 서브 클래스에 정의된 연산을 호출할 수 있지만 반대 방향의 호출은 아닙니다. 
+                                  </li>
+                                  <li>
+                                    구체 연산 : ConcreteClass 나 사용자 클래스에 정의된 연산 
+                                  </li>
+                                  <li>
+                                    AbstractClass 구체 연산 : 서브 클래스에서 일반적으로 유용한 연산 
+                                  </li>
+                                  <li>
+                                    기본 연산 : 추상화된 연산 
+                                  </li>
+                                  <li>
+                                    팩토리 메서드
+                                  </li>
+                                  <li>
+                                    훅 연산 : 필요하다면 서브클래스에서 확장할 수 있는 기본 행동을 제공하는 연산. 기본적으로는 아무 내용도 정의하지 않습니다. 
+                                  </li>
+                                </ul>
+                                <hr>
+                                템플릿 메서드 패턴에서는 어떤 연산이 훅 연산인지(오버라이드 가능한지) 추상연산인지(꼭 오버라이드 해야하는지)를 지정해 두는 것이 대단히 중요합니다. <br>
+                                훅 연산은 나중에 재정의할 수 있고, 재정의 하지 않을 수도 있는 메서드이고, 추상 연산은 반드시 재정의해야 하는 연산입니다. <br>
+                                추상할 클래스를 효과적으로 재사용하기 위해서, 서브 클래스 작성자는 어떤 연산들이 오버라이드용으로 설계되었는지를 정확하게 이해하고 있어야 합니다. 
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="headingFive">
+                              <h2 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                  코드 예제
+                                </button>
+                              </h2>
+                            </div>
+                            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+                              <pre>
+                                <code class="java" >
+public class Caller {
+
+  public static void main(String[] args) {
+      DBTemplate dbTemplate = new OracleDB();
+
+      List&lt;Map> resutList = (List&lt;Map>)dbTemplate.execute("SELECT * FROM TB_ZZ_USER");
+
+      resutList.forEach(value -> {
+          System.out.println(value.get("USER_ID"));
+      });
+  }
+}
+                                </code>
+                              </pre>
+                              <hr>
+                              <pre>
+                                <code class="Java" >
+public abstract class DBTemplate {
+
+  public Object selectQuery(String sql){
+      return execute(sql);
+  }
+
+  public List&lt;Map> execute(String queryStatment){
+
+      ResultSet resultSet = null;
+      List&lt;Map> resultList = null;
+      Connection connection = null;
+      PreparedStatement preparedStatement = null;
+
+      try {
+
+          String[] connectionInfo = getDBInformation();
+
+          connection = getConnection(connectionInfo);
+
+          preparedStatement = executeStatement(connection, queryStatment);
+
+          resultSet = getResultSet(preparedStatement);
+
+          resultList = getResultMapRows(resultSet);
+
+      }catch (Exception ex){
+          ex.printStackTrace();
+      }finally {
+          try{
+              if(connection != null ) releaseConnection(connection);
+              if(preparedStatement != null ) releasePrepareStatement(preparedStatement);
+              if(resultSet != null ) releaseResultSet(resultSet);
+          }catch (Exception ex){
+              ex.printStackTrace();
+          }
+
+      }
+
+      return resultList;
+  }
+
+  /**
+    * ResultSet을 Row마다 Map에 저장후 List에 다시 저장.
+    * @param rs DB에서 가져온 ResultSet
+    * @return Listt&lt;map> 형태로 리턴
+    * @throws Exception Collection
+    */
+  private List&lt;Map> getResultMapRows(ResultSet rs) throws Exception
+  {
+      // ResultSet 의 MetaData를 가져온다.
+      ResultSetMetaData metaData = rs.getMetaData();
+      // ResultSet 의 Column의 갯수를 가져온다.
+      int sizeOfColumn = metaData.getColumnCount();
+
+      List&lt;Map> list = new ArrayList&lt;Map>();
+      Map&lt;String, Object> map;
+      String column;
+      // rs의 내용을 돌려준다.
+      while (rs.next())
+      {
+          // 내부에서 map을 초기화
+          map = new HashMap&lt;String, Object>();
+          // Column의 갯수만큼 회전
+          for (int indexOfcolumn = 0; indexOfcolumn &lt; sizeOfColumn; indexOfcolumn++)
+          {
+              column = metaData.getColumnName(indexOfcolumn + 1);
+              // map에 값을 입력 map.put(columnName, columnName으로 getString)
+              map.put(column, rs.getString(column));
+          }
+          // list에 저장
+          list.add(map);
+      }
+      return list;
+  }
+
+  private void releaseConnection(Connection connection) throws SQLException {
+      connection.close();
+  }
+
+  private void releaseResultSet(ResultSet resultSet) throws SQLException {
+      resultSet.close();
+  }
+
+  private void releasePrepareStatement(PreparedStatement preparedStatement) throws SQLException {
+      preparedStatement.close();
+  }
+
+  public abstract String[] getDBInformation();
+
+  public abstract Connection getConnection(String[] connectionInfo) throws SQLException;
+
+  public abstract PreparedStatement executeStatement(Connection connection, String sql) throws SQLException;
+
+  public abstract ResultSet getResultSet(PreparedStatement preparedStatement) throws SQLException;
+
+}
+
+public class OracleDB extends DBTemplate {
+  @Override
+  public String[] getDBInformation() {
+      String jdbcDriver = "jdbc:oracle:thin:@***.***.***.***:***/*****";
+      String dbUser = "******";
+      String dbPassword = "******";
+
+      String[] resultInfo = {jdbcDriver, dbUser, dbPassword};
+
+      return resultInfo;
+  }
+
+  @Override
+  public Connection getConnection(String[] connectionInfo) throws SQLException {
+      return DriverManager.getConnection(connectionInfo[0], connectionInfo[1], connectionInfo[2]);
+  }
+
+  @Override
+  public PreparedStatement executeStatement(Connection connection, String sql) throws SQLException {
+      return connection.prepareStatement(sql);
+  }
+
+  @Override
+  public ResultSet getResultSet(PreparedStatement preparedStatement) throws SQLException {
+      return preparedStatement.executeQuery();
+  }
+}
+                                </code>
+                              </pre>
+                            </div>
+                          </div>
+  
+                          <div class="card">
+                            <div class="card-header" id="headingSix">
+                              <h2 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                  문제를 풉시다.  제한시간 : 30분 
+                                </button>
+                              </h2>
+                            </div>
+                            <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
+                              <div class="card-body">
+                                우리는 지금부터 ATM의 송금 업무에 대해서 처리해볼 예정이다. <br>
+                                ATM에서 카드를 넣어 돈을 A계좌에서 B계좌로 이체하는 과정은 아래와 같다고 하자. <br>
+                                1. 사용자에 의한 이체버튼 클릭 <br>
+                                2. A계좌에서 B계좌를 호출 <br>
+                                3. A계좌상의 이체 금액이 차감 <br>
+                                4. B계좌로 정상적으로 돈이 전송됨 <br>
+                                5. B계좌의 잔고를 업데이트 처리 <br>
+                                <hr>
+                                APerson,BPerson,CPerson,DPerson,EPerson 이 있다. <br>
+                                송금을 처리할 수 있는 ATM 기계는 2대가 존재한다. <br>
+                                각 단계별 소요시간은 다음과 같다. <br>
+                                1번 : 1초, 2번 3초, 3번 1초, 4번 2초, 5번 2초 로 각각의 소요시간이 필요하다. <br>
+                                각 단계별로 진행되는 프로그래스 바를 구현해야 하고, 기계가 두개이기 때문에 두명이 진행할 수 있다. <br>           
+                                <hr>
+                                <span id="time1" ></span>
+                                  <a  id="btnStart" class="btn btn-primary">코드 시작! 30분</a>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+                </p>
+          </div>
+      </div>
+      <!-- /.container-fluid -->
+
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright © Your Website 2018</span>
+            </div>
+          </div>
+        </footer>
+
+      </div>
+      <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="login.html">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Page level plugin JavaScript-->
+    <script src="../vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="../js/sb-admin.min.js"></script>
+
+    <!-- Demo scripts for this page-->
+    <script src="../js/demo/chart-area-demo.js"></script>
+    <script src="../js/demo/chart-bar-demo.js"></script>
+    <script src="../js/demo/chart-pie-demo.js"></script>
+
+  </body>
+
+</html>

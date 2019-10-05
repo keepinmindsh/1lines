@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>1Lines - Architecture</title>
+
+    <!-- Bootstrap core CSS-->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template-->
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Page level plugin CSS-->
+    <link href="../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="../css/sb-admin.css" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/default.css">
+    <script src="../highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </head>
+
+  <body id="page-top">
+
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+
+      <a class="navbar-brand mr-1" href="index.html">Start Bootstrap</a>
+
+      <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Navbar Search -->
+      <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Navbar -->
+      <ul class="navbar-nav ml-auto ml-md-0">
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-bell fa-fw"></i>
+            <span class="badge badge-danger">9+</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-envelope fa-fw"></i>
+            <span class="badge badge-danger">7</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user-circle fa-fw"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+            <a class="dropdown-item" href="#">Settings</a>
+            <a class="dropdown-item" href="#">Activity Log</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+          </div>
+        </li>
+      </ul>
+
+    </nav>
+
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <ul class="sidebar navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>요약</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>목록</span>
+          </a>
+          <div class="dropdown-menu show" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header">서론</h6>
+            <a class="dropdown-item" href="../document/architect_001.html">서론</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">사례연구</h6>
+            <a class="dropdown-item" href="../document/architect_002.html">사례연구</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">생성 패턴</h6>
+            <a class="dropdown-item" href="../document/architect_003.html">추상 팩토리</a>
+            <a class="dropdown-item" href="../document/architect_004.html">빌더</a>
+            <a class="dropdown-item" href="../document/architect_005.html">팩토리 메서드</a>
+            <a class="dropdown-item" href="../document/architect_006.html">원형</a>
+            <a class="dropdown-item" href="../document/architect_007.html">단일체</a>
+            <a class="dropdown-item" href="../document/architect_008.html">생성 패턴에 대한 논의</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">구조 패턴</h6>
+            <a class="dropdown-item" href="../document/architect_009.html">적응자</a>
+            <a class="dropdown-item" href="../document/architect_010.html">가교</a>
+            <a class="dropdown-item" href="../document/architect_011.html">복합체</a>
+            <a class="dropdown-item" href="../document/architect_012.html">장식자</a>
+            <a class="dropdown-item" href="../document/architect_013.html">퍼사드</a>
+            <a class="dropdown-item" href="../document/architect_014.html">플라이급</a>
+            <a class="dropdown-item" href="../document/architect_015.html">프록시</a>
+            <a class="dropdown-item" href="../document/architect_016.html">구조패턴에 대한 논의</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">행동 패턴</h6>
+            <a class="dropdown-item" href="../document/architect_017.html">책임 연쇄</a>
+            <a class="dropdown-item" href="../document/architect_018.html">명령</a>
+            <a class="dropdown-item" href="../document/architect_019.html">해석자</a>
+            <a class="dropdown-item" href="../document/architect_020.html">반복자</a>
+            <a class="dropdown-item" href="../document/architect_021.html">중재자</a>
+            <a class="dropdown-item" href="../document/architect_022.html">메멘토</a>
+            <a class="dropdown-item" href="../document/architect_023.html">감시자</a>
+            <a class="dropdown-item" href="../document/architect_024.html">상태</a>
+            <a class="dropdown-item" href="../document/architect_025.html">전략</a>
+            <a class="dropdown-item" href="../document/architect_026.html">템플릿 메서드</a>
+            <a class="dropdown-item" href="../document/architect_027.html">방문자</a>
+            <a class="dropdown-item" href="../document/architect_028.html">행동 패턴에 대한 논의</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">결론</h6>
+            <a class="dropdown-item" href="../document/architect_029.html">디자인 패턴에서 무엇을<br> 기대할 수 있는가?</a>
+            <a class="dropdown-item" href="../document/architect_030.html">간략한 역사</a>
+            <a class="dropdown-item" href="../document/architect_031.html">패턴 커뮤니티</a>
+            <a class="dropdown-item" href="../document/architect_032.html">초대의 글</a>
+            <a class="dropdown-item" href="../document/architect_033.html">책을 마무리하며</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">System Archtecture</h6>
+            <a class="dropdown-item" href="../document/architect_053.html">API with Zuul</a>
+            <a class="dropdown-item" href="../document/architect_037.html">Cloud System</a>
+            <a class="dropdown-item" href="../document/architect_047.html">Cassandra</a>
+            <a class="dropdown-item" href="../document/architect_036.html">DevOps</a>
+            <a class="dropdown-item" href="../document/architect_045.html">IAC</a>
+            <a class="dropdown-item" href="../document/architect_043.html">Kuberneties</a>
+            <a class="dropdown-item" href="../document/architect_034.html">MVC</a>
+            <a class="dropdown-item" href="../document/architect_049.html">MSA</a>
+            <a class="dropdown-item" href="../document/architect_044.html">MOM</a>
+            <a class="dropdown-item" href="../document/architect_039.html">PAAS</a>
+            <a class="dropdown-item" href="../document/architect_035.html">REST API</a>
+            <a class="dropdown-item" href="../document/architect_046.html">SAAS</a>
+            <a class="dropdown-item" href="../document/architect_040.html">SCA</a>
+            <a class="dropdown-item" href="../document/architect_042.html">SOA</a>
+            <a class="dropdown-item" href="../document/architect_041.html">TDD(DDD)</a>
+            <a class="dropdown-item" href="../document/architect_048.html">Web Cache</a>
+            <a class="dropdown-item" href="../document/architect_050.html">Various Pattern</a>
+          </div>
+        </li>
+      </ul>
+
+      <div id="content-wrapper">
+        <div class="container-fluid">
+          <!-- Breadcrumbs-->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">Interpreter</li>
+          </ol>
+
+          <!-- Area Chart Example-->
+          <div class="card mb-3">
+            <div class="card-header">
+                Interpreter
+            </div>
+            <div class="card-body">
+                <p class="card-text">
+                    <div class="accordion" id="accordionExample">
+                        <div class="card">
+                          <div class="card-header" id="headingOne">
+                            <h2 class="mb-0">
+                              <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                의도 
+                              </button>
+                            </h2>
+                          </div>
+                          <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div class="card-body">
+                              어떤 언어에 대해, 그 언어의 문법에 대한 표현을 정의하면서 그것을 사용하여 해당 언어로 기술된 문장을 해석하는 해석자를 함께 정의합니다. 
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card">
+                          <div class="card-header" id="headingTwo">
+                            <h2 class="mb-0">
+                              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                동기
+                              </button>
+                            </h2>
+                          </div>
+                          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                            <div class="card-body">
+                              특정한 종류의 문제가 자주 발생할 때는, 어떤 간결한 언어를 써서 그 문제를 문장으로 표현하는 것이 나을 수 있습니다. 그러고 나서 그 문장을 해석하는
+                              해적자를 만들어 문장을 해석하게 하여 문제를 해결하는 것입니다. 이 때, 해결에 필요한 코드를 작성하기 보다는 간단한 언어로 문장을 반복적으로 작성하기만
+                              하면 문제가 해결 될 수 있습니다.
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card">
+                          <div class="card-header" id="headingThree">
+                            <h2 class="mb-0">
+                              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                활용성
+                              </button>
+                            </h2>
+                          </div>
+                          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <img src="../document/Interpreter.png" width="600" alt="">
+                                <hr>
+                                  해석이 필요한 언어가 존재하거나 추상 구문 트리로서 그 언어의 문장을 표현하고자 한다면 해석자 패턴을 사용할 때 입니다. 
+                                  해석자 패턴이 가장 잘 먹힐 때를 정리하면 다음과 같습니다.
+                                <hr>
+                                <ul>
+                                  <li>
+                                    정의할 언어의 문법이 간단합니다. 
+                                  </li>
+                                  <hr>
+                                  <li>
+                                    효율성은 별로 고려할 사항이 아닙니다. 사실 가장 효율 적인 해석자를 구현하는 방법은 파스 트리를 직접 해석하도록 만드는 것이 아니라, 일차적으로
+                                    파스 트리를 다른 형태로 변역시키는 것입니다. 
+                                  </li>
+                                </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="headingFour">
+                              <h2 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                  항목에 대한 설명
+                                </button>
+                              </h2>
+                            </div>
+                            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                              <div class="card-body">
+                                  <div class="card" >
+                                    <div class="card-body">
+                                        <h5 class="card-title">AbstractExpression</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">Regular Expression</h6>
+                                        <p class="card-text">
+                                          추상 구문 트리에 속한 모든 노드에 해당하는 클래스들이 공통으로 가져야할 interpret() 연산을 추상 연산으로 정의합니다.
+                                        </p>
+                                    </div>
+                                  </div> 
+                                  <div class="card" >
+                                    <div class="card-body">
+                                        <h5 class="card-title">Terminal Expression</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">LiteralExpression</h6>
+                                        <p class="card-text">
+                                          문법에 정의한 터미널 기호와 관련된 해석 방법을 구현합니다. 문장을 구성하는 모든 터미널 기호에 대해서 
+                                          해당 클래스를 만들어야 합니다.
+                                        </p>
+                                    </div>
+                                  </div> 
+                                  <div class="card" >
+                                    <div class="card-body">
+                                        <h5 class="card-title">NonterminalExpression</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">AlternationExpression, RepetitionExpression, SequenceExpressions</h6>
+                                        <p class="card-text">
+                                            문법의 오른편에 나타나는 모든 기호에 대해서 클래스를 정의해야힙니다. <br>
+                                            R ::= R1R2 ... R3 <br>
+                                            R에 대해서 NonterminalExpression에 해당하는 클래스를 정의해야 합니다. 또한 규칙의 오른쪽에 나타난 R1에서 Rn에 이르기 까지의 모든 기호에 <br>
+                                            대응하는 인스턴스 변수들을 정의해야 합니다. <br>
+                                            또한 터미널 기호가 아닌 모든 기호들에 대해서 Interpret() 연산을 구현해야 합니다. 이 Interpret() 연산은 R1에서 Rn에 이르기까지의 <br>
+                                            각 인스턴스 변수를 재귀적으로 호출하는 것이 일반적입니다.
+                                        </p>
+                                    </div>
+                                  </div> 
+                                  <div class="card" >
+                                    <div class="card-body">
+                                        <h5 class="card-title">Context</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted"></h6>
+                                        <p class="card-text">
+                                            번역기에 대한 포괄적인 정보를 포함합니다.
+                                        </p>
+                                    </div>
+                                  </div> 
+                                  <div class="card" >
+                                    <div class="card-body">
+                                        <h5 class="card-title">Client</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted"></h6>
+                                        <p class="card-text">
+                                            언어로 정의한 특정 문장을 나타내는 추상 구문 트리입니다. 이 추상 구문 트리는  NonterminalExpression 과 TerminalExpression 클래스의 인스턴스로 구성됩니다. 
+                                            이 인스턴스의 Interpret() 연산을 호출합니다.
+                                        </p>
+                                    </div>
+                                  </div> 
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card">
+                            <div class="card-header" id="heading5">
+                              <h2 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                                  협력방법 
+                                </button>
+                              </h2>
+                            </div>
+                            <div id="collapse5" class="collapse" aria-labelledby="heading5" data-parent="#accordionExample">
+                              <div class="card-body">
+                                  <ul>
+                                    <li>사용자는 NoninternationalExpression 과 TerminalExpression 인스턴스들로 해당 문장에 대한 추상 구문 트리를 만듭니다. 그리고 사용자는 Interpret() 연산을 호출하는데, 이때 해석에 필요한 문백 정보를 초기화 합니다.</li>
+                                    <li>각 NonterminalExpression 노드는 또 다른 서브 표현식에 대한 Interpret()를 이용하여 자신의 Interpret() 연산을 정의합니다. Interpret() 연산은 재귀적으로 Interpret() 연산을 이용하여 기본적 처리를 담당합니다.</li>
+                                    <li>각 노드에 정의한 Interpret() 연산은 해석자의 상태를 저장하거나 그것을 알기 위해서 문맥 정보를 이용합니다.</li>
+                                  </ul>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card">
+                            <div class="card-header" id="heading6">
+                              <h2 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
+                                  결과 
+                                </button>
+                              </h2>
+                            </div>
+                            <div id="collapse6" class="collapse" aria-labelledby="heading6" data-parent="#accordionExample">
+                              <div class="card-body">
+                                  <ul>
+                                    <li>문법의 변경과 확장이 쉽습니다.</li>
+                                    <li>문법의 구현이 용이합니다.</li>
+                                    <li>복잡한 문법은 관리하기 어렵습니다.</li>
+                                    <li>표현식을 해석하는 새로운 방법을 추가할 수 있습니다.</li>
+                                  </ul>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card">
+                              <div class="card-header" id="headingFive">
+                                <h2 class="mb-0">
+                                  <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                    코드 예제
+                                  </button>
+                                </h2>
+                              </div>
+                              <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+                                <pre>
+                                  <code class="java" >
+    
+                                      
+                                  </code>
+                                </pre>
+                                <hr>
+                                <hr>
+                                <pre>
+                                  <code class="Java" >
+    
+    
+                                  </code>
+                                </pre>
+                              </div>
+                            </div>
+    
+                            <div class="card">
+                              <div class="card-header" id="headingSix">
+                                <h2 class="mb-0">
+                                  <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                    문제를 풉시다.  제한시간 : 30분 
+                                  </button>
+                                </h2>
+                              </div>
+                              <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
+                                <div class="card-body">
+                                  
+                                  <hr>
+                                  <span id="time1" ></span>
+                                    <a  id="btnStart" class="btn btn-primary">코드 시작! 30분</a>
+                                </div>
+                              </div>
+                            </div>
+                      </div>
+                  </p>
+         
+                 
+
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright © Your Website 2018</span>
+            </div>
+          </div>
+        </footer>
+
+      </div>
+      <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="login.html">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Page level plugin JavaScript-->
+    <script src="../vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="../js/sb-admin.min.js"></script>
+
+    <!-- Demo scripts for this page-->
+    <script src="../js/demo/chart-area-demo.js"></script>
+    <script src="../js/demo/chart-bar-demo.js"></script>
+    <script src="../js/demo/chart-pie-demo.js"></script>
+
+  </body>
+
+</html>

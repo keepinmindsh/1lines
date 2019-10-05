@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>1Lines - Architecture</title>
+
+    <!-- Bootstrap core CSS-->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template-->
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Page level plugin CSS-->
+    <link href="../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="../css/sb-admin.css" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/default.css">
+    <script src="../highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </head>
+
+  <body id="page-top">
+
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+
+      <a class="navbar-brand mr-1" href="../index.html">Start Bootstrap</a>
+
+      <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Navbar Search -->
+      <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Navbar -->
+      <ul class="navbar-nav ml-auto ml-md-0">
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-bell fa-fw"></i>
+            <span class="badge badge-danger">9+</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-envelope fa-fw"></i>
+            <span class="badge badge-danger">7</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user-circle fa-fw"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+            <a class="dropdown-item" href="#">Settings</a>
+            <a class="dropdown-item" href="#">Activity Log</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+          </div>
+        </li>
+      </ul>
+
+    </nav>
+
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <ul class="sidebar navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>요약</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>목록</span>
+          </a>
+          <div class="dropdown-menu show" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header">서론</h6>
+            <a class="dropdown-item" href="../document/architect_001.html">서론</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">사례연구</h6>
+            <a class="dropdown-item" href="../document/architect_002.html">사례연구</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">생성 패턴</h6>
+            <a class="dropdown-item" href="../document/architect_003.html">추상 팩토리</a>
+            <a class="dropdown-item" href="../document/architect_004.html">빌더</a>
+            <a class="dropdown-item" href="../document/architect_005.html">팩토리 메서드</a>
+            <a class="dropdown-item" href="../document/architect_006.html">원형</a>
+            <a class="dropdown-item" href="../document/architect_007.html">단일체</a>
+            <a class="dropdown-item" href="../document/architect_008.html">생성 패턴에 대한 논의</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">구조 패턴</h6>
+            <a class="dropdown-item" href="../document/architect_009.html">적응자</a>
+            <a class="dropdown-item" href="../document/architect_010.html">가교</a>
+            <a class="dropdown-item" href="../document/architect_011.html">복합체</a>
+            <a class="dropdown-item" href="../document/architect_012.html">장식자</a>
+            <a class="dropdown-item" href="../document/architect_013.html">퍼사드</a>
+            <a class="dropdown-item" href="../document/architect_014.html">플라이급</a>
+            <a class="dropdown-item" href="../document/architect_015.html">프록시</a>
+            <a class="dropdown-item" href="../document/architect_016.html">구조패턴에 대한 논의</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">행동 패턴</h6>
+            <a class="dropdown-item" href="../document/architect_017.html">책임 연쇄</a>
+            <a class="dropdown-item" href="../document/architect_018.html">명령</a>
+            <a class="dropdown-item" href="../document/architect_019.html">해석자</a>
+            <a class="dropdown-item" href="../document/architect_020.html">반복자</a>
+            <a class="dropdown-item" href="../document/architect_021.html">중재자</a>
+            <a class="dropdown-item" href="../document/architect_022.html">메멘토</a>
+            <a class="dropdown-item" href="../document/architect_023.html">감시자</a>
+            <a class="dropdown-item" href="../document/architect_024.html">상태</a>
+            <a class="dropdown-item" href="../document/architect_025.html">전략</a>
+            <a class="dropdown-item" href="../document/architect_026.html">템플릿 메서드</a>
+            <a class="dropdown-item" href="../document/architect_027.html">방문자</a>
+            <a class="dropdown-item" href="../document/architect_028.html">행동 패턴에 대한 논의</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">결론</h6>
+            <a class="dropdown-item" href="../document/architect_029.html">디자인 패턴에서 무엇을<br> 기대할 수 있는가?</a>
+            <a class="dropdown-item" href="../document/architect_030.html">간략한 역사</a>
+            <a class="dropdown-item" href="../document/architect_031.html">패턴 커뮤니티</a>
+            <a class="dropdown-item" href="../document/architect_032.html">초대의 글</a>
+            <a class="dropdown-item" href="../document/architect_033.html">책을 마무리하며</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">System Archtecture</h6>
+            <a class="dropdown-item" href="../document/architect_053.html">API with Zuul</a>
+            <a class="dropdown-item" href="../document/architect_037.html">Cloud System</a>
+            <a class="dropdown-item" href="../document/architect_047.html">Cassandra</a>
+            <a class="dropdown-item" href="../document/architect_036.html">DevOps</a>
+            <a class="dropdown-item" href="../document/architect_045.html">IAC</a>
+            <a class="dropdown-item" href="../document/architect_043.html">Kuberneties</a>
+            <a class="dropdown-item" href="../document/architect_034.html">MVC</a>
+            <a class="dropdown-item" href="../document/architect_049.html">MSA</a>
+            <a class="dropdown-item" href="../document/architect_044.html">MOM</a>
+            <a class="dropdown-item" href="../document/architect_039.html">PAAS</a>
+            <a class="dropdown-item" href="../document/architect_035.html">REST API</a>
+            <a class="dropdown-item" href="../document/architect_046.html">SAAS</a>
+            <a class="dropdown-item" href="../document/architect_040.html">SCA</a>
+            <a class="dropdown-item" href="../document/architect_042.html">SOA</a>
+            <a class="dropdown-item" href="../document/architect_041.html">TDD(DDD)</a>
+            <a class="dropdown-item" href="../document/architect_048.html">Web Cache</a>
+            <a class="dropdown-item" href="../document/architect_050.html">Various Pattern</a>
+          </div>
+        </li>
+      </ul>
+
+      <div id="content-wrapper">
+        <div class="container-fluid">
+          <!-- Breadcrumbs-->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">Singleton</li>
+          </ol>
+
+          <!-- Area Chart Example-->
+          <div class="card mb-3">
+            <div class="card-header">
+              Singleton
+            </div>
+            <div class="card-body">
+                <div class="accordion" id="accordionExample">
+                    <div class="card">
+                      <div class="card-header" id="headingOne">
+                        <h2 class="mb-0">
+                          <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            의도 
+                          </button>
+                        </h2>
+                      </div>
+                      <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <div class="card-body">
+                            오직 한 개의 클래스 인스턴스 만을 갖도록 보장하고, 이에 대한 전역적인 접근점을 제공합니다. 
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card">
+                      <div class="card-header" id="headingTwo">
+                        <h2 class="mb-0">
+                          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            동기
+                          </button>
+                        </h2>
+                      </div>
+                      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                        <div class="card-body">
+  
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card">
+                      <div class="card-header" id="headingThree">
+                        <h2 class="mb-0">
+                          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            활용성
+                          </button>
+                        </h2>
+                      </div>
+                      <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                        <div class="card-body">
+                          <ul>
+                            <li>어떤 클래스는 정확히 하나의 인스턴스 만을 갖도록 하는 것이 좋습니다.</li>
+                            <li>시스템에 많은 프린터가 있다 하더라도, 프린터 스풀은 오직 하나여야 합니다. </li>
+                            <li>파일 시스템도, 윈도우 관리자도 오직 하나여야 합니다.</li>
+                            <li>한 회사에서는 하나의 회계 시스템만 운영될 것입니다.</li>
+                          </ul> 
+                          <hr>
+                          <ul class="list-group list-group-flush">
+                            <li class="list-group-item">클래스의 인스턴스가 오직 하나여야 함을 보장하고, 잘 정의된 접근 점으로 모든 사용자가 접근할 수 있도록 할 때,</li>
+                            <li class="list-group-item">유일한 인스턴스가 서브클래싱으로 확장되어야 하며, 사용자는 코드의 수정없이 확장된 서브 클래스의 인스턴스를 사용할 수 있어야 할 때,</li>
+                          </ul>
+                          <hr>
+                          <img src="../document/Singleton.png" class="card-img" alt="">
+                          <hr>
+                          <pre>
+                              <code class="java" >
+                            package com.moong.realiticdesignpattern;
+                            
+                            public class Singleton {
+                                  private static Singleton instance = null;
+                                  public static Singleton instance(){
+                                      if( instance == null ){
+                                          instance = new Singleton();
+                                      }
+                                      return instance;
+                                  }
+                                  //... 
+                            }      
+                              </code>
+                            </pre>
+                            <hr>
+                            <strong>위의 Singleton 예제의 문제점</strong> <br>
+                            1. 스레드 1이 instance()를 호출하고 4번째 줄을 검사하고 있다. 그런데 다음 줄로 넘어가기 전에 클록 틱에 의해 선점되었다. <br>
+                            2. 스레드 2가 instance()를 호출하고 메소드 전체를 실행한다. 인스턴스가 생성되었다. <br>
+                            3. 스레드 1이 잠에서 깨어나 인스턴스가 아직 존재하지 않는다고 생각하고(이 스레드는 전에 중지되기 전에 null 테스트를 마쳤다 <br>
+                            4. Singleton의 두 번째 인스턴스를 생성한다. <br>
+                            <hr>
+                            
+                                                  
+                                                  <pre class="java" >
+                                                    <code class="java" >
+                              public class Singleton2 {
+                                private volatile static Singleton2 single;
+                                public static Singleton2 getInstance(){
+                                    if (single == null) {
+                                        synchronized(Singleton2.class) {
+                                            if (single == null) {
+                                                single = new Singleton2();
+                                            }
+                                        }
+                                    }
+                                    return single;
+                                }
+                                private Singleton2(){
+                                }
+                            }                          
+                                                    </code>
+                                                  </pre>
+                                                  <hr>
+                                                  static 초기화를 사용하면 오버헤드를 격지 않으면서도 동기화 문제를 해결할 수 있다. <br>
+                                                  <pre>
+                                                      <code class="java" >
+                            class Singleton3 {
+                              private static Singleton3 instance = new Singleton3();
+                              public instance() { return instance; }
+                              //…
+                            } 
+                                                      </code>
+                                                    </pre>
+                                                    <hr>
+                                                    static 초기화 방식을 사용하지 못하는 경우는 초기화에 필요한 런타임에 인자를 통해 받아야 할 때이다. <br>
+                                                    예를 들어 Class 로딩 타임에 URL을 받아야 할 경우, 클래스 로딩 타임에 어떤 URL을 사용할 지 모르기 때문이다
+                                                    <pre>
+                                                      <code class="java" >
+                            class Connection {
+                              private static URL server;
+                              public static void pointAt( URL serverUrl){
+                                  server = serverUrl;
+                              }
+                            
+                              private Connection(){
+                                  // ...
+                                  
+                                  // ...
+                              }
+                            
+                              private static Connection instance;
+                              public synchronized static Connection getInstance(){
+                                  if(instance == null) {
+                                      instance = new Connection();
+                                  }
+                                  return instance;
+                              }
+                            }                        
+                            </code>
+                          </pre>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card">
+                      <div class="card-header" id="headingFour">
+                        <h2 class="mb-0">
+                          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            항목에 대한 설명
+                          </button>
+                        </h2>
+                      </div>
+                      <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                        <div class="card-body">
+                            
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card">
+                      <div class="card-header" id="headingFive">
+                        <h2 class="mb-0">
+                          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            코드 예제
+                          </button>
+                        </h2>
+                      </div>
+                      <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+                        
+                      </div>
+                    </div>
+                    <div class="card">
+                      <div class="card-header" id="headingSix">
+                        <h2 class="mb-0">
+                          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                            문제 출제 
+                          </button>
+                        </h2>
+                      </div>
+                      <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
+                        <div class="card-body">
+                            스타크래프트의 질럿, 하이템플러, 다크 템플러, 드라군을 GateWay를 통해 만들어봤다. <br>
+                            하지만 실제로 질럿, 하이템플러, 다크 템플러, 드라군은 GateWay를 짓고, 추가적인 건물들이 지어져야한 사용이 가능하다. <br>
+                            0. 스타크래프트 맵이 생성된다. 미네랄이 있고, 가스가 있으며, x 축 1000, y 축 1000의 넓이다. <br>
+                            0-1. 초기 맵이 생성될 때, 각 초기 건물 및 유닛을 맵에 등록한다. <br>
+                            0-0. 시작시점의 미네랄은 250, 가스는 0이며, 넥서스 한개, 프로브 4마리가 있다. <br>
+                            0-0. 넥서스의 시작 위치 - x : 100, y : 100, 프로프 시작위칙, (150, 151),(150, 152),(150, 153),(150, 154)
+                            0-0-1. 미네랄 하나에는 하나의 프로프가 자원을 채취할 수 있고, 어시밀레이터 하나에는 3개의 프로프가 자원을 채취할 수 있다. <br>
+                            0-0-2. Prove가 자원을 채취하는 프로세스는 Meneral 채취 - 넥서스 저장 <br>
+                            0-1. 미네랄 덩어리단 1500이 있는데, 5덩이가 있고, 가스 5000짜리 하나가 있다. <br>
+                            0-1-1. 미네랄 사이즈 x - 4, y - 4 <br>
+                            0-1-2. 가스 사이즈 x - 5, y - 5 <br>
+                            0-1-3. 미네랑 덩이 위치 , (0,0), (0,4), (0,8), (0,12), (0,16)<br>
+                            0-1-3. 가스위치 덩이 위치 , (0,5) <br>
+                            1. Prove는 특정 미네랄 덩어리에 등록되면 10초 마다 Mineral 5를 계속해서 넥서스에 저장한다. <br>
+                            1-0. 넥서스는 프로프 생산이 가능하다.<br>
+                            1-1. Prove는 어시밀레이터를 가스산에 설치하고, 설치가 되면 5000의 가스를 가져갈수 있고, Prove가 어시밀레이터 등록되면 10초마다 가스 5를 넥서스에 저장한다.<br>
+                            1-2. Prove는 미리 요청한 사항들을 순차적으로 진행할 수 있다.<br>
+                            1-3. Prove는 건물을 생성을 요청한 후 바로 미네랄을 채취할 수 있다. <br>
+                            1-4. Prove는 Mineral을 캐다가도 건물을 건설할 수 있다. <br>
+                            <hr>
+                            2. 모든 유닛 및 건물은 돈이 있어야 건설할 수 있다.<br>
+                            2-1. 게이트웨이 생성 시간 : 1분 , 건물 사이즈 : x - 10, y - 10<br>
+                            2-2. 사이버네틱코어 생성 시간 : 2분, 건물 사이즈 : x - 10, y - 5 <br>
+                            2-3. 시타델오브아둔 생성 시간 : 3분, 건물 사이즈 : x - 10, y - 10 <br>
+                            2-4. 템플러아카이브 생성 시간 : 3분, 건물 사이즈 : x - 10, y - 10 <br>
+                            2-5. 어시밀레이터 생성 시간 : 1분, 건물 사이즈 : x - 5, y - 5 <br>
+                            2-6. 넥서스의 생성 시간: 5분, 인구수 10, 건물 사이즈 : x - 20, y - 20 <br>
+                            2-4. 파일런 생성 시간 : 1분, 건물 사이즈 : x - 5, y - 5, 파일런의 건설 범위 - 파일런 중심으로 x + 20, y축 + 20  , 파일런 1개당 인구수 8, 3개의 건물까지 연결하여 지을 수 있음 <br>
+                            <hr>
+                            3-1. 드라군은 게이트웨이, 사이버네틱코어가 있어야 생산이 가능하다. <br>
+                            3-2. 하이템플러, 다크템플러는 게이트 웨어, 사이버네틱코어, 시타델 오브 아둔, 템플러 아카이브를 개발해야 사용할 수 있다. <br>
+                            3-3. 질럿은 게이트웨이에 의해 생산 된다.<br>               
+                            4-1. 질럿 미네랄 100, 파일런 2, 생산에 걸리는 시간 3초 <br> 
+                            4-2. 드라군 150, 가스 100, 인구수 2, 생산에 걸리는 시간 5초<br>
+                            4-3. 하이템플러 미네랄 50, 가스 150, 인구수 4, 생산에 걸리는 시간 10초<br> 
+                            4-4. 다크 템플러 미네랄 100, 가스 200, 인구수 4, 생산에 걸리는 시간 10초<br>
+                            <hr>
+                            7. 질럿 5, 드라군 5, 하이템플러 3마리를 게이트웨어 3개를 통해서 뽑는다. <br>
+                            7-1. 미네랄과 가스가 부족하면 유닛을 뽑을 수 없다. <br>
+                            7-2. 파일런이 부족하면 유닛을 개발할 수 없고, 파일런은 1개에 미네랄 100원이고 8 인구수를 관리한다. <br>
+                            7-3. 파일런 한개에 3개까지의 건물을 설치할 수 있다. 파일런 없이 건물에 대한 설치도 불가능하다. <br>
+                            7-4. 건물들은 맵의 특정위치에 등록되어 설치되어야 하며, 유닛이 뽑히면 건물의 우측 상단 모서리를 기준으로 ( 1,1 )의 위치에 생성되며, 유닛이 생성될 때마다 x축의 1만큼 플러스된다.  <br>
+                            7-5. 유닛이 생성되어 있는지 확인하고, 유닛 중에서 질럿 1, 드라군 2, 하이템플러 1를 건물의 위치에서 x 축으로 500, y축으로 800으로 이동 시킨다.<br>
+                            7-6-1. 질럿의 이동 속도는 두칸 이동시 1초<br>
+                            7-6-2. 드라군은 두칸 이동시 2초 <br>
+                            7-6-3. 하이템플러는 두칸 이동시 4초 <br>
+                            7-6-4. 프로브는 한칸 이동시 1초<br>
+                            7-6-1. 질럿 사이즈 : x -1, y -1<br>
+                            7-6-2. 드라군은 : x -2, y -2<br>
+                            7-6-3. 하이템플러 : x -1, y -1 <br>
+                            7-6-4. 프로브 : x -1, y -1<br>
+                            8. 템플러 아카이브에서 하이템플러의 사이오닉 스톰 기술을 개발하면 하이템플러가 사용가능하다.<br>
+                            9. 모든 결과는 Sytem.out.print()로 출력한다. 
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            
+          <!-- Area Chart Example-->
+          <div class="card mb-3">
+              <div class="card-header">
+                  Deep Thinking For Singleton
+              </div>
+              <div class="card-body">
+                  Double-Checked Locking(사용하지 말라)
+                <hr>
+                  <a href="../document/architect_054.html" >Memory Visibility ( 메모리 가시성 ) 와 Memory Barrier ( 메모리 장벽 )</a> 
+                <hr>
+                  Singleton 죽이기
+                <hr>
+                  Static에 대하여
+                <hr>
+                  동시성 제어에 대하여
+                <hr>
+                  함수형 프로그래밍의 이점 
+              </div>
+          </div>
+        </div>
+        <!-- /.container-fluid -->
+
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright © Your Website 2018</span>
+            </div>
+          </div>
+        </footer>
+
+      </div>
+      <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="login.html">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Page level plugin JavaScript-->
+    <script src="../vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="../js/sb-admin.min.js"></script>
+
+    <!-- Demo scripts for this page-->
+    <script src="../js/demo/chart-area-demo.js"></script>
+    <script src="../js/demo/chart-bar-demo.js"></script>
+    <script src="../js/demo/chart-pie-demo.js"></script>
+
+  </body>
+
+</html>

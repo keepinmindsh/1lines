@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>1Lines - Architecture</title>
+
+    <!-- Bootstrap core CSS-->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template-->
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Page level plugin CSS-->
+    <link href="../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="../css/sb-admin.css" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/default.css">
+    <script src="../highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </head>
+
+  <body id="page-top">
+
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+
+      <a class="navbar-brand mr-1" href="../index.html">Design Pattern</a>
+
+      <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Navbar Search -->
+      <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Navbar -->
+      <ul class="navbar-nav ml-auto ml-md-0">
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-bell fa-fw"></i>
+            <span class="badge badge-danger">9+</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-envelope fa-fw"></i>
+            <span class="badge badge-danger">7</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user-circle fa-fw"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+            <a class="dropdown-item" href="#">Settings</a>
+            <a class="dropdown-item" href="#">Activity Log</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+          </div>
+        </li>
+      </ul>
+
+    </nav>
+
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <ul class="sidebar navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>요약</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>목록</span>
+          </a>
+          <div class="dropdown-menu show" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header">서론</h6>
+            <a class="dropdown-item" href="../document/architect_001.html">서론</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">사례연구</h6>
+            <a class="dropdown-item" href="../document/architect_002.html">사례연구</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">생성 패턴</h6>
+            <a class="dropdown-item" href="../document/architect_003.html">추상 팩토리</a>
+            <a class="dropdown-item" href="../document/architect_004.html">빌더</a>
+            <a class="dropdown-item" href="../document/architect_005.html">팩토리 메서드</a>
+            <a class="dropdown-item" href="../document/architect_006.html">원형</a>
+            <a class="dropdown-item" href="../document/architect_007.html">단일체</a>
+            <a class="dropdown-item" href="../document/architect_008.html">생성 패턴에 대한 논의</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">구조 패턴</h6>
+            <a class="dropdown-item" href="../document/architect_009.html">적응자</a>
+            <a class="dropdown-item" href="../document/architect_010.html">가교</a>
+            <a class="dropdown-item" href="../document/architect_011.html">복합체</a>
+            <a class="dropdown-item" href="../document/architect_012.html">장식자</a>
+            <a class="dropdown-item" href="../document/architect_013.html">퍼사드</a>
+            <a class="dropdown-item" href="../document/architect_014.html">플라이급</a>
+            <a class="dropdown-item" href="../document/architect_015.html">프록시</a>
+            <a class="dropdown-item" href="../document/architect_016.html">구조패턴에 대한 논의</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">행동 패턴</h6>
+            <a class="dropdown-item" href="../document/architect_017.html">책임 연쇄</a>
+            <a class="dropdown-item" href="../document/architect_018.html">명령</a>
+            <a class="dropdown-item" href="../document/architect_019.html">해석자</a>
+            <a class="dropdown-item" href="../document/architect_020.html">반복자</a>
+            <a class="dropdown-item" href="../document/architect_021.html">중재자</a>
+            <a class="dropdown-item" href="../document/architect_022.html">메멘토</a>
+            <a class="dropdown-item" href="../document/architect_023.html">감시자</a>
+            <a class="dropdown-item" href="../document/architect_024.html">상태</a>
+            <a class="dropdown-item" href="../document/architect_025.html">전략</a>
+            <a class="dropdown-item" href="../document/architect_026.html">템플릿 메서드</a>
+            <a class="dropdown-item" href="../document/architect_027.html">방문자</a>
+            <a class="dropdown-item" href="../document/architect_028.html">행동 패턴에 대한 논의</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">결론</h6>
+            <a class="dropdown-item" href="../document/architect_029.html">디자인 패턴에서 무엇을<br> 기대할 수 있는가?</a>
+            <a class="dropdown-item" href="../document/architect_030.html">간략한 역사</a>
+            <a class="dropdown-item" href="../document/architect_031.html">패턴 커뮤니티</a>
+            <a class="dropdown-item" href="../document/architect_032.html">초대의 글</a>
+            <a class="dropdown-item" href="../document/architect_033.html">책을 마무리하며</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">System Archtecture</h6>
+            <a class="dropdown-item" href="../document/architect_053.html">API with Zuul</a>
+            <a class="dropdown-item" href="../document/architect_037.html">Cloud System</a>
+            <a class="dropdown-item" href="../document/architect_047.html">Cassandra</a>
+            <a class="dropdown-item" href="../document/architect_036.html">DevOps</a>
+            <a class="dropdown-item" href="../document/architect_045.html">IAC</a>
+            <a class="dropdown-item" href="../document/architect_043.html">Kuberneties</a>
+            <a class="dropdown-item" href="../document/architect_034.html">MVC</a>
+            <a class="dropdown-item" href="../document/architect_049.html">MSA</a>
+            <a class="dropdown-item" href="../document/architect_044.html">MOM</a>
+            <a class="dropdown-item" href="../document/architect_039.html">PAAS</a>
+            <a class="dropdown-item" href="../document/architect_035.html">REST API</a>
+            <a class="dropdown-item" href="../document/architect_046.html">SAAS</a>
+            <a class="dropdown-item" href="../document/architect_040.html">SCA</a>
+            <a class="dropdown-item" href="../document/architect_042.html">SOA</a>
+            <a class="dropdown-item" href="../document/architect_041.html">TDD(DDD)</a>
+            <a class="dropdown-item" href="../document/architect_048.html">Web Cache</a>
+            <a class="dropdown-item" href="../document/architect_050.html">Various Pattern</a>
+          </div>
+        </li>
+      </ul>
+
+      <div id="content-wrapper">
+        <div class="container-fluid">
+          <!-- Breadcrumbs-->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">Prototype</li>
+          </ol>
+
+          <!-- Area Chart Example-->
+          <div class="card mb-3">
+            <div class="card-header">
+                Prototype
+            </div>
+            <div class="card-body">
+              <div class="accordion" id="accordionExample">
+                <div class="card">
+                  <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        의도 
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                        객체 생성과 관련된 패턴들은 일부 영역이 겹치는 부분들이 있는데, 프로트 타입 패턴은 주로 다른 객체 생성 패턴들과 많이 
+                        같이 사용될 수 있다. 추상 팩토리 패턴이 프로토타입들의 집합을 갖고 있다가, 클론(clone)한 프로덕트 객체를 반환할 수 있다. 
+                        일반화 관계로 표현을 할 때, 파생 클래스의 개수가 과도히 많아지고 각 클래스의 메서드가 수행하는 알고리즘에서 
+                        차이가 없고 생성 시에 개체의 속성에 차이만 있다면 원형 패턴을 사용하는 것이 효과적이다. 
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingTwo">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        동기
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body">
+
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingThree">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        활용성
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <img src="../document/prototype_pattern.png" class="card-img" alt="">
+                        <hr>
+                        Object 생성이 높은 비용으로 수 많은 요청을 하는 경우, 또는 비슷한 Object 를 지속적으로 생성해내야 할 때 유용하게 사용할 수 있다.
+                        <hr>
+                        <strong>관련 패턴</strong><br>
+                        이번 장의 끝에서 잠깐 언급했듯이 원형 패턴과 추상 팩토리 패턴은 어떤 면에서는 경쟁적인 관계입니다. <br>
+                        하지만 함께 사용될 수도 있습니다. <br>
+                        추상 팩토리 패턴은 원형 집합을 저장하다가 필요할 때 복제하여 제품 객체를 반환하도록 사용할 수 도 있습니다. 
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingFour">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        항목에 대한 설명
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                    <div class="card-body">
+                        
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingFive">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        코드 예제
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+                    <div class="card-body">
+                      <pre>
+                          <code class="java" >
+        package DesignPattern.gof_prototype;
+        
+        public class Battle {
+        
+            public static void main(String[] args) {
+        
+                Unit prove1 = Nexus.createProve();
+        
+                prove1.Harvest();
+                prove1.Harvest();
+                prove1.Harvest();
+        
+                Arbiter arbiter1 = new Arbiter();
+        
+                Unit prove2 = arbiter1.copyRealUnit(prove1);
+        
+                System.out.println("prove 1 == prove 2  의 결과 : " + (prove1 == prove2) );
+        
+                System.out.println(prove1.getMineralCapacity());
+        
+                System.out.println(prove2.getMineralCapacity());
+        
+            }
+        }                 
+                          </code>
+                        </pre>
+        <hr>
+        <strong>컴파일 결과</strong>
+        <hr>
+        <img src="../document/prototype_compile.png" width="500"  alt="">
+        
+        <hr>
+         Deep Copy / Shallow Copy
+        <hr>
+        
+        <hr>
+         <strong>코드 예제</strong>  
+        <hr>
+                        <pre>
+                          <code class="java" >
+        package DesignPattern.gof_prototype;
+        
+        public interface Unit{
+            public void Harvest();
+        
+            public void Attack();
+        
+            public void Building();
+        
+            public Unit CloneUnitOrNull();
+        
+            public int getMineralCapacity();
+        }                
+                          </code>
+                        </pre>
+        
+                        <pre>
+                          <code class="java" >
+        package DesignPattern.gof_prototype;
+        
+        public class Probe implements Unit{
+        
+            private int mineralCapacity = 0;
+        
+            public void Harvest(){
+                System.out.println("자원을 캡니다.");
+        
+                mineralCapacity += 1;
+            }
+        
+            public void Attack(){
+                System.out.println("공격을 합니다.");
+            }
+        
+            public void Building(){
+                System.out.println("건물을 짓습니다.");
+            }
+        
+            public int getMineralCapacity(){
+                return mineralCapacity;
+            }
+        
+            private void setCapacity(int capacity){
+                this.mineralCapacity = capacity;
+            }
+        
+            public Unit CloneUnitOrNull(){
+                try {
+                    Object cloneObject = clone();
+        
+                    return (Unit)cloneObject;
+        
+                }catch (CloneNotSupportedException e){
+                    e.printStackTrace();
+        
+                    return null;
+                }
+            }
+        
+            @Override
+            public Object clone() throws CloneNotSupportedException{
+        
+                Probe probe = new Probe();
+        
+                probe.setCapacity(mineralCapacity);
+        
+                return probe;
+            }
+        }
+                          </code>
+                        </pre>
+                        <pre>
+                          <code class="java" >
+        package DesignPattern.gof_prototype;
+        
+        public class Nexus {
+        
+            public static Unit createProve(){
+                return new Probe();
+            }
+        }              
+                          </code>
+                        </pre>
+                        <pre>
+                          <code class="java" >
+        package DesignPattern.gof_prototype;
+        
+        public class Arbiter {
+            public Unit copyRealUnit(Unit unit){
+                return unit.CloneUnitOrNull();
+            }
+        }                   
+                          </code>
+                        </pre>
+        
+                        <hr>
+                        <Strong>Cloneable의 Clone 자체를 이용할 경우</Strong> 
+                        <hr>
+                        <pre>
+                          <code class="java" >
+        package DesignPattern.gof_prototype.sample002;
+        
+        import java.util.List;
+        
+        public class ComplexProcess implements Cloneable {
+        
+        
+            private final Process complexProcess;
+        
+            public ComplexProcess(Process complexProcess){
+                this.complexProcess = complexProcess;
+            }
+        
+            public List&lt;Object> getProcessResult(){
+                return complexProcess.getResultOfComplexProcess();
+            }
+        
+            public ComplexProcess getCloneProcess() throws CloneNotSupportedException {
+                return (ComplexProcess)super.clone();
+            }
+        }                    
+                          </code>
+                        </pre>
+                        <pre>
+                          <code class="java" >
+        package DesignPattern.gof_prototype.sample002;
+        
+        import java.util.ArrayList;
+        import java.util.List;
+        
+        public class CopyAthousandRowsProcess implements Process {
+        
+            public List&lt;Object> getResultOfComplexProcess() {
+                return new ArrayList&lt;>();
+            }
+        }                   
+                          </code>
+                        </pre>
+                        <pre>
+                          <code class="java" >
+        package DesignPattern.gof_prototype.sample002;
+        
+        import java.util.List;
+        
+        public interface Process {
+            public List&lt;Object> getResultOfComplexProcess();
+        }                   
+                          </code>
+                        </pre>
+                        <pre>
+                          <code class="java" >
+        package DesignPattern.gof_prototype.sample002;
+        
+        public class Processor {
+        
+            public static void main(String[] args)  throws CloneNotSupportedException {
+        
+                ComplexProcess complexProcess1 = new ComplexProcess(new CopyAthousandRowsProcess());
+        
+                complexProcess1.getProcessResult();
+        
+                ComplexProcess complexProcess2 = complexProcess1.getCloneProcess();
+        
+                complexProcess2.getProcessResult();
+        
+                System.out.println("complexProcess1 == complexProcess1 의 결과는 " + (complexProcess1 == complexProcess2));
+            }
+        }                    
+                          </code>
+                        </pre>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingSix">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                        문제 제출
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
+                    <div class="card-body">
+                      <img src="../document/CloneUML_001.png" class="card-img"  alt="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.container-fluid -->
+
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright © Your Website 2018</span>
+            </div>
+          </div>
+        </footer>
+
+      </div>
+      <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="login.html">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Page level plugin JavaScript-->
+    <script src="../vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="../js/sb-admin.min.js"></script>
+
+    <!-- Demo scripts for this page-->
+    <script src="../js/demo/chart-area-demo.js"></script>
+    <script src="../js/demo/chart-bar-demo.js"></script>
+    <script src="../js/demo/chart-pie-demo.js"></script>
+
+  </body>
+
+</html>

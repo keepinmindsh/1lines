@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>1Lines - Clean Code</title>
+
+    <!-- Bootstrap core CSS-->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template-->
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Page level plugin CSS-->
+    <link href="../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="../css/sb-admin.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../styles/default.css">
+    <script src="../highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </head>
+
+  <body id="page-top">
+
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+
+      <a class="navbar-brand mr-1" href="../index.html">Clean Code</a>
+
+      <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Navbar Search -->
+      <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Navbar -->
+      <ul class="navbar-nav ml-auto ml-md-0">
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-bell fa-fw"></i>
+            <span class="badge badge-danger">9+</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-envelope fa-fw"></i>
+            <span class="badge badge-danger">7</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user-circle fa-fw"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+            <a class="dropdown-item" href="#">Settings</a>
+            <a class="dropdown-item" href="#">Activity Log</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+          </div>
+        </li>
+      </ul>
+
+    </nav>
+
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <ul class="sidebar navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="../index.html">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>요약</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>목록</span>
+          </a>
+          <div class="dropdown-menu show" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header">Clean Code</h6>
+            <a class="dropdown-item" href="../cleancode/cleancode_001.html">코딩 기본</a>
+            <a class="dropdown-item" href="../cleancode/cleancode_002.html">객체자료/예외/경계</a>
+            <a class="dropdown-item" href="../cleancode/cleancode_003.html">클래스</a>
+            <a class="dropdown-item" href="../cleancode/cleancode_004.html">시스템</a>
+            <a class="dropdown-item" href="../cleancode/cleancode_005.html">테스트</a>
+            <a class="dropdown-item" href="../cleancode/cleancode_006.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_007.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_008.html"></a>          
+            <a class="dropdown-item" href="../cleancode/cleancode_009.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_010.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_011.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_012.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_013.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_014.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_015.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_016.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_017.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_018.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_019.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_020.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_021.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_022.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_023.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_024.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_025.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_026.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_027.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_028.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_029.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_030.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_031.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_032.html"></a>
+            <a class="dropdown-item" href="../cleancode/cleancode_033.html"></a>
+          </div>
+        </li>
+      </ul>
+
+      <div id="content-wrapper">
+        <div class="container-fluid">
+          <!-- Breadcrumbs-->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">Clean Code</li>
+          </ol>
+
+          <!-- Area Chart Example-->
+          <div class="card mb-3">
+            <div class="card-header">
+                시스템에서의 사용과 제작을 분리하라. 
+              </div>
+              <div class="card-body">
+                <p>
+                  <ul>
+                    <li><Strong>제작</Strong></li>
+                    <li><Strong>사용</Strong></li>
+                  </ul>
+                </p>
+                <hr>
+                <strong>
+                  소프트웨어 시스템은 ( 어플리케이션인 객체로 저장하고 의존성을 '연결'하는)준비과정과 (준비사항 이후에 이미지) 런타임 로직을 분리 
+                </strong>
+                <hr>
+                
+              </div>
+              <div class="card-footer small text-muted"></div>
+          </div>    
+          <div class="card mb-3">
+              <div class="card-header">
+                  Main 분리 - 시스템 제작과 시스템 사용을 분리하라. 
+                </div>
+                <div class="card-body">
+                  <p>
+                    <ul>
+                      <li>시스템 생성과 사용을 분리하는 한가지 방법</li>
+                      <li>생성과 관련된 코드는 모두 Main이나 Main이 호출하는 모듈로 옮기고, 나머지 시스템은 모든 객체가 생성되었고, 모든 의존성이 연결되었다고 가정한다. </li>
+                    </ul>
+                  </p>
+                  <hr>
+                  <img src="Main.png" height="250" /> 
+                  <hr>
+<pre>
+  <code class="java">
+public class MainTest{
+  public void Main(args[] args){
+    Implementer impl = new Instance.getInstanceObject(); // 구축자 
+    
+    Start start = new Starter(impl); // Application
+
+    start.execute(); 
+  }
+} 
+  </code>
+</pre>
+                </div>
+                <div class="card-footer small text-muted"></div>
+            </div>
+            <div class="card mb-3">
+                <div class="card-header">
+                    팩토리  
+                  </div>
+                  <div class="card-body">
+                    <p>
+                      때로는 객체가 생성되는 시점을 애플리케이션이 결정할 필요로 생긴다. 
+                    </p>
+                    <hr>
+                    <img src="Factory.png" height="450" />
+                    <pre>
+                      <code class="java">
+  public class Applicaiton{
+    public static void main(String[] args...){
+
+      Meterial lineItemProduct = LineItemFactory.makeLineItem("AMeterial");
+
+      OrderProcess order = new OrderProcess();
+
+      order.setLineItem(lineItemProduct);
+
+      order.execute();
+    }
+  }
+
+
+  public class LineItemFactory{
+
+    public static Meterial makeLineItem(String type){
+      switch(type){
+        case "AProduct" : 
+          return new AMeterial();
+        case "BProduct" : 
+          return new BMeterial();
+      }
+    }
+  }
+
+  class OrderProcess{
+    private Meterial lineItem;
+
+    public void setLineItem(Meterial lineItem){
+      this.lineItem = lineItem;
+    }
+
+    public void execute(){
+      LineItem lineItem = LineItem.getProduct();
+    }
+  }
+
+                      </code>
+                    </pre>
+                  </div>
+                  <div class="card-footer small text-muted"></div>
+              </div>
+              <div class="card mb-3">
+                  <div class="card-header">
+                      의존성 주입  
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                          <li>사용과 제작을 분리하는 강력한 매커니즘</li>
+                          <li>의존성 주입은 제어 역전 기법을 의존성 관리에 적용한 메커니즘이다.</li>
+                          <li><Strong>제어역전</Strong>에서는 한 객체가 맡은 보조 객체를 새로운 객체에게 전적으로 떠넘긴다.</li>
+                          <li>새로운 객체는 넘겨받은 책임만 맡으므로 단일 책임 원칙을 지키게 된다.</li>
+                        </ul>
+                        <br>
+                          의존성 관리 맥락에서는 객체는 의존성 자체를 인스턴스로 만드는 책임은 지지 않는다. <br>
+                          대신에 이런 책임을 다른 "전담" 메커니즘에 넘겨야만한다. <br>
+                          그렇게 함으로써 제어를 역전한다. <br>
+                          초기 설정은 시스템 전체에서 필요하므로 "책임질" 메커니즘으로 "Main" 루틴이나 특수 컨테이너를 사용한다. 
+                        <br>
+                        <pre>
+                          <code class="java" >
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class Application{
+  public static void main(String[] args...){
+    DBConnector connector = new  OracleConnect();
+
+    FactoryCreator creator = new StatementFactory();
+
+    QueryExecutor executor = new SelectExecutor();
+
+    SqlParametVO voParameter = new SqlParametVO();
+
+    voParameter.setSqlStatment("select * from tb_ab_user where rownum = 1")
+
+    Object rsObj = executor.queryExecute(creator.createStmt(connector), voParameter);
+
+
+  }
+}
+
+interface QueryExecutor{
+  public Object queryExecute(Statement stmt, SqlParametVO vo);
+}
+
+class SelectExecutor implements QueryExecutor{
+  public Object queryExecute(Statement stmt, SqlParametVO vo){
+
+    esultSet rs = stmt.executeQuery(vo.getSqlStatment);
+
+    return rs.getString("FirstName") + " " + rs.getString("LastName");
+  }
+}
+
+interface FactoryCreator{
+  public Statement createStmt(DBConnector connector);
+}
+
+class StatementFactory implements FactoryCreator{
+  public Statement createStmt(DBConnector connector){
+
+    Connection conn = connector.getConnection();
+
+    Statement stmt = con.createStatement();
+
+    return stmt;
+  }
+}
+
+interface DBConnector{
+  public Connection getConnection();
+}
+
+class MsSQLConnect implements DBConnector{
+  public Connection getConnection(){
+      // Create a variable for the connection string.
+      String connectionUrl = "jdbc:sqlserver://<server>:<port>;databaseName=AdventureWorks;user=<user>;password=<password>";
+
+      Connection con = DriverManager.getConnection(connectionUrl);
+
+      return con;
+    }
+  }
+}
+
+class OracleConnect implements DBConnector{
+  public Connection getConnection(){
+      Connection con = conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:ORA92", "scott", "tiger");
+
+      return con;
+    }
+  }
+}
+
+/**
+
+프레임워크의 중요한 특성은 사용자가 정의한 메소드가 사용자의 어플리케이션 코드가 호출 하기보다 종종 프레임워크로 부터 호출 되어 진다는 것이다.  
+프레임워크는 종종 어플리케이션의 행위를 재배치 하고, 순서를 정하는 메인프로그램의 역할을 담당한다. 
+역전된 제어는 프레임워크가 확장된 뼈대를 제공하는 힘을 제공한다. 
+사용자는 특정 어플리케이션을 위한 커스터마이즈된 알고리즘 메소드를 프레임워크에 전달한다. 
+
+*/
+
+                  </code>
+                </pre>
+              </div>
+            </div>
+            <div class="card mb-3">
+                <div class="card-header">
+                    확장 
+                </div>
+                <div class="card-body">
+                    '처음부터 올바르게' 시스템을 만들 수 있다는 믿음은 미신이다. 
+                    <hr>
+                    우리는 오늘/내일/다음말에 주어진 사용자 스토리에 맞춰 시스템을 구현해야한다. 이는 애자일 방식의 햄식으로 TDD, 리팩터링, 깨끗한 코드는 코드 수준에서 시스템을 조정하고 확장하기 쉽게 만든다. 
+                    <hr>
+                    하지만 시스템 수준에서는 단순한 아키텍처를 복잡한 아키텍처로 조금씩 키울 수 없다는 현실은 정확하다. <br>
+                    소프트웨어 시스템은 물리적인 시스템과 다른다. 관심사를 적절히 분리해 관리한다면 소프트웨어 아키텍처를 점진적으로 발전할 수 있다. <br>
+                    따라서 점진적인 발전을 위해서는 관심사를 적절히 분리할 수 있어야 한다. 
+                    <hr>
+                    <strong>횡단 관심사</strong>
+                    트랜잭션과 보안, 일부 영속적인 동작은 소스코드가 아닌 배치 기술자에 의해서 조정할 때, 애플리케이션의 자연스러운 객체 경계를 넘나드는 경향이 있는데, 이 때 모든 객체가 전반적으로 
+                    동일한 방식을 이용하게 만들어야 한다.
+                    <hr>
+                    <strong>자바 프록시</strong><br>
+                    자바 프록시는 단순한 상황에 적합하다. 개별 객체나 클래스에서 메서드 호출을 감싸는 경우가 좋은 예다. <br>
+                    하지만 JDK에서 제공하는 동적 프록시는 인터페이스만 지원한다. <br>
+                    클래스 프록시를 사용하려면 CGLIB, ASM, javassit 등과 같은 바이트 코드러 처리 라이브러리가 필요하다. 
+                </div>
+            </div>
+            <div class="card mb-3">
+                <div class="card-header">
+                  테스트 주도 시스템 아키텍처 구축  
+                </div>
+                <div class="card-body">
+                  관점으로 관심사를 분리하는 방식은 그 위력이 막강하다. 애플리케이션 도메인 논리를 POJO로 작성할 수 있다면, <br>
+                  즉 코드 수준에서 아키텍처 관심사를 분리할 수 있다면, 진정한 테스트 주도 아키텍처 구축이 가능해진다. <br>
+                  그때그때 새로운 기술을 채택해 단순한 아키텍처를 복잡한 아키텍처로 키워나갈 수도 있다. BDUF(Big Design Up Front)를 추구할 필요가 없다. 
+                  <hr>
+                  <strong>BDUF</strong> : 요구사항이 정확히 정해져 있다는 가정에서 출발하기 때문이다. <br>
+                  <strong>ADUF</strong> : 새로운 요구사항을 적용하기 위해서 바뀔 필요가 없는 시스템 군을 위한 일반화된 소프트웨어 디자인 
+                  <hr>
+                  <div class="alert alert-info" role="alert">
+                     최선의 시스템 구조는 각지 POJO 객체로 구현되는 모듈화된 관심사 영역으로 구성된다. 이렇게 서로 다른 영역은 해당 영역 코드에 최소한의 영향을 미치는 관점이나 
+                     유사한 도구를 사용해 통합한다. 이런 구조 역시 코드와 마찬가지로 테스트 주도 기법을 적용할 수 있다. 
+                  </div>
+                </div>
+            </div>
+            <div class="card mb-3">
+              <div class="card-header">
+                의사 결정을 최적화하라 
+              </div>
+              <div class="card-body">
+                관심사를 모듈로 분리한 POJO 시스템은 기민함을 제공한다. 이런 기민함 덕택에 최신 정보에 기반해 최선의 시점에 최적의 결정을 내리기가 쉬워진다. <br>
+                또한 결정의 복잡성도 줄어든다. 
+                <hr>
+                <strong>모듈을 나누고 관심사를 분리하면 지엽적인 관리과 결정이 가능해진다.</strong> 
+              </div>
+            </div>
+            <div class="card mb-3">
+              <div class="card-header">
+                명백한 가치가 있을 때 표준을 현명하게 사용하라. 
+              </div>
+              <div class="card-body">
+                표준을 사용하면 아이디어와 컴포넌트를 재사용하기 쉽고, 적절한 경험을 가진 사람을 구하기 쉬우며, 좋은 아이디어를 캡슐화하기 쉽고, 컴포넌트를 엮기 쉽다. <br>
+                하지만 때로는 표준을 만드는 시간이 너무 오래 걸려 업계가 기다리지 못한다. 어떤 표준은 원래 표준을 제정한 목적을 잊어버리기도 한다. <br>
+              </div>
+            </div>
+            <div class="card mb-3">
+              <div class="card-header">
+                시스템은 도메인 특화 언어가 필요하다. 
+              </div>
+              <div class="card-body">
+                도메인 특화 언어를 사용하면 고차원 정책에서 저차원 세부 사항에 이르기 까지 모든 추상화 수준과 모든 도메인을 POJO로 표현할 수 있다. <br>
+                DSL은 간단한 스크립트 언어나 표준 언어로 구현한 API를 가리킨다. DSL로 짠 코드는 모데인 전문가가 작성한 구조적인 산문 처럼 읽힌다. <br>
+              </div>
+            </div>
+            <div class="card mb-3">
+              <div class="card-header">
+                결론
+              </div>
+              <div class="card-body">
+                시스템 역시 깨끗해야한다. 깨끗하지 못한 아키텍처는 도메인 논리를 흐리며 기민성을 떨어뜨린다. 도메인 논리가 흐려지만 제품 품질이 떨어진다. 버그가 숨어들기 쉬워지고,
+                스토리를 구현하기는 어려워지는 탓이다. 기민성이 떨어지면 생산성이 낮아져 TDD를 제공하는 장점이 사라진다. <br>
+                모든 추상화 단계에서 의도는 명확히 표현해야한다. 그러려면 POJO를 작성하고 관점 혹은 관점과 유사한 매커니즘을 사용해 각 구현 관심사를 분리해야한다. <br>
+                시스템을 설계하든 개별 모듈을 설계하든, 실제로 돌아가는 가장 단순한 수단을 사용해야한다는 사실을 명심하자. 
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.container-fluid -->
+
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright © Your Website 2018</span>
+            </div>
+          </div>
+        </footer>
+
+      </div>
+      <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="cleancode">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="login.html">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Page level plugin JavaScript-->
+    <script src="../vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="../js/sb-admin.min.js"></script>
+
+    <!-- Demo scripts for this page-->
+    <script src="../js/demo/chart-area-demo.js"></script>
+    <script src="../js/demo/chart-bar-demo.js"></script>
+    <script src="../js/demo/chart-pie-demo.js"></script>
+
+  </body>
+
+</html>

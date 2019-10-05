@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>1Lines - ReactJS</title>
+
+    <!-- Bootstrap core CSS-->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template-->
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Page level plugin CSS-->
+    <link href="../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="../css/sb-admin.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../styles/default.css">
+    <script src="../highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </head>
+
+  <body id="page-top">
+
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+
+      <a class="navbar-brand mr-1" href="../index.html">ReactJS</a>
+
+      <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Navbar Search -->
+      <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Navbar -->
+      <ul class="navbar-nav ml-auto ml-md-0">
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-bell fa-fw"></i>
+            <span class="badge badge-danger">9+</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-envelope fa-fw"></i>
+            <span class="badge badge-danger">7</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user-circle fa-fw"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+            <a class="dropdown-item" href="#">Settings</a>
+            <a class="dropdown-item" href="#">Activity Log</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+          </div>
+        </li>
+      </ul>
+
+    </nav>
+
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <ul class="sidebar navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="../index.html">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>요약</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>목록</span>
+          </a>
+          <div class="dropdown-menu show" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header">React JS</h6>
+            <a class="dropdown-item" href="../react/reactjs_001.html">React JS의 시작</a>
+            <a class="dropdown-item" href="../react/reactjs_002.html">React 요소 공부</a>
+            <a class="dropdown-item" href="../react/reactjs_003.html">React 조건절</a>
+            <a class="dropdown-item" href="../react/reactjs_004.html">React Hooks</a>
+            <a class="dropdown-item" href="../react/reactjs_005.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_006.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_007.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_008.html"></a>          
+            <a class="dropdown-item" href="../react/reactjs_009.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_010.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_011.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_012.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_013.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_014.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_015.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_016.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_017.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_018.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_019.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_020.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_021.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_022.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_023.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_024.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_025.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_026.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_027.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_028.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_029.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_030.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_031.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_032.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_033.html"></a>
+          </div>
+        </li>
+      </ul>
+
+      <div id="content-wrapper">
+        <div class="container-fluid">
+          <!-- Breadcrumbs-->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="#">Dashboard</a>
+            </li>
+
+          </ol>
+
+          <!-- Area Chart Example-->
+          <div class="card mb-3">
+            <div class="card-header">
+                ReactJS 의 Hooks
+            </div>
+            <div class="card-body">
+                <div class="accordion" id="accordionExample">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                          Hook 이란?
+                        </button>
+                      </h2>
+                    </div>
+                
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                      <div class="card-body">
+                        Hook 이란 함수형 Component에서 State, LifeCycle, Reference 등의 클래스형 Component의 기능을 구현한 개념이다. <br>
+                        또한 함수형 Component의 특성상 쓰기 어려웠던 Memoiztion 등의 기능 또한 포함되어 있다.                         
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header" id="headingTwo">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                          React Hook에서의 state 사용 
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                      <div class="card-body">
+                        <pre>
+                          <code class="Javascript" >
+import * as React from "react";
+
+function Counter() {
+  const countState = React.useState(0);
+  const count = countState[0];
+  const setCount = countState[1];
+  const incrementCount = () => {
+    setCount(prevCount => prevCount + 1);
+  };
+  return (
+    &lt;div>
+      &lt;p>Count time : {count}&lt;/p>
+      &lt;button onClick={incrementCount}>increment count&lt;/button>
+    &lt;/div>
+  );
+}
+                          </code>
+                        </pre>
+                        <hr>
+                        useState 함수를 살펴보면, 초기값을 전달 받고, 배열을 리턴하는데 첫번째는 state, 두번째는 state를 변경할 수 있는 함수를 사용할 수 있습니다. <br>
+                        <pre>
+                          <code class="Javascript">
+const [value, setValue] = React.useState(0);
+                          </code>
+                        </pre>
+                      </div>
+                    </div>
+                  <div class="card">
+                    <div class="card-header" id="headingThree">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                          React Hook의 effect
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                      <div class="card-body">
+                         useEffect를 통해 라이브 사이클을 관리할 수 있습니다. 기본적으로 render가 실행되면 userEffect가 함께 실행된다고 생각하면 된다. <br>
+                         모든 render 요청에 대해서, useEffect가 실행되기 때문에 이 method에 대한 퍼포먼스 처리는 상당히 중요하다. <br>
+                         따라서 useEffect의 두번째 인자가 실제로 적용할 변경대상에 대한 범위를 지정할 수 있다. 
+                         <hr>
+                         <pre>
+                           <code class="Javascript" >
+import * as React from "react";
+
+function ValueCounter() {
+  const [value, setValue] = React.useState(0);
+  const prevDocumentTitle = React.useRef(document.title);
+  React.useEffect(() => {
+    document.title = `Click value = ${value}`;
+    return () => {
+      document.title = prevDocumentTitle.current;
+    };
+  }, [value]);
+  const incrementValue = () => {
+    setValue(preValue => preValue + 1);
+  };
+  return (
+    &lt;div>
+      &lt;p>Count time : {value}&lt;/p>
+      &lt;button onClick={incrementValue}>increment count&lt;/button>
+    &lt;/div>
+  );
+}
+                           </code>
+                         </pre>
+                         <hr>
+                         기존의 React.createRef() 기능을 그대로 Hook으로 구현한 React.useRef()로 함수형 컴포넌트 내에서 <br>
+                         컴포넌트 레퍼런스를 참조할 수 있게 된다. 
+                         <hr>
+                          <div class="alert alert-primary" role="alert">
+                            Refs는 render 메소드에서 생성된 DOM 노드나 React 엘리먼트를 엑세스하는 방법을 제공한다. <br>
+                            <ul>
+                              <li>포커스, 문장선택 혹슨 미디어 재생을 관리해야 하는 경우 </li>
+                              <li>필수 애니메이션을 트리거링 할 때</li>
+                              <li>써드 파티 DOM 라이브러리와 통합할 때 </li>
+                            </ul>
+                            <hr>
+                             선언적으로 수행할 수 있는 모든 것에 refs를 사용하지 마세요. 
+                          </div>
+                         <hr>
+                         <pre>
+                           <code class="Javascript" >
+
+function Timer() {
+  const [date, setDate] = React.useState(new Date());
+  const intervelRef = React.useRef();
+
+  function startTimer() {
+    if (intervelRef.current) {
+      return;
+    }
+    intervelRef.current = setInterval(() => {
+      setDate(new Date());
+    }, 1000);
+  }
+
+  function stopTimer() {
+    clearInterval(intervelRef.current);
+    intervelRef.current = null;
+  }
+
+  React.useEffect(() => {
+    startTimer();
+    return stopTimer;
+  });
+
+  return ( &lt;div>
+    &lt;time>{date.toString()}&lt;/time>
+    &lt;button onClick={startTimer}>Start&lt;/button>
+    &lt;button onClick={stopTimer}>Stop&lt;/button>
+  &lt;/div> );
+}
+                           </code>
+                         </pre>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header" id="headingFour">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseTwo">
+                          React 의 Context API
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                      <div class="card-body">
+                        중첩된 컴포넌트 사이에서 예를 들어 제일 하위에서 state에 따라 값이 변경되게 하려면 props로 하여금 하위 컴포넌트로 전달해주게 처리할 수 있습니다. <br>
+                        <pre>
+                          <code class="Javascript" >
+const App = props => {
+  return ( &lt;Toolbar theme="dark" /> )  ;
+}
+
+function Toolbar(props) {
+  // The Tollbar component must take ana extra "theme" prop
+  
+  // and pass it to the ThemedButton. This can become painful
+  // if every single button in the app needs to know the theme
+  // because it would have to be passed through all components.
+  return (
+    &lt;div>
+      &lt;ThemedButton theme={props.theme} />
+    &lt;/div>
+  );
+}
+
+function ThemedButton(props) {
+  return &lt;Button theme={props.theme} />;
+}
+                          </code>
+                        </pre>
+                        위와같이 props를 통해서 App의 rendering 시점에 호출한 선언한 props를 하위 컴포넌트로 전달하여 처리할 수 있습니다. <br>
+                        하지만 Context를 사용하면 중간 element들을 통해 props를 전달하는 것을 피할 수 있습니다. <br>
+                        아래와 같이 코드를 작성할 수 있습니다. <br>
+                        <pre>
+                          <code class="JavaScript" >
+// Context lets us pass a value deep into the component tree
+// without explicitly threading it through every component.
+// Create a context for the current theme (with "light" as the default).
+const ThemeContext = React.createContext('light');
+
+const App extends React.Component {
+  // Use a Provider to pass the current theme to the tree below.
+  // Any component can read it, no matter how deep it is.
+  // In this example, we're passing "dark" as the current value.
+  return (
+    &lt;ThemeContext.Provider value="dark">
+      &lt;Toolbar />
+    &lt;/ThemeContext.Provider>
+  );
+}
+// A component in the middle doesn't have to
+// pass the theme down explicitly anymore.
+function Toolbar(props) {
+  return (
+    &lt;div>
+      &lt;ThemedButton />
+    &lt;/div>
+  );
+}
+function ThemedButton(props) {
+  // Use a Consumer to read the current theme context.
+  // React will find the closest theme Provider above and use its value.
+  // In this example, the current theme is "dark".
+  return (
+    &lt;ThemeContext.Consumer>
+      {theme => &lt;Button {...props} theme={theme} />}
+    &lt;/ThemeContext.Consumer>
+  );
+}
+                          </code>
+                        </pre>
+                        <hr>
+                        <div class="alert alert-primary" role="alert">
+                          단순히 몇몇 레벨에서의 props 를 전달하는 것을 피하기 위하여 Context를 사용하지는 마라. 여러 레벨의 많은 component들에서 같은 데이터에 접근해야하는 경우에만 사용하라.
+                        </div>
+                        <hr>
+                        React Hook의 UseContext
+                        <hr>
+                        <pre>
+                          <code class="Javascript" >
+// 기존의 방식으로 구현할 경우 아래의 Context가 중첩하여 수십개 씩 생기는 현상이 발생할 수 있습니다.                            
+import * as React from "react";
+
+const VingleContext = React.createContext();
+const RandomContext = React.createContext();
+
+function HelloWorld() {
+  return (
+    &lt;VingleContext.Consumer>
+      {message => (
+        &lt;RandomContext.Consumer>
+          {num => &lt;h1>{message} and random is {num}&lt;/h1>}
+        &lt;/RandomContext.Consumer>
+      )}
+    &lt;/VingleContext.Consumer>
+  );
+}
+
+function App() {
+  return (
+    &lt;VingleContext.Provider value="Hello Vingle!">
+      &lt;RandomContext.Provider value={Math.random()}>
+        &lt;HelloWorld />
+      &lt;/RandomContext.Provider>
+    &lt;/VingleContext.Provider>
+  );
+}
+
+// React Hook을 활용할 경우 
+import * as React from "react";
+
+const VingleContext = React.createContext();
+const RandomContext = React.createContext();
+
+function HelloWorld() {
+  const message = React.useContext(VingleContext);
+  const num = React.useContext(RandomContext);
+  return (
+    &lt;h1>{message} and random is {num}&lt;/h1>
+  );
+}
+
+function App() {
+  return (
+    &lt;VingleContext.Provider value="Hello Vingle!">
+      &lt;RandomContext.Provider value={Math.random()}>
+        &lt;HelloWorld />
+      &lt;/RandomContext.Provider>
+    &lt;/VingleContext.Provider>
+  );
+}
+                          </code>
+                        </pre>                       
+                      </div>
+                    </div>
+                  </div>  
+                  <div class="card">
+                    <div class="card-header" id="heading5">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                          useMemo & useCallback 
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse5" class="collapse" aria-labelledby="heading5" data-parent="#accordionExample">
+                      <div class="card-body">
+                          useMemo, useCallback은 memoize 를 함수형 컴포넌트에 사용할 수 있도록 만들어진 기능이다. <br>
+                          useMemo는 계산된 값을 가지고 있고, useCallback은 콜백으로 실행 할 수 있다는 차이가 있다. <br>
+                          두 API 다 첫 번째 인자로 값을 리턴하는 콜백을 가져오고, 두 번째 인자로 변경 여부를 평가하는 값들의 배열을 가져온다. <br>
+                        <hr>
+                        <pre>
+                          <code class="Javascript" >
+const [number1, setNumber1] = React.useState(0);
+const [number2, setNumber2] = React.useState(0);
+const calculateNumber = React.useMemo(() => number1 + number2, [number1, number2]);
+// OR using useCallback
+const calculateFunc = React.useCallback(() => number1 + number2, [number1, number2]);
+const calulateNumber = calculateFunc();
+                          </code>
+                        </pre>                        
+                         
+                        
+                      </div>
+                    </div>
+                  </div>  
+                  <div class="card">
+                    <div class="card-header" id="heading8">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapse8">
+                          useEffect로 componentDidMount 구현
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse8" class="collapse" aria-labelledby="heading8" data-parent="#accordionExample">
+                      <div class="card-body">
+                        <pre>
+                          <code class="Javascript" >
+import * as React from "react";
+
+function useComponentDidMount(callback) {
+
+  const [initialized, setInitialized] = React.useState(false);
+
+  useEffect(() => {
+    if (!initialized) {
+      callback();
+      setInitialized(true);
+    }
+  });
+
+}
+
+function ExternalItem() {
+
+  const container = React.useRef(null);
+
+  useComponentDidMount(() => {
+    anyLibraryInitialize(container.current);
+  });
+
+  return &lt;div ref={container}>&lt;/div>;
+}
+                          </code>
+                        </pre>
+                      </div>
+                    </div>
+                  </div> 
+                  <div class="card">
+                    <div class="card-header" id="heading7">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
+                          useRef 로 이전 값 가져오기    
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse7" class="collapse" aria-labelledby="heading7" data-parent="#accordionExample">
+                      <div class="card-body">
+                        <pre>
+                          <code class="JavaScript" > 
+import * as React from "react";
+
+function usePrevious(value) {
+  const ref = React.useRef();
+  React.useEffect(() => {
+    ref.current = value;
+  });
+  return ref.current;
+}
+
+function Counter() {
+  const [count, setCount] = React.useState(0);
+  const prevCount = usePrevious(count);
+  const incrementCount = () => {
+    setCount(prevCount => prevCount + 1);
+  };
+  return (
+    &lt;div>
+      &lt;p>Count time : {count}&lt;/p>
+      &lt;p>Before count: {prevCount}&lt;/p>
+      &lt;button onClick={incrementCount}>increment count&lt;/button>
+    &lt;/div>
+  );
+}
+                          </code>
+                        </pre>
+                      </div>
+                    </div>
+                  </div> 
+                
+                  <div class="card">
+                    <div class="card-header" id="heading9">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse9" aria-expanded="false" aria-controls="collapse9">
+                          React Memo
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse9" class="collapse" aria-labelledby="heading9" data-parent="#accordionExample">
+                      <div class="card-body">
+                        React.memo는 함수형 컴포넌트에서 React.PureComponent 혹은 shouldComponentUpdate를 구현 가능하도록 만들어진 API
+                      </div>
+                    </div>
+                  </div> 
+                  <div class="card">
+                    <div class="card-header" id="heading10">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse10" aria-expanded="false" aria-controls="collapse10">
+                          Render 평가식 최적화 
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse10" class="collapse" aria-labelledby="heading10" data-parent="#accordionExample">
+                      <div class="card-body">
+                        useState의 hook 메서드에 메서드를 초기값으로 설정하면, render가 실행될 때마다 getHelloWorld 가 실행될 것입니다. <br>
+                        어차피 Hook으로 인하여 해당 컴포넌트는 저장하고 있으니 매우 불필요한 방법이다. 
+                        <pre>
+                          <code class="Javascript" >
+const [data, setData] = React.useState(getHelloWorld());
+                          </code>
+                        </pre>       
+                        <hr>
+                        단순히 해당 초기값을 콜백으로 바꿔줬을 뿐이지만, React에서는 해당 평가식을 처음에만 실행하고, 다음 render 부터는 실행하지 않습니다
+                        <pre>
+                          <code class="Javascript" >
+const [data, setData] = React.useState(() => getHelloWorld());      
+                          </code>
+                        </pre>
+
+                      </div>
+                    </div>
+                  </div> 
+                  <div class="card">
+                    <div class="card-header" id="heading11">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse11" aria-expanded="false" aria-controls="collapse11">
+                          React Hook을 사용시 - Migration 예제 
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse11" class="collapse" aria-labelledby="heading11" data-parent="#accordionExample">                        
+                      <div class="card-body">
+<hr>
+                        Server Side Rendering을 할 때 스타일 시트를 적용시켜주기 위해서 직접 만들어서 사용한 예제 
+<hr>
+<pre>
+  <code class="Javascript" >
+// insertCss 는 서버사이드에 스타일시트를 내보기 위한 함수.
+const CssContext = React.createContext(insertCss);
+
+export const CssContextProvider = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => &lt;CssContext.Provider value={insertCss}>{children}&lt;/CssContext.Provider>;
+
+interface IStyleAttacherProps {
+  insertCss: (...styles: any[]) => void;
+  styles: any[];
+}
+
+class StyleAttacher extends React.Component&lt;IStyleAttacherProps> {
+  public static getDerivedStateFromProps(nextProps: IStyleAttacherProps) {
+    nextProps.insertCss(...nextProps.styles);
+    return null;
+  }
+  public render() {
+    return null;
+  }
+}
+
+export function withStyles(...styles: any[]) {
+  return function wrapWithStyles&lt;P>(ComposedComponent: React.ComponentType&lt;P>) {
+    const WithStyles = (props: P & { children?: React.ReactNode }) => (
+      &lt;React.Fragment>
+        &lt;CssContext.Consumer>
+          {(insertCssFn: (...styles: any[]) => void) => (
+            &lt;StyleAttacher insertCss={insertCssFn} styles={styles} />
+          )}
+        &lt;/CssContext.Consumer>
+        &lt;ComposedComponent {...props} />
+      &lt;/React.Fragment>
+    );
+    return hoistNonReactStatics(WithStyles, ComposedComponent);
+  };
+}
+  </code>
+</pre>   
+<hr>
+
+<pre>
+  <code class="Javascript" >
+import hoistNonReactStatics = require("hoist-non-react-statics");
+
+const CssContext = React.createContext(insertCss);
+
+export function withStyles(...styles: any[]) {
+  return function wrapWithStyles&lt;P>(ComposedComponent: React.ComponentType&lt;P>) {
+    const displayName =
+      ComposedComponent.displayName || ComposedComponent.name || "Component";
+    const insertCssFn = React.useContext(CssContext);
+    insertCssFn(styles);
+
+    const WithStyles = (props: P & { children?: React.ReactNode }) => (
+        &lt;ComposedComponent {...props} />
+    );
+
+    WithStyles.displayName = `WithStyles(${displayName})`;
+    WithStyles.ComposedComponent = ComposedComponent;
+
+    return hoistNonReactStatics(WithStyles, ComposedComponent);
+  };
+}
+  </code>
+</pre>
+
+<hr>
+ Hook은 함수형 컴포넌트 이외에서 작동 하지 않기 때문에 이를 유의해야한다. 
+                      </div>
+                    </div>
+                  </div> 
+                  <div class="card">
+                    <div class="card-header" id="heading12">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse12" aria-expanded="false" aria-controls="collapse12">
+                          
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse12" class="collapse" aria-labelledby="heading12" data-parent="#accordionExample">
+                      <div class="card-body">
+                        
+                      </div>
+                    </div>
+                  </div> 
+                  <div class="card">
+                    <div class="card-header" id="heading13">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse13" aria-expanded="false" aria-controls="collapse13">
+                          
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse13" class="collapse" aria-labelledby="heading13" data-parent="#accordionExample">
+                      <div class="card-body">
+                        
+                      </div>
+                    </div>
+                  </div>                     
+              </div>                
+            </div>
+            <div class="card-footer small text-muted"></div>
+          </div>
+          
+        <!-- /.container-fluid -->
+
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright © Your Website 2018</span>
+            </div>
+          </div>
+        </footer>
+
+      </div>
+      <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="cleancode">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="login.html">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+ 
+
+    <!-- Custom scripts for all pages-->
+    <script src="../js/sb-admin.min.js"></script>
+  </body>
+
+</html>

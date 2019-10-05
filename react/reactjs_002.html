@@ -1,0 +1,1765 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>1Lines - ReactJS</title>
+
+    <!-- Bootstrap core CSS-->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template-->
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Page level plugin CSS-->
+    <link href="../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="../css/sb-admin.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../styles/default.css">
+    <script src="../highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </head>
+
+  <body id="page-top">
+
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+
+      <a class="navbar-brand mr-1" href="../index.html">ReactJS</a>
+
+      <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Navbar Search -->
+      <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+    </nav>
+
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <ul class="sidebar navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="../index.html">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>요약</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>목록</span>
+          </a>
+          <div class="dropdown-menu show" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header">React JS</h6>
+            <a class="dropdown-item" href="../react/reactjs_001.html">React JS의 시작</a>
+            <a class="dropdown-item" href="../react/reactjs_002.html">React 요소 공부</a>
+            <a class="dropdown-item" href="../react/reactjs_003.html">React 조건절</a>
+            <a class="dropdown-item" href="../react/reactjs_004.html">React Hook</a>
+            <a class="dropdown-item" href="../react/reactjs_005.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_006.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_007.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_008.html"></a>          
+            <a class="dropdown-item" href="../react/reactjs_009.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_010.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_011.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_012.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_013.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_014.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_015.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_016.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_017.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_018.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_019.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_020.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_021.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_022.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_023.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_024.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_025.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_026.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_027.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_028.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_029.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_030.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_031.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_032.html"></a>
+            <a class="dropdown-item" href="../react/reactjs_033.html"></a>
+          </div>
+        </li>
+      </ul>
+
+      <div id="content-wrapper">
+        <div class="container-fluid">
+          <!-- Breadcrumbs-->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="#">Dashboard</a>
+            </li>
+
+          </ol>
+
+          <!-- Area Chart Example-->
+          <div class="card mb-3">
+            <div class="card-header">
+                ReactJS 의 요소
+            </div>
+            <div class="card-body">
+                <div class="accordion" id="accordionExample">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                           JavaScript - Import, Export 
+                        </button>
+                      </h2>
+                    </div>
+                
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                      <div class="card-body">
+                        자바스크립트는 호이스팅으로 인하여 변수나 함수가 전역에서 사용될 수 있었기 때문에 이름 충돌이 잦게 발생하였습니다. 
+                        ES6 부터는 모듈의 개념이 추가되어 Java, C# 처럼 Export, Import를 사용할 수 있게 되었다. 
+                        <hr>
+                        하지만 브라우저에서 지원이 되지 않고 있기 때문에 webpack과 같은 모듈 번들러를 사용해야만 모듈 시스템(import, export)를 이용할 수 있다. 
+                        <hr>
+                        <a href="https://github.com/AriaFallah/WebpackTutorial/tree/master/part1" target="_blank" >webpack 따라하며 배우기</a>
+                        <pre>
+                          <code class="javascript" >                       
+// custom.js
+Class custom {
+  constructor(customName){
+    this.customName = customName;
+  }
+}
+                          </code>
+                        </pre>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header" id="headingTwo">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            create-react-app 을 이용하여 react project 생성하기 
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                      <div class="card-body">
+                        <pre>
+                          <code class="shell" >
+# create-react-app 을 이용한 작업 환경 구성하기
+# npm {명령어} -{옵션} {Package}         
+# install Package 설치하기 
+# -g 전역에 설치하기                    
+> npm install -g create-react-app
+
+
+> create-react-app hello-world 
+
+> cd hello-world
+
+> npm start 
+                          </code>
+                        </pre>                        
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header" id="headingThree">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            create-react-app 을 이용하지 않고 빌드없이 바로 이용하기 
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                      <div class="card-body">
+                          <a href="https://beomi.github.io/2017/03/20/Using-ES6-JSX-on-Client/" target="_blank" rel="noopener noreferrer">build 없이 바로 배포하기</a>
+                          <hr>
+<pre>
+  <code class="html" >
+      &lt;!DOCTYPE html>
+      &lt;html lang="en">
+      &lt;head>
+        &lt;meta charset="UTF-8">
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1.0">
+        &lt;meta http-equiv="X-UA-Compatible" content="ie=edge">
+        &lt;title>Document&lt;/title>
+      &lt;/head>
+      &lt;body>
+          &lt;div id="root">&lt;/div>
+          &lt;script src="https://unpkg.com/react@15/dist/react.js">&lt;/script>
+          &lt;script src="https://unpkg.com/react-dom@15/dist/react-dom.js">&lt;/script>
+          &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.js">&lt;/script>
+          &lt;script src="./js/app.js" type="text/babel">&lt;/script> 
+      &lt;/body>
+      &lt;/html>
+  </code>
+</pre>   
+<pre>
+  <code class="javascript" >
+// js/app.js 
+ReactDOM.render(
+  &lt;h1>Hello, world!&lt;/h1>,
+  document.getElementById('root')
+);
+  </code>
+</pre>                       
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header" id="headingFour">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseTwo">
+                            JSX에 대해서
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                      <div class="card-body">
+                        JSX : Javascript + XML 을 합쳐서 JSX라고 말한다. 
+<pre>
+  <code class="javascript" >
+const element = &lt;h1>Hello, world!&lt;/h1>;
+
+ReactDOM.render(
+  element,
+  document.getElementById('root')
+);
+  </code>
+</pre>            
+위의 코드에서 볼 수 있듯이 마치 html 의 요소를 정의한 것처럼 보이지만 이는 모두 JSX에 선언된 요소들이라고 보는게 옳다. <br>
+<hr>
+JSX를 이용하여 동적인 페이지를 만들고 싶을 때는 아래와 같이 코드 작성이 가능하다. <br>
+<pre>
+  <code class="javascript" >
+function getHelloWorldByYourName(user){
+  return user.myName;
+};
+
+const user = {
+    myName : "홍길동"
+};
+
+const element = (
+  &lt;h1>&lt;strong>My Name is {getHelloWorldByYourName(user)}&lt;/strong>&lt;/h1>
+);
+
+ReactDOM.render(
+  element,
+  document.getElementById('root')
+);
+  </code>
+</pre>
+<hr>
+JSX에서의 표현식
+<hr>
+<pre>
+  <code class="Javascript" >
+const name = 'Jeong Seung Hwa';
+const element = &lt;h1>Hello, {name}&lt;/h1>;
+
+ReactDOM.render(
+  element,
+  document.getElementById('root')
+);
+  </code>
+</pre>
+<hr>
+JSX에서의 요소 바인딩 
+<hr>
+<pre>
+  <code class="Javascript" >
+function formatName(user) {
+  return user.firstName + ' ' + user.lastName;
+}
+
+const user = {
+  firstName: 'Jeong',
+  lastName: 'Seung Hwa'
+};
+
+const element = (
+  &lt;h1>
+    Hello, {formatName(user)}!
+  &lt;/h1>
+);
+
+ReactDOM.render(
+  element,
+  document.getElementById('root')
+);
+  </code>
+</pre>
+<hr>
+속성에 대한 정의 
+<hr>
+<pre>
+  <code class="JavaScript" >
+// 따옴표를 이용햇 문자열 리터럴을 정의할 수 있습니다. 
+const element = &lt;div tabIndex="0">&lt;/div>;
+
+// 중괄호를 사용하여 어트리뷰트에 JavaScript 표현식을 삽입할 수도 있습니다. 
+const element = &lt;img src={user.avatarUrl}>&lt;/img>;
+  </code>
+</pre>
+<hr>
+JSX로의 자식 정의 
+<hr>
+<pre>
+  <code class="Javascript" >
+      // tag 안의 자식 요소를 포함할 수 있습니다. 
+      const element = (
+        &lt;div>
+          &lt;h1>Hello!&lt;/h1>
+          &lt;h2>Good to see you here.&lt;/h2>
+        &lt;/div>
+      );      
+  </code>
+</pre>
+<hr>
+JSX는 주입 공격을 방지합니다. 
+<hr>
+기본적으로 React DOM은 JSX에 삽입된 모든 값을 렌더링 하기 전에 이스케이프하므로, 애플리케이션에서 명시적으로 작성되지 않은 내용은 주입되지 않습니다. <br>
+모든 항목은 렌더링 되기 전에 문자열로 변환됩니다. 
+<hr>
+JSX는 객체를 표현합니다. 
+<hr>
+<pre>
+  <code class="Javascript"  >
+// 아래의 두개의 코드는 모두 createElment를 호출하는 방식이지만 표현식이 다릅니다. 
+const element = (
+  &lt;h1 className="greeting">
+    Hello, world!
+  &lt;/h1>
+);
+
+const element = React.createElement(
+  'h1',
+  {className: 'greeting'},
+  'Hello, world!'
+);
+  </code>
+</pre>
+
+                      </div>
+                    </div>
+                  </div>  
+                  <div class="card">
+                    <div class="card-header" id="heading4-1">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse4-1" aria-expanded="false" aria-controls="collapse4-1">
+                          Element 
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse4-1" class="collapse" aria-labelledby="heading4-1" data-parent="#accordionExample">
+                      <div class="card-body">
+                        
+                        <pre>
+                          <code class="Javascript" >
+const element = &lt;h1> Hello, World &lt;/h1>;
+// 브라우저의 DOM 엘리먼트와 달리 React 엘리먼트는 일반 객체이며 쉽게 생성할 수 있습니다. 
+// React DOM 은 React 엘리먼트와 일치하도록 DOM을 업데이트합니다. 
+                          </code>
+                        </pre>
+
+                        <hr>
+                          DOM에 엘리먼트 렌더링하기 
+                        <hr>
+                         <pre>
+                           <code class="Javascript" >
+// 이 안에 들어가는 모든 엘리먼트를 React DOM에서 관리하기 때문에 이것을 "루트(root)" DOM 노드라고 부릅니다. 
+&lt;div id="root" > &lt;div>
+
+// React 엘리먼트를 Root 엘리먼트에 로딩하려면 아래와 같이 사용합니다. 
+const element = &lt;h1>Hello, world&lt;/h1>;
+ReactDOM.render(element, document.getElementById('root'));
+                           </code>
+                         </pre>
+                         <hr>
+                          렌더링 된 엘리먼트 업데이트 하기 
+                         <hr>
+                         <pre>
+                           <code class="Javascript" >
+// ReactDOM 의 render에 의해서 UI 요소를 갱신하는 방식                             
+function tick() {
+  const element = (
+    &lt;div>
+      &lt;h1>Hello, world!&lt;/h1>
+      &lt;h2>It is {new Date().toLocaleTimeString()}.&lt;/h2>
+    &lt;/div>
+  );
+  ReactDOM.render(element, document.getElementById('root'));
+}
+
+setInterval(tick, 1000);
+                           </code>
+                         </pre>
+                      </div>
+                    </div>
+                  </div> 
+                  <div class="card">
+                    <div class="card-header" id="heading4-2">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse4-2" aria-expanded="false" aria-controls="collapse4-2">
+                          Components 
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse4-2" class="collapse" aria-labelledby="heading4-2" data-parent="#accordionExample">
+                      <div class="card-body">
+                        Components를 정의하는 방법은 JavaScript 함수를 정의하는 것 
+                        <hr>
+                        <pre>
+                          <code class="Javascript" >
+// props 는 속성을 나타내는 데이터                             
+function Welcome(props) {
+  return &lt;h1>Hello, {props.name}&lt;/h1>;
+}
+
+// ES6 class를 사용하여 컴포넌트를 정의할 수 있습니다
+class Welcome extends React.Component {
+  render(){
+    return &lt;h1> Hello, {this.props.name}&lt;/h1>
+  }
+}
+                          </code>
+                        </pre>
+                        <hr>
+                        <strong>컴포넌트 렌더링</strong>
+                        <hr>
+                        <pre>
+                          <code class="Javascript" >
+function Welcome(props){
+  return &lt;h1> Hello, {props.name} &lt;/h1>
+}   
+// React 엘리먼트는 사용자 정의 컴포넌트로도 나타낼 수 있습니다. 
+const element = &lt;Welcome name="Sara" />
+
+// React가 사용자 정의 컴포넌트로 작성한 엘리먼트를 발견하면 JSX 어트리뷰트를 해당 컴포넌트에 단일 객체로 전달합니다. 
+// 이 객체를 "props" 라고 합니다. 
+ReactDOM.render(
+  element,
+  document.getElementById('root')
+)
+
+                          </code>
+                        </pre>
+                        <hr>
+                        주의: 컴포넌트의 이름은 항상 대문자로 시작합니다. <br>
+                        React는 소문자로 시작하는 컴포넌트를 DOM 태그로 처리합니다. <br>
+                        예를 들어 &lt;div />는 HTML div 태그를 나타내지만, &lt;Welcome />은 컴포넌트를 나타내며 범위 안에 Welcome이 있어야 합니다.
+                        <hr>
+                        <strong>컴포넌트 합성 </strong> <br>
+                        컴포넌트는 자신의 출력에 다른 컴포넌트를 참조할 수 있습니다. 이는 모든 세부 단계에서 동일한 추상 컴포넌트를 사용할 수 있음을 의미합니다. <br>
+                        <pre>
+                          <code class="Javascript" > 
+function Welcome(props) {
+  return &lt;h1>Hello, {props.name}&lt;/h1>;
+}
+
+function App() {
+  return (
+    &lt;div>
+      &lt;Welcome name="Sara" />
+      &lt;Welcome name="Cahal" />
+      &lt;Welcome name="Edite" />
+    &lt;/div>
+  );
+}
+
+ReactDOM.render(
+  &lt;App />,
+  document.getElementById('root')
+);
+                          </code>
+                        </pre>
+                        <hr>
+                        <pre>
+                          <code class="Javascript" >
+function formatDate(date) {
+  return date.toLocaleDateString();
+}
+
+function Avatar(props){
+  return (
+    &lt;img className="Avatar" 
+      src={props.user.avatarUrl}
+      alt={props.user.name}
+  )
+}
+
+function UserInfo(props){
+  return (
+    &lt;div className="UserInfo">
+      &lt;Avatar user={props.user} />
+      &lt;div className="UserInfo-name">
+        {props.user.name}
+      &lt;/div>
+    &lt;/div>
+  )
+}
+
+function Comment(props) {
+  return (
+    &lt;div className="Comment">
+      &lt;UserInfo user={props.author} />
+      &lt;div className="Comment-text">{props.text}&lt;/div>
+      &lt;div className="Comment-date">
+        {formatDate(props.date)}
+      &lt;/div>
+    &lt;/div>
+  );
+}
+                            
+                          </code>
+                        </pre>
+                      </div>
+                    </div>
+                  </div> 
+                  <div class="card">
+                    <div class="card-header" id="heading4-3">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse4-3" aria-expanded="false" aria-controls="collapse4-3">
+                          트리에 처리하기 
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse4-3" class="collapse" aria-labelledby="heading4-3" data-parent="#accordionExample">
+                      <div class="card-body">
+                        <pre>
+                          <code class="Javascript" >
+&lt;button onClick={activateLasers}>
+  Activate Lasers
+&lt;/button>
+
+// React에서는 false를 반환해도 기본 동작을 방지할 수 없습니다. 반드시 preventDefault를 명시적으로 호출해야 합니다.
+
+function ActionLink() {
+  function handleClick(e) {
+    e.preventDefault();
+    console.log('The link was clicked.');
+  }
+
+  return (
+    &lt;a href="#" onClick={handleClick}>
+      Click me
+    &lt;/a>
+  );
+}
+                          </code>
+                        </pre>
+                        <hr>
+                        Toggle 버튼 만들기 
+                        <hr>
+                        <pre>
+                          <code class="Javascript" >                            
+const Toggle = props => {
+  let [isToggleOn, setisToggleOn ] = useState({ isToggleOn : true })
+
+  let handleClick = function(){
+    this.setState(state => ({
+      isToggleOn: !state.isToggleOn
+    }));
+  }
+
+  /*
+    this에서 바로 가져다 쓰기 위해서 아래와 같이 설정도 가능합니다. 
+    handleClick = () => {
+      console.log('this is:', this);
+    }
+  */
+
+  return (
+    &lt;button onClick={this.handleClick}>
+      {isToggleOn ? 'ON' : 'OFF'}
+    &lt;/button>
+  );
+}
+
+ReactDOM.render(
+  &lt;Toggle />,
+  document.getElementById('root')
+);
+                          </code>
+                        </pre>
+                        <hr>
+                        <pre>
+                          <code class="Javascript"  >
+class LoggingButton extends React.Component {
+
+  handleClick() {
+    console.log('this is:', this);
+  }
+
+  /*
+
+   LoggingButton이 렌더링될 때마다 다른 콜백이 생성된다는 것입니다. 
+  대부분의 경우 문제가 되지 않으나, 콜백이 하위 컴포넌트에 props로서 전달된다면 
+  그 컴포넌트들은 추가로 다시 렌더링을 수행할 수도 있습니다. 
+  이러한 종류의 성능 문제를 피하고자, 생성자 안에서 바인딩하거나 클래스 필드 문법을 사용하는 것을 권장합니다
+
+  */
+
+  render() {
+    // 이 문법은 `this`가 handleClick 내에서 바인딩되도록 합니다.
+    return (
+      &lt;button onClick={(e) => this.handleClick(e)}>
+        Click me
+      &lt;/button>
+    );
+  }
+}
+                          </code>
+                        </pre>
+                        <hr>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header" id="heading4-4">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse4-4" aria-expanded="false" aria-controls="collapse4-4">
+                          조건부 렌더링
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse4-4" class="collapse" aria-labelledby="heading4-4" data-parent="#accordionExample">
+                      <div class="card-body">
+                        <pre>
+                          <code class="Javascript" >
+const LoginControl = props => {
+
+  const [ loginState, setLoginState] = useState({isLoggedIn : false})
+
+  let handleLoginClick = function(){
+    setLoginState({ isLoggedIn : true })
+  }
+
+  let handleLoginoutClick = function(){
+    setLoginState({ isLoggedIn : false })
+  }
+
+  let appLayout = function(){
+
+    if(isLoggedIn){
+      button = &lt;LogoutButton onClick={handleLogoutClick} />;
+    }else{
+      button = &lt;LoginButton onClick={handleLoginClick} />;
+    }
+
+    return (
+      &lt;div>
+        &lt;Greeting isLoggedIn={isLoggedIn} />
+        {button}
+      &lt;/div>
+    );
+  }
+
+  return appLayout;
+}
+
+ReactDOM.render(
+  &lt;LoginControl />,
+  document.getElementById('root')
+);
+                          </code>
+                        </pre>
+                        <hr>
+                       <strong> 논리 &&  연산자를 if를 인라인으로 표현하기 </strong>
+                        <pre>
+                          <code class="Javascript" >
+const MailBox = props => {
+  const unreadMessages = props.unreadMessages;
+
+  return (
+    &lt;div>
+      &lt;h1>Hello!&lt;/h1>
+      {unreadMessages.length > 0 && 
+        &lt;h2>
+          You have {unreadMessages.length} unread Messages. 
+        &lt;/h2>
+      }
+    &lt;/dib>
+  )
+}
+
+const messages = ['React', 'Re: React', 'Re:Re: React'];
+
+ReactDOM.render(
+  &lt;MailBox unreadMessages={messages} />,
+  document.getElementById('root')
+)
+                          </code>
+                        </pre>
+                        <hr>
+                        <strong>조건부 연산자로 If-Else 구문을 인라인으로 표현하기</strong>
+                        <pre>
+                          <code class="Javascript" >
+var appLayout = (
+  &lt;div>
+    The user is &lt;b> {isLoggedIn ? 'currently' : 'not' } &lt;b> logged in.                         
+  &lt;/div>
+)
+                          </code>
+                        </pre>
+                        <hr>
+                        <strong>컴포넌트가 렌더링 하는 것을 막기</strong>
+                        <hr>
+                        <pre>
+                          <code class="Javascript" >
+import { useState } from react
+
+
+let WarningBanner = prop => {
+  if(!props.warn){
+    return null;
+  }
+
+  return (
+    &lt;div className="warning" >
+      Warning !
+    &lt;div>
+  )
+}
+
+let Page = props => {
+  const [ showWarning, setshowWarning ] = useState({showWarning : true})
+
+  let handleToggleClick = function(){
+    setshowWarning({
+      showWarning : !showWarning
+    })
+  }
+
+  let appLayout = (
+    &lt;div>
+      &lt;WarningBanner warn={handleToggleClick} >
+      &lt;button onClick={handleToggleClick} >
+        { showWarning ? 'Hide' : 'Show' }
+      &lt;/button>
+    &lt;div>
+  );
+
+  return appLayout;
+}
+
+ReactDOM.render(
+  &lt;Page />,
+  document.getElementById('root')
+)
+                          </code>
+                        </pre>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header" id="heading4-5">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse4-5" aria-expanded="false" aria-controls="collapse4-5">
+                          
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse4-5" class="collapse" aria-labelledby="heading4-5" data-parent="#accordionExample">
+                      <div class="card-body">
+                        
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header" id="heading4-6">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse4-6" aria-expanded="false" aria-controls="collapse4-6">
+                          리스트와 Key 
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse4-6" class="collapse" aria-labelledby="heading4-6" data-parent="#accordionExample">
+                      <div class="card-body">
+                        <pre>
+                          <code class="Javascript" >
+const numbers = [ 1,2,3,4,5 ];
+const doubled = numbers.map((number) => number * 2));
+console.log(doubled);
+                          </code>
+                        </pre>
+                        <hr>
+                          여러개의 컴포넌트 렌더링 하기 
+                        <hr>
+                        <pre>
+                          <code class="Javascript" >                          
+const numbers = [ 1,2,3,4,5 ];
+const listItems = numbers.map((number) => 
+   &lt;li>{number}&lt;/li>
+);
+
+ReactDOM.render(
+  &lt;ul>{listItems}&lt;/ul>,
+  document.getElementById('root')
+);
+                          </code>
+                        </pre>
+                        <hr>
+                        기본 리스트 컴포넌트 
+                        <hr>
+                        <pre>
+                          <code class="Javascript" >
+function NumberList(props){
+  const numbers = props.numbers;
+  // "key" 는 엘리먼트 리스트를 만들 때 포함해야 하는 특수한 문자열 어트리뷰트 입니다. 
+  // Key는 React 가 어떤 항목을 변경, 추가 또는 삭제할 지 식별하는 것을 돕습니다. key 는 엘리먼트에 안정적인 고유성을 부여하기 위해 배열 내부의 엘리먼트를 지정해야 합니다. 
+
+  /*
+    Keys
+
+    자식들이 key를 가지고 있다면, React는 key를 통해 기존 트리와 이후 트리의 자식들이 일치하는지 확인합니다. 
+    예를 들어, key가 없는 리스트의 엘리먼트에 key를 추가하여 트리의 변환 작업이 효율적으로 수행되도록 
+    수정할 수 있습니다. 
+
+    Key는 배열 안에서 형제 사이에서 고유해야 하고 전체 범위에서 고유할 필요는 없습니다. 
+    두 개의 다른 배열을 만들 때 동일한 key를 사용할 수 있습니다. 
+  */
+  const listItems = numbers.map((number) => 
+    &lt;li key={number.toString()} >{number}&lt;/li>
+  );
+
+  return (
+    &lt;ul>{listItems}&lt;/ul>
+  );
+}
+
+const numbers = [1, 2, 3, 4, 5];
+ReactDOM.render(
+  &lt;NumberList numbers={numbers} />,
+  document.getElementById('root')
+);
+                          </code>
+                        </pre>
+                        <hr>
+                        JSX 에 map() 포함시키기 
+                        <hr>
+                        <pre>
+                          <code class="Javascript" >
+function NumberList(props){
+  const numbers = props.numbers;
+  const listItems = numbers.map((number) => 
+    &lt;ListItem key={number.toString()}
+                 value={number} />
+  );
+
+
+  return (
+    &lt;ul>
+      {listItems}
+    &lt;/ul>
+  );
+}
+
+// JSX 를 사용하면 중괄호 안에 모든 표현식을 포함 시킬 수 있으므로 
+// map() 함수의 결과를 인라인으로 처리할 수 있습니다. 
+function NumberList(props) {
+  const numbers = props.numbers;
+  return (
+    &lt;ul>
+      {numbers.map((numbers) => 
+        &lt;ListItem key={number.toString()} 
+                     value={number} />  
+      )}
+    &lt;/ul>
+  )
+}
+                          </code>
+                        </pre>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                      <div class="card-header" id="heading4-7">
+                        <h2 class="mb-0">
+                          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse4-7" aria-expanded="false" aria-controls="collapse4-7">
+                            폼
+                          </button>
+                        </h2>
+                      </div>
+                      <div id="collapse4-7" class="collapse" aria-labelledby="heading4-7" data-parent="#accordionExample">
+                        <div class="card-body">
+                          Javascript 함수로 폼의 제출을 처리하고 사용자가 폼에 입력한 데이터에 접근하도록 하는 것이 편리합니다. 
+                          이를 위한 편리한 표준 방식은 "제어 컴포넌트"라고 불리는 기술을 이용하는 것입니다. 
+                          <hr>
+                          <pre>
+                            <code class="Javascript" >
+class NameForm extens React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { value : ''};
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+
+  }
+
+  handleChange(event) {
+    this.setState( { value : event.target.value });
+  }
+
+  handleSubmit(event) {
+    alert( ' A name was submitted:  ' + this.state.value );
+    event.preventDefault();
+  }
+
+  /*
+    value 어트리뷰트는 폼 엘리먼트에 설정되므로 표시되는 값은 항상 this.state.value 가 되고 React state는 신뢰가능한 단일 출처가 됩니다. 
+    React state를 업데이트 하기 위해서 모든 키 입력에서 handleChange가 동작하기 때문에 사용자가 입력할 때 보여지는 값이 업데이트 됩니다. 
+    제어 컴포넌트로 사용하면 모든 state 변화는 연관된 핸들러를 가집니다. 이것을 통해 사용자 입력을 수정하거나 유효성을 검사하는 것이 간단해집니다. 
+
+    handleChange(event) {
+      this.setState({value : event.target.value.toUpperCase()})
+    }
+
+
+  */
+  render(){
+    return (
+      &lt;form onSubmit={this.handleChange} >
+        &lt;lable>
+          Name : 
+            &lt;input type="text" value={this.state.value} onChange={this.handleChange} />
+        &lt;label>
+        &lt;input type="submit"  value="Submit" />
+      &lt;/form>
+    );
+  }
+}                               
+
+                            </code>
+                          </pre>
+                          <hr>
+                            textarea 태그 
+                          <hr>
+                          <pre>
+                            <code class="Javascript" >
+let EssayForm = props => {
+  const [ value, setValue ] = useState( {"value" : "Please write an essay about your favorite DOM element."});
+
+  let handleChange = (event) => {
+    setValue({ value : event.target.value });
+  }
+
+  let handleSubmit = (event) => {
+    alert("An essay was submiited : " + value );
+    event.preventDefault(); 
+  }
+
+  return (
+    &lt;form onSumbit={this.handleSumbit} >
+      &lt;label>
+        Essay :
+          &lt;textarea value={value}
+                        onChange={handleChange} />
+          &lt;input type="submit" value="Submit" />
+      &lt;label>
+    &lt;form>
+  );
+}
+                            </code>
+                          </pre>
+                          <hr>
+                          select 태그 
+                          <hr>
+                          <pre>
+                            <code class="Javascript" >
+let FlavorForm = props => {
+  let [ value, setValue ] = useState({value : 'coconut'});
+
+  let handleChange = event => {
+    setValue({ value : event.target.value });
+  }
+
+  let handleSumber = event => {
+    alert("Your favorite flavor is: " + value);
+    event.preventDefault();
+  }
+
+  return {
+    &lt;form onSubmit={handleSubmit} >
+      &lt;label>
+        Pick your favorite flavor :
+        &lt;select value={value} onChange={handleChange} >
+          &lt;option value="grapefruit" >Grapefruit&lt;/option>
+          &lt;option value="lime" >Lime&lt;/option>
+          &lt;option value="coconut" >Coconut&lt;/option>
+          &lt;option value="mango" >Mango&lt;/option>
+        &lt;/select>
+      &lt;/label>
+      &lt;input type="submit" value="Submit" />
+    &lt;form>
+
+  }
+}
+
+/*
+  select 태그에 multiple 옵션을 허용한다면 value 어트리 뷰트에 배열을 전달 할 수 있습니다. 
+
+  &lt;select multiple={true} value={['B', 'C']} >
+
+*/
+                            </code>
+                          </pre>
+                          <hr>
+                          file input 
+                          <hr>
+                          <pre>
+                            <code class="JavascriptS" >
+// 값이 읽기 전용이가 때문에 React에서는 비제어 컴포넌트입니다. 
+&lt;input type="file" />
+// https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications
+                             </code>
+                          </pre>
+                          <hr>
+                          다중 입력 제어하기 
+                          <hr>
+                          <pre>
+                            <code class="Javascript" >
+// 여러 input 엘리먼트를 제어해야 할 때, 각 엘리먼트에 name 어트리뷰트를 추가하고 
+// event.target.name 값을 통해 핸들러가 어떤 작업을 할지 선택할 수 있게 해줍니다. 
+
+let Reservation = props => {
+
+  const [ isGoing, setIsGoing ] = useState({isGoing : true});
+  const [ numberOfGuests , setNumberOfGuests ] = useState({numberOfGuests : 2});
+
+  let handleInputChange = event => {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
+    switch(name){
+      case "isGoing" : setIsGoing({isGoing: value}); break;
+      case "numberOfGuests" : setNumberOfGuests({numberOfGuests: value}); break;
+    }
+  }
+
+  return (
+    &lt;form>
+      &lt;label>
+        &lt;input 
+          name="isGoing" 
+          type="checkbox"
+          checked={isGoing}
+          onChange={handleInputChange}
+      &lt;/label>
+      &lt;br /> 
+      &lt;label>
+        &lt;input
+          name="numberOfGuests"
+          type="number"
+          value={numberOfGuests}
+          onChange={handleChange} />
+      &lt;/label>
+    &lt;/form>
+  )
+}
+                            </code>
+                         </pre>
+                        <hr>
+                        제어되는 input Null 값 
+                        <hr>
+                        <pre>
+                          <code class="Javascirpt" >
+// 제어 컴포넌트에 value prop를 지정하면 의도하지 않는 한 사용자가 변경할 수 없습니다. 
+// value로 설정했는데 여전히 수정할 수 있다면 실수로 value를 undefined 나 null 로 설정했을 수 있습니다. 
+
+ReactDOM.render(&lt;input value="hi" />, mountNode);
+
+setTimeout(function() {
+  ReactDOM.render(&lt;input value={null} />, mountNode);
+}, 1000)
+                          </code>
+                        </pre>
+                        <hr>
+                        유효성 검사, 방문한 필드 추적 및 폼 제출 처리와 같은 완벽한 해결을 원한다면 Formik이 대중적인 선택일 수 있습니다. <br>
+                        https://github.com/jaredpalmer/formik
+                        </div>
+                      </div>
+                    </div>
+                  <div class="card">
+                    <div class="card-header" id="heading4-5">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse4-5" aria-expanded="false" aria-controls="collapse4-5">
+                          State 끌어올리기 
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse4-5" class="collapse" aria-labelledby="heading4-5" data-parent="#accordionExample">
+                      <div class="card-body">
+                          <pre>
+                            <code class="Javascript" >
+
+                            </code>
+                          </pre>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header" id="heading5">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                          React의 Rendering 처리 
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse5" class="collapse" aria-labelledby="heading5" data-parent="#accordionExample">
+                      <div class="card-body">
+
+                          <strong>ReactDOM의 역할</strong><br>
+                          React.js는 자바스크립트 내에 DOM Tree와 같은 구조체를 VIRTUAL DOM으로 갖고 있습니다. 
+                          다시 그릴 때는 그 구조체의 전후 상태를 비교하여 변경이 필요한 최소한의 요소만 실제 DOM에 반영합니다. 
+                          따라서 무작위로 다시 그려도 변경에 필요한 최소한의 DOM만 갱신되기 때문에 빠르게 처리할 수 있습니다.
+                          <hr>
+                          <img src="../react/workflowRenderingBrowser.png" alt="">
+                          <hr>
+                          Virtual DOM 은 DOM 차원에서의 더블 버퍼링이랑 다름이 없다. <br>
+                          변화가 일어나면 그것을 오프라인 DOM 트리에 적용시키는데,  <br>
+                          이 DOM 트리는 렌더링도 되지 않기때문에 연산 비용이 적다. <br>
+                          연산이 끝나고나면 그 최종적인 변화를 실제 DOM 에 던져주는 것이다.   <br>
+                          그러면, 레이아웃 계산과 리렌더링의 규모는 커지겠지만, 딱 한번만 연산이 일어나게 된다.  <br>
+                          바로 이렇게, 하나로 묶어서 적용시키는것이, 연산의 횟수를 줄일 수 있는 방법이다.  <br>
+                          <hr>
+                          React가 DOM보다 빠른 것이 아니라, 유지보수 가능한 어플리케이션을 만드는 것을 도와주고 대부분의 경우에 '충분히 빠르다.' <br>
+                          실제로 최적화 작업을 직접 했을 때가 React를 사용했을 때 보다 빠르지만 이를 자동화하여 처리해주는 React가 유지보수 및 생산성을 고려하였을 때 배가 되는 것 <br>
+                          React 를 사용한다고 해도 최적화 작업이 제대로 이뤄지지 않으면 오히려 속도가 더 느릴수도 있다. 
+                      </div>
+                    </div>
+                  </div>  
+                  <div class="card">
+                    <div class="card-header" id="heading8">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapse8">
+                          React - Props   
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse8" class="collapse" aria-labelledby="heading8" data-parent="#accordionExample">
+                      <div class="card-body">
+                        props는 프로퍼티 용어의 약어 입니다. props는 컴포넌트에서 전달해서 보관하길 원하는 데이터 입니다. 즉, 컴포넌트 내에서 보관되면, <br>
+                        이 데이터는 수정되지 않고 보존되어야 하는 법칙이 성립된다. 만약 props의 값을 변경하고자 할 때는 컴포넌트 내부가 아닌, 부모 컴포넌트에서 <br>
+                        이에 대한 부분이 변경되어야 합니다. 
+                        <hr>
+                      </div>
+                    </div>
+                  </div> 
+                  <div class="card">
+                    <div class="card-header" id="heading7">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
+                          React - State 
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse7" class="collapse" aria-labelledby="heading7" data-parent="#accordionExample">
+                      <div class="card-body">
+                        동적인 데이터를 사용해야할 경우, state를 사용해야합니다. 아래의 새로운 컴포넌트를 만들어 보겠습니다. 
+                        <hr>
+<pre>
+  <code class="javascript" >
+    import React, { Component } from 'react';
+
+    class CounterHandler extends Component {
+      state = {
+        count: 0
+      }
+    
+      addCount = () => {
+        this.setState({
+          count: this.state.count + 1
+        });
+      }
+    
+      reduceCount = () => {
+        this.setState({
+          count: this.state.count - 1
+        });
+      }
+    
+      render() {
+        return (
+          &lt;div>
+            &lt;h1>카운터&lt;/h1>
+            &lt;div>값: {this.state.count}&lt;/div>
+            &lt;button onClick={this.addCount}>+&lt;/button>
+            &lt;button onClick={this.reduceCount}>-&lt;/button>
+          &lt;/div>
+        );
+      }
+    }
+
+    export default CounterHandler;
+  </code>
+</pre>  
+
+<pre>
+    <code class="javascript" >
+    import React, { Component } from 'react';
+    import CounterHandler from './CounterHandler';
+
+    ReactDOM.render(
+        &lt;CounterHandler />
+    , document.getElementById('root'));
+
+  </code>
+</pre>        
+<hr>
+                        React 컴포넌트는 컴포넌트의 상태를 저장할 수 있습니다. <br>
+                        props와의 차이점이라고 하면, state는 컴포넌트의 내부에 존재하고 있기 때문에, 상태 값 변경이 가능하다는 것입니다. <br>
+                        this.setState() 메소드를 통해서 stat 값을 변경해줄 수 있습니다.   
+                        <hr>
+                        기본적으로 아래와 같이 Contructor에 state 변수를 선언할 때 중첩 문은 동작하지 않는다. 
+                        <pre>
+                          <code class="JavaScript">
+// 아래와 같이 state 에서 중첩문이 적용되지 않음 - value가 undefined로 인식됨                             
+class App extends Component {
+  construct(props){
+    super(props);
+    this.state = {
+      result : {
+        value : 10
+      }
+    }
+
+  }
+
+}
+                          </code>
+                        </pre>    
+                        <hr>
+                        React는 성능을 위해 여러 setState() 호출을 단일 업데이트로 한꺼번에 처리할 수 있습니다. <br>
+                        this.props 와 this.state가 비동기적으로 업데이트 될 수 있기 때문에 다음 state를 계산할 때 해당 값에 의존해서는 안됩니다. <hr>
+                        <pre>
+                          <code class="Javascript" >
+// Correct
+const [ value, setValue ] = useState(0);
+
+setValue((state, props) => ({
+  counter: state.counter + props.increment
+}))
+                          </code>
+                        </pre>  
+                        <hr>
+                        State는 다양한 독립적인 변수를 포함할 수 있습니다. 위의 코드에서 setValue를 이용해서 독립적으로 변수를 각각 호출할 수 있습니다. <br>
+                        <pre>
+                          <code class="Javascript" >
+// Correct
+const [ value, setValue ] = useState({ posts: [], comments: [] });
+
+fetchPosts().then(response => {
+  setValue({
+    posts: response.posts
+  });
+});
+
+fetchComments().then(response => {
+  setValue({
+    comments: response.comments
+  });
+});
+                          </code>
+                        </pre>     
+                        <hr>
+                        state가 소유하고 설정한 컴포넌트 이외에는 어떠한 컴포넌트에서 접근할 수 없습니다. <br>
+                        일반적으로 이를 “하향식(top-down)” 또는 “단방향식” 데이터 흐름이라고 합니다. 모든 state는 항상 특정한 컴포넌트가 소유하고 있으며 그 state로부터 파생된 UI 또는 데이터는 오직 트리구조에서 자신의 “아래”에 있는 컴포넌트에만 영향을 미칩니다. <br>
+                        <pre>
+                          <code class="Javascript" >
+import React, { useState } from 'react';
+
+const FormattedData = props => {
+    return &lt;h2>It is {props.date.toLocaleTimeString()}. &lt;/h2>
+}
+
+const SampleScreen01 = props => {
+
+    const [ date , setDate] = useState(new Date());
+
+    setInterval(() => {
+        setDate(new Date());
+      }, 1000)
+
+    // 모든 컴포넌트가 완전히 독립적이라는 것을 보여주기 위해 App 렌더링하는 세 개의 &lt;FormattedData>을 만들었습니다.
+    let SampleScreen01Layout = (
+        &lt;div className="row" >
+          &lt;FormattedData date={date} />
+          &lt;hr />
+          &lt;FormattedData date={date} />
+          &lt;hr />
+          &lt;FormattedData date={date} />
+          &lt;hr />
+        &lt;/div>
+    );
+
+    return SampleScreen01Layout;
+}
+
+export default SampleScreen01;
+                          </code>
+                        </pre>
+                      </div>
+                    </div>
+                  </div> 
+                
+                  <div class="card">
+                    <div class="card-header" id="heading9">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse9" aria-expanded="false" aria-controls="collapse9">
+                          Image Append 하기 
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse9" class="collapse" aria-labelledby="heading9" data-parent="#accordionExample">
+                      <div class="card-body">
+                         Append 처리를 위해서 state를 사용하고, map을 이용하여 switch case 문을 적용함. 
+                        <hr>
+                        <pre>
+                          <code class="JavaScript" >
+componentDidMount = index => {
+  let wingsEndPointUrl = "http://localhost:8080/visit/factory/unit?requestUnit=Goliath";
+
+  let indexVal = index;
+
+  let unitListArray = this.state.unitList;
+
+  console.log(indexVal);
+
+  unitListArray.push(indexVal);
+
+  this.setState({ unitList : unitListArray})
+
+  axios.get(wingsEndPointUrl)
+        .then(res => {
+    const data = res.data;
+    this.setState({ resourceGas : data.resourceGas, resourceMineral : data.resourceMineral });
+  });
+
+}
+
+render() {
+  const resourceGas  = this.state.resourceGas;
+  const resourceMineral = this.state.resourceMineral;
+ 
+  let Images = this.state.unitList.map(image  => {
+    switch(image) {
+      case 1:
+        return &lt;img className="w-50" src={siege_tank}>&lt;/img>;
+      case 2:
+        return &lt;img className="w-50" src={virture}>&lt;/img>;
+      case 3:
+        return &lt;img className="w-50" src={goliath}>&lt;/img>;
+      default:
+        return null;
+    }
+   });
+
+
+   &lt;div className="col-10 mh-300"> 
+      &lt;div className="row" >
+         &lt;div className="col-5">&lt;img src={factory}>&lt;/img>&lt;/div>
+         &lt;div className="col-2 overflow-auto">
+              {Images}
+           &lt;img className="w-50" src={goliath}>&lt;/img>
+         &lt;/div>
+         &lt;div className="col-3">&lt;/div>
+      &lt;/div>
+  &lt;/div>
+                            
+                          </code>
+                        </pre>
+                      </div>
+                    </div>
+                  </div> 
+                  <div class="card">
+                    <div class="card-header" id="heading10">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse10" aria-expanded="false" aria-controls="collapse10">
+                          Map을 이용한 다중 Element 및 이벤트 반환 방법
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse10" class="collapse" aria-labelledby="heading10" data-parent="#accordionExample">
+                      <div class="card-body">
+                        <pre>
+                          <code class="JavaScript" >
+const someArr = ["A", "B", "C", "D"];
+
+class App extends React.Component {
+  state = {
+    valueA: "",
+    valueB: "some initial value",
+    valueC: "",
+    valueD: "blah blah"
+  };
+
+  handleChange = param => e => {
+    const nextValue = e.target.value;
+    this.setState({ ["value" + param]: nextValue });
+  };
+
+  render() {
+    return (
+      &lt;div>
+        {someArr.map(obj => {
+          return (
+            &lt;div>
+              &lt;label>
+                {`input ${obj}   `}
+              &lt;/label>
+              &lt;input
+                type="text"
+                value={this.state["value" + obj]}
+                onChange={this.handleChange(obj)}
+              />
+              &lt;br />
+              &lt;br />
+            &lt;/div>
+          );
+        })}
+      &lt;/div>
+    );
+  }
+}                              
+                          </code>
+                        </pre>           
+                      </div>
+                    </div>
+                  </div> 
+                  <div class="card">
+                    <div class="card-header" id="heading11">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse11" aria-expanded="false" aria-controls="collapse11">
+                           For 문을 이용한 중첩 Component 호출 처리 
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse11" class="collapse" aria-labelledby="heading11" data-parent="#accordionExample">                        
+                      <div class="card-body">
+                        <pre>
+                          <code class="JavaScript">
+class AppComponent extends React.Component {
+  state = {
+    numChildren: 0
+  }
+
+  render () {
+    const children = [];
+
+    for (var i = 0; i &lt; this.state.numChildren; i += 1) {
+      children.push(&lt;ChildComponent key={i} number={i} />);
+    };
+
+    return (
+      &lt;ParentComponent addChild={this.onAddChild}>
+        {children}
+      &lt;/ParentComponent>
+    );
+  }
+
+  onAddChild = () => {
+    this.setState({
+      numChildren: this.state.numChildren + 1
+    });
+  }
+}
+
+const ParentComponent = props => (
+  &lt;div className="card calculator">
+    &lt;p>&lt;a href="#" onClick={props.addChild}>Add Another Child Component&lt;/a>&lt;/p>
+    &lt;div id="children-pane">
+      {props.children}
+    &lt;/div>
+  &lt;/div>
+);
+
+const ChildComponent = props => &lt;div>{"I am child " + props.number}&lt;/div>;
+                          </code>
+                        </pre>    
+                      </div>
+                    </div>
+                  </div> 
+                  <div class="card">
+                    <div class="card-header" id="heading12">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse12" aria-expanded="false" aria-controls="collapse12">
+                          useState와 useEffect
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse12" class="collapse" aria-labelledby="heading12" data-parent="#accordionExample">
+                      <div class="card-body">
+                        <pre>
+                          <code class="Javascript">
+import React, { useState, useEffect } from 'react';
+
+function FriendStatus(props) {
+  const [isOnline, setIsOnline] = useState(null);
+
+  useEffect(() => {
+    function handleStatusChange(status) {
+      setIsOnline(status.isOnline);
+    }
+
+    ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
+    return () => {
+      ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
+    };
+  });
+
+  if (isOnline === null) {
+    return 'Loading...';
+  }
+  return isOnline ? 'Online' : 'Offline';
+}                          
+                          </code>
+                        </pre>                       
+                      </div>
+                    </div>
+                  </div> 
+                  <div class="card">
+                    <div class="card-header" id="heading13">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse13" aria-expanded="false" aria-controls="collapse13">
+                          Render Props ( for Cross-Cutting Concerns )
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse13" class="collapse" aria-labelledby="heading13" data-parent="#accordionExample">
+                      <div class="card-body">
+
+                        <hr>
+<pre>
+  <code class="Javascript" >
+&lt;DataProvider render={data => (
+  &lt;h1>Hello {data.target}&lt;/h1>
+)}/>
+  </code>
+</pre>
+                      </div>
+                    </div>
+                  </div>      
+                  <div class="card">
+                    <div class="card-header" id="heading14">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse14" aria-expanded="false" aria-controls="collapse14">
+                          Component Lifecycle 
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse14" class="collapse" aria-labelledby="heading14" data-parent="#accordionExample">
+                      <div class="card-body">
+                         컴포넌트를 생성할 때, constructor -> componentWillMount -> render -> componentDidMount 
+                         <hr>
+                         컴포넌트를 제거할 때, componentWillUnmount
+                         <hr>
+                         컴포넌트의 props이 변경될 때, componentWillReceiveProps -> shouldComponentUpdate -> componentWillUpdate-> render -> componentDidUpdate
+                         <hr>
+                         컴포넌트의 state가 변경될 때, shouldComponentUpdate
+
+                         <hr>
+                          <div class="alert alert-secondary" role="alert">
+                            componentWillUpdate : 컴포넌트가 업데이트 되기 전에 실행됩니다. 이 메소드 안에서는 this.setState() 를 사용하지 마세요 – 무한루프에 빠져들게 됩니다.
+                          </div>
+                      </div>
+                    </div>
+                  </div>  
+                  <div class="card">
+                    <div class="card-header" id="heading15">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse15" aria-expanded="false" aria-controls="collapse15">
+                            Component Design Pattern 
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse15" class="collapse" aria-labelledby="heading15" data-parent="#accordionExample">
+                      <div class="card-body">
+                          <ul>
+                            <li>DRY(Don't Repeat Yourself)</li>
+                            <li>재사용 가능한 컴포넌트를 만든다.</li>
+                            <li>컴포넌트가 무엇을 하는지 명확하게 이해할 수 있다.</li>
+                          </ul>
+                          <hr>
+                            고차 컴포넌트 ( Higher Order Component ) <br>
+                            <div class="alert alert-primary" role="alert">
+                                고차 컴포넌트는 Sebastian Markbåge의 gist를 시작으로 대중화된 패턴입니다. <br>
+                                react-redux 의 connect()나 Relay의 createContainer() 등이 고차 컴포넌트에 해당합니다. <br>
+                                고차 컴포넌트는 컴포넌트를 input으로 하고 컴포넌트를 output으로 하는 함수라고 생각하시면 됩니다. <br>
+                                <hr>
+                                  고차 컴포넌트는 공통 로직을 어떻게 분리하느냐가 핵심입니다.
+                                <hr>
+                                <pre>
+                                  <code class="Javascript" >
+// Enhance.js                                    
+import { Component } from "React";
+
+export var Enhance = ComposedComponent => class extends Component {
+  constructor() {
+    this.state = { data: null };
+  }
+  componentDidMount() {
+    this.setState({ data: 'Hello' });
+  }
+  render() {
+    return &lt;ComposedComponent {...this.props} data={this.state.data} />;
+  }
+};
+
+// HigherOrderComponent.js
+import { Enhance } from "./Enhance";
+
+class MyComponent {
+  render() {
+    if (!this.data) return &lt;div>Waiting...&lt;/div>;
+    return &lt;div>{this.data}&lt;/div>;
+  }
+}
+                                  </code>
+                                </pre>
+                            </div>
+                          <hr>
+                          무 상태 컴포넌트 (Stateless Component)
+                          <hr>
+                          무 상태 컴포넌트는 재사용성이 굉장히 높은 컴포넌트를 작성할 수 있게 도와줍니다. <br>
+                          컴포넌트를 완전한 함수로 정의한다는 점이 특징입니다.
+                          <hr>
+                            <div class="alert alert-primary" role="alert">
+                              <pre>
+                                <code class="Javascript" >
+const Button = (props) => (
+  &lt;button type="button" className={props.className} />
+) 
+
+// ES6의 Destructuring assignment를 이용
+const Button = ({ className }) => (
+  &lt;button type="button" className={className} />
+)
+
+// ES6의 Spread Syntax와 Rest parameters를 이용
+const Button = ({ className, ...remainProps }) => (
+  &lt;button type="button" className={className} {...remainProps} />
+)
+                                </code>
+                              </pre>
+                            </div>
+                          <hr>
+                          특수화 (Specialization)
+                          <hr>
+                          특수화는 컴포넌트의 역할을 specialize 해서 보다 명확한 컴포넌트로 만들어줍니다.
+                          <pre>
+                            <code>
+const RedButton = () => &lt;Button className="red">
+const BlueButton = () => &lt;Button className="blue">
+// {this.props.theme === RED ? &lt;RedButton> : <BlueButton>}                             
+                            </code>
+                          </pre>
+                      </div>
+                    </div>
+                  </div>  
+                  <div class="card">
+                    <div class="card-header" id="heading16">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse16" aria-expanded="false" aria-controls="collapse16">
+                          div에 margin 스타일이 들어간 div 영역을 바인딩하는 방식
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse16" class="collapse" aria-labelledby="heading14" data-parent="#accordionExample">
+                      <div class="card-body">
+const BodyWrapper = styled.div`
+  margin-top: 30px;
+`;           
+                                               
+&lt;BodyWrapper>
+  &lt;Switch>
+    &lt;Route path="/signin" component={SignIn} />
+    &lt;Route component={Home} />
+  &lt;/Switch>
+&lt;/BodyWrapper>
+                      </div>
+                    </div>
+                  </div>                  
+              </div>                
+            </div>
+            <div class="card-footer small text-muted"></div>
+          </div>
+          
+        <!-- /.container-fluid -->
+
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright © Your Website 2018</span>
+            </div>
+          </div>
+        </footer>
+
+      </div>
+      <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="cleancode">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="login.html">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+ 
+
+    <!-- Custom scripts for all pages-->
+    <script src="../js/sb-admin.min.js"></script>
+  </body>
+
+</html>

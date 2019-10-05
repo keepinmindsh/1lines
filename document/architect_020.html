@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>1Lines - Architecture</title>
+
+    <!-- Bootstrap core CSS-->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template-->
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Page level plugin CSS-->
+    <link href="../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="../css/sb-admin.css" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/default.css">
+    <script src="../highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </head>
+
+  <body id="page-top">
+
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+
+      <a class="navbar-brand mr-1" href="index.html">Start Bootstrap</a>
+
+      <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Navbar Search -->
+      <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Navbar -->
+      <ul class="navbar-nav ml-auto ml-md-0">
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-bell fa-fw"></i>
+            <span class="badge badge-danger">9+</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-envelope fa-fw"></i>
+            <span class="badge badge-danger">7</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user-circle fa-fw"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+            <a class="dropdown-item" href="#">Settings</a>
+            <a class="dropdown-item" href="#">Activity Log</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+          </div>
+        </li>
+      </ul>
+
+    </nav>
+
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <ul class="sidebar navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>요약</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>목록</span>
+          </a>
+          <div class="dropdown-menu show" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header">서론</h6>
+            <a class="dropdown-item" href="../document/architect_001.html">서론</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">사례연구</h6>
+            <a class="dropdown-item" href="../document/architect_002.html">사례연구</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">생성 패턴</h6>
+            <a class="dropdown-item" href="../document/architect_003.html">추상 팩토리</a>
+            <a class="dropdown-item" href="../document/architect_004.html">빌더</a>
+            <a class="dropdown-item" href="../document/architect_005.html">팩토리 메서드</a>
+            <a class="dropdown-item" href="../document/architect_006.html">원형</a>
+            <a class="dropdown-item" href="../document/architect_007.html">단일체</a>
+            <a class="dropdown-item" href="../document/architect_008.html">생성 패턴에 대한 논의</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">구조 패턴</h6>
+            <a class="dropdown-item" href="../document/architect_009.html">적응자</a>
+            <a class="dropdown-item" href="../document/architect_010.html">가교</a>
+            <a class="dropdown-item" href="../document/architect_011.html">복합체</a>
+            <a class="dropdown-item" href="../document/architect_012.html">장식자</a>
+            <a class="dropdown-item" href="../document/architect_013.html">퍼사드</a>
+            <a class="dropdown-item" href="../document/architect_014.html">플라이급</a>
+            <a class="dropdown-item" href="../document/architect_015.html">프록시</a>
+            <a class="dropdown-item" href="../document/architect_016.html">구조패턴에 대한 논의</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">행동 패턴</h6>
+            <a class="dropdown-item" href="../document/architect_017.html">책임 연쇄</a>
+            <a class="dropdown-item" href="../document/architect_018.html">명령</a>
+            <a class="dropdown-item" href="../document/architect_019.html">해석자</a>
+            <a class="dropdown-item" href="../document/architect_020.html">반복자</a>
+            <a class="dropdown-item" href="../document/architect_021.html">중재자</a>
+            <a class="dropdown-item" href="../document/architect_022.html">메멘토</a>
+            <a class="dropdown-item" href="../document/architect_023.html">감시자</a>
+            <a class="dropdown-item" href="../document/architect_024.html">상태</a>
+            <a class="dropdown-item" href="../document/architect_025.html">전략</a>
+            <a class="dropdown-item" href="../document/architect_026.html">템플릿 메서드</a>
+            <a class="dropdown-item" href="../document/architect_027.html">방문자</a>
+            <a class="dropdown-item" href="../document/architect_028.html">행동 패턴에 대한 논의</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">결론</h6>
+            <a class="dropdown-item" href="../document/architect_029.html">디자인 패턴에서 무엇을<br> 기대할 수 있는가?</a>
+            <a class="dropdown-item" href="../document/architect_030.html">간략한 역사</a>
+            <a class="dropdown-item" href="../document/architect_031.html">패턴 커뮤니티</a>
+            <a class="dropdown-item" href="../document/architect_032.html">초대의 글</a>
+            <a class="dropdown-item" href="../document/architect_033.html">책을 마무리하며</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">System Archtecture</h6>
+            <a class="dropdown-item" href="../document/architect_053.html">API with Zuul</a>
+            <a class="dropdown-item" href="../document/architect_037.html">Cloud System</a>
+            <a class="dropdown-item" href="../document/architect_047.html">Cassandra</a>
+            <a class="dropdown-item" href="../document/architect_036.html">DevOps</a>
+            <a class="dropdown-item" href="../document/architect_045.html">IAC</a>
+            <a class="dropdown-item" href="../document/architect_043.html">Kuberneties</a>
+            <a class="dropdown-item" href="../document/architect_034.html">MVC</a>
+            <a class="dropdown-item" href="../document/architect_049.html">MSA</a>
+            <a class="dropdown-item" href="../document/architect_044.html">MOM</a>
+            <a class="dropdown-item" href="../document/architect_039.html">PAAS</a>
+            <a class="dropdown-item" href="../document/architect_035.html">REST API</a>
+            <a class="dropdown-item" href="../document/architect_046.html">SAAS</a>
+            <a class="dropdown-item" href="../document/architect_040.html">SCA</a>
+            <a class="dropdown-item" href="../document/architect_042.html">SOA</a>
+            <a class="dropdown-item" href="../document/architect_041.html">TDD(DDD)</a>
+            <a class="dropdown-item" href="../document/architect_048.html">Web Cache</a>
+            <a class="dropdown-item" href="../document/architect_050.html">Various Pattern</a>
+          </div>
+        </li>
+      </ul>
+
+      <div id="content-wrapper">
+        <div class="container-fluid">
+          <!-- Breadcrumbs-->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">Iterator</li>
+          </ol>
+
+
+         <!-- Area Chart Example-->
+         <div class="card mb-3">
+          <div class="card-header">
+            Iterator
+          </div>
+          <div class="card-body">
+              <p class="card-text">
+                  <div class="accordion" id="accordionExample">
+                      <div class="card">
+                        <div class="card-header" id="headingOne">
+                          <h2 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                              의도 
+                            </button>
+                          </h2>
+                        </div>
+                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                          <div class="card-body">
+                             내부 표현부를 노출하지 않고 어떤 집합 객체에 속한 원소들을 순차적으로 접근할 수 있는 방법을 제공합니다. 
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-header" id="headingTwo">
+                          <h2 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                              동기
+                            </button>
+                          </h2>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                          <div class="card-body">
+                            리스트 등 집합 객체들은 이 내부 표현 구조를 노출하지 않고도 자신의 원소를 접근할 수 있는 방법을 제공하는게 좋습니다. 
+                            여기에 덧붙여서, 이미 정의한 방법과 다른 방법으로 이들 원소들을 순회하고자 할 수도 있습니다. 
+                            그러나 다른 순회 방법이 바뀌었다고 List 클래스의 인터페이스를 부풀리고 싶지는 않을 것입니다. 
+                            또한 동일한 리스트에 대해서 하나 이상의 순회 방법을 정의하고 싶을 때도 있습니다. 
+                            <hr>
+                            이런 문제를 해결하는데 사용하는 것이 바로 반복자 패턴입니다. 
+                            이 패턴의 주요 골자는 리스트 객체에 접근해서 새로운 내용을 삽입,삭제하거나 순회하는 내용을 반복자 객체에 정의하는 것입니다. 
+                            반복자 객체를 나타내는 Iterator 클래스는 리스트의 원소들에 접근하는데 필요한 인터페이스를 제공합니다. 
+                            즉, Iterator 객체는 현재 원소가 무엇인지 관리하고, 이미 방문한 원소들이 무엇인지 알고 있습니다.
+                            <hr>
+                            Iterator 클래스와 List 클래스가 한 쌍으로 묶여있기 때문에 , 사용자는 어떤 집합 구조에 대해서 순회할 주제가 리스트 인지를 알아야 한다는 점에서 주목하라. 
+                            따라서 사용자는 반드시 특정한 집합 구조에 따라가야 합니다. 이대, List의 복합 구조를 변경하더라도 사용자 코드는 변경하지 않도록 만들면 더욱 좋습니다. 
+                            이렇게 하려면, 반복자의 개념을 일반화하여 다형성을 지닌 반복이 가능하도록 하면 됩니다. 
+
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-header" id="headingThree">
+                          <h2 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                              활용성
+                            </button>
+                          </h2>
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                          <div class="card-body">
+                              <img src="../document/Iterator.png" class="img-fluid" alt="">
+                              <hr>
+                              <hr>
+                              <ul>
+                                <li>
+                                  객체의 내부 표현 방식은 모르고도 집합 객체의 각 원소들에 접근하고 싶을 때
+                                </li>
+                                <hr>
+                                <li>
+                                  집합 객체를 순회하는 다양한 방법을 지원하고 싶을 때, 
+                                </li>
+                                <hr>
+                                <li>
+                                  서로 다른 집합 객체 구조에 대해서도 동일한 방법으로 순회하고 싶을 때 
+                                </li>
+                              </ul>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                          <div class="card-header" id="headingFour">
+                            <h2 class="mb-0">
+                              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                항목에 대한 설명
+                              </button>
+                            </h2>
+                          </div>
+                          <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <div class="card" >
+                                  <div class="card-body">
+                                      <h5 class="card-title">Iterator</h5>
+                                      <h6 class="card-subtitle mb-2 text-muted"></h6>
+                                      <p class="card-text">
+                                        원소를 접근하고 순회하는 데 필요한 인터페이스를 제공합니다. 
+                                      </p>
+                                  </div>
+                                </div> 
+                                <div class="card" >
+                                  <div class="card-body">
+                                      <h5 class="card-title">Concrete Iterator</h5>
+                                      <h6 class="card-subtitle mb-2 text-muted"></h6>
+                                      <p class="card-text">
+                                        Iterator 에 정의된 인터페이스를 구현하는 클래스로, 순회 과정 중 집합 객체 내에서 현재 위치를 기억합니다. 
+                                      </p>
+                                  </div>
+                                </div> 
+                                <div class="card" >
+                                  <div class="card-body">
+                                      <h5 class="card-title">Aggregate</h5>
+                                      <h6 class="card-subtitle mb-2 text-muted"></h6>
+                                      <p class="card-text">
+                                          Iterator 객체를 생성하는 인터페이스를 정의합니다. 
+                                      </p>
+                                  </div>
+                                </div> 
+                                <div class="card" >
+                                  <div class="card-body">
+                                      <h5 class="card-title">Concrete Aggregate</h5>
+                                      <h6 class="card-subtitle mb-2 text-muted"></h6>
+                                      <p class="card-text">
+                                          해당하는 Concrete Iterator 의 인스턴스를 반환하는 Iterator 생성 인터페이스를 구현합니다. 
+                                      </p>
+                                  </div>
+                                </div> 
+                                <div class="card" >
+                                  <div class="card-body">
+                                      <h5 class="card-title">Client</h5>
+                                      <h6 class="card-subtitle mb-2 text-muted"></h6>
+                                      <p class="card-text">
+                                      </p>
+                                  </div>
+                                </div> 
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card">
+                          <div class="card-header" id="heading5">
+                            <h2 class="mb-0">
+                              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                                협력방법 
+                              </button>
+                            </h2>
+                          </div>
+                          <div id="collapse5" class="collapse" aria-labelledby="heading5" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <ul>
+                                  <li>ConcreteIterator는 집합 객체 내 현재 객체를 계속 추적하고 다음번 방문할 객체를 결정합니다. </li>
+                                </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card">
+                          <div class="card-header" id="heading6">
+                            <h2 class="mb-0">
+                              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
+                                결과 
+                              </button>
+                            </h2>
+                          </div>
+                          <div id="collapse6" class="collapse" aria-labelledby="heading6" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <ul>
+                                  <li>
+                                    <Strong>집합 객체의 다양한 순회 방법을 제공합니다.</Strong>
+
+                                    <br>
+                                      구조가 복잡한 집합 객체는 다양한 방법으로 순회할 수 있습니다. 이를 테면, 컴파일러에서 코드 생성 및 의미 점검을 진행하려면 파스 트리를 순회해야합니다. <br>
+                                      코드를 생성하기 위해 트리를 순회할 때 중위 순회 방식이나 전위 순회 방식을 사용 할 수 있습니다. <br>
+                                      이때 Iterator는 순회 방식을 바꿀 수 있도록 합니다. <br>
+                                      즉, 새로운 순회 방법을 Iterator 서브 클래스로 정의하여 기존 순회 방법을 다른 순회 알고리즘 인스턴스로 완전히 교체하는 것입니다. 
+                                  </li>
+                                  <li>
+                                    <Strong>Iterator는 Aggregate 클래스의 인터페이스를 단순화 합니다. </Strong>
+                                    <br>
+                                    Iterator 의 순회 인터페이스는 Aggregate 클래스에 정의한 자신과 비슷한 인터페이스들을 없애서 Aggregate 인터페이스를 단순화할 수 있습니다. 
+                                  </li>
+                                  <li>
+                                    <Strong>집합 객체에 따라 하나 이상의 순회 방법이 제공될 수 있습니다. </Strong>
+                                     <br>
+                                     각 Iterator 마다 자신의 순회 상태가 있으므로 하나의 집합 객체를 한번에 여러 번 순회 시킬수 있습니다. 
+                                  </li>
+                                </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="headingFive">
+                              <h2 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                  코드 예제
+                                </button>
+                              </h2>
+                            </div>
+                            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+                              <pre>
+                                <code class="java" >
+package designpattern.gof_iterator.sample01;
+
+public class IteratorMain {
+
+    public static void main(String[] args) {
+        BookShelf bookShelf = new BookShelf(4);
+        bookShelf.appendBook(new Book("Around the World in 80"));
+        bookShelf.appendBook(new Book("Bible"));
+        bookShelf.appendBook(new Book("Cinderella"));
+        bookShelf.appendBook(new Book("Daddy-Long-Legs"));
+        Iterator it = bookShelf.iterator();
+        while (it.hasNext()) {
+            Book book = (Book) it.next();
+            System.out.println(book.getName());
+        }
+    }
+}
+                                    
+                                    
+                                </code>
+                              </pre>
+                              <hr>
+                              <hr>
+                              <pre>
+                                <code class="Java" >
+package designpattern.gof_iterator.sample01;
+
+public interface Iterator {
+
+  public abstract boolean hasNext();
+
+  public abstract Object next();
+}
+                                      
+package designpattern.gof_iterator.sample01;
+
+public class BookShelfIterator implements Iterator {
+
+    private BookShelf bookShelf;
+
+    private Book book;
+
+    private int index;
+
+    public BookShelfIterator(BookShelf bookShelf) {
+        this.bookShelf = bookShelf;
+        this.index = 0;
+    }
+
+    public boolean hasNext() {
+        if (index &lt; bookShelf.getLength()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public Object next() {
+        book = bookShelf.getBookAt(index);
+        index++;
+        return book;
+    }
+}
+
+package designpattern.gof_iterator.sample01;
+
+public interface Aggregate {
+    public abstract Iterator iterator();
+}
+
+
+package designpattern.gof_iterator.sample01;
+
+public class BookShelf implements Aggregate {
+
+    private Book[] books;
+
+    private int last = 0;
+
+    public BookShelf(int maxsize) {
+        this.books = new Book[maxsize];
+    }
+
+    public Book getBookAt(int index) {
+        return books[index];
+    }
+
+    public void appendBook(Book book) {
+        this.books[last] = book;
+        last++;
+    }
+
+    public int getLength() {
+        return last;
+    }
+
+    public Iterator iterator() {
+        return new BookShelfIterator(this);
+    }
+}
+
+package designpattern.gof_iterator.sample01;
+
+public class Book {
+    private String name;
+
+    public Book(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+}
+
+                                </code>
+                              </pre>
+                            </div>
+                          </div>
+  
+                          <div class="card">
+                            <div class="card-header" id="headingSix">
+                              <h2 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                  문제를 풉시다.  제한시간 : 30분 
+                                </button>
+                              </h2>
+                            </div>
+                            <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
+                              <div class="card-body">
+                                
+                                <hr>
+                                <span id="time1" ></span>
+                                  <a  id="btnStart" class="btn btn-primary">코드 시작! 30분</a>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+                </p>
+          </div>
+      </div>
+      <!-- /.container-fluid -->
+
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright © Your Website 2018</span>
+            </div>
+          </div>
+        </footer>
+
+      </div>
+      <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="login.html">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Page level plugin JavaScript-->
+    <script src="../vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="../js/sb-admin.min.js"></script>
+
+    <!-- Demo scripts for this page-->
+    <script src="../js/demo/chart-area-demo.js"></script>
+    <script src="../js/demo/chart-bar-demo.js"></script>
+    <script src="../js/demo/chart-pie-demo.js"></script>
+
+  </body>
+
+</html>

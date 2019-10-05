@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vue Sample</title>
+  </head>
+  <style>
+        /* 애니메이션 진입 및 진출은 다른 지속 시간 및  */
+        /* 타이밍 기능을 사용할 수 있습니다. */
+        .slide-fade-enter-active {
+            transition: all .3s ease;
+        }
+        .slide-fade-leave-active {
+            transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+        }
+        .slide-fade-enter, .slide-fade-leave-to
+        /* .slide-fade-leave-active below version 2.1.8 */ {
+            transform: translateX(10px);
+            opacity: 0;
+        }
+  </style>
+  <body>
+    <div id="app">
+      {{ message }}
+    </div>
+    <hr>
+    <div id="example-2">
+        <simple-counter></simple-counter>
+        <simple-counter></simple-counter>
+        <simple-counter></simple-counter>
+    </div>
+
+    <hr>
+    <div id="example-1">
+        <button @click="show = !show">
+            Toggle render
+        </button>
+        <transition name="slide-fade">
+            <p v-if="show">hello</p>
+        </transition>
+    </div>
+    <hr>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+            message: 'Hello Vue.js!'
+            }
+        })
+
+        var data = { counter: 0 }
+
+        Vue.component('simple-counter', {
+
+            template: '<button v-on:click="counter += 1">{{ counter }}</button>',
+            // 데이터는 기술적으로 함수이므로 Vue는 따지지 않지만
+            // 각 컴포넌트 인스턴스에 대해 같은 객체 참조를 반환합니다.
+            data: function () {
+                return data
+            }
+        })
+
+        new Vue({
+            el: '#example-2'
+        })
+
+        new Vue({
+            el: '#example-1',
+            data: {
+                show: true
+            }
+        })
+
+    </script>
+  </body>
+</html>

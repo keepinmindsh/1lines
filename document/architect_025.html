@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>1Lines - Architecture</title>
+
+    <!-- Bootstrap core CSS-->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template-->
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Page level plugin CSS-->
+    <link href="../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="../css/sb-admin.css" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/default.css">
+    <script src="../highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </head>
+
+  <body id="page-top">
+
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+
+      <a class="navbar-brand mr-1" href="index.html">Start Bootstrap</a>
+
+      <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Navbar Search -->
+      <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Navbar -->
+      <ul class="navbar-nav ml-auto ml-md-0">
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-bell fa-fw"></i>
+            <span class="badge badge-danger">9+</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-envelope fa-fw"></i>
+            <span class="badge badge-danger">7</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user-circle fa-fw"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+            <a class="dropdown-item" href="#">Settings</a>
+            <a class="dropdown-item" href="#">Activity Log</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+          </div>
+        </li>
+      </ul>
+
+    </nav>
+
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <ul class="sidebar navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>요약</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>목록</span>
+          </a>
+          <div class="dropdown-menu show" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header">서론</h6>
+            <a class="dropdown-item" href="../document/architect_001.html">서론</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">사례연구</h6>
+            <a class="dropdown-item" href="../document/architect_002.html">사례연구</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">생성 패턴</h6>
+            <a class="dropdown-item" href="../document/architect_003.html">추상 팩토리</a>
+            <a class="dropdown-item" href="../document/architect_004.html">빌더</a>
+            <a class="dropdown-item" href="../document/architect_005.html">팩토리 메서드</a>
+            <a class="dropdown-item" href="../document/architect_006.html">원형</a>
+            <a class="dropdown-item" href="../document/architect_007.html">단일체</a>
+            <a class="dropdown-item" href="../document/architect_008.html">생성 패턴에 대한 논의</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">구조 패턴</h6>
+            <a class="dropdown-item" href="../document/architect_009.html">적응자</a>
+            <a class="dropdown-item" href="../document/architect_010.html">가교</a>
+            <a class="dropdown-item" href="../document/architect_011.html">복합체</a>
+            <a class="dropdown-item" href="../document/architect_012.html">장식자</a>
+            <a class="dropdown-item" href="../document/architect_013.html">퍼사드</a>
+            <a class="dropdown-item" href="../document/architect_014.html">플라이급</a>
+            <a class="dropdown-item" href="../document/architect_015.html">프록시</a>
+            <a class="dropdown-item" href="../document/architect_016.html">구조패턴에 대한 논의</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">행동 패턴</h6>
+            <a class="dropdown-item" href="../document/architect_017.html">책임 연쇄</a>
+            <a class="dropdown-item" href="../document/architect_018.html">명령</a>
+            <a class="dropdown-item" href="../document/architect_019.html">해석자</a>
+            <a class="dropdown-item" href="../document/architect_020.html">반복자</a>
+            <a class="dropdown-item" href="../document/architect_021.html">중재자</a>
+            <a class="dropdown-item" href="../document/architect_022.html">메멘토</a>
+            <a class="dropdown-item" href="../document/architect_023.html">감시자</a>
+            <a class="dropdown-item" href="../document/architect_024.html">상태</a>
+            <a class="dropdown-item" href="../document/architect_025.html">전략</a>
+            <a class="dropdown-item" href="../document/architect_026.html">템플릿 메서드</a>
+            <a class="dropdown-item" href="../document/architect_027.html">방문자</a>
+            <a class="dropdown-item" href="../document/architect_028.html">행동 패턴에 대한 논의</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">결론</h6>
+            <a class="dropdown-item" href="../document/architect_029.html">디자인 패턴에서 무엇을<br> 기대할 수 있는가?</a>
+            <a class="dropdown-item" href="../document/architect_030.html">간략한 역사</a>
+            <a class="dropdown-item" href="../document/architect_031.html">패턴 커뮤니티</a>
+            <a class="dropdown-item" href="../document/architect_032.html">초대의 글</a>
+            <a class="dropdown-item" href="../document/architect_033.html">책을 마무리하며</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">System Archtecture</h6>
+            <a class="dropdown-item" href="../document/architect_053.html">API with Zuul</a>
+            <a class="dropdown-item" href="../document/architect_037.html">Cloud System</a>
+            <a class="dropdown-item" href="../document/architect_047.html">Cassandra</a>
+            <a class="dropdown-item" href="../document/architect_036.html">DevOps</a>
+            <a class="dropdown-item" href="../document/architect_045.html">IAC</a>
+            <a class="dropdown-item" href="../document/architect_043.html">Kuberneties</a>
+            <a class="dropdown-item" href="../document/architect_034.html">MVC</a>
+            <a class="dropdown-item" href="../document/architect_049.html">MSA</a>
+            <a class="dropdown-item" href="../document/architect_044.html">MOM</a>
+            <a class="dropdown-item" href="../document/architect_039.html">PAAS</a>
+            <a class="dropdown-item" href="../document/architect_035.html">REST API</a>
+            <a class="dropdown-item" href="../document/architect_046.html">SAAS</a>
+            <a class="dropdown-item" href="../document/architect_040.html">SCA</a>
+            <a class="dropdown-item" href="../document/architect_042.html">SOA</a>
+            <a class="dropdown-item" href="../document/architect_041.html">TDD(DDD)</a>
+            <a class="dropdown-item" href="../document/architect_048.html">Web Cache</a>
+            <a class="dropdown-item" href="../document/architect_050.html">Various Pattern</a>
+          </div>
+        </li>
+      </ul>
+
+      <div id="content-wrapper">
+        <div class="container-fluid">
+          <!-- Breadcrumbs-->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">Strategy</li>
+          </ol>
+         <!-- Area Chart Example-->
+         <div class="card mb-3">
+          <div class="card-header">
+            Strategy
+          </div>
+          <div class="card-body">
+              <p class="card-text">
+                  <div class="accordion" id="accordionExample">
+                      <div class="card">
+                        <div class="card-header" id="headingOne">
+                          <h2 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                              의도 
+                            </button>
+                          </h2>
+                        </div>
+                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                          <div class="card-body">
+                             동일 계열의 알고리즘을 정의하고, 각 알고리즘을 캡슐화하며, 이들을 상호교환이 가능하도록 만듭니다. <br>
+                             알고리즘을 사용하는 클라이언트와 상관 없이 독립적으로 알고리즘을 다양하게 변경할 수 있습니다. 
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-header" id="headingTwo">
+                          <h2 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                              동기
+                            </button>
+                          </h2>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                          <div class="card-body">
+                            텍스트 스트림을 라인으로 구분할 수 있는 알고리즘은 매우 많습니다. 이들 알고리즘을 직접 클래스에 하드코딩하는 것은 다음과 같은 이유로 별로 바람직 하지 않습니다.
+                            <hr>
+                            <ul>
+                              <li>
+                                줄 분리 코드가 사용자 프로그램에 들어가면, 줄 분리가 필요한 사용자 프로그램이 점점 더 복잡해집니다. 크기도 점점 커질 것이고, 유지보수하기도 힘들어집니다. <br>
+                                특히 다중 줄 분리 알고리즘을 지원한다면 더욱 그렇습니다. 
+                              </li>
+                              <li>
+                                때에 따라서 필요한 알고리즘이 다르기 때문에 모든 알고리즘을 다 제공할 필요는 없습니다. 
+                              </li>
+                              <li>
+                                알고리즘을 구성하는 문장들이 사용자 코드와 합쳐져 있을 때는 새로운 알고리즘을 추가하거나 기존의 것을 다양화하기가 어렵습니다.
+                              </li>
+                            </ul>
+                            <hr>
+                            이러한 문제는 서로 다른 줄 분리 알고리즘을 하나씩 캡슐화한 클래스를 정의함으로써 피해갈 수 있습니다. <br>
+                            이렇게 캡슐화된 알고리즘을 가리켜 전략이라고 합니다. 
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-header" id="headingThree">
+                          <h2 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                              활용성
+                            </button>
+                          </h2>
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                          <div class="card-body">
+                            <img src="../document/Strategy.png" width="800" alt="">
+                              <hr>
+                              <hr>
+                              <ul>
+                                <li>
+                                  업무 자체는 변경되지 않는데, 업무를 처리하는 담당자가 변경되는 경우 <br>
+                                  예약 시스템에서 Copy라는 기는이 있는데 이를 예약에서 쓸경우와 투숙에서 쓸 경우 <br> 
+                                  동사무소에서 신청서를 출력할 때, 신청서의 양식에 따라서 신청서의 내용이 달라질 경우 <br>
+                                </li>
+                                <li>
+                                  행동들이 조금씩 다른 뿐 개념적으로 관련된 많은 클래스들이 존재할 때, 전략 패턴은 많은 행동 중 하나를 가진 클래스를 구성할 수 있는 방법을 제공합니다. 
+                                </li>
+                                <hr>
+                                <li>
+                                  알고리즘의 변경이 필요할 때. 이를 테면 기억 공간과 처리 속도 간의 절충에 따라 서로 다른 알고리즘을 정의할 수 있을 것입니다. <br>
+                                  이러한 변형물들이 알고리즘의 상속 관계로 구현될 때 전략 패턴을 사용할 수 있습니다. 
+                                </li>
+                                <hr>
+                                <li>
+                                  사용자가 몰라야 하는 데이터를 사용하는 알고리즘이 있을 때. 노출하지 말아야 할 복잡한 자료 구조는 Strategy 클래스에만 두면 되므로 사용자는 몰라도 됩니다. <br>
+                                </li>
+                                <hr>
+                                <li>
+                                  하나의 클래스가 많은 행동을 정의하고, 이런 행동들이 그 클래스의 연산 안에서 복잡한 다중 조건문의 모습을 취할 때. 많은 조건문보다는 각각을 Strategy 클래스로 옮겨놓는 것이 좋습니다.
+                                </li>
+                              </ul>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                          <div class="card-header" id="headingFour">
+                            <h2 class="mb-0">
+                              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                항목에 대한 설명
+                              </button>
+                            </h2>
+                          </div>
+                          <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <div class="card" >
+                                  <div class="card-body">
+                                      <h5 class="card-title">Strategy</h5>
+                                      <h6 class="card-subtitle mb-2 text-muted">Compositer</h6>
+                                      <p class="card-text">
+                                        제공하는 모든 알고리즘에 대한 공통의 연산들을 인터페이스로 정의합니다. <br>
+                                        Context 클래스는 ConcreteStrategy 클래스에 정의한 인터페이스를 통해서 실제 알고리즘을 사용합니다. 
+                                      </p>
+                                  </div>
+                                </div> 
+                                <div class="card" >
+                                  <div class="card-body">
+                                      <h5 class="card-title">ConcreteStrategy</h5>
+                                      <h6 class="card-subtitle mb-2 text-muted">SimpleCompositer, TeXCompositor, ArrayCompositor </h6>
+                                      <p class="card-text">
+                                        Strategy 인터페이스를 실제 알고리즘으로 구현합니다. 
+                                      </p>
+                                  </div>
+                                </div> 
+                                <div class="card" >
+                                  <div class="card-body">
+                                      <h5 class="card-title">Context</h5>
+                                      <h6 class="card-subtitle mb-2 text-muted">Composition</h6>
+                                      <p class="card-text">
+                                          ConcreteStrategy 객체를 통해 구성됩니다. 즉, Strategy 객체에 대한 참조자를 관리하고, 실제로는 Strategy 서브 클래스의 인스턴스를 갖고 있음으로써 <br>
+                                          구체화합니다. 또한 Strategy 가 자료에 접근해가는데 필요한 인터페이스를 제공합니다. 
+                                      </p>
+                                  </div>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card">
+                          <div class="card-header" id="heading5">
+                            <h2 class="mb-0">
+                              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                                협력방법 
+                              </button>
+                            </h2>
+                          </div>
+                          <div id="collapse5" class="collapse" aria-labelledby="heading5" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <ul>
+                                  <li>
+                                    Strategy 클래스와 Context 클래스는 의사교환을 통해 선택한 알고리즘을 구현합니다. 즉, Context 클래스는 알고리즘에 해당하는 연산이 호출되면, <br>
+                                    알고리즘 처리에 필요한 모든 데이터를 Strategy 클래스로 보냅니다. 이때, Context 객체 자체를 Strategy 연산에다가 인자로 전송할 수도 있습니다.  
+                                  </li>
+                                  <li>
+                                    Context 클래스는 사용자 쪽에서 온 요청을 각 전략 객체로 전달합니다. 이를 위해서 사용자는 필요한 알고리즘에 해당하는 ConcreteStrategy 객체를 생성하여 <br>
+                                    이를 Context 클래스에 전송하는데, 이 과정을 거치면 사용자는 Context 객체와 동작할 때 전달한 ConcreteStrategy 객체와 함께 동작합니다. <br>
+                                    사용자가 선택할 수 있는 동일 계열의 ConcreteStrategy 클래스 군이 준비될 때가 자주 있습니다. 
+                                  </li>
+                                </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card">
+                          <div class="card-header" id="heading6">
+                            <h2 class="mb-0">
+                              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
+                                결과 
+                              </button>
+                            </h2>
+                          </div>
+                          <div id="collapse6" class="collapse" aria-labelledby="heading6" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <ul>
+                                  <li>
+                                    동일 계열의 관련 알고리즘 군이 생깁니다. 
+                                  </li>
+                                  <li>
+                                    서브 클래싱을 사용하지 않는 대안입니다. 
+                                  </li>
+                                  <li>
+                                    조건문을 없앨수 있습니다. 
+                                  </li>
+                                  <li>
+                                    구현의 선택이 가능합니다. 
+                                  </li>
+                                  <li>
+                                    사용자(프로그램)는 서로 다른 전략을 알아야 합니다. 
+                                  </li>
+                                  <li>
+                                    Strategy 객체와 Context 객체 사이에 의사소통 오버헤드가 있습니다. 
+                                  </li>
+                                  <li>
+                                    객체 수가 증가합니다. 
+                                  </li>
+                                </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="headingFive">
+                              <h2 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                  코드 예제
+                                </button>
+                              </h2>
+                            </div>
+                            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+                              <pre>
+                                <code class="java" >
+  
+                                    
+                                </code>
+                              </pre>
+                              <hr>
+                              <hr>
+                              <pre>
+                                <code class="Java" >
+  
+  
+                                </code>
+                              </pre>
+                            </div>
+                          </div>
+  
+                          <div class="card">
+                            <div class="card-header" id="headingSix">
+                              <h2 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                  문제를 풉시다.  제한시간 : 30분 
+                                </button>
+                              </h2>
+                            </div>
+                            <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
+                              <div class="card-body">
+                                A 호텔에는 투숙하는 고객에 따라서 제공되는 다양한 조식 서비스가 존재한다. <br>
+                                미국인이 올때는 빵과 우유를 제공한다. <br>
+                                일본인이 올때는 초밥을 제공한다. <br>
+                                한국인이 올때는 김밥을 제공한다. <br>
+                                인도인이 올때는 커리를 제공한다. <br>
+                                <hr>
+                                  호텔에서는 각 방으로 조식서비스를 직접 배달하는 서비스를 제공하고 있고, <br>
+                                  층별로 조식 서비스를 제공하는데 걸리는 시간이 존재한다. <br>
+                                  층 * 10초 , 예) 3층 * 10초 : 30초 <br>
+                                  각 조식별로 만드는데 걸리는 시간 <br>
+                                  빵,우유 : 3초 <br>
+                                  김밥 : 10초 <br>
+                                  커리 : 20초 <br>
+                                  초밥 : 15초 <br>
+                                  <hr>
+                                  각 나라의 특성에 따라 주문후 일정시간이 지나면 짜증을 내기 시작하는데 <br>
+                                  짜증 메세지는 1초간격으로 표기 <br>
+                                  한국인은 주문후 3초 후 : 짜증 메세지 "빨리 김밥줘!!" <br>
+                                  일본인은 주문후 20초 후 : 짜증 메세지 "빨리 초밥줘!!"<br>
+                                  미국인은 주문후 15초 후 : 짜증 메세지 "빨리 빵,우유줘!!" <br>
+                                  인도인은 주문후 30초 후 : 짜증 메세지 "빨리 커리줘!!"<br>
+                                  <hr>
+                                  호텔에 요리사가 2명이 있어서 동시에 나갈 수 있는 음식은 2개이다. 하나의 음식을 만든 후 다음 음식을 Front 로 부터 요청을 받을 수 있습니다. 접수에 걸리는 시간은 1초이다. : A 요리사, B 요리사 메세지 : "프론트로부터 {호실}의 조식서비스를 접수 받았습니다."<br>
+                                  객실에서 조식을 위한 요청은 순차적으로 받으며, 이는 Front에서 접수를 받아 요리사에게 요청 한다. 요청에 걸리는 시간은 1초이다. : "{}에게 요청을 접수하였습니다." <br>
+                                  Front에서는 손님의 국가를 확인하고 이에 따라 요리사에게 요청 한다. : 메세지 "요리사에게 요청한 시간 " <br>
+                                  Front에서는 순차적으로 손님의 요청을 받는데, 한명 접수에 걸리는 시간은 1초이다. : 메세지 "{호실} 의 주문을 접수받았습니다. " <br>
+                                  <hr>
+                                  101호 일본사람, 204호 한국 사람, 305호 미국사람, <br>
+                                  405호 인도사람, 505호 인도사람, 705호 인도사람, 201호 한국사람, <br>
+                                  601호 미국사람, 801호 일본사람, 407호 한국사람, 1001호 일본사람 <br>
+                                  위의 사람이 객실에서 조식을 요청할 때 시간에 따른 사람들의 요청 접수 부터 객실에 조식이 제공되는 모든 상황을 콘솔에 출력하라. <br>
+                                  각 호실별로 실제로 주문 후 객실까지 도착하는데 걸리는 시간을 표시하라 : 메세지 "{호실}에 {초}가 걸려 조식서비스가 제공되었습니다."
+
+                                <hr>
+                                <span id="time1" ></span>
+                                  <a  id="btnStart" class="btn btn-primary">코드 시작! 30분</a>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+                </p>
+          </div>
+      </div>
+      <!-- /.container-fluid -->
+
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright © Your Website 2018</span>
+            </div>
+          </div>
+        </footer>
+
+      </div>
+      <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="login.html">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Page level plugin JavaScript-->
+    <script src="../vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="../js/sb-admin.min.js"></script>
+
+    <!-- Demo scripts for this page-->
+    <script src="../js/demo/chart-area-demo.js"></script>
+    <script src="../js/demo/chart-bar-demo.js"></script>
+    <script src="../js/demo/chart-pie-demo.js"></script>
+
+  </body>
+
+</html>
