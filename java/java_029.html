@@ -390,7 +390,7 @@ public void executeWithSupplier(Supplier&lt;String> supplier);
                         하지만 2~3줄 짜리의 람다식에 대해서이를 함수로 빼내는 것이 옳은 일인지도 판단해야한다. 
                       </li>
                       <li class="list-group-item">
-                        람다 표현식 상애 정확한 타입을 선언하여 사용하지 마라. 
+                        람다 표현식 상에 정확한 타입을 선언하여 사용하지 마라. 
                       </li>
                       <li class="list-group-item">
                         람다 표현식 내부에 반환문 ( return )을 표현하지 않고 사용할 수 있도록 하라. 
@@ -420,48 +420,171 @@ public void executeWithSupplier(Supplier&lt;String> supplier);
                   <div class="card-body">
                       스트림이란 '데이터 처리 연산을 지원하도록 소스에서 추출된 연속된 요소'
                       <hr>
+                      filter, sorted, map, collect 같은 여려 빌딩 블록 연산을 연결해서 복잡한 데이터 처리 파이프 라인을 만들 수 있다. 여러 연산을 파이프라인으로 연결해도 여전히 
+                      가독성/명확성이 유지된다. filter 메서드의 결과는 sorted 메서드로, 다시 sorted의 결과는 map 메서드로, map 메서드의 결과는 collect로 연결이 된다. filter 
+                      (또는 sorted, map, collect ) 같은 연산을 high-level building block 으로 이루어져 있으며, 특정 스레딩 모델을 제한되지 않고 자유롭게 어떤 상황에서든 
+                      사용할 수 있다. 결과적으로 우리는 데이터 처리과정을 병렬화하면서 스레드와 락을 걱정할 필요가 없다. 
+                      <hr>
+                      Stream은 재사용이 불가능하다. 
+                      <pre>
+                        <code class="java" >
+Stream&lt;Integer> intStreams = Arrays.Stream(values).filter( item -> item.contains("0"));
+result = intStreams.count();
+
+List&lt;String> lists = intStreams.collect(Collectors.toList()); // 에러 , 사용불가 
+                        </code>
+                      </pre>
+                      <hr>
                       <strong>Stream의 요소</strong>
+                      <hr>
+                        <strong>Mapping</strong> 
+                      <hr>
                       <ul class="list-group list-group-flush">
-                          <li class="list-group-item">
-                            filter
-                          </li>
-                          <li class="list-group-item">
-                            distinct
-                          </li>
-                          <li class="list-group-item">
-                            limit
-                          </li>
-                          <li class="list-group-item">
-                            skip
-                          </li>
+                          
                           <li class="list-group-item">
                             map
+                            <hr>
+                            스트림은 함수를 인수로 받는 map 메서드를 지원한다. 
+                            인수로 제공된 함수는 각 요소에 적용되며 함수를 적용한 결과가 새로운 요소로 매핑된다. 
+                            이 과정은 기존의 값을 '고친다:modify'라는 개념보다는 '새로운 버전을 만든다'라는 개념에 가까우므로 
+                            '변환:transforming'에 가까운 '매핑:mapping'이라는 단어를 사용한다. 
                           </li>
                           <li class="list-group-item">
                             flatMap
                           </li>
                           <li class="list-group-item">
+                            filter
+                          </li>
+                          <li class="list-group-item">
+                            Peek
+                          </li>
+                          
+                      </ul>
+                      <hr>
+                        <strong>Search & Matching</strong> 
+                      <hr>
+                      <ul class="list-group list-group-flush">
+                          <li class="list-group-item">
                             anyMatch
+                          </li>
+                          <li class="list-group-item">
+                            allMatch
                           </li>
                           <li class="list-group-item">
                             noneMatch
                           </li>
+                      </ul> 
+                      <hr>
+                        <strong>Element Searching</strong> 
+                      <hr>
+                      <ul class="list-group list-group-flush"> 
                           <li class="list-group-item" >
                             findAny
                           </li>
                           <li class="list-group-item" >
                             findFirst
                           </li>
+                      </ul>
+                      <hr>
+                        <strong>Reducing</strong> 
+                      <hr>
+                      <ul class="list-group list-group-flush">  
                           <li class="list-group-item" >
                             reduce
                           </li>
-                          <li class="list-group-item" >
-                            mapToInt
+                      </ul>
+                      <hr>
+                        <strong>Number Type Stream</strong> 
+                      <hr>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item" >
+                          mapToInt
+                        </li>
+                        <li class="list-group-item" >
+                          mapToDouble
+                        </li>  
+                        <li class="list-group-item" >
+                          mapToLong 
+                        </li>
+                        <li class="list-group-item" >
+                          boxed
+                        </li>
+                      </ul>
+                      <hr>
+                        <strong>Range</strong> 
+                      <hr>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            range
                           </li>
-                          <li class="list-group-item" >
-                            collect
+                          <li class="list-group-item">
+                            rangeClosed
                           </li>
                       </ul>
+                      <hr>
+                      <strong>Collectors</strong> 
+                      <hr>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item" >
+                          collect
+                          <hr>
+                          Collectors에서 제공하는 메서드의 기능은 크게 세가지(스트림 요소를 하나의 값으로 리듀스하고 요약/요소 그룹화/요소 분할)로 구분할 수 있다. 
+                          <hr>
+                          <ul>
+                            <li>Collectors.maxBy </li>
+                            <li>Collectors.minBy </li>
+                            <li>Collectors.toList</li>
+                            <li>Collectors.averagingInt</li>
+                            <li>Collectors.averagingLong</li>
+                            <li>Collectors.averagingDouble</li>
+                            <li>reducing</li>
+                            <li>groupingBy : 그룹화 / 다수준 그룹화 </li>
+                            <li>toList</li>
+                          </ul>
+                        </li>
+                      </ul>
+                      <hr>
+                      <strong>Ohter</strong> 
+                      <hr>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                          distinct
+                        </li>
+                        <li class="list-group-item">
+                          limit
+                        </li>
+                        <li class="list-group-item">
+                          skip
+                        </li>
+                        <li class="list-group-item" >
+                          iterate
+                        </li>
+                        <li class="list-group-item" >
+                          generate
+                        </li>  
+                        <li class="list-group-item" >
+                          Sorted
+                        </li>
+                        <li class="list-group-item" >
+                          count 
+                        </li>
+                        <li class="list-group-item" >
+                          min
+                        </li>
+                        <li class="list-group-item" >
+                          max
+                        </li>
+                        <li class="list-group-item" >
+                          sum
+                        </li>
+                        <li class="list-group-item" >
+                          average
+                        </li>
+                        <li class="list-group-item" >
+                          foreach
+                        </li>
+                      </ul>
+                      
                   </div>
                 </div>
               </div> 
