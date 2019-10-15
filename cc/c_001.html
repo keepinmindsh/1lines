@@ -1089,6 +1089,10 @@ int main(void) {
   printf("%s\n", astrList[2] + 3);
 
   // char* 의 배열은 논리적으로 char의 2차원 배열과 같다. 
+
+  // char ** 에 간접지정 연산을 두 번 수행 한 것과 같습니다. 즉 **(char**)가 되는 것입니다. 
+  // 따라서 최종 결과 자료형은 char 입니다. 당연히 %c 형식으로 출력해야 맞습니다. 
+  // 좀더 자세히 설명하자면, astrList[1][3]을 풀어서 표시하면 *(*(astrList + 1) + 3) 입니다. 
   printf("%s\n", astrList[0][3]);
   printf("%s\n", astrList[1][3]);
   printf("%s\n", astrList[2][3]);
@@ -1118,6 +1122,92 @@ int main(int argc, char* argv[]){
                       예를 들어, char* astrList[3]가 선언되었고, &astrList[1] 이라는 연산이 수행되었다면 이 연산결과의 자료형은 char**가 됩니다. '&astrList[1]'을 
                       풀어서 쓰면 &*(astrList + 1) 입니다. 이때, '&*' 는 서로 상쇄 됩니다. 따라서 그냥 astrList + 1 이라고 한 것과 똑같습니다. 그리고 astrList의 자료형은
                       char* [3] 혹은 char** 이므로 '&astrList[1]'의 자료형은 char** 로 볼 수 있습니다. 
+                      <hr>
+                      <strong>다중 포인터</strong>
+                      <hr>
+                      <pre>
+                        <code class="c" > 
+#include &lt;stdio.h> 
+
+int main(int argc, char* argv[])
+{
+  char ch = 'A';
+  // char* 에는 char 형의 주소를 담는다. 
+  char *pData = &ch;
+  // char** 에는 char* 형의 주소를 담는다. 
+  char* *ppData = &pData; 
+  // char*** 에는 char** 형의 주소를 담는다. 
+  char** *pppData = &ppData;
+
+  // 아래 코드들은 모두 char 형식을 %c로 출력한다. 
+  printf("%c\n", ch);
+  printf("%c\n", *pData);
+  printf("%c\n", **ppData);
+  printf("%c\n", ***pppData);
+  return 0;
+}
+
+                        </code>
+                      </pre>
+                      포인터도 변수이고 모든 변수는 주소를 가졌다. 
+                      그리고 포인터 변수를 선언할 때 'char*이름', 'char *이름', 'char * 이름' 이 가운데 어떤 식으로 해도 상관 없습니다. 
+                      중간에 존재하는 공백은 전혀 의미가 없기 때문입니다. 
+                      <hr>
+                      <pre>
+                        <code class="c" >
+#include &lt;stdio.h>
+
+int min(int argc, char* argv[])
+{
+  char* astrList[3] = { "Hello", "World", "String"};
+  // astrList의 요소 형식이 char* 이므로 char** 에 담는다. 
+  char* *ppstrList = astrList;
+  // char** 형식 변수의 주소는 char***에 담는다. 
+  char** *pppstrList = &ppstrList;
+
+  // *(char** + 인덱스)의 형식은 char* 이다. 
+  // 따라서 %s로 출력하거나 puts( ) 로 출력한다. 
+  puts(ppstrList[0]);
+  puts(ppstrList[1]);
+  puts(ppstrList[2]);
+
+  // char***를 두 번 간접지정하면 char* 이다. 
+  // *pppstrList[0]에서 가장 먼저 수행되는 것은 간접 지정 연산이 아니라 배열 열산입니다. 이것을 풀어서 표시하면 
+  // **(pppstrList + 0)이 됩니다. pppstrList + 0 연산 결과 자료형은 char*** 이므로 여기에 두번 간접 지정한 결과는 char* 가 됩니다. 
+  puts(*pppstrList[0]);
+  puts(*(*(pppstrList + 0) + 1));
+  return 0;
+}
+                        </code>
+                      </pre>
+                      <hr>
+                      <img src="../cc/C015.jpg" class="img-fluid" alt="" srcset="">
+                      <hr>
+                      <strong>다차원 배열에 대한 포인터</strong>
+                      <hr>
+                      배열은 여러 요소가 모여 한 덩어리를 이룬 것입니다. 그런데 만일 배열을 이룬 요소가 다시 배열이면 이를 2차원 배열이라 부릅니다. 그러니까 2차원 배열이라는 것은 정확히 말해 요소가 배열인 
+                      배열입니다. 그리고 배열의 식별자인 주소를 저장할 수 있는 포인터 변수는 '배열 요소의 자료형에 대한 포인터' 입니다. 
+                      그러므로 char[3][16] 배열은 char[16]가 요소이고 개수가 3인 배열이며, char[3][16] 배열의 식별자 주소를 담을 수 있는 포인터변수는 char[16] *라 할 수 있습니다. 
+                      <pre>
+                        <code class="c" >
+#include &lt;stdio.h> 
+
+int main(int argc, char* argv[])
+{
+  char astrList[2][12] = { "Hello", "World" };
+
+  // 아래의 코드는 잘못됨
+  // char* *pstrList[12] = astrList;
+
+  // 아래의 코드가 맞음  : 배열의 요소 자료형에 대한 포인터에 담는다. 
+  char (*pstrList)[12] = astrList;
+
+  puts(pstrList[0]);
+  puts(pstrList[1]);
+  return 0;
+}
+                        </code>
+                      </pre>
                     </div>
                   </div>
                 </div>
