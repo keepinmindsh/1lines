@@ -442,6 +442,33 @@ public interface Subscription {
                     </div>
                   </div> 
                   <div class="card">
+                    <div class="card-header" id="heading8">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapse8">
+                          Rective Streams
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse8" class="collapse" aria-labelledby="heading8" data-parent="#accordionExample">
+                      <div class="card-body">
+                        Volume이 정해져 있이 않는 실시간의 데이터 스트림을 처리하는 것은 비동기 시스템에서 필요하다. 
+                        그리고 대부분의 이슈는 해당 스트팀의 최종 목적이가 과부하가 발생하지 않도록 과거의 데이터 자원을 조심스럽게 통제하기 위한 것이다. 
+                        협력하는 다수의 네트워크 호스트 또는 다중 CPU 코에 대해서 컴퓨팅 자원의 병렬 사용을 활성하기 위해서 비동기적으로 필요하다. 
+                        Reactive Stream의 주요 목표는 스트림 데이터의 변화를 비동기 영역에서 통제하는 것이다. 다른말로 하면 , 내부 압력은 해당 모델의 완벽한 부분인데, 연결을 맺기위한 스레드들 사이에서 중재하기 위한 큐들을 허락하기 위해서이다.  
+                        Reactive Stream은 서로 다른 API Component 사이의 스트림 데이터를 중재하기 위한 것에 대해서만 오로지 고려하고 있다. 
+                        <hr>
+                        https://www.reactivemanifesto.org/
+                        <hr>
+                        <ul>
+                         <li>Publisher</li> 
+                         <li>Subscriber</li>
+                         <li>Subscription</li>
+                         <li>Processor</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div> 
+                  <div class="card">
                     <div class="card-header" id="headingThree">
                       <h2 class="mb-0">
                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -624,30 +651,25 @@ public class PubSub {
                     <div class="card-header" id="heading7">
                       <h2 class="mb-0">
                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
-                         
+                          Reactor 
                         </button>
                       </h2>
                     </div>
                     <div id="collapse7" class="collapse" aria-labelledby="heading7" data-parent="#accordionExample">
                       <div class="card-body">
-                        
-                      </div>
-                    </div>
-                  </div> 
-                  <div class="card">
-                    <div class="card-header" id="heading8">
-                      <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapse8">
-                          
-                        </button>
-                      </h2>
-                    </div>
-                    <div id="collapse8" class="collapse" aria-labelledby="heading8" data-parent="#accordionExample">
-                      <div class="card-body">
+                        <strong>Mono 와 Flux</strong> 
+                        <hr>
+                        Mono는 0-1개의 결과만을 처리하기 위한 Reactor의 객체이고, 
+                        Flux는 0-N개인 여러 개의 결과를 처리하는 객체입니다. 
+                        Reactor를 사용해 일련의 스트림을 코드로 작성하다 보면 보통 여러 스트림을 하나의 결과를 모아줄 때 Mono를 쓰고, 
+                        각각의 Mono를 합쳐서 여러 개의 값을 여러 개의 값을 처리하는 Flux로 표현할 수도 있습니다
+                         
+                        <hr>
 
                       </div>
                     </div>
                   </div> 
+                  
                   <div class="card">
                     <div class="card-header" id="heading9">
                       <h2 class="mb-0">
