@@ -425,7 +425,12 @@ public void executeWithSupplier(Supplier&lt;String> supplier);
                       (또는 sorted, map, collect ) 같은 연산을 high-level building block 으로 이루어져 있으며, 특정 스레딩 모델을 제한되지 않고 자유롭게 어떤 상황에서든 
                       사용할 수 있다. 결과적으로 우리는 데이터 처리과정을 병렬화하면서 스레드와 락을 걱정할 필요가 없다. 
                       <hr>
-                      Stream은 재사용이 불가능하다. 
+                      <ul>
+                        <li>스트림은 데이터 소스를 변경하지 않는다.</li>
+                        <li>스트림 한번 사용하면 다시 사용할 수 없다.</li>
+                        <li>스트림은 작업을 내부 반복으로 처리한다. </li>
+                        <li>스트림은 데이터 흐름 속에 중간 연산과 최종연산이 존재한다. </li>
+                      </ul>
                       <pre>
                         <code class="java" >
 Stream&lt;Integer> intStreams = Arrays.Stream(values).filter( item -> item.contains("0"));
@@ -448,15 +453,39 @@ List&lt;String> lists = intStreams.collect(Collectors.toList()); // 에러 , 사
                             인수로 제공된 함수는 각 요소에 적용되며 함수를 적용한 결과가 새로운 요소로 매핑된다. 
                             이 과정은 기존의 값을 '고친다:modify'라는 개념보다는 '새로운 버전을 만든다'라는 개념에 가까우므로 
                             '변환:transforming'에 가까운 '매핑:mapping'이라는 단어를 사용한다. 
+                            <pre>
+                              <code class="java" >
+                                stream().map
+                              </code>
+                            </pre>
                           </li>
                           <li class="list-group-item">
                             flatMap
+                            <pre>
+                              <code class="java" >
+                                /*
+                                  // .flatMap은 Array나 Object로 감싸져 있는 모든 원소를 단일 언소 스트림으로 반환해준다.
+                                  // 스트림 평면화, 스트림의 각 값을 다른 스트림으로 만든 다음에 모든 스트림을 하나의 스트림으로 연결
+                                */
+                                stream().flatMap
+                              </code>
+                            </pre>
                           </li>
                           <li class="list-group-item">
                             filter
+                            <pre>
+                              <code class="java" >
+                                stream().filter
+                              </code>
+                            </pre>
                           </li>
                           <li class="list-group-item">
                             Peek
+                            <pre>
+                              <code>
+                                stream().peek
+                              </code>
+                            </pre>
                           </li>
                           
                       </ul>
@@ -466,12 +495,27 @@ List&lt;String> lists = intStreams.collect(Collectors.toList()); // 에러 , 사
                       <ul class="list-group list-group-flush">
                           <li class="list-group-item">
                             anyMatch
+                            <pre>
+                              <code>
+                                stream().anyMatch
+                              </code>
+                            </pre>
                           </li>
                           <li class="list-group-item">
                             allMatch
+                            <pre>
+                              <code>
+                                stream().allMatch
+                              </code>
+                            </pre>
                           </li>
                           <li class="list-group-item">
                             noneMatch
+                            <pre>
+                              <code>
+                                stream().noneMatch
+                              </code>
+                            </pre>
                           </li>
                       </ul> 
                       <hr>
@@ -480,9 +524,19 @@ List&lt;String> lists = intStreams.collect(Collectors.toList()); // 에러 , 사
                       <ul class="list-group list-group-flush"> 
                           <li class="list-group-item" >
                             findAny
+                            <pre>
+                              <code>
+                                stream().findAny
+                              </code>
+                            </pre>
                           </li>
                           <li class="list-group-item" >
                             findFirst
+                            <pre>
+                              <code>
+                                stream().findFirst
+                              </code>
+                            </pre>
                           </li>
                       </ul>
                       <hr>
@@ -491,6 +545,11 @@ List&lt;String> lists = intStreams.collect(Collectors.toList()); // 에러 , 사
                       <ul class="list-group list-group-flush">  
                           <li class="list-group-item" >
                             reduce
+                            <pre>
+                              <code>
+                                stream().reduce
+                              </code>
+                            </pre>
                           </li>
                       </ul>
                       <hr>
@@ -499,15 +558,35 @@ List&lt;String> lists = intStreams.collect(Collectors.toList()); // 에러 , 사
                       <ul class="list-group list-group-flush">
                         <li class="list-group-item" >
                           mapToInt
+                          <pre>
+                            <code>
+                              stream().mapToInt
+                            </code>
+                          </pre>
                         </li>
                         <li class="list-group-item" >
                           mapToDouble
+                          <pre>
+                            <code>
+                              stream().mapToDouble
+                            </code>
+                          </pre>
                         </li>  
                         <li class="list-group-item" >
                           mapToLong 
+                          <pre>
+                            <code>
+                              stream().mapToLong
+                            </code>
+                          </pre>
                         </li>
                         <li class="list-group-item" >
                           boxed
+                          <pre>
+                            <code>
+                              intStream.boxed
+                            </code>
+                          </pre>
                         </li>
                       </ul>
                       <hr>
@@ -516,9 +595,19 @@ List&lt;String> lists = intStreams.collect(Collectors.toList()); // 에러 , 사
                       <ul class="list-group list-group-flush">
                         <li class="list-group-item">
                             range
+                            <pre>
+                              <code>
+                                IntStream.range
+                              </code>
+                            </pre>
                           </li>
                           <li class="list-group-item">
                             rangeClosed
+                            <pre>
+                              <code>
+                                IntStream.boxed
+                              </code>
+                            </pre>
                           </li>
                       </ul>
                       <hr>
@@ -592,16 +681,61 @@ List&lt;String> lists = intStreams.collect(Collectors.toList()); // 에러 , 사
                 <div class="card-header" id="heading18">
                   <h2 class="mb-0">
                     <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse18" aria-expanded="false" aria-controls="collapse18">
-                      
+                      Optional
                     </button>
                   </h2>
                 </div>
                 <div id="collapse18" class="collapse" aria-labelledby="heading18" data-parent="#accordionExample">
                   <div class="card-body">
+                      Optional은 존재할 수 도 있지만 안할 수 도 잇는 객체. 즉, "null이 될 수도 있는 객체"을 감싸고 있는 일존의 래퍼 클래스입니다. 
+                      <ul>
+                        <li>Null Point Exception을 유발할 수 있는 null을 다루지 않아도 된다. </li>
+                        <li>별도의 null 체크가 필요 없다.</li>
+                        <li>명시적으로 해당 변수가 null일 수 있다고 표현할 수 있다.</li>
+                      </ul>
+                      <pre>
+                        <code class="java" >
+                          Optional.empty();
+
+                          Optional.of(value);
+
+                          Optional.ofNullable(value);
+
+                          Optional.get()
+
+                          Optional.orElse(new Value())
+
+                          Optional.orElseGet(() => { return new Value() })
+
+                          Optional.orElseThrow(() => { return exceptions.getMessage() })
+                        </code>
+                      </pre>
+                      <hr>
+                      Optional을 사용하는 방식 
+                      <ul>
+                        <li>ofNullable과 Stream API 처럼 map을 활용하여 데이터 가져오기</li>
+                        <li>ofNullable과 Stream API 처럼 filter을 활용하여 데이터 가져오기</li>
+                        <li>ofNullable과 Stream API 처럼 map을 활용하여 문자열의 길이를 체크하는 방식</li>
+                        <li>정적 메소드를 활용하여 인덱스 범위를 체크하고 그 뒤 그 해당값을 사용하는 방식</li>
+                        <li>ifPresent를 이용하여 함수형 인자를 통해 데이터를 처리하는 경우</li>
+                      </ul>
+                  </div>
+                </div>
+              </div> 
+              <div class="card">
+                <div class="card-header" id="heading19">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse19" aria-expanded="false" aria-controls="collapse19">
+                      
+                    </button>
+                  </h2>
+                </div>
+                <div id="collapse19" class="collapse" aria-labelledby="heading19" data-parent="#accordionExample">
+                  <div class="card-body">
                     
                   </div>
                 </div>
-              </div>                   
+              </div>                  
             </div>
             <div class="card-footer small text-muted"></div>
           </div>
