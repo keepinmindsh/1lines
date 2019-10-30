@@ -420,6 +420,8 @@ public void executeWithSupplier(Supplier&lt;String> supplier);
                   <div class="card-body">
                       스트림이란 '데이터 처리 연산을 지원하도록 소스에서 추출된 연속된 요소'
                       <hr>
+                      스트림읅 활용하면 멀티 스레드 환경에 필요한 코드를 작성하지 않고도 데이터를 병렬로 처리할 수 있다. 
+                      <hr>
                       filter, sorted, map, collect 같은 여려 빌딩 블록 연산을 연결해서 복잡한 데이터 처리 파이프 라인을 만들 수 있다. 여러 연산을 파이프라인으로 연결해도 여전히 
                       가독성/명확성이 유지된다. filter 메서드의 결과는 sorted 메서드로, 다시 sorted의 결과는 map 메서드로, map 메서드의 결과는 collect로 연결이 된다. filter 
                       (또는 sorted, map, collect ) 같은 연산을 high-level building block 으로 이루어져 있으며, 특정 스레딩 모델을 제한되지 않고 자유롭게 어떤 상황에서든 
@@ -455,7 +457,9 @@ List&lt;String> lists = intStreams.collect(Collectors.toList()); // 에러 , 사
                             '변환:transforming'에 가까운 '매핑:mapping'이라는 단어를 사용한다. 
                             <pre>
                               <code class="java" >
-                                stream().map
+stream().map
+
+&lt;R> Stream&lt;R> map(Function&lt;? super T, ? extends R> mapper)
                               </code>
                             </pre>
                           </li>
@@ -463,11 +467,14 @@ List&lt;String> lists = intStreams.collect(Collectors.toList()); // 에러 , 사
                             flatMap
                             <pre>
                               <code class="java" >
-                                /*
-                                  // .flatMap은 Array나 Object로 감싸져 있는 모든 원소를 단일 언소 스트림으로 반환해준다.
-                                  // 스트림 평면화, 스트림의 각 값을 다른 스트림으로 만든 다음에 모든 스트림을 하나의 스트림으로 연결
-                                */
-                                stream().flatMap
+/*
+  .flatMap은 Array나 Object로 감싸져 있는 모든 원소를 단일 언소 스트림으로 반환해준다.
+  스트림 평면화, 스트림의 각 값을 다른 스트림으로 만든 다음에 모든 스트림을 하나의 스트림으로 연결,
+  flatMap은 먼저 매핑 함수를 사용해 각 엘리먼트에대해 map을 수행 후, 결과를 새로운 배열로 평평화한다.
+*/
+stream().flatMap
+
+&lt;R> Stream&lt;R> flatMap(Function&lt;? super T, ? extends Stream&lt;? extends R>> mapper);
                               </code>
                             </pre>
                           </li>
@@ -475,7 +482,9 @@ List&lt;String> lists = intStreams.collect(Collectors.toList()); // 에러 , 사
                             filter
                             <pre>
                               <code class="java" >
-                                stream().filter
+stream().filter
+
+Stream&lt;T> filter(Predicate&lt;? super T> predicate);
                               </code>
                             </pre>
                           </li>
@@ -483,7 +492,9 @@ List&lt;String> lists = intStreams.collect(Collectors.toList()); // 에러 , 사
                             Peek
                             <pre>
                               <code>
-                                stream().peek
+// ‘peek’ 은 그냥 확인해본다는 단어 뜻처럼 특정 결과를 반환하지 않는 함수형 인터페이스 Consumer 를 인자로 받습니다. 
+// 따라서 스트림 내 요소들 각각에 특정 작업을 수행할 뿐 결과에 영향을 미치지 않습니다.                                
+stream().peek
                               </code>
                             </pre>
                           </li>
@@ -497,7 +508,9 @@ List&lt;String> lists = intStreams.collect(Collectors.toList()); // 에러 , 사
                             anyMatch
                             <pre>
                               <code>
-                                stream().anyMatch
+stream().anyMatch
+
+boolean anyMatch(Predicate&lt;? super T> predicate);
                               </code>
                             </pre>
                           </li>
@@ -505,7 +518,9 @@ List&lt;String> lists = intStreams.collect(Collectors.toList()); // 에러 , 사
                             allMatch
                             <pre>
                               <code>
-                                stream().allMatch
+stream().allMatch
+
+boolean allMatch(Predicate&lt;? super T> predicate);
                               </code>
                             </pre>
                           </li>
@@ -513,7 +528,9 @@ List&lt;String> lists = intStreams.collect(Collectors.toList()); // 에러 , 사
                             noneMatch
                             <pre>
                               <code>
-                                stream().noneMatch
+stream().noneMatch
+
+boolean noneMatch(Predicate&lt;? super T> predicate);
                               </code>
                             </pre>
                           </li>
@@ -526,7 +543,9 @@ List&lt;String> lists = intStreams.collect(Collectors.toList()); // 에러 , 사
                             findAny
                             <pre>
                               <code>
-                                stream().findAny
+stream().findAny
+
+Optional&lt;T> findAny();
                               </code>
                             </pre>
                           </li>
@@ -534,7 +553,9 @@ List&lt;String> lists = intStreams.collect(Collectors.toList()); // 에러 , 사
                             findFirst
                             <pre>
                               <code>
-                                stream().findFirst
+stream().findFirst
+
+Optional&lt;T> findFirst();
                               </code>
                             </pre>
                           </li>
@@ -547,7 +568,13 @@ List&lt;String> lists = intStreams.collect(Collectors.toList()); // 에러 , 사
                             reduce
                             <pre>
                               <code>
-                                stream().reduce
+stream().reduce
+
+T reduce(T identity, BinaryOperator&lt;T> accumulator);
+
+Integer sum = integers.reduce(0, Integer::sum);
+
+Integer sum = integers.reduce(0, (a, b) -> a+b);
                               </code>
                             </pre>
                           </li>
@@ -560,7 +587,9 @@ List&lt;String> lists = intStreams.collect(Collectors.toList()); // 에러 , 사
                           mapToInt
                           <pre>
                             <code>
-                              stream().mapToInt
+stream().mapToInt
+
+IntStream mapToInt(ToIntFunctio&lt;? super T> mapper);
                             </code>
                           </pre>
                         </li>
@@ -568,7 +597,9 @@ List&lt;String> lists = intStreams.collect(Collectors.toList()); // 에러 , 사
                           mapToDouble
                           <pre>
                             <code>
-                              stream().mapToDouble
+stream().mapToDouble
+
+DoubleStream mapToDouble(ToDoubleFunction&lt;? super T> mapper);
                             </code>
                           </pre>
                         </li>  
@@ -576,7 +607,9 @@ List&lt;String> lists = intStreams.collect(Collectors.toList()); // 에러 , 사
                           mapToLong 
                           <pre>
                             <code>
-                              stream().mapToLong
+stream().mapToLong
+
+LongStream mapToLong(ToLongFunction&lt;? super T> mapper);
                             </code>
                           </pre>
                         </li>
@@ -584,7 +617,9 @@ List&lt;String> lists = intStreams.collect(Collectors.toList()); // 에러 , 사
                           boxed
                           <pre>
                             <code>
-                              intStream.boxed
+intStream.boxed
+
+Stream&lt;type> boxed();
                             </code>
                           </pre>
                         </li>
@@ -597,7 +632,7 @@ List&lt;String> lists = intStreams.collect(Collectors.toList()); // 에러 , 사
                             range
                             <pre>
                               <code>
-                                IntStream.range
+IntStream.range
                               </code>
                             </pre>
                           </li>
@@ -605,7 +640,7 @@ List&lt;String> lists = intStreams.collect(Collectors.toList()); // 에러 , 사
                             rangeClosed
                             <pre>
                               <code>
-                                IntStream.boxed
+IntStream.rangeClosed
                               </code>
                             </pre>
                           </li>
@@ -637,40 +672,149 @@ List&lt;String> lists = intStreams.collect(Collectors.toList()); // 에러 , 사
                       <hr>
                       <ul class="list-group list-group-flush">
                         <li class="list-group-item">
+                          of
+                          <pre>
+                            <code class="java" > 
+// Stream.of()로 생성하려는 객체를 입력하면, 스트림 객체로 생성이 된다.                             
+                            </code>
+                          </pre>
+                        </li>
+                        <li class="list-group-item">
+                          empty
+                          <pre>
+                            <code class="java" > 
+// Stream.empty()는 비어있는 스트림을 생성한다.                          
+                            </code>
+                          </pre>
+                        </li>
+                        <li class="list-group-item">
+                          generate
+                          <pre>
+                            <code class="java" > 
+//  Stream.generate()는 반환되는 인자를 무한히 생성합니다. 
+//  Random 함수등과 같이 사용하여 난수 생성시 활용할 수 있습니다.                             
+                            </code>
+                          </pre>
+                        </li>
+                        <li class="list-group-item">
+                          Arrays.stream
+                          <pre>
+                            <code class="java" > 
+// Array 또한 stream 함수를 이용하여 Stream을 생성할 수 있습니다.                               
+                            </code>
+                          </pre>
+                        </li>
+                        <li class="list-group-item">
+                            concat 
+                          <pre>
+                            <code class="java" > 
+// 두개의 Stream 을 concat을 통해 하나로 만들 수 있다.                               
+                            </code>
+                          </pre>
+                        </li>
+                        <li class="list-group-item">
+                          builder 
+                          <pre>
+                            <code class="java" > 
+                              
+                            </code>
+                          </pre>
+                        </li>
+                        <li class="list-group-item">
                           distinct
+                          <pre>
+                            <code class="java" > 
+                             
+                            </code>
+                          </pre>
                         </li>
                         <li class="list-group-item">
                           limit
+                          <pre>
+                            <code class="java" > 
+                              
+                            </code>
+                          </pre>
                         </li>
                         <li class="list-group-item">
                           skip
+                          <pre>
+                            <code class="java" > 
+                              
+                            </code>
+                          </pre>
                         </li>
                         <li class="list-group-item" >
-                          iterate
+                          iterate                        
+                          <pre>
+                            <code class="java" > 
+                              
+                            </code>
+                          </pre>
                         </li>
                         <li class="list-group-item" >
                           generate
+                          <pre>
+                            <code class="java" > 
+                              
+                            </code>
+                          </pre>
                         </li>  
                         <li class="list-group-item" >
                           Sorted
+                          <pre>
+                            <code class="java" > 
+                              
+                            </code>
+                          </pre>
                         </li>
                         <li class="list-group-item" >
                           count 
+                          <pre>
+                            <code class="java" > 
+                              
+                            </code>
+                          </pre>
                         </li>
                         <li class="list-group-item" >
                           min
+                          <pre>
+                            <code class="java" > 
+                              
+                            </code>
+                          </pre>
                         </li>
                         <li class="list-group-item" >
                           max
+                          <pre>
+                            <code class="java" > 
+                              
+                            </code>
+                          </pre>
                         </li>
                         <li class="list-group-item" >
                           sum
+                          <pre>
+                            <code class="java" > 
+                              
+                            </code>
+                          </pre>
                         </li>
                         <li class="list-group-item" >
                           average
+                          <pre>
+                            <code class="java" > 
+                              
+                            </code>
+                          </pre>
                         </li>
                         <li class="list-group-item" >
                           foreach
+                          <pre>
+                            <code class="java" > 
+                              
+                            </code>
+                          </pre>
                         </li>
                       </ul>
                       
