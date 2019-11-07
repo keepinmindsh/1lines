@@ -130,34 +130,78 @@
                         </h2>
                       </div>
                       <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                        Call By Value : 매개변수가 값임 
-                        <pre>
-                          <code class="C" >          
-                            
-                            int Minus(int a, int b){
-                              return a - b 
-                            }
+                        <div class="card-body">
+                          Call By Value : 매개변수가 값임 
+                          <pre>
+                            <code class="C" >          
+                              
+                              int Minus(int a, int b){
+                                return a - b 
+                              }
 
-                            // main 에서 호출 시 
-                            printf("%d\n", Minus(3,4));
+                              // main 에서 호출 시 
+                              printf("%d\n", Minus(3,4));
 
-                          </code>
-                        </pre>
-                        <hr>
-                        Call By Reference : 매개변수가 포인터로 사용됨. 
-                        <hr>
-                        <pre>
-                          <code class="C" >
-                            // 주소를 통해 호출자 메모리에 접근할 수 있는 방법 
+                            </code>
+                          </pre>
+                          <hr>
+                          Call By Reference : 매개변수가 포인터로 사용됨. 
+                          <hr>
+                          <pre>
+                            <code class="C" >
+                              // 주소를 통해 호출자 메모리에 접근할 수 있는 방법 
 
-                            int Minus(int *a, int *b){
-                              return *a - *b;
-                            }
+                              int Minus(int *a, int *b){
+                                return *a - *b;
+                              }
 
-                            // main에서 x, y 값이 선언되어 있고 각 지역변수 x,y의 주소값을 인수로 지정 
-                            printf(%d\n, Minus(&x, &y));
-                          </code>
-                        </pre>
+                              // main에서 x, y 값이 선언되어 있고 각 지역변수 x,y의 주소값을 인수로 지정 
+                              printf(%d\n, Minus(&x, &y));
+                            </code>
+                          </pre>
+                          <hr>
+                          Call by reference 방식이 Call by Value 에 비해 가장 다른 점은 주소를 통해 호출자 메모리에 접근할 수 있는 방법을 제시함으로써 두 함수가 좀더 강력하게 결합될 수 있다는 것입니다. 
+                          <hr>
+                          <pre>
+                            <code class="c" >
+#include &lt;stdio.h>
+
+// 배열 실 인수는 '포인터' 매개변수로 받는다. 
+// 포인터에는 요소의 개수 정보가 없으므로 int 매개변수가 더 필요하다. 
+// 만일 입력 받아야 할 정수의 개수가 달라져도 이 함수 코드는 변하지 않는다. 
+void InitList(int *pList, int nSize){
+  int i = 0;
+  for ( i = 0 ; i &lt; nSize; ++i){
+    printf("정수를 입력하세요. : ");
+    scanf("%d", &pList[i]);
+  }
+}
+
+// 요소가 int 형식인 배열이라면 요소의 개수와 상관 없이 정렬할 수 있다. 
+void SortList(int *pList, int nSize){
+  int i = 0, j = 0, nTmp = 0;
+
+  for ( i = 0 ; i &lt; nSize -1 ; i ++){
+    for(j = i + 1; j &lt; nSize; ++j ){
+      if(pList[j] &lt; pList[i]){
+        nTmp = pList[j];
+        pList[j] = pList[i];
+        pList[i] = nTmp;
+      }
+    }
+  }
+}
+
+void PrintList(int *pList, int nSize){
+  int i = 0;
+  for ( i = 0 ; i &lt; nSize ; ++i )
+    printf("%d\t", pList[1]);
+  
+  putchar('\n');
+}
+                            </code>
+                          </pre>
+                        </div>
                       </div>
                     </div>
                     <div class="card">
