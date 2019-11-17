@@ -199,6 +199,18 @@ void PrintList(int *pList, int nSize){
   
   putchar('\n');
 }
+
+int main(void){
+  // 자료구조를 지역변수로 선언했기 때문에 
+  // 다른 함수에서는 직접 접근할 수 없다. 
+  int aList[5] = { 0 }
+
+  InitList(aList, 5);
+  SortList(aList, 5);
+  PrintList(aList, 5);
+
+  return 0;
+}
                             </code>
                           </pre>
                         </div>
