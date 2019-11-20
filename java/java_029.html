@@ -863,6 +863,84 @@ IntStream.rangeClosed
                         <li>정적 메소드를 활용하여 인덱스 범위를 체크하고 그 뒤 그 해당값을 사용하는 방식</li>
                         <li>ifPresent를 이용하여 함수형 인자를 통해 데이터를 처리하는 경우</li>
                       </ul>
+                      <hr>
+                      <pre>
+                        <code class="java" >
+package studysample.java8.optionalSample;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+public class OptionalSample {
+
+    public static void main(String[] args) {
+
+        Map&lt;String, String> testMap = new HashMap&lt;>();
+
+        testMap.put("test1", "1번 테스트 데이터");
+        testMap.put("test2", "2번 테스트 데이터");
+        testMap.put("test3", "3번 테스트 데이터");
+
+        Optional&lt;String> testData = Optional.ofNullable(testMap.get("test4"));
+
+        if(testData.isPresent()){
+            System.out.println(testData.get());
+        }else{
+            System.out.println("데이터가 없어요!");
+        }
+
+        int length = testData.map(String::length).orElse(0);
+        System.out.println("length: " + length);
+
+        List&lt;Integer> listData = Stream.of(1,2,3,4,5,7,8,9,10).collect(Collectors.toList());
+        Optional&lt;Integer> optionalValue =  getAsOptional(listData, 30);
+        int intValue = optionalValue.map( integer ->  integer + 1 ).orElse(0);
+        System.out.println(intValue);
+
+        List&lt;Integer>  listData2 = Stream.iterate(0, i -> i +1).limit(10).collect(Collectors.toList());
+        Optional&lt;Integer> optionalValue2 =  getAsOptional(listData, 32);
+        optionalValue2.ifPresent(value -> {
+            System.out.println("값을 출력하세요~!" + value);
+        });
+
+        Map&lt;String, Object> paramMap = new HashMap&lt;>();
+
+        paramMap.put("put", "value");
+
+        Optional&lt;Map> valueMap = getMapData(paramMap, "get");
+
+        valueMap.ifPresent(
+            map -> System.out.println(map.toString())
+        );
+    }
+
+    public static &lt;T> Optional&lt;T> getAsOptional(List&lt;T> list, int index) {
+        try {
+            return Optional.of(list.get(index));
+        } catch (IndexOutOfBoundsException e) {
+            return Optional.empty();
+        }
+    }
+
+    public static Optional&lt;Map> getMapData(Map mapdata, String key){
+        return Optional.ofNullable(mapdata)
+                .filter(map -> map.get(key) == "Value1")
+                .map(Converter::converter);
+    }
+}
+
+class Converter {
+    public static Map converter(Map mapdata){
+        return mapdata;
+    }
+}
+                          
+                        </code>
+                      </pre>
                   </div>
                 </div>
               </div> 
