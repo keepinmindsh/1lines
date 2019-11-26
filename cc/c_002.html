@@ -289,6 +289,44 @@ void Swap(int *pLeft, int *pRight){
   *pRight = nTmp;
 }
 
+int main(int argc, char* argv[]){
+  int x = 10, y = 20;
+
+  // 호출자 함수 안에 선언된 지역 변수의 주소를 전달한다. 
+  // 따라서 함수가 반환한 후 x와 y의 값은 서로 교환된다.
+  Swap(&x, &y);
+  printf("%d %d\n", x, y);
+  return 0;
+}
+
+                            </code>
+                          </pre>
+                          <hr>
+                          문자열의 길이를 측정하는 기능 
+                          <hr>
+                          <pre>
+                            <code class="c" >
+#include &lt;stdio.h>
+
+// 매개변수로 전달된 문자열의 길이를 반환하는 함수
+int GetLength(const char *pszParm)
+{
+  int nLength = 0;
+
+  while ( pszParm[nLength] != '\0')
+    nLength++;
+
+  return nLength;
+}
+
+int main(int argc, char* argv[])
+{
+  char *pszData = "Hello";
+
+  printf("%d\n", GetLength("Hi"));
+  printf("%d\n", GetLength(pszData));
+  return 0;
+}
                             </code>
                           </pre>
                         </div>
