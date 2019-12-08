@@ -329,6 +329,30 @@ int main(int argc, char* argv[])
 }
                             </code>
                           </pre>
+                          <hr>
+                          잘못된 주소 전달의 예
+                          <hr>
+                          <pre>
+                            <code class="c" >
+#include &lt;stdio.h>
+
+int* TestFunc(void){
+  int nData = 10;
+  // 함수가 반환되면 소멸할 자동 변수의 주소를 반환한다. 
+  // 운영체제에 반환했거나 곧 사라질 메모리에 대한 주소를 반환하는 일은 없어야 합니다. 
+  return &nData;
+}
+
+int main(int argc, char* argv[]){
+  int *pnResult = NULL;
+  pnResult = TestFunc();
+
+  // 포인터가 가리키는 대상 메모리는 유효하지 않은 메모리이다. 
+  printf("%d\n" ,  *pnResult);
+  return 0;
+}
+                            </code>
+                          </pre>
                         </div>
                       </div>
                     </div>
@@ -336,14 +360,98 @@ int main(int argc, char* argv[])
                       <div class="card-header" id="headingFour">
                         <h2 class="mb-0">
                           <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseTwo">
-                             
+                            스택 프래임
                           </button>
                         </h2>
                       </div>
                       <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
                         <div class="card-body">
-                          
+                        자동 변수는 스택 영역 메모리를 사용합니다. 자동변수는 기억 부류 auto로 선언된 변수를 말하는데 별도로 명시하지 않은 모든 지역 변수는 모두 자동변수입니다. 
+                        함수의 매개변수 역시 자동변수이고 함수의 지역 변수입니다. 따라서 함수 내부에 선언된 변수와 매개변수는 기본적으로 '스택'을 사용합니다. 
+                        <hr>
+                        스택은 선형 자료구조의 일종으로 정보를 층층이 쌓아 올린 구조입니다. 
+                        <hr>
+                        <strong>스택과 메모리의 주소는 반대 방향을 그린다.</strong>
+                        <hr>
+                        스택의 왼쪽에는 함수의 이름과 스코프의 시작 지점을 표시하고 오른쪽에서는 식별자 이름을 기술합니다. 
+                        우리가 작성하는 모든 예제들은 항상 main()함수에서 시작하므로 최초로 늘어난 스택은 main()함수에 속한 것으로 가정합니다. 그리고 
+                        그림에서 스택은 위로 증가합니다. 그러나 메모리리의 주소는 아래로 증가합니다. 따라서 메모리 주소가 증가 했다는 것은 스택이 들어들었음을
+                        의미하고 주솟값이 작어졌다는 것은 스택의 증가를 의미한다고 생각할 수 있습니다. 
+                        <hr>
+                        <ul>
+                          <li>지역 변수는 선언된 순서대로 그린다.
 
+                          </li>
+                          <li>포인터 변수는 별도로 표시한다.
+                            <pre>
+                              <code  class="c">
+#include &lt;stdio.h>
+
+int main(int argc, char* argv[]){
+  int x = 10, y = 20;
+  int *pnData = &x;
+
+  // 포인터 변수는 간접 지정 대상이 어디인지 포인터가 가리키는 지점을 표시해야한다. 
+  *pnData = 100;
+  return 0;
+}
+                              </code>
+                            </pre>
+
+                          </li>
+                          <li>
+                            배열의 인덱스는 아래로 증가하게 그린다.  <br>
+                            배열의 인덱스는 주소가 증가하는 방향으로 표시해야합니다. 
+                            배열의 이름은 '주소상수' 이므로 그자체가 스택에 Push되지 앟는다는 사실에 주의합니다. 
+
+                          </li>
+                          <li>
+                            동적할당된 메모리는 따로 표시한다. <br>
+                            메모리를 동적할당하거나, 정적 영역을 사용하는 병수가 등장한다면 이는 스택 영역이 아니라 별도로 그려서 표시해야한다.
+                            <pre >
+                              <code  class="c" >
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+#include &lt;string.h>
+
+int main(int argc , char* argv[])
+{
+  int nData = 10;
+  char *pszBuffer = NULL;
+
+  pszBuffer = (char*)malloc(12);
+  strcpy(pszBuffer, "Hello");
+  free(pszBuffer);
+  retur 0;
+}
+
+                              </code>
+                            </pre>
+                          </li>
+                          <li>
+                            매개변수는 오른쪽부터 스택에 그리며 새 스코프는 기존 스택 위에 그린다. <br>
+                            만일 main()함수가 다른 사용자 정의함수를 호출할 경우에는 매개변수도 스택에 그려야 하는데 반드시 오른쪽 매개변수부터 먼저 push 하는 것으로 그립니다. <br>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+                            <pre>
+                              <code class="c">
+#include &lt;stdio.h>
+
+int Add(int a, int b)
+{
+  int nResult = 0;
+  nResult = a + b;
+  return nResult;
+}
+
+int main(int argc, char* argv[])
+{
+  int nResult = 0;
+  nResult = Add(3,4);
+  return 0;
+}
+                              </code>
+                            </pre>
+                          </li>
+                        </ul>
                         </div>
                       </div>
                     </div> 
@@ -364,111 +472,13 @@ int main(int argc, char* argv[])
                     <div class="card-header" id="headingTwo">
                       <h2 class="mb-0">
                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                          간접지정
+                          
                         </button>
                       </h2>
                     </div>
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                       <div class="card-body">               
-                         
-                          <pre>
-                            <code class="c" >
-  #include &lt;stdio.h>
-  // Pointer의 기본 
-  void main() {
-    
-    // 간접 지정
-    int nData = 300;        // 메모리 주소 : 0x0018FF28 - 값 : 2C 01 00 00
-    int *pnData = &nData;   // 메모리 주소 : 0x0018FFIC - 값 : 28 FF 18 00
-    // 여기에서 pnData는 Integer의 포인터로 Integer의 값 만큼 2개가 늘어나는 것 
-    pnData += 2;            // 메모리 주소 : 0x0018FF28 - 값 : 30 FF 18 00 -- 해당 시점에 포인터 변수의 값이 변경됨. 
-
-
-    *pnData = 300;          // 메모리 주소 : 0x0018FF30 - 값 : 2C 01 00 00 
-
-    return 0;
-  }
-                            </code>
-                          </pre> 
-                          <hr>
-                          <strong>Pointer의 기본 공식 </strong>
-                          <hr>
-                          <img src="../cc/C010.jpg" class="img-fluid" alt="" srcset="">
-                          <hr>
-                           <pre>
-                             <code class="c" >
-#include 
-
-void main(void) {
-  int nData = 300;
-  int *pnData = &nData;
-  
-  *((int*)0x0018FF28) = 600; // 직접 지정 
-  *pnData = 600              // 간접 지정
-
-}
-                             </code>
-                           </pre> 
-
-                          <hr>          
-                        간접지정은 변경될 수 있는 임의의 기준주소로 상대적이 위치(주소)를 식별하는 방식입니다. <br>
-                        만일 철수의 절친인 길동이는 늘 철 수 옆집에 살기로 했다고 생각해봅시다. 그렇다면 길동이 집주소를 말할 수 도 있지만, <br>
-                        "철수 옆집이요"라고 할 수도 있습니다. 쉽게 생각해서 철수 집주소가 100번지면 길동이 집주소는 101번지가 되는 것입니다. <br>
-                        <strong>이처런 어떤 기준을 근거로 상대인 메모리의 위치를 설명하는 방법이 '간접지정'입니다.</strong>
-                        <pre>
-                          <code class="C" >
-#include &lt;stdio.h>
-
-int main(void)
-{
-  // int 형식 변수 선언 및 정의 
-  int x = 10;
-
-  // 변수 x가리키는 int형식에 대한 포인터 변수 선언 및 정의 
-  int *pnData = &x;
-  
-  printf("x : %d\n",  x);
-
-  // pnData 포인터 변수가 가리키는 대상 메모리를 int형 변수로 
-  // 간접 지정하고 20을 대입한다. 
-  // 현대 가리키는 대상 메모리는 x의 메모리이므로 x의 값이 20이 된다. 
-  *pnData = 20;
-
-  // *pnData - 포인터 변수 pnData에 저장된 주소를 가진 메모리를 int형 변수로 취급
-  
-  printf("x : %d\n" , x);
-
-  return 0;
-}
-                        </code>
-                      </pre>
-                      <hr>
-                      <img src="../cc/C003.jpg" class="img-fluid" alt="">
-                      <hr>
-                      포인터를 이용해 다른 공간의 함수에 변수를 전달한다. 
-                      <pre>
-                        <code class="c" >
-#include &lt;stdio.h>
-
-void assign(int *);
-
-int main()
-{
-  int num = 0;
-
-  assign(&num);
-
-  printf("함수 호출 후의 num 값 : %d\n", num);
-
-  return 0;
-}
-
-void assign(int * ip)
-{
-  *ip = 10; // 함수가 호출된 이후의 값은 10이다. 
-}
-                        </code>
-                      </pre>
+                        
                     </div>
                   </div>
                 </div>
@@ -476,160 +486,13 @@ void assign(int * ip)
                   <div class="card-header" id="heading5">
                     <h2 class="mb-0">
                       <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
-                        포인터와 배열    
+                        
                       </button>
                     </h2>
                   </div>
                   <div id="collapse5" class="collapse" aria-labelledby="heading5" data-parent="#accordionExample">
                     <div class="card-body">
-                        <strong>배열을 이해하는 방식</strong>
-                        <hr>
-                        <img src="../cc/C011.jpg" class="img-fluid" alt="">
-                        <pre>
-                          <code class="C" >
-#include &lt;stdio.h>
-
-int main(void) {
-  int aList[5] = { 40, 20, 50, 30, 10 };
-  int *paList = aList;
-
-  paList + 1;			// 기준 주소 + 정수(옵셋) -> 상대주소 
-  *(paList + 1);		// int 형 변수가 지정된다. 
-  *(paList + 1) = 5;  // paList[1] = 5 과 동일하다. 
-  paList[1] = 5;
-
-  return 0;
-}
-                          </code>
-                        </pre>
-                        <hr>
-                        배열의 이름은 0번 요소의 주소이며, 전체 배열을 대표하는 식별자입니다. 
-                        그리고 포인터 변수는 주소를 저정하기 위한 변수 입니다. 
-                        배열의 이름이 주소이므로, 포인터 변수에 저장할 수 있습니다.
-                        <pre>
-                          <code class="c" >
-#include &lt;stdio.h>
-
-int main(void)
-{
-  // int 배열 선언 및 정의, 배열의 이름은 연속된 각 요소들 중
-  // 전체를 대표하는 0번째 요소에 대한 '주소 상수' 이다. 
-  int aList[5] = { 0 };
-
-  // int에 대한 포인터 변수를 배열의 이름으로 정의한다. 
-  // int 형 배열의 이름을 "int에 대한 포인터 초깃값"으로 기술하였다. 
-  int *pnData = aList; // int *pnData = &aList[0]
- 
-
-  /*
-    조금 응용한다면 
-
-    pnData = &aList[1];
-    pnData = &aList[2];
-
-    도 성립할 수 있다. 
-  */
-
-
-  // 배열의 0인 요소의 값을 출력한다. 
-  printf("aList[0] : %d\n", aList[0]);
-
-  // 포인터가 가리키고 있는 배열 0번 요소의 값을 변경하고 출력한다. 
-  // 아래 코드에 의해서 간접 지정되는 대상 메모리는 aList 배열의 0번 요소입니다. 
-  // "간접지정 연산자" 는 단항 연산이며, "pnData라는 포인터에 저장된 주소의 메모리를 int 형 변수로 보겠다는 의미"
-  // "변수에 담긴 주소"를 간접적인 방법으로 지정했으니 간접 지정입니다. 
-  *pnData = 20;
- 
-  /*
-    위의 연산은 사실 *(pnData +0)를 의미하며, 이 코드의 의미는 포인터 변수 pnData에 저장된 주소를 기준으로 
-    오른쪽으로 int 0개 떨어진 위치(주소)의 메모리를 int형 변수로 지정한다는 것입니다. 
-    그리고 *(pnData + 0)를 다른 코드로 표시하면 정확히 pnData[0]입니다 
-    배열과 포인터가 문법상 호환되는 이유는 개념적으로나 기술적으로나 사실상 같기 때문입니다. 
-    단지 차이가 있다면 포인터 변수는 말 그대로 변수 이고, 배열의 이름은 '주소상수'라는 것 뿐입니다. 
-
-  */
-
-  printf("aList[0] : %d\n", aList[0]);
-
-
-  return 0;
-}
-                          </code>
-                        </pre>
-                        <hr>
-                        <pre>
-                          <code class="c" > 
-#include &lt;stdio.h>
-
-#include &lt;string.h>
-
-int main(void)
-{
-  // 문자 배열 (char[16]) 의 선언 및 정의 
-  // 선언한 크기는 char[16]이지만 초기화는 char[6] 문자열로 한다. 
-  char szBuffer[16] = { "Hello" };
-  // 문자 배열을 가리키는 문자 포인터 변수의 선언 및 정의 
-  char *pszData = szBuffer;
-  int nLength = 0;
-
-  // pszData 포인터 변수가 가리키는 대상에 저장된 char형 데이터가 
-  // 문자열의 끝을 의미하는 NULL문자가 될 때까지 반복문 수행 
-  while (*pszData != '\0') {
-    // 포인터를 다음으로 한 칸 이동 시킨다. 
-    // 해당 부분이 수행되면 pszData에 담긴 정보는 주소를 기준으로 1만큼 증가합니다. 이는 정확히는 
-    // 오른쪽으로 char 형 크기 만큼 한 칸 이동(주소 증가)했기 때문입니다. 
-    pszData++;
-    nLength++;
-  }
-
-  //  strlen() 함수로 문자열의 길이 ( 바이트 단위 크기 ) 를 출력한다. 
-  printf("Length : %d\n", nLength);
-  printf("Length : %d\n", strlen(szBuffer));
-  printf("Length : %d\n", strlen("World"));
-
-  // 포인터는 변수이니다. 자신이 담고 있는 정보를 바꿔버리는 자체가 상대 주소 계산이 됩니다.
-  // 그리고 동시에 새로운 기준주소로 변경됨을 의미하니다. 즉, 
-  // 계산을 통해 얻은 상태 주소로 정보를 업데이트 하면 그것이 새로운 기준 주소가 되어 인접한 정보에 
-  // 접근할 수 있습니다. 
-
-  return 0;
-}
-                          </code>
-                        </pre>
-                        <hr>
-                        컴파일러가 알려준 주소는 pszData 변수의 주소입니다. 그리고 그 안에 저장된 정보는 szBuffer입니다.
-                        따라서 포인터 변수안에 담긴 정보는 szBuffer의 실제주소입니다. 이를 근거로 메모리 구조를 표현하면 
-                        아래와 같습니다. 
-                        <hr>
-                        <pre>
-                          <code class="C" >
-#include &lt;stdio.h>
-
-int main(void)
-{
-  char szBuffer[16] = { "Hello" };
-  char *pszData = szBuffer;
- 
-  /*
-    pszData의 주소는 최초 기준 주소에서 계속해서 증가했습니다. 
-    따라서 반복문을 실행한 후, pszData에 담긴 주소는 szBuffer 보다 크거나 같습니다. 그리고 이 가정에 의해서
-    아래의 코드와 같이 연산하면 문자열의 끝인 '\0'이 저장된 배열 요소의 인덱스를 알 수가 있는데 
-    이 인덱스와 문자열의 길이가 일치 합니다. 
-
-    문자열 본질에 대한 기본 이해, 상대주소에서 기준주소를 빼 역으로 인덱스를 계산하는 방법, 배열의 인덱스가 0에서 시작할 수 밖에 
-    없는 이유 등에 대해서 기술적 근거를 들었다고 할 수 있습니다. 
-  */
-  while (*pszData != '\0')
-  {
-    pszData++;
-  }
-
-  printf("Length : %d\n", pszData - szBuffer);
-
-  return 0;
-}
-                          </code>
-                        </pre>
+                        
                     </div>
                   </div>
                 </div>  
@@ -637,116 +500,13 @@ int main(void)
                   <div class="card-header" id="heading7">
                     <h2 class="mb-0">
                       <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
-                        메모리 동적 할당 및 관리 
+                       
                       </button>
                     </h2>
                   </div>
                   <div id="collapse7" class="collapse" aria-labelledby="heading7" data-parent="#accordionExample">
                     <div class="card-body">
-                        malloc() 과 free()
-                        <hr>
-                        <pre>
-                          <code class="C" >
-void ptrmalloc01() {
-  int *pList = NULL, i = 0;
-
-  // sizeof(int) * 3 의 결과는 int형이 4 바이트 이므로 12 입니다. 
-  // malloc의 함수 반환 자료형은 void* 이기 때문에 int*로 강제 형변환 처리 
-  // void * 에서 void는 길이도 해석방법도 없다는 의미 
-  // void * 의 본질이 포인터인 것은 맞지만 , 이 주소가 가리키는 대상 메모리를 어떤 형식(자료형)으로 해석할지는 아직 결정되지 않았음을 의미합니다 
-  pList = (int*)malloc(sizeof(int) * 3);
-
-  pList[0] = 10;
-  pList[1] = 20;
-  pList[2] = 30;
-
-  for ( i = 0; i &lt; 3; i++)
-  {
-    printf("%d\n", pList[i]);
-  }
-
-  // 동적 할당한 메모리를 반환합니다. 
-  // 만약 개발자의 실수로 아래의 처리를 안할 경우, 메모리가 사용할 수 없는 상태가 되는 것을 '메모리 누수(memory leak)'라고 부릅니다. 
-  free(pList);
-
-  return 0;
-}                            
-                          </code>
-                        </pre>
-                    </div>
-                  </div>
-                </div> 
-                <div class="card">
-                  <div class="card-header" id="heading8">
-                    <h2 class="mb-0">
-                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapse8">
-                        메모리 초기화 및 사용 
-                      </button>
-                    </h2>
-                  </div>
-                  <div id="collapse8" class="collapse" aria-labelledby="heading8" data-parent="#accordionExample">
-                    <div class="card-body">
-                      <pre>
-                        <code class="C" >
-void prtmeminit01() {
-  int *pList = NULL, *pNewList = NULL;
-
-  // A. int 형 3개 배열 선언 및 정의   ( 0 초기화 )
-  int aList[3] = { 0 };
-
-  // B. int 형 3개를 담을 수 있는 크기의 메모리를 동적으로 할당한 후 
-  // 메모리를 모두 0으로 초기화 
-  // malloc() 함수가 반환한 메모리의 기준 주소를 시작으로 동적 할당된 크기만큼 모두 0으로 초기화 합니다. 
-  // sizeof(int) * 3 이라고 쓰면 동적 할당한 메모리가 int[3]의 형식으로 사용될 가능성을 암시할 수 있습니다. 
-  pList = (int*)malloc(sizeof(int) * 3);
-  memset(pList, 0, sizeof(int) * 3);
-
-  // C.  int형 3개를 담을 수 있는 메모리를 0으로 초기화 한 후 할당 받음 
-  pNewList = (int*)calloc(3, sizeof(int));
-
-  // 동적 할당한 메모리들을 해제 
-  free(pList);
-  free(pNewList);
-
-  return 0;
-}
-
-void ptrmeminit02() {
-	// 선언할 배열 요소의 크기를 기술하지 않았지만 초기값을 기준으로 
-	// 자동으로 크기가 결정된다. 
-	char szBuffer[] = { "Hello" };
-
-  // "Hello" 문자열이 저장된 메모리의 주소로 초기화되는 포인터 변수 
-  /*
-    11번 행은 char형에 대한 호인터 변수의 선언 및 정의 입니다. 
-    그러나 여기 기술된 문자열 "Hello"는 위의 행의 코드와는 다릅니다. 위에는 지연변수인 szBuffer 배열이 사용하는 스택 메모리의 초깃값이 되는 것이지만, 
-    아래는 데이터 영역 중 읽기 전용 어딘가에 "Hello"라는 문자열이 저장되고 첫 글자인 'H'가 저장된 기준주소가 포인터의 초깃값이 됩니다. 
-    메모리를 동적할당하는 것이 아닌데 동적 할당으로 잘못 생각할 수 있습니다. 
-  */
-	char *pszBuffer = "Hello";
-
-	// 동적 할당된 메모리의 주소가 저정도리 포인터 선언 및 정의 
-	char *pszData = NULL;
-
-	// 메모리를 동적으로 할당하고 "Hello" 문자열로 초기화 
-	pszData = (char*)malloc(sizeof(char) * 6);
-	pszData[0] = 'H';
-	pszData[1] = 'e';
-	pszData[2] = 'l';
-	pszData[3] = 'l';
-	pszData[4] = '0';
-	pszData[5] = '\0'; // 문자열의 끝을 의미하는 NULL 문자 
-
-	puts(szBuffer);
-	puts(pszBuffer);
-	puts(pszData);
-
-	// 동적 할당 메모리 해제 
-	free(pszData);
-	return 0;
-}
-                        </code>
-                      </pre>
+                       
                     </div>
                   </div>
                 </div> 
@@ -755,24 +515,13 @@ void ptrmeminit02() {
                   <div class="card-header" id="heading10">
                     <h2 class="mb-0">
                       <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse10" aria-expanded="false" aria-controls="collapse10">
-                        할당된 메모리 크기 확인 
+                      
                       </button>
                     </h2>
                   </div>
                   <div id="collapse10" class="collapse" aria-labelledby="heading10" data-parent="#accordionExample">
                     <div class="card-body">
-                      <pre>
-                        <code class="c" >
-void msize01() {
-  char *pszData = NULL;
-
-  pszData = (char*)malloc(sizeof(char) * 6);
-  printf("%d\n", _msize(pszData));
-  free(pszData);
-  return 0;
-}
-                        </code>
-                      </pre>
+                      
                     </div>
                   </div>
                 </div> 
@@ -780,67 +529,13 @@ void msize01() {
                   <div class="card-header" id="heading11">
                     <h2 class="mb-0">
                       <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse11" aria-expanded="false" aria-controls="collapse11">
-                        메모리 복사 
+                      
                       </button>
                     </h2>
                   </div>
                   <div id="collapse11" class="collapse" aria-labelledby="heading11" data-parent="#accordionExample">                        
                     <div class="card-body">
-                      배열 처럼 여러 인스턴스가 뭉쳐진 경우에는 절대로 단순 대입으로 r-value를 l-value로 복사할 수가 없습니다. 이 문제는 배열에 대해 배울 때, 
-                      이미 경험한 적이 있는데, 배열의 이름이 식별자인것은 맞지만, 변수가 아니라 '주소상수'에 부여된 식별자이므로 l-value가 되지 못합니다. 
-                      게다가 'szNewBuffer = szBuffer;'라는 코드의 개념적의미는 충분히 짐작할 수 있지만 문법적으로는 절대 허용되지 않는 연산입니다. 
-                      각 배열의 요소 만큼 반복문을 수행하여 요소별로 일일이 단순 대입 연산을 수행해주어야 합니다. 
-                      <hr>
-                      <pre>
-                        <code class="c" >
-void ptrmemcpy01() {
-  char szBuffer[12] = { "HelloWorld" };
-  char szNewBuffer[12] = { 0 };
-
-  // 원본에서 4바이트만 대상 메모리로 복사 
-  memcpy(szNewBuffer, szBuffer, 4);
-  puts(szNewBuffer);
-
-  // 원본에서 6바이트만 대상 메모리로 복사 
-  memcpy(szNewBuffer, szBuffer, 6);
-  puts(szNewBuffer);
-
-  // 원본 메모리 전체를 대상 메모리로 복사 
-  memcpy(szNewBuffer, szBuffer, sizeof(szBuffer));
-  puts(szNewBuffer);
-  return 0;
-}
-                        </code>
-                      </pre>                          
-                    </div>
-                  </div>
-                </div> 
-                <div class="card">
-                  <div class="card-header" id="heading12">
-                    <h2 class="mb-0">
-                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse12" aria-expanded="false" aria-controls="collapse12">
-                        메모리 비교 
-                      </button>
-                    </h2>
-                  </div>
-                  <div id="collapse12" class="collapse" aria-labelledby="heading12" data-parent="#accordionExample">
-                    <div class="card-body">
-                      <pre>
-                        <code class="C" >
-#include &lt;studio.h>
-#include &lt;string.h>
-
-int main(void){
-  char szBuffer[12] = { "TestString" };
-  char *pszData = "TestString";
-
-  printf("%d\n", memcmp(szBuffer, pszData, 10));
-  printf("%d\n", memcmp("teststring", pszData, 10));
-  printf("%d\n", memcmp("DataString", pszData, 10));
-  return 0;
-}
-                        </code>
-                      </pre>
+                      
                     </div>
                   </div>
                 </div> 
