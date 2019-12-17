@@ -490,11 +490,45 @@ int main(int argc, char* argv[]){
                               </pre>
                               동적할당한 메모리의 기준주소가 GetName() 함수의 지역변수인 pszName 에 저장되어 있다는 것 
                               <hr>
-                              <img src="../cc/StackFrame05.png" class="img-thumbnail" alt="" srcset="">
+                              <img src="../cc/StackFrame05.png" class="img-thumbnail" alt="" srcset=""> <br>
                               GetName() 함수가 반환하면 GetName 함수의 지역변수였던 pszName 은 사실상 사라진다고 봐야합니다. 
                               그러나 그 안에 담겨있던 정보는 호출자 함수인 main() 함수에 반환 값으로 전달됩니다.
-                              
                               <hr>
+                              피호출자 함수가 메모리를 동적 할당하고 해제하지 않았으나, 해제의 열쇠가 되는 기준 주소를 호출자에 반환함으로써 
+                              대상 메모리에 이를 수 있는 방법이 사라지지 않았다는 점이다. 그래서 GetName 함수가 반홚하는 순간에 메모리가 누수될 
+                              뻔 하였으나 이를 main() 함수에서 다시 선으로 이어 줌으로써 대상 메모리를 계속 관리할 수 있었습니다. 
+                              그리고 만일 main() 함수에서 메모리를 해제하지 않고 함수가 반환한다면 메모리 누수가 발생합니다. 
+                              <hr>
+                              <img src="../cc/StackFrame06.png" class="img-thumbnail"  alt="" srcset="">
+                              <hr>
+                              <img src="../cc/StackFrame07.png" class="img-thumbnail" alt="" srcset=""> <br>
+                              main() 함수가 GetName() 함수를 호출했고, GetName()함수가 다시 gets_s()함수를 호출햇다는 것. 
+                              이는 매우 중요한 프로그램의 흐름을 알려주는 정보인데, 이를 호출 스탤(Call Stack)이라고 부릅니다. 
+                              <hr>
+                              <pre class="C" >
+                                <code>
+#include &lt;stdio.h>
+
+int main(void)
+{
+  int nInput = 0;
+  scanf("%d"m &nInput);
+
+  if(nInput > 10){
+    int nInput = 20;
+    printf("%d\n", nInput);
+
+    if(nInput &lt; 20){
+      int nInput = 30;
+      printf("%d\n", nInput);
+    }
+  }
+
+  printf("%d\n", nInput);
+  return 0;
+}
+                                </code>
+                              </pre>
                             </li>
                             <li>
                               
