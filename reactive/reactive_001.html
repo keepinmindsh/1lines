@@ -650,9 +650,140 @@ public class PubSub {
                          
                           <li class="list-group-item">
                             Generics를 이용한 Sub/Pub 예제
+                            
+                          </li>
+                          <li class="list-group-item">
+                            함수형 인터페이스의 활용 
+                            <pre class="Java" >
+                              <code>
+
+public class CustomSubscriber&lt;T,R> implements Subscriber&lt;T> {
+
+    private Subscriber subscriber;
+
+    public CustomSubscriber(Subscriber&lt;? super R> subscriber){
+        this.subscriber = subscriber;
+    }
+
+    @Override
+    public void onSubscribe(Subscription subscription) {
+        subscriber.onSubscribe(subscription);
+    }
+
+    @Override
+    public void onNext(T t) {
+        subscriber.onNext(t);
+    }
+
+    @Override
+    public void onError(Throwable t) {
+        subscriber.onError(t);
+    }
+
+    @Override
+    public void onComplete() {
+        subscriber.onComplete();
+    }
+}
+
+
+
+public class Sample11_reactiveStreams11 {
+
+  public static void main(String[] args) {
+      Publisher&lt;Integer> pub = settingPublisher(Stream.iterate(1, a -> a + 1).limit(10).collect(Collectors.toList()));
+
+      Publisher&lt;StringBuilder> reducePublisher= reducePublisher(pub, new StringBuilder(), (a, b) -> a.append(b + ","));
+
+      reducePublisher.subscribe(logSubscriber());
+  }
+
+  private static Publisher&lt;Integer> settingPublisher(List&lt;Integer> iter) {
+      return new Publisher&lt;Integer>() {
+
+          Iterable&lt;Integer> iteratorable = iter;
+
+          @Override
+          public void subscribe(Subscriber&lt;? super Integer> subscriber) {
+              subscriber.onSubscribe(new Subscription() {
+                  @Override
+                  public void request(long n) {
+                      try {
+                          iteratorable.forEach(subscriber::onNext);
+                          subscriber.onComplete();
+                      }catch (Exception e) {
+                          subscriber.onError(e.getCause());
+                      }
+                  }
+
+                  @Override
+                  public void cancel() {
+
+                  }
+              });
+          }
+      };
+  }
+
+  private static &lt;T,R> Publisher&lt;R> reducePublisher(Publisher&lt;T> pub, R init, BiFunction&lt;R, T, R> appendBiFunction) {
+      return new Publisher&lt;R>() {
+          @Override
+          public void subscribe(Subscriber&lt;? super R> subscriber) {
+
+              pub.subscribe(new CustomSubscriber&lt;T,R>(subscriber){
+
+                  R result = init;
+
+                  @Override
+                  public void onNext(T t) {
+                      result = appendBiFunction.apply(result, t);
+                  }
+
+                  @Override
+                  public void onComplete() {
+                      subscriber.onNext(result);
+                      subscriber.onComplete();
+                  }
+              });
+          }
+      };
+  }
+
+  private static &lt;T> Subscriber&lt;T> logSubscriber() {
+      return new Subscriber&lt;T>() {
+          @Override
+          public void onSubscribe(Subscription subscription) {
+              System.out.println("onSubscribe :");
+              subscription.request(Long.MAX_VALUE);
+          }
+
+          @Override
+          public void onNext(T t) {  // 정상적인 데이터
+              System.out.println("OnNext : " + t);
+          }
+
+          @Override
+          public void onError(Throwable throwable) { // 에러
+              System.out.println("OnError : {}" + throwable.getMessage());
+          }
+
+          @Override
+          public void onComplete() { // 완료 시그널 처리
+              System.out.println("OnComplete : {}" );
+          }
+      };
+  }
+
+}
+                              
+                              </code>
+                            </pre>
                           </li>
                           <li class="list-group-item">
                             Operator를 연결하는 처리 예제 
+                            <hr>
+                            대부분의 Operator는 Observable을 운영하고, 반환하는 것에 대한 것이다. 이는 우리가 여러 Operator를 
+                            연결하는 것을 가능하게 한다. 
                           </li>
                           <li class="list-group-item">
                             Bloking IO를 사용하거나 수행이 느린 경우 : SubscribeOn
