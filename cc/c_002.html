@@ -630,6 +630,42 @@ int main(void){
                          </pre>
                          <hr>
                          재귀호출에서는 조건에 부합할 때는 함수가 반환하는 방법으로 멈춥니다. 
+                          <hr>
+                          재귀 호출을 이용한 문자열 출력 
+                          <hr>
+                          재귀 호출을 하용하는 가장 흔한 경우는 비선형 자료구조를 다룰 때입니다. 비선형 자료구조에는 대표적으로 트리가 있으며, 자료를 계층적 구조로 만든 것이 
+                          트리의 특징입니다. 
+                          <pre class="c" >
+                            <code>
+#include &lt;stdio.h>
+
+void PutData(char *pszParam){
+  // 문자열의 끝이면 더 이상 재귀 호출은 하지 않고 반환한다. 
+  if ( *pszParam == '\0'){
+    return;
+  }
+
+  // 다음 두 구문의 실행 순서를 바꾸면 문자열이 뒤집어져 출력된다. 
+  putchar(*pszParam);
+
+  // 다음 글자를 가리키는 주소를 매개변수로 재귀호출한다.  
+  PutData(pszParam + 1);11
+
+}
+
+int main(void){
+  PutData("TestData");
+  putchar('\n');
+  return 0;
+}
+                            </code>
+                          </pre>
+                          스택은 가장 먼저 Push 한 정보가 가장 나중에 Pop 되고, 가장 나중에(혹은 최근에) Push한 정보가 가장 먼저 Pop되는 LIFO구조입니다. 
+                          이러한 구조가 자주 사용되는 이유는 '되돌리기' 기능과 같은 것을 구현하기 좋기 때문입니다. 
+                          스택이 순서를 뒤 바꾼다는 특징을 가진 것이 얼마나 다행스러운 지 모르겠습니다. 우리가 어떤 정보를 다루는 과정에서 로그를 남기고자
+                          한다면 스택 형식으로 만드는 것이 좋을 수 있습니다. 왜냐하면 시기적으로 가장 최근에 벌어진 일이 스택의 최상단에 존재하므로 접근하기 쉽기
+                          때문입니다. 
+                          <hr>
                       </div>
                     </div>
                   </div>
@@ -637,15 +673,162 @@ int main(void){
                     <div class="card-header" id="headingTwo">
                       <h2 class="mb-0">
                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                          
+                          문자/문자열 처리 함수 
                         </button>
                       </h2>
                     </div>
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                       <div class="card-body">               
-                        
+                        CRL은 많은 표준 함수를 제공합니다. 
+                        <hr>
+                        <ul>
+                          <li>isalpha() : A ~ Z, a ~ z 에 속하는 문자인지 검사하는 함수이다. </li>
+                          <li>isdigit() : 0 ~ 9 에 속하는 문자(char)인지 검사하는 함수이다. </li>
+                          <li>isxdigit()  : 0 ~ 9, A ~ F, a ~ f 에 속하는 문자(char)인지 검사하는 함수이다.</li>
+                          <li>isalnum()  : 0 ~ 9, A ~ Z, a ~ z 에 속하는 문자(char)인지 검사하는 함수이다.</li>
+                          <li>islower() : 영문 소문자 인지 검사하는 함수이다. </li>
+                          <li>isupper() : 영문 대문자인지 검사하는 함수이다. </li>
+                          <li>isspace() : 0x09 ~ 0x0D 혹은 0x20에 속하는 화이트 스페이스 문자인지 검사하는 함수이다. </li>
+                          <li>toupper() : 영문 소문자를 대문자로 변환하는 함수이다. </li>
+                          <li>tolower() : 영문 대문자를 소문자로 변환하는 함수이다. </li>
+                        </ul>   
+                        <hr> 
+                        문자열 처리함수 
+                        <hr>
+                        <ul>
+                          <li>char *strcat(char *strDestination, const char *strSource);
+                            <br>
+                            첫 번째 인자로 전달된 주소에 저장된 문자열에 두 번째 인자로 전달될 문자열을 추가해주는 함수이다. 
+                            따라서 첫 번째 인자로 전달된 주소에 저장된 문자열의 길이가 늘어난다. 
+                          </li>
+                          <li>char *strncat(char * strDestination, const char *strSource, size_t count);
+                            <br>
+                            첫 번째 인자로 전달된 주소에 저장된 문자열에 두 번째 인자로 전달된 문자열을 주어진 길이만큼만 
+                            추가해주는 함수이다. 
+                          </li>
+                        </ul>
+                        <pre class="C" >
+                          <code>
+#include &lt;stdio.h>
+#include &lt;string.h>
+
+int main(void){
+  char szPath[128] = { "C:\\Program Files\\"};
+  char szBuffer[128] = {0};
+
+  printf("Input path : ");
+  gets(szBuffer);
+
+  strcat(szPath, szBuffer);
+  puts(szPath);
+  return 0;
+}
+                          </code>
+                        </pre>
+                        strcat 함수는 문자열을 뒤에 붙여주는 함수인데, 문자열의 길이가 늘어날 수록 길이를 측정하기 위해 
+                        반복해야 할 횟수가 늘어나고 그만큼 효율을 떨어뜨립니다. 
+                        따라서 이를 처리할 수 있는 대안은 strcat 을 우리가 직접 재조정하여 사용하는 것입니다. 
+                        새로 만들 함수는 첫 번째 매개변수로 받은 주솟값을 그대로 반환하는 것이 아니라, 두 번째 매개변수로 전달된 문자열을 이어 붙인 후 
+                        맨 마지막 문자('\0'이 아닌 문자)가 저장된 메모리의 주소를 반환합니다. 그러면 두 번째로 이어 붙일 때는 문자열의 길이를 처음부터 측정하지 
+                        않을 수 있습니다. 
+                        <pre class="c" >
+                          <code>
+#include &lt;stdio.h>
+#include &lt;string.h>
+
+char* mystrcat(char *pszDst, char *pszSrc){
+  // 대상 메모리에 저장된 문자열의 끝을 찾는다.
+  while ( *pszDst != '\0')
+    ++pszData;
+
+  // 그 뒤에 새로운 문자열을 이어 붙인다. 
+  while ( *pszSrc != '\0')
+    *pszDst++ = *pszSrc++;
+
+  // 맨 끝을 NULL 문자로 마무리한다. 
+  *++pszDst = '\0';
+
+  // 이어 붙인 문자열의 마지막 글자가 저장된 메모리의 주소를 반환한다. 
+  return --pszDst;
+}
+
+int main(void){
+  char szPath[128] = { 0 };
+  char *pszEnd = NULL;
+
+  // 대상 메모리에 문자열을 붙인다. 
+  pszEnd = mystrcat(szPath, "C:\\Program Files\\");
+  // 앞서 반환한 주소를 첫 번째 인수로 호출해 문자열을 붙인다. 
+  pszEnd = mystrcat(pszEnd, "CHS\\");
+  pszEnd = mystrcat(pszEnd, "C programming");
+
+  puts(szPath);
+  return 0;
+}
+                          </code>
+                        </pre>
+                        <hr>
+                        sprintf() 함수를 이용한 문자열 붙이기 
+                        <hr>
+                        문자열은 콘솔 화면이 아니라 '메모리'에 출력한다는 점이 다르다. 
+                        <pre class="C" >
+                          <code>
+#include &lt;stdio.h>
+#include &lt;string.h>
+
+int main(void){
+  char szPath[128] = {0};
+  char szBuffer[128] = {0};
+  printf("Input Path : ");
+  gets(szBuffer);
+
+  sprintf(szPath, "C:\\Program Files\\%s", szBuffer);
+  puts(szPath);
+  return 0;
+}
+                          </code>
+                        </pre>
+                        sprintf 함수도 보안 결함이 있으므로 sprint_s()나 snprintf() 함수를 사용하는 것이 좋습니다.
+                        <hr>
+                        strpbrk() 구문 분석 함수 
+                        <ul>
+                          <li>
+                            *strpbrk(const char *string, const char *strCharset); <br>
+                            string : 검색 대상 문자열이 저장된 메모리 주소 <br>
+                            strCharSet : 검색할 문자 집합 <br>
+                            반환 값 : 찾으면 해당 문자가 저장된 메모리 주소 반환, 찾지 못하면 NULL 반환 <br>
+                            설명 : 임의의 대상 문자열에서 특정 문자 집합을 검색하는 함수 
+                          </li>
+                        </ul>
+                        <pre class="C" >
+                          <code>
+#include &lt;stdio.h>
+#include &lt;string.h> 
+
+void main(void){
+  char szBuffer[128] = { 0 };
+  char szSet[128] = { 0 };
+  char *pszStart = szBuffer;
+
+  // 검색 대상 문자열을 입력받는다. 
+  printf("Input string :");
+  gets(szBuffer);
+
+  // 찾을 '문자들'을 입력받는다. 
+  printf("Input character set : ");
+  gets(szSet);
+
+  while((pszStart = strpbrk(pszStart, szSet)) != NULL){
+    printf("[%p] index: %d, %c\n", pszStart, pszStart - szBuffer, *pszStart);
+
+    // 일치하는 하나를 찾았으므로 다음으로 이동하고 계속 찾는다. 
+    pszStart ++ ;
+  }
+}
+                          </code>
+                        </pre>
+                      </div>
                     </div>
-                  </div>
                 </div>
                 <div class="card">
                   <div class="card-header" id="heading5">
