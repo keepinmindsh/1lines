@@ -115,35 +115,23 @@
             <div class="card-body">
                 <div class="accordion" id="accordionExample">
                   <div class="card">
-                    <div class="card-header" id="headingOne">
-                      <h2 class="mb-0">
-                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                           JavaScript - Import, Export 
-                        </button>
-                      </h2>
+                    <div class="card-header" id="heading1">
+                        <h2 class="mb-0">
+                          <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                            props와 state를 나누어 사용하도록 한 이유 ?
+                          </button>
+                        </h2>
                     </div>
-                
-                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                      <div class="card-body">
-                        자바스크립트는 호이스팅으로 인하여 변수나 함수가 전역에서 사용될 수 있었기 때문에 이름 충돌이 잦게 발생하였습니다. 
-                        ES6 부터는 모듈의 개념이 추가되어 Java, C# 처럼 Export, Import를 사용할 수 있게 되었다. 
-                        <hr>
-                        하지만 브라우저에서 지원이 되지 않고 있기 때문에 webpack과 같은 모듈 번들러를 사용해야만 모듈 시스템(import, export)를 이용할 수 있다. 
-                        <hr>
-                        <a href="https://github.com/AriaFallah/WebpackTutorial/tree/master/part1" target="_blank" >webpack 따라하며 배우기</a>
-                        <pre>
-                          <code class="javascript" >                       
-// custom.js
-Class custom {
-  constructor(customName){
-    this.customName = customName;
-  }
-}
-                          </code>
-                        </pre>
-                      </div>
+                    <div id="collapse1" class="collapse" aria-labelledby="heading1" data-parent="#accordionExample">
+                        <div class="card-body">
+                            먼저 개발자들에게 명확한 관념 모델(static mental model)을 제공합니다.  <br>
+                            관념 모델은 무엇이 어떻게 동작하는지 이해할 때 진행되는 일련의 사고 프로세스를 의미합니다.  <br>
+                            즉, 논리적으로 이치에 맞는 사고 모델을 제공한다는 것이다. <br>
+                        </div>
                     </div>
                   </div>
+              </div>
+                <div class="accordion" id="accordionExample">
                   <div class="card">
                     <div class="card-header" id="headingTwo">
                       <h2 class="mb-0">
@@ -218,10 +206,94 @@ ReactDOM.render(
                     </div>
                   </div>
                   <div class="card">
+                    <div class="card-header" id="heading14">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse14" aria-expanded="false" aria-controls="collapse14">
+                          Component Lifecycle 
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse14" class="collapse" aria-labelledby="heading14" data-parent="#accordionExample">
+                      <div class="card-body">
+                         컴포넌트의 생명주기는 16.3을 기점으로 나뉜다. <br>
+                         아래는 16.3 이전, 이후에서 사용되는 모든 컴포넌트 생명주기 함수에 대해서 mounting, unmounting, updating 시점에 따라서 알아보겠다. 
+                         <hr>
+                         <img src="../react/component-lifecyle.png" class="img-fluid" alt="">
+                         <hr>
+                         <div class="list-group">
+                          <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                              <h5 class="mb-1">  1. Mounting <br></h5>
+                              <small></small>
+                            </div>
+                            <p class="mb-1">
+                              컴포넌트 객체가 생성된 후, DOM으로 주입(삽입)될 때<br>
+                              React Native의 실행되는 함수의 순서는 <br>
+                                - constructor<br>
+                                - static getDerivedStateFromProps ( React v16.3 부터 제공 )  - componentWillReceiveProps ( React v16.3 이전 ) <br>
+                                - render<br>
+                                - componentDidMount<br>
+                              </p>
+                            <small></small>
+                          </a>
+                          <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                              <h5 class="mb-1">2. Updating<br></h5>
+                              <small class="text-muted"></small>
+                            </div>
+                            <p class="mb-1">브라우저 상에 React 컴포넌트가 표시되거나, 새로운 갱신(변경)이 발생했을 때<br>
+                              React Native의 실행되는 함수 순서는 <br>
+                            
+                                - static getDerivedStateFromProps ( React v16.3 부터 제공 )   - componentWillReceiveProps ( React v16.3 이전 ) <br>
+                            
+                                - shouldComponentUpdate<br>
+                            
+                                - render <br>
+                            
+                                - getSnapshotBeforeUpdate ( React v16.3 부터 제공 ) - componentWillUpdate ( React v16.3 이전 )<br>
+                            
+                                - componentDidUpdate<br>
+                              </p>
+                            <small class="text-muted"></small>
+                          </a>
+                          <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                              <h5 class="mb-1">3. UnMounting<br></h5>
+                              <small class="text-muted"></small>
+                            </div>
+                            <p class="mb-1">
+                              해당 컴포넌트가 더이상 필요하지 않고, 컴포넌트가 해제(분리)될 때<br>
+                              React Native 의 실행되는 함수 순서는 <br>
+                                - componentWillUnmount<br>
+                            </p>
+                            <small class="text-muted"></small>
+                          </a>
+                          <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                              <h5 class="mb-1">4. Error Handling<br></h5>
+                              <small class="text-muted"></small>
+                            </div>
+                            <p class="mb-1">                       
+                              생명주기 함수 내, 생성자 내, 모든 하위 컴포넌트의 생성자 내의 렌더링 과정 상에서 에러가 발생할 때<br>
+                              React Native 의 실행되는 함수 순서는 <br>
+                                - getDerivedStateFromError<br>
+                                - componentDidCatch ( React v16.3 부터 제공 ) <br>
+                                > getDerivedStateFromError, componentDidCatch는 동일한 에러를 잡는데, 실제 전달되는 인자가 다르다.<br> 
+                                  ~ getDerivedStateFromError 는 "render" 단계에 호출되며, 외부 함수에 의한 영향 ( SideEffect ) 까지 포함되지 않는다. <br>
+                                  ~ sideEffect가 포함되어야하는 경우에는 componentDidCatch를 사용해야 한다. <br>
+                            </p>
+                            <small class="text-muted"></small>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>  
+                                    
+                  <div class="card">
                     <div class="card-header" id="headingFour">
                       <h2 class="mb-0">
                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseTwo">
-                            JSX에 대해서
+                          JSX
                         </button>
                       </h2>
                     </div>
@@ -351,10 +423,60 @@ const element = React.createElement(
 );
   </code>
 </pre>
+<hr>
+JSX 속성 요소
+<hr>
+<pre class="XML" >
+  <code >
+    accept acceptCharset accessKey action allowFullScreen allowTransparency alt
+    async autoComplete autoFocus autoPlay capture cellPadding cellSpacing challenge
+    charSet checked classID className colSpan cols content contentEditable
+    contextMenu controls coords crossOrigin data dateTime default defer dir
+    disabled download draggable encType form formAction formEncType formMethod
+    formNoValidate formTarget frameBorder headers height hidden high href hrefLang
+    htmlFor httpEquiv icon id inputMode integrity is keyParams keyType kind label
+    lang list loop low manifest marginHeight marginWidth max maxLength media
+    mediaGroup method min minLength multiple muted name noValidate nonce open
+    optimum pattern placeholder poster preload radioGroup readOnly rel required
+    reversed role rowSpan rows sandbox scope scoped scrolling seamless selected
+    shape size sizes span spellCheck src srcDoc srcLang srcSet start step style
+    summary tabIndex target title type useMap value width wmode wrap
+  </code>
+</pre>
 
                       </div>
                     </div>
                   </div>  
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                           JavaScript - Import, Export 
+                        </button>
+                      </h2>
+                    </div>
+                
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                      <div class="card-body">
+                        자바스크립트는 호이스팅으로 인하여 변수나 함수가 전역에서 사용될 수 있었기 때문에 이름 충돌이 잦게 발생하였습니다. 
+                        ES6 부터는 모듈의 개념이 추가되어 Java, C# 처럼 Export, Import를 사용할 수 있게 되었다. 
+                        <hr>
+                        하지만 브라우저에서 지원이 되지 않고 있기 때문에 webpack과 같은 모듈 번들러를 사용해야만 모듈 시스템(import, export)를 이용할 수 있다. 
+                        <hr>
+                        <a href="https://github.com/AriaFallah/WebpackTutorial/tree/master/part1" target="_blank" >webpack 따라하며 배우기</a>
+                        <pre>
+                          <code class="javascript" >                       
+// custom.js
+Class custom {
+  constructor(customName){
+    this.customName = customName;
+  }
+}
+                          </code>
+                        </pre>
+                      </div>
+                    </div>
+                  </div>
                   <div class="card">
                     <div class="card-header" id="heading4-1">
                       <h2 class="mb-0">
@@ -1540,31 +1662,6 @@ function FriendStatus(props) {
                       </div>
                     </div>
                   </div>      
-                  <div class="card">
-                    <div class="card-header" id="heading14">
-                      <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse14" aria-expanded="false" aria-controls="collapse14">
-                          Component Lifecycle 
-                        </button>
-                      </h2>
-                    </div>
-                    <div id="collapse14" class="collapse" aria-labelledby="heading14" data-parent="#accordionExample">
-                      <div class="card-body">
-                         컴포넌트를 생성할 때, constructor -> componentWillMount -> render -> componentDidMount 
-                         <hr>
-                         컴포넌트를 제거할 때, componentWillUnmount
-                         <hr>
-                         컴포넌트의 props이 변경될 때, componentWillReceiveProps -> shouldComponentUpdate -> componentWillUpdate-> render -> componentDidUpdate
-                         <hr>
-                         컴포넌트의 state가 변경될 때, shouldComponentUpdate
-
-                         <hr>
-                          <div class="alert alert-secondary" role="alert">
-                            componentWillUpdate : 컴포넌트가 업데이트 되기 전에 실행됩니다. 이 메소드 안에서는 this.setState() 를 사용하지 마세요 – 무한루프에 빠져들게 됩니다.
-                          </div>
-                      </div>
-                    </div>
-                  </div>  
                   <div class="card">
                     <div class="card-header" id="heading15">
                       <h2 class="mb-0">

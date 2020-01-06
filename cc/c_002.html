@@ -827,6 +827,52 @@ void main(void){
 }
                           </code>
                         </pre>
+                        <hr>
+                        strtok 함수를 이용한 구문 분석 
+                        <ul>
+                          <li>
+                            char *strtok(char *strToken, const char *strDelimit) <br>
+                            strToken : 토큰화 할 문자열이 저장된 메모리 주소 <br>
+                            strDelimit : 토큰의 기준이 되는 구분자 문자 집합 <br>
+                            반환 값 : 두 번째 인자로 전달된 문자집합 중 하나라도 찾으면 해당 문자가 저장된 메모리의 내용을 NULL로 바꾸고 문자열의 시작 주소를 반환한다. <br>
+                            설명 : 임의의 문자열을 구분자를 근거로 토큰화 하는 함수이다. 이 함수는 내부적으로 정적 변수를 사용하므로 주의해야 한다. 
+                          </li>
+                        </ul>
+                        <pre class="C" >
+                          <code>
+#include &lt;stdio.h>
+#include &lt;stdio.h>
+
+void main(void)
+{
+  // 토큰화 할 대상 문자열
+  char szBuffer[128] = { "nData = x + y; \n nResult = a * b"};
+
+  // 토큰화의 기준이 되는 구분자 문자열 
+  char *pszSep = " *+=;\n";
+  char *pszToken = NULL;
+
+  // 구분자 문자열을 근거로 첫 번째 토큰화를 시도한다. 
+  // 최초 strtok() 함수를 호출할 때는 첫 번째 인자로 토큰화를 시작할 문자열이 저장된 메모리의 주소를 명시했습니다. 
+  pszToken = strtok(szBuffer, pszSep);
+  while ( pszToken != NULL ){
+    // 찾은 토큰을 출력한다. 
+    puts(pszToken);
+    // 그다음 토큰을 이어서 검색한다. 
+    // 첫번째 인자를 NULL로 명시했습니다. 
+    pszToken = strtok(NULL, pszSep);
+  }
+
+  // 변경된 원본 문자열을 출력해본다. 
+  printf("\nszBuffer L %s \n", szBuffer);
+}
+                          </code>
+                        </pre>
+                        기본적인 함수의 작동 원리는 strstr(), strpbrk() 함수와 유사합니다. 그러나 strtok() 함수는 검색 대상 메모리에 '쓰기'를 시도하는 데다 
+                        내부적으로 정적변수를 사용하기 때문에 멀티 스레드 환경에서 문제가 발생할 수 있습니다. 따라서 strtok() 함수로 검색을 수행하는 대상 메모리는 
+                        반드시 쓰기 가능한 메모리여야 하고, 함수가 반환한 후로 대상 메모리의 내용이 수정되었다는 사실을 감안해야 합니다. 또한 보안 결함도 존재합니다. 
+                        그러므로 이럭 제약들을 생각 했을 때, strtok() 함수 대신 가급적 strpbrk() 함수를 사용하는 것이 좋습니다. <br>
+                        여기서 '토큰화'라는 말은 긴 문자열을 규칙에 따라 잘게 자르는 것을 의미하는 데, 이 말의 구체적인 의미는 문자열 중간에 NULL을 집어넣는 것입니다. 
                       </div>
                     </div>
                 </div>
@@ -834,13 +880,69 @@ void main(void){
                   <div class="card-header" id="heading5">
                     <h2 class="mb-0">
                       <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
-                        
+                        유니코드 문자열
                       </button>
                     </h2>
                   </div>
                   <div id="collapse5" class="collapse" aria-labelledby="heading5" data-parent="#accordionExample">
                     <div class="card-body">
-                        
+                        C 언어에서 문자열은 두 종류로 구분할 수 있다. 첫번째는 MBCS 문자열이고 두 번째는 유니코드 문자열입니다. 우리가 다루는 문자열은 MBCS 문자열이며, MBCS 에서 
+                        영문 한 글자는 1바이트, 한글 한글자는 2바이트를 사용합니다. 그리고 Char 형으로 문자를 표현합니다. 문자열의 끝을 명시하는 '\0' 상수의 자료형도 char 형입니다. 
+                        <hr>
+                        영문, 한굴, 한자 표현의 차이는 프로그램의 문자열 길이 계산에도 큰 영향을 준다. 즉, 문자열의 문자 개수와 길이가 서로 다르다는 문제가 발생한다. 
+                        <hr>
+                        유니코드는 문자 하나를 표현하기 위해 16비트 혹은 32비트 자료형을 사용합니다. 환경마다 다를 수 있는데 윈도우 운영체제는 16비트입니다. 따라서 
+                        유니코드 형식인 wchar_t 형은 2바이트입니다. 유니코드는 상수 형식으로 표기할 때 문자열 앞에 'L'을 붙여 L"String" 형식으로 표기합니다. 따라서 
+                        L"String" 의 자료형은 wchar[4] 입니다. 따라서 메모리의 크기가 8바이트입니다. 유니코드에서는 영문, 한글에 상관없이 필요한 메모리의 크기가 '(문자열의 길이 + 1) *
+                        sizeof(wchar_t)'로 통일됩니다. 
+                        <hr>
+                        <ul>
+                          <li>
+                            wprintf(), wcscpy() 함수 <br>
+                            유니코드 문자열은 유니코드 문자열 전용 함수를 사용해야한다. 
+                            <pre class="C" >
+                              <code>
+#include &lt;stdio.h>
+#include &lt;string.h>
+
+int main(void)
+{
+  wchar_t *pwszData = L"String";
+  wchar_t wszData[32];
+
+  wcscpy(wszData, pwszData);
+  wprintf(L"%s\n", wszData);
+  return 0;
+}
+                              </code>
+                            </pre>
+                          </li>
+                          <li>
+                            wcstombs(), mbstowcs() 함수 <br>
+                            size_t wcstombs(char *mbstr, const wchar_t *wcstr, size_t count); <br>
+                            mbstr : MBCS로 변환된 문자열을 저장할 메모리 주소 <br>
+                            wcstr : MBCS로 변환할 유니코드 문자열이 저장된 메모리 주소 <br>
+                            count : MBCS로 변환할 문자열의 최대 크기 <br>
+                            size_t mbstows(wchar_t *wcstr, const char *mbstr, size_t count); <br>
+                            mbstr : 유니코드로 변환된 문자열을 저장할 메모리 주소 <br>
+                            wcstr : 유니코드로 변환할 유니코드 문자열이 저장된 메모리 주소 <br>
+                            count : 유니코드로 변환할 문자열의 최대 크기 <br>
+                            <pre class="C" >
+                              <code>
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+
+void main(void)
+{
+  // 유니코드 문자열 상수로 초기화 
+  wchar_t *pwszData = L"String";
+  
+}
+                              </code>
+                            </pre>
+
+                          </li>
+                        </ul>
                     </div>
                   </div>
                 </div>  

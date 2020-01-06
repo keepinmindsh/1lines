@@ -117,83 +117,62 @@
                 ReactJS 의 시작
             </div>
             <div class="card-body">
-                <div class="accordion" id="accordionExample">
-                    <div class="card">
-                      <div class="card-header" id="heading1">
-                          <h2 class="mb-0">
-                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
-                              props와 state를 나누어 사용하도록 한 이유 ?
-                            </button>
-                          </h2>
-                      </div>
-                      <div id="collapse1" class="collapse" aria-labelledby="heading1" data-parent="#accordionExample">
-                          <div class="card-body">
-                              먼저 개발자들에게 명확한 관념 모델(static mental model)을 제공합니다.  <br>
-                              관념 모델은 무엇이 어떻게 동작하는지 이해할 때 진행되는 일련의 사고 프로세스를 의미합니다.  <br>
-                              즉, 논리적으로 이치에 맞는 사고 모델을 제공한다는 것이다. <br>
-                          </div>
-                      </div>
-                    </div>
+
+                <h5><span class="badge badge-secondary">What is ReactJS</span> 페이스북이 만든 사용자 구축을 위한 UI 라이브러리 </h5>
+                <hr>
+                <div class="card" style="width: 60rem;">
+                  <div class="card-header">
+                    Featured
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                      Just the UI
+                    </li>
+                    <li class="list-group-item">
+                      Virtual DOM
+                    </li>
+                    <li class="list-group-item">
+                      Data Flow
+                    </li>
+                    <li class="list-group-item">
+                      JSX
+                    </li>
+                    <li class="list-group-item">
+                      Flux
+                    </li>
+                  </ul>
                 </div>
                 <hr>
-              <ul>
-                <li>
-                  페이스북이 만든 사용자 구축을 위한 UI 라이브러리
-                </li>
-                <hr>
-                <li>
-                    <div class="card" style="width: 60rem;">
-                        <div class="card-header">
-                          Featured
-                        </div>
-                        <ul class="list-group list-group-flush">
-                          <li class="list-group-item">
-                            Just the UI
-                          </li>
-                          <li class="list-group-item">
-                            Virtual DOM
-                          </li>
-                          <li class="list-group-item">
-                            Data Flow
-                          </li>
-                          <li class="list-group-item">
-                            JSX
-                          </li>
-                          <li class="list-group-item">
-                            Flux
-                          </li>
-                        </ul>
-                      </div>
-                </li>
-                <hr>
-                <li>
-                    Create React App
-                    <hr>
-                    create-react-app : 페이스북에서 만들고 지속적으로 업데이트 되는 공식적인 boilerplate이기 때문에 프로세스 개발이 쉽다
-                    <hr>
+                <div class="alert alert-primary" role="alert">
+                   Get Started
+                </div>
+                    <nav aria-label="breadcrumb">
+                      <ol class="breadcrumb">
+                        <li class="breadcrumb-item active" aria-current="page">Create React App</li>
+                      </ol>
+                    </nav>
+                    create-react-app : 페이스북에서 만들고 지속적으로 업데이트 되는 공식적인 boilerplate이기 때문에 프로세스 개발이 쉽다 <br>
                     create-react-app의 특징인데, 모든 설정들이 캡슐화 되어있다. <br>
                     사용자로 하여금 설정들을 건들지 못하도록 실제 package.json을 숨겨두고, <br>
                     webpack설정과 관련된 부분들도 별도의 설정이 필요 없도록 처리 되어 있다. <br>
                     이는 개발자들이 소스코드에만 집중할 수 있도록 배려한 것이라고 생각하면 된다. 
                     <hr>
                     <div class="alert alert-primary" role="alert">
+                      <a href="https://d2.naver.com/helloworld/0239818" target="_blank" >WebPack에 대해서</a> 
+                      <hr>
                       서버에서 처리하는 로직을 JavaScript로 구현하는 부분이 많아지면서 웹 서비스 개발에서 JavaScript로 작성하는 코드의 양도 늘어났습니다. <br>
-                       코드의 양이 많아지면 코드의 유지와 보수가 쉽도록 코드를 모듈로 나누어 관리하는 모듈 시스템이 필요해집니다. <br> 
-                       그러나 JavaScript는 언어 자체가 지원하는 모듈 시스템이 없습니다.  <br>
-                       이런 한계를 극복하려 여러 가지 도구를 활용하는데 그 도구 가운데 하나가 webpack입니다. <br>
-                       <a href="https://d2.naver.com/helloworld/0239818" target="_blank" > WebPack</a>
+                      코드의 양이 많아지면 코드의 유지와 보수가 쉽도록 코드를 모듈로 나누어 관리하는 모듈 시스템이 필요해집니다. <br> 
+                      그러나 JavaScript는 언어 자체가 지원하는 모듈 시스템이 없습니다.  <br>
+                      이런 한계를 극복하려 여러 가지 도구를 활용하는데 그 도구 가운데 하나가 webpack입니다. <br>
                     </div>
-                </li>
-              </ul>
-              <hr>
+                <hr>
+              
 my-app을 npx를 통해 create-react-app의 my-app을 설치
               <pre>
                 <code class="shell" >
 $ npx create-react-app my-app
                 </code>
               </pre>
-
-<hr>
  윈도우 버전의 경우 npx를 이용하지 못할 수 있음. 아래의 npm 을 이용해 설치 
               <pre>
                 <code class="shell" >
@@ -224,7 +203,9 @@ npm start
             <hr>
             <img src="../react/reactjs.PNG" width="500" alt="">
             <hr>
-
+          <div class="alert alert-primary" role="alert">
+            React JS 기본 샘플 예제
+          </div>
 <pre>
   <code class="XML" >
       &lt;!DOCTYPE html>
