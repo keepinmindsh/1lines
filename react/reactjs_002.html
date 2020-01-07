@@ -448,36 +448,6 @@ JSX 속성 요소
                     </div>
                   </div>  
                   <div class="card">
-                    <div class="card-header" id="headingOne">
-                      <h2 class="mb-0">
-                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                           JavaScript - Import, Export 
-                        </button>
-                      </h2>
-                    </div>
-                
-                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                      <div class="card-body">
-                        자바스크립트는 호이스팅으로 인하여 변수나 함수가 전역에서 사용될 수 있었기 때문에 이름 충돌이 잦게 발생하였습니다. 
-                        ES6 부터는 모듈의 개념이 추가되어 Java, C# 처럼 Export, Import를 사용할 수 있게 되었다. 
-                        <hr>
-                        하지만 브라우저에서 지원이 되지 않고 있기 때문에 webpack과 같은 모듈 번들러를 사용해야만 모듈 시스템(import, export)를 이용할 수 있다. 
-                        <hr>
-                        <a href="https://github.com/AriaFallah/WebpackTutorial/tree/master/part1" target="_blank" >webpack 따라하며 배우기</a>
-                        <pre>
-                          <code class="javascript" >                       
-// custom.js
-Class custom {
-  constructor(customName){
-    this.customName = customName;
-  }
-}
-                          </code>
-                        </pre>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card">
                     <div class="card-header" id="heading4-1">
                       <h2 class="mb-0">
                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse4-1" aria-expanded="false" aria-controls="collapse4-1">
@@ -532,6 +502,37 @@ setInterval(tick, 1000);
                     </div>
                   </div> 
                   <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                           JavaScript - Import, Export 
+                        </button>
+                      </h2>
+                    </div>
+                
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                      <div class="card-body">
+                        자바스크립트는 호이스팅으로 인하여 변수나 함수가 전역에서 사용될 수 있었기 때문에 이름 충돌이 잦게 발생하였습니다. 
+                        ES6 부터는 모듈의 개념이 추가되어 Java, C# 처럼 Export, Import를 사용할 수 있게 되었다. 
+                        <hr>
+                        하지만 브라우저에서 지원이 되지 않고 있기 때문에 webpack과 같은 모듈 번들러를 사용해야만 모듈 시스템(import, export)를 이용할 수 있다. 
+                        <hr>
+                        <a href="https://github.com/AriaFallah/WebpackTutorial/tree/master/part1" target="_blank" >webpack 따라하며 배우기</a>
+                        <pre>
+                          <code class="javascript" >                       
+// custom.js
+Class custom {
+  constructor(customName){
+    this.customName = customName;
+  }
+}
+                          </code>
+                        </pre>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="card">
                     <div class="card-header" id="heading4-2">
                       <h2 class="mb-0">
                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse4-2" aria-expanded="false" aria-controls="collapse4-2">
@@ -541,6 +542,53 @@ setInterval(tick, 1000);
                     </div>
                     <div id="collapse4-2" class="collapse" aria-labelledby="heading4-2" data-parent="#accordionExample">
                       <div class="card-body">
+                        컴포넌트 기반 소프트웨어 공학 ( Component-based software engineering)
+                        <hr>
+                        CBD는 개발 방법론의 핵심이 되는 '재사용성','생산성' 등을 향상시키며 요구사항이 수시로 바뀌는 현대의 서비스 개발에 특화되어 빠르게 서비스를 피벗하거나 사용자가 급등할 수 있는 환경을 고려해 유연한 환경을 조성하는데 도움이 됩니다. <br>
+                        <div class="list-group">
+                          <a href="#" class="list-group-item list-group-item-action active">
+                            <div class="d-flex w-100 justify-content-between">
+                              <h5 class="mb-1">Uncontrolled component</h5>
+                              <small></small>
+                            </div>
+                            <p class="mb-1">
+                              Uncontrolled Component는 상태를 직접 제어하지 않습니다. 
+                              <pre class="C" >
+                                <code>
+const Hello = () => &lt;div>Hello&lt/div>
+
+const Hi = () => &lt;div>Hi&lt/div>
+                                </code>
+                              </pre>
+                              <a href="https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key" >추천 : 키를 사용한 완벽하게 제어되지 않는 컴포넌트 ( Uncontrolled Component )</a>
+                            </p>
+                            <small></small>
+                          </a>
+                          <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                              <h5 class="mb-1">Controlled component</h5>
+                              <small class="text-muted"></small>
+                            </div>
+                            <p class="mb-1">
+                              상태를 직접제어하는 컴포넌트 입니다. 
+                              <pre class="javascript" >
+                                <code>
+const HelloWorld = () => {
+  const [value, setValue] = userState(0)
+
+  return (
+    &lt;HelloComponent handleClick={setValue} >
+      { value ? &lt;Hello /> : &lt;Hi /> }
+    &lt;/HelloComponent>
+  )
+}                                    
+                                </code>
+                              </pre>
+                            </p>
+                            <small class="text-muted"></small>
+                          </a>
+                        </div>
+                        <hr>
                         Components를 정의하는 방법은 JavaScript 함수를 정의하는 것 
                         <hr>
                         <pre>
@@ -647,6 +695,7 @@ function Comment(props) {
                             
                           </code>
                         </pre>
+                        <hr>
                       </div>
                     </div>
                   </div> 
