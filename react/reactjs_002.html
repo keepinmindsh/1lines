@@ -545,8 +545,9 @@ Class custom {
                         컴포넌트 기반 소프트웨어 공학 ( Component-based software engineering)
                         <hr>
                         CBD는 개발 방법론의 핵심이 되는 '재사용성','생산성' 등을 향상시키며 요구사항이 수시로 바뀌는 현대의 서비스 개발에 특화되어 빠르게 서비스를 피벗하거나 사용자가 급등할 수 있는 환경을 고려해 유연한 환경을 조성하는데 도움이 됩니다. <br>
+                        <hr>
                         <div class="list-group">
-                          <a href="#" class="list-group-item list-group-item-action active">
+                          <a href="#" class="list-group-item list-group-item-action">
                             <div class="d-flex w-100 justify-content-between">
                               <h5 class="mb-1">Uncontrolled component</h5>
                               <small></small>
@@ -560,7 +561,7 @@ const Hello = () => &lt;div>Hello&lt/div>
 const Hi = () => &lt;div>Hi&lt/div>
                                 </code>
                               </pre>
-                              <a href="https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key" >추천 : 키를 사용한 완벽하게 제어되지 않는 컴포넌트 ( Uncontrolled Component )</a>
+                              <a href="https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key" target="blank" >추천 : 키를 사용한 완벽하게 제어되지 않는 컴포넌트 ( Uncontrolled Component )</a>
                             </p>
                             <small></small>
                           </a>
@@ -587,6 +588,146 @@ const HelloWorld = () => {
                             </p>
                             <small class="text-muted"></small>
                           </a>
+                          <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                              <h5 class="mb-1">Pure component</h5>
+                              <small class="text-muted"></small>
+                            </div>
+                            <p class="mb-1">
+                              Pure Component는 리액트를 이용한 컴포넌트 기본 개발 방법에서 가장 기본적인 컴포넌트입니다. 
+                              Pure Component와 Component는 매우 유사하지만. 다른점이 있다면 React의 생명주기 메소드인 shouldComponentUpdate 를 다루는 방식에 있다. 
+                              Component의 경우 setState가 실행되는 모든 순간에 Component가 Re-Rendering이 발생하지만, PureComponent의 경우에는 setState에서 Value가 
+                              실제로 변경될 때만 Re-Rendering이 일어나게 된다. 
+                              <hr>
+                              <pre class="javascript" >
+                                <code>
+import React , { PureComponet } from 'react';
+
+Class HelloWorld extend PureComponent {
+  constructor(props){
+    super(props);
+    this.state = {
+      value : 0
+    }
+
+    this.call_event = this.call_event.bind(this);
+  }
+
+  call_event() {=
+    if(특정 조건){
+      this.setState({
+        counter: this.state .value + 변경값,
+      });
+    }else {
+      this.setState({
+        counter: this.state.value
+      });
+    }
+  }
+
+  render(){
+    return (
+      &lt;div>
+       {this.state.value}
+        &lt;br>
+        &lt;input
+          type="button"
+          onClick={this.call_event}
+          value="click"
+        />
+      &lt;/div>
+    )
+  }
+}
+                                </code>
+                              </pre>
+                            </p>
+                            <small class="text-muted"></small>
+                          </a>
+
+                          <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                              <h5 class="mb-1">Portal component</h5>
+                              <small class="text-muted"></small>
+                            </div>
+                            <p class="mb-1">
+                              React 버전 16부터 도입된 방법으로써, 컴포넌트를 렌더링할 때, UI를 어디에 렌더링 시킬지 DOM을 선택하여 부모 컴포넌트의 바깥에 렌더링할 수 있게 
+                              해주는 기능입니다. 기존의 리액트에서는 컴포넌트를 렌더링 하게 될 때, 하위 컴포넌트들은 부모 컴포넌트의 DOM 내부에서 동작했어야 했지만, Portals를 사용하면
+                              DOM의 계층 구조 시스템에 종속되지 않으면서 컴포넌트를 렌더링 할 수 있습니다. 
+                              <pre class="javascript" >
+                                <code>
+import ReactDOM from 'react-dom';
+
+const ModalPortal = ({ children }) => {
+  const el = document.getElementById('modal');
+  return ReactDOM.createPortal(children, el);
+};
+
+export default ModalPortal;
+                                </code>
+                              </pre>
+                              
+                              <pre class="html">
+                                <code>
+&lt;body>
+    You need to enable JavaScript to run this app.
+    &lt;/noscript>
+  &lt;div id="root"><div>
+  &lt;div id="modal"><div>
+&lt;body>
+                                </code>
+                              </pre>
+                              우리가 해당 컴포넌트 방식을 사용하게 되면 우리가 원하는 컴포넌트의 결과를 DOM의 특정 엘리먼트에 렌더링 할 수 있게 됩니다. 
+                            </p>
+                            <small class="text-muted"></small>
+                          </a>
+                          <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                              <h5 class="mb-1">Functional Component</h5>
+                              <small class="text-muted"></small>
+                            </div>
+                            <p class="mb-1">
+                              함수형 컴포넌트라고 부르며, 16.8전가지는 함수형 컴포넌트와 클래스 기반 컴포넌트의 성능 차이는 거의 드러나지 않았습니다. 
+                              하지만 16.8에서 hooks가 도입되면서 함수형 컴포넌트에서 성능 최적화(useMemo, useCallback 등)를 진행할 수 있고, 라이프사이클(useEffect)를 
+                              제어할 수 있어 성능적으로 함수형 컴포넌트가 우위에 있다고 할 수 있습니다. 
+                              <hr>
+                              함수형 컴포넌트와 React Hook 
+                              <hr>
+                              <ul>
+                                <li>useState</li>
+                                <li>useEffect</li>
+                                <li>useContext</li>
+                                <li>useReducer</li>
+                                <li>useCallback</li>
+                                <li>useMemo</li>
+                                <li>useRef</li>
+                                <li>useImperativeHandle</li>
+                                <li>useLayoutEffect</li>
+                                <li>useDebugValue</li>
+                              </ul>
+                            </p>
+                            <a href="#" class="list-group-item list-group-item-action">
+                              <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">Presentaitional Component</h5>
+                                <small class="text-muted"></small>
+                              </div>
+                              <p class="mb-1">
+                                Presentaitional Component는 데이터와 관련된 이벤트 혹은 State 관리 없이 사용자에게 보여지는 뷰만을 관리합니다. DOM Element, style 등이 들어가며
+                                ReadOnly Component라고도 부를 수 있습니다. 또한, 대부분의 경우 state를 갖고 있지 않으며, 갖고 있을 경우엔 데이터와 관련된 것이아니라 UI와 관련된
+                                것이어야 합니다. 
+                              </p>
+                              <small class="text-muted"></small>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action">
+                              <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">Container Component</h5>
+                                <small class="text-muted"></small>
+                              </div>
+                              <p class="mb-1">
+                                여러 컴포넌트를 관리하기 위해서 작성되며, DOM Elements를 직접적으로 수정하거나 관리하지 않습니다. 
+                              </p>
+                              <small class="text-muted"></small>
+                            </a>
                         </div>
                         <hr>
                         Components를 정의하는 방법은 JavaScript 함수를 정의하는 것 
