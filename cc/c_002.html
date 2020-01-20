@@ -1142,7 +1142,92 @@ void main(){
                   </div>
                   <div id="collapse7" class="collapse" aria-labelledby="heading7" data-parent="#accordionExample">
                     <div class="card-body">
-                       
+                      슈도 코드(pseudocode) : 프로그램을 작성할 때 각 모듈이 작동하는 논리를 표현하기 위한 언어이다. <br>
+                      구조체 <br>
+                      구조체를 이루고 있는 멤버들의 순서에 맞춰서 초깃값을 기술해야한다. 
+                      <pre class="C" >
+                        <code>
+#include &lt;stdio.h>
+#include &lt;string.h>
+
+// 구조체 선언
+struct USERDATA
+{
+  int nAge;
+  char szName[32];
+  char szPhone[32];
+}
+
+int main(void){
+  // USERDATA 구조체 변수 user 선언 및 정의 
+  struct USERDATA user = { 0, "", "" }
+
+  // 구조체 멤버 접근 및 값 채우기 
+  user.nAge = 10;
+  strcpy(user.szName, "Hoon");
+  strcpy(user.szPhone, "010-2646-0503");
+
+  // 구조체 멤버 접근 및 출력 
+  printf("%d살, %s , %s\n", user.nAge, user.szName, user.szPhone);
+  return 0;
+}
+                        </code>
+                      </pre>
+                      <hr>
+                      typedef를 이용한 형 재선언 <br>
+                      구조체 변수를 선언할 때 매번 struct 예약어를 기술하는 일은 귀찮은 일입니다. 그래서 대부분 구조체를 선언 할 때 typedef 얘약어를 이용해 형 재선언을 포함하는 것이 일반적입니다. 그러면 구조체 인스턴스를 정의할 때, 
+                      struct 예약어를 생략할 수 있습니다. 
+                      <pre class="C" >
+                        <code>
+#include &lt;stdio.h>
+#include &lt;string.h>
+
+// 구조체 선언 및 형 재선언 
+// USERDATA 구조체의 선언과 행 재선언이 하나로 합쳐진 것이다. 
+typedef struct USERDATA
+{
+  int nAge;
+  char szName[32];
+  char szPhone[32];
+} USERDATA
+
+int main(void)
+{
+  // 형 재선언 덕분에 변수를 선언할 때 'struct'를 생략할 수 있다. 
+  USERDATA user = { 0, "" , ""};
+
+  // 구조체 멤버 접근 및 값 채우기 
+  user.nAge = 10;
+  strcpy(user.szName, "Hoon");
+  strcpy(user.szPhone, "010-1234-1234");
+
+  // 구조체 멤버 접근 및 출력 
+  printf("%d살, %s, %s\n", user.nAge , user.szName, user.szPhone);
+  return 0;
+}
+                        </code>
+                      </pre>
+                      <hr>
+                      구조체 배열 <br>
+                      구조체가 자료형이 되므로 구조체 변수를 
+                      <pre class="C" >
+                        <code>
+#include &lt;stdio.h>
+
+// USERDATA 구조체 선언 및 형 재선언 
+typedef struct USERDATA 
+{
+  int nAge;
+  char szName[32];
+  char szPhone[32];
+} USERDATA
+
+int main(void)
+{
+
+}
+                        </code>
+                      </pre>
                     </div>
                   </div>
                 </div> 

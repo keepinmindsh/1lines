@@ -778,6 +778,7 @@ ReactDOM.render(
                         <hr>
                         <strong>컴포넌트 합성 </strong> <br>
                         컴포넌트는 자신의 출력에 다른 컴포넌트를 참조할 수 있습니다. 이는 모든 세부 단계에서 동일한 추상 컴포넌트를 사용할 수 있음을 의미합니다. <br>
+                        
                         <pre>
                           <code class="Javascript" > 
 function Welcome(props) {
@@ -844,6 +845,252 @@ function Comment(props) {
                       </div>
                     </div>
                   </div> 
+                  <div class="card">
+                    <div class="card-header" id="heading8">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapse8">
+                          React - Props   
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse8" class="collapse" aria-labelledby="heading8" data-parent="#accordionExample">
+                      <div class="card-body">
+                        Props는 프로퍼티 용어의 약어 입니다. props는 컴포넌트에서 전달해서 보관하길 원하는 데이터 입니다. 즉, 컴포넌트 내에서 보관되면, 이 데이터는 수정되지 않고 보존되어야 하는 법칙이 성립된다. 만약 props의 값을 변경하고자 할 때는 컴포넌트 내부가 아닌, 부모 컴포넌트에서 
+                        이에 대한 부분이 변경되어야 합니다. 
+                        <hr>
+                        <ul>
+                          <li>props는 읽기 전용입니다.</li>
+                          <li>모든 React 컴포넌트는 자신의 props를 다룰 때 반드시 순수 함수 처럼 동작해야 합니다.</li>
+                          <li>props의 이름은 사용될 context가 아닌 컴포넌트 자체의 관점에서 짓는 것을 권장합니다. </li>
+                        </ul>
+                        
+                        <hr>
+                        <pre class="JavaScript" >
+                          <code>
+// Class Component 사용시                             
+import React, { Component } from 'react'
+
+class HelloWorld extends Component {
+  static defaultProps = {
+    name : 'My World'
+  }
+  render() {
+    return {
+      &lt;div>
+        Hello World! , &lt;b> {this.props.name} &lt;/b>
+      &lt;/div>
+    }
+  }
+}
+
+export default MyName;
+
+// Function Component 사용시 
+const HelloWorld = ({ name }) => {
+  return (
+    &lt;div>
+      안녕하세요! 제 이름은 {name} 입니다.
+    &lt;/div>
+  );
+};
+
+HelloWorld.defaultProps = {
+  name : "Hello World"
+}
+
+export default HelloWorld;
+                          </code>
+                        </pre>
+                      </div>
+                    </div>
+                  </div> 
+                  <div class="card">
+                    <div class="card-header" id="heading7">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
+                          React - State 
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse7" class="collapse" aria-labelledby="heading7" data-parent="#accordionExample">
+                      <div class="card-body">
+                        동적인 데이터를 사용해야할 경우, state를 사용해야합니다. 아래의 새로운 컴포넌트를 만들어 보겠습니다. 
+                        <hr>
+<pre>
+  <code class="javascript" >
+    import React, { Component } from 'react';
+
+    class CounterHandler extends Component {
+      state = {
+        count: 0
+      }
+    
+      addCount = () => {
+        this.setState({
+          count: this.state.count + 1
+        });
+      }
+    
+      reduceCount = () => {
+        this.setState({
+          count: this.state.count - 1
+        });
+      }
+    
+      render() {
+        return (
+          &lt;div>
+            &lt;h1>카운터&lt;/h1>
+            &lt;div>값: {this.state.count}&lt;/div>
+            &lt;button onClick={this.addCount}>+&lt;/button>
+            &lt;button onClick={this.reduceCount}>-&lt;/button>
+          &lt;/div>
+        );
+      }
+    }
+
+    export default CounterHandler;
+  </code>
+</pre>  
+
+<pre>
+    <code class="javascript" >
+    import React, { Component } from 'react';
+    import CounterHandler from './CounterHandler';
+
+    ReactDOM.render(
+        &lt;CounterHandler />
+    , document.getElementById('root'));
+
+  </code>
+</pre>        
+<hr>
+                        React 컴포넌트는 컴포넌트의 상태를 저장할 수 있습니다. <br>
+                        props와의 차이점이라고 하면, state는 컴포넌트의 내부에 존재하고 있기 때문에, 상태 값 변경이 가능하다는 것입니다. <br>
+                        this.setState() 메소드를 통해서 stat 값을 변경해줄 수 있습니다.   
+                        <hr>
+                        기본적으로 아래와 같이 Contructor에 state 변수를 선언할 때 중첩 문은 동작하지 않는다. 
+                        <pre>
+                          <code class="JavaScript">
+// 아래와 같이 state 에서 중첩문이 적용되지 않음 - value가 undefined로 인식됨                             
+class App extends Component {
+  construct(props){
+    super(props);
+    this.state = {
+      result : {
+        value : 10
+      }
+    }
+
+  }
+
+}
+                          </code>
+                        </pre>    
+                        <hr>
+                        React는 성능을 위해 여러 setState() 호출을 단일 업데이트로 한꺼번에 처리할 수 있습니다. <br>
+                        this.props 와 this.state가 비동기적으로 업데이트 될 수 있기 때문에 다음 state를 계산할 때 해당 값에 의존해서는 안됩니다. <hr>
+                        <pre>
+                          <code class="Javascript" >
+// Correct
+const [ value, setValue ] = useState(0);
+
+setValue((state, props) => ({
+  counter: state.counter + props.increment
+}))
+                          </code>
+                        </pre>  
+                        <hr>
+                        State는 다양한 독립적인 변수를 포함할 수 있습니다. 위의 코드에서 setValue를 이용해서 독립적으로 변수를 각각 호출할 수 있습니다. <br>
+                        <pre>
+                          <code class="Javascript" >
+// Correct
+const [ value, setValue ] = useState({ posts: [], comments: [] });
+
+fetchPosts().then(response => {
+  setValue({
+    posts: response.posts
+  });
+});
+
+fetchComments().then(response => {
+  setValue({
+    comments: response.comments
+  });
+});
+                          </code>
+                        </pre>     
+                        <hr>
+                        state가 소유하고 설정한 컴포넌트 이외에는 어떠한 컴포넌트에서 접근할 수 없습니다. <br>
+                        일반적으로 이를 “하향식(top-down)” 또는 “단방향식” 데이터 흐름이라고 합니다. 모든 state는 항상 특정한 컴포넌트가 소유하고 있으며 그 state로부터 파생된 UI 또는 데이터는 오직 트리구조에서 자신의 “아래”에 있는 컴포넌트에만 영향을 미칩니다. <br>
+                        <pre>
+                          <code class="Javascript" >
+import React, { useState } from 'react';
+
+const FormattedData = props => {
+    return &lt;h2>It is {props.date.toLocaleTimeString()}. &lt;/h2>
+}
+
+const SampleScreen01 = props => {
+
+    const [ date , setDate] = useState(new Date());
+
+    setInterval(() => {
+        setDate(new Date());
+      }, 1000)
+
+    // 모든 컴포넌트가 완전히 독립적이라는 것을 보여주기 위해 App 렌더링하는 세 개의 &lt;FormattedData>을 만들었습니다.
+    let SampleScreen01Layout = (
+        &lt;div className="row" >
+          &lt;FormattedData date={date} />
+          &lt;hr />
+          &lt;FormattedData date={date} />
+          &lt;hr />
+          &lt;FormattedData date={date} />
+          &lt;hr />
+        &lt;/div>
+    );
+
+    return SampleScreen01Layout;
+}
+
+export default SampleScreen01;
+                          </code>
+                        </pre>
+                      </div>
+                    </div>
+                  </div> 
+                  <div class="card">
+                    <div class="card-header" id="heading4-2-1">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse4-2-1" aria-expanded="false" aria-controls="collapse4-4">
+                          React Hook 
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse4-2-1" class="collapse" aria-labelledby="heading4-2-1" data-parent="#accordionExample">
+                      <div class="card-body">
+                        <hr>
+                        함수형 컴포넌트에서 짧게 React Hook에 대해서 선언했던 부분이 있었다. 실제로 클래스 컴포넌트에서는 컴포넌트 사이클에서 제공되는 생명 주기 함수를 제공한다. 
+                        이 때문에 Class 컴포넌트를 주로 사용할 경우, React Hook에서 제공되는 다양한 기능들을 사용할 수도 있는데, 이는 컴포넌트 생명주기에서 제공하는 함수들과 비슷한 쓰임새를 가진 것이 있기 때문에
+                        함수형 컴포넌트에서도 생명주기를 관리 할 수 있게 된다. 
+                        <br>
+                        위에어 봤던 React Hook 함수를 다시 정리해보면, <br>
+                        <ul>
+                          <li>useState</li>
+                          <li>useEffect</li>
+                          <li>useContext</li>
+                          <li>useReducer</li>
+                          <li>useCallback</li>
+                          <li>useMemo</li>
+                          <li>useRef</li>
+                          <li>useImperativeHandle</li>
+                          <li>useLayoutEffect</li>
+                          <li>useDebugValue</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
                   <div class="card">
                     <div class="card-header" id="heading4-3">
                       <h2 class="mb-0">
@@ -1445,180 +1692,6 @@ setTimeout(function() {
                       </div>
                     </div>
                   </div>  
-                  <div class="card">
-                    <div class="card-header" id="heading8">
-                      <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapse8">
-                          React - Props   
-                        </button>
-                      </h2>
-                    </div>
-                    <div id="collapse8" class="collapse" aria-labelledby="heading8" data-parent="#accordionExample">
-                      <div class="card-body">
-                        props는 프로퍼티 용어의 약어 입니다. props는 컴포넌트에서 전달해서 보관하길 원하는 데이터 입니다. 즉, 컴포넌트 내에서 보관되면, <br>
-                        이 데이터는 수정되지 않고 보존되어야 하는 법칙이 성립된다. 만약 props의 값을 변경하고자 할 때는 컴포넌트 내부가 아닌, 부모 컴포넌트에서 <br>
-                        이에 대한 부분이 변경되어야 합니다. 
-                        <hr>
-                      </div>
-                    </div>
-                  </div> 
-                  <div class="card">
-                    <div class="card-header" id="heading7">
-                      <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
-                          React - State 
-                        </button>
-                      </h2>
-                    </div>
-                    <div id="collapse7" class="collapse" aria-labelledby="heading7" data-parent="#accordionExample">
-                      <div class="card-body">
-                        동적인 데이터를 사용해야할 경우, state를 사용해야합니다. 아래의 새로운 컴포넌트를 만들어 보겠습니다. 
-                        <hr>
-<pre>
-  <code class="javascript" >
-    import React, { Component } from 'react';
-
-    class CounterHandler extends Component {
-      state = {
-        count: 0
-      }
-    
-      addCount = () => {
-        this.setState({
-          count: this.state.count + 1
-        });
-      }
-    
-      reduceCount = () => {
-        this.setState({
-          count: this.state.count - 1
-        });
-      }
-    
-      render() {
-        return (
-          &lt;div>
-            &lt;h1>카운터&lt;/h1>
-            &lt;div>값: {this.state.count}&lt;/div>
-            &lt;button onClick={this.addCount}>+&lt;/button>
-            &lt;button onClick={this.reduceCount}>-&lt;/button>
-          &lt;/div>
-        );
-      }
-    }
-
-    export default CounterHandler;
-  </code>
-</pre>  
-
-<pre>
-    <code class="javascript" >
-    import React, { Component } from 'react';
-    import CounterHandler from './CounterHandler';
-
-    ReactDOM.render(
-        &lt;CounterHandler />
-    , document.getElementById('root'));
-
-  </code>
-</pre>        
-<hr>
-                        React 컴포넌트는 컴포넌트의 상태를 저장할 수 있습니다. <br>
-                        props와의 차이점이라고 하면, state는 컴포넌트의 내부에 존재하고 있기 때문에, 상태 값 변경이 가능하다는 것입니다. <br>
-                        this.setState() 메소드를 통해서 stat 값을 변경해줄 수 있습니다.   
-                        <hr>
-                        기본적으로 아래와 같이 Contructor에 state 변수를 선언할 때 중첩 문은 동작하지 않는다. 
-                        <pre>
-                          <code class="JavaScript">
-// 아래와 같이 state 에서 중첩문이 적용되지 않음 - value가 undefined로 인식됨                             
-class App extends Component {
-  construct(props){
-    super(props);
-    this.state = {
-      result : {
-        value : 10
-      }
-    }
-
-  }
-
-}
-                          </code>
-                        </pre>    
-                        <hr>
-                        React는 성능을 위해 여러 setState() 호출을 단일 업데이트로 한꺼번에 처리할 수 있습니다. <br>
-                        this.props 와 this.state가 비동기적으로 업데이트 될 수 있기 때문에 다음 state를 계산할 때 해당 값에 의존해서는 안됩니다. <hr>
-                        <pre>
-                          <code class="Javascript" >
-// Correct
-const [ value, setValue ] = useState(0);
-
-setValue((state, props) => ({
-  counter: state.counter + props.increment
-}))
-                          </code>
-                        </pre>  
-                        <hr>
-                        State는 다양한 독립적인 변수를 포함할 수 있습니다. 위의 코드에서 setValue를 이용해서 독립적으로 변수를 각각 호출할 수 있습니다. <br>
-                        <pre>
-                          <code class="Javascript" >
-// Correct
-const [ value, setValue ] = useState({ posts: [], comments: [] });
-
-fetchPosts().then(response => {
-  setValue({
-    posts: response.posts
-  });
-});
-
-fetchComments().then(response => {
-  setValue({
-    comments: response.comments
-  });
-});
-                          </code>
-                        </pre>     
-                        <hr>
-                        state가 소유하고 설정한 컴포넌트 이외에는 어떠한 컴포넌트에서 접근할 수 없습니다. <br>
-                        일반적으로 이를 “하향식(top-down)” 또는 “단방향식” 데이터 흐름이라고 합니다. 모든 state는 항상 특정한 컴포넌트가 소유하고 있으며 그 state로부터 파생된 UI 또는 데이터는 오직 트리구조에서 자신의 “아래”에 있는 컴포넌트에만 영향을 미칩니다. <br>
-                        <pre>
-                          <code class="Javascript" >
-import React, { useState } from 'react';
-
-const FormattedData = props => {
-    return &lt;h2>It is {props.date.toLocaleTimeString()}. &lt;/h2>
-}
-
-const SampleScreen01 = props => {
-
-    const [ date , setDate] = useState(new Date());
-
-    setInterval(() => {
-        setDate(new Date());
-      }, 1000)
-
-    // 모든 컴포넌트가 완전히 독립적이라는 것을 보여주기 위해 App 렌더링하는 세 개의 &lt;FormattedData>을 만들었습니다.
-    let SampleScreen01Layout = (
-        &lt;div className="row" >
-          &lt;FormattedData date={date} />
-          &lt;hr />
-          &lt;FormattedData date={date} />
-          &lt;hr />
-          &lt;FormattedData date={date} />
-          &lt;hr />
-        &lt;/div>
-    );
-
-    return SampleScreen01Layout;
-}
-
-export default SampleScreen01;
-                          </code>
-                        </pre>
-                      </div>
-                    </div>
-                  </div> 
-                
                   <div class="card">
                     <div class="card-header" id="heading9">
                       <h2 class="mb-0">
