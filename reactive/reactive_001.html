@@ -116,7 +116,7 @@
                     <div class="card-header" id="headingOne">
                       <h2 class="mb-0">
                         <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                          Reactive Java 
+                          Reactive
                         </button>
                       </h2>
                     </div>
@@ -784,12 +784,294 @@ public class Sample11_reactiveStreams11 {
                             <hr>
                             대부분의 Operator는 Observable을 운영하고, 반환하는 것에 대한 것이다. 이는 우리가 여러 Operator를 
                             연결하는 것을 가능하게 한다. 
+                            <pre class="java" >
+                              <code>
+
+public class SampleOperators {
+
+  public static void main(String[] args) {
+
+      List&lt;Integer> list = Stream.iterate(0, a -> a + 1).limit(100).collect(Collectors.toList());
+
+      Publisher&lt;Integer> publisher = getPublisher(list);
+
+      Publisher&lt;Integer> operator = getOperator(publisher);
+
+      Subscriber&lt;Integer> subscriber = getSubscriber();
+
+      operator.subscribe(subscriber);
+
+  }
+
+  private static Publisher getPublisher(List&lt;Integer> list) {
+      return new Publisher(){
+          @Override
+          public void subscribe(Subscriber subscriber) {
+              subscriber.onSubscribe(new Subscription() {
+                  @Override
+                  public void request(long n) {
+                      list.forEach(integerItem -> {
+                          subscriber.onNext(integerItem);
+                      });
+                  }
+
+                  @Override
+                  public void cancel() {
+
+                  }
+              });
+
+          }
+      };
+  }
+
+  private static Publisher&lt;Integer> getOperator(Publisher operator) {
+      return new Publisher&lt;Integer>() {
+          @Override
+          public void subscribe(Subscriber&lt;? super Integer> subscriber) {
+              operator.subscribe(new Subscriber&lt;Integer>(){
+                  @Override
+                  public void onSubscribe(Subscription subscription) {
+                      subscriber.onSubscribe(subscription);
+                  }
+
+                  @Override
+                  public void onNext(Integer integer) {
+
+                      int value = integer + 10;
+
+                      subscriber.onNext(value);
+                  }
+
+                  @Override
+                  public void onError(Throwable t) {
+                      subscriber.onError(t);
+                  }
+
+                  @Override
+                  public void onComplete() {
+                      subscriber.onComplete();
+                  }
+              });
+          }
+      };
+  }
+
+  private static Subscriber&lt;Integer> getSubscriber() {
+      return new Subscriber&lt;Integer>() {
+          @Override
+          public void onSubscribe(Subscription subscription) {
+              subscription.request(Long.MAX_VALUE);
+          }
+
+          @Override
+          public void onNext(Integer integer) {
+              System.out.println("onNext 결과 값 : " + integer);
+          }
+
+          @Override
+          public void onError(Throwable t) {
+
+          }
+
+          @Override
+          public void onComplete() {
+
+          }
+      };
+  }
+}
+                              </code>
+                            </pre>
                           </li>
                           <li class="list-group-item">
                             Bloking IO를 사용하거나 수행이 느린 경우 : SubscribeOn
+                            <pre class="Java" >
+                              <code>
+public class SubscribeOn {
+  public static void main(String[] args) {
+
+      List&lt;Integer> arrayList = Stream.iterate(1 , i -> i + 1).limit(10).collect(Collectors.toList());
+
+      // Publisher 가 아주 느린 경우에 이를 사용하는 방식이다.
+      Publisher&lt;Integer> publisher = new Publisher&lt;Integer>() {
+          @Override
+          public void subscribe(Subscriber&lt;? super Integer> subscriber) {
+              subscriber.onSubscribe(new Subscription() {
+                  @Override
+                  public void request(long n) {
+                      System.out.println( Thread.currentThread().getName() + " request() ");
+                      arrayList.forEach(intVal -> {
+                          subscriber.onNext(intVal);
+                      });
+
+                      subscriber.onComplete();
+                  }
+
+                  @Override
+                  public void cancel() {
+
+                  }
+              });
+          }
+      };
+
+      Publisher&lt;Integer> operator = new Publisher&lt;Integer>() {
+          @Override
+          public void subscribe(Subscriber&lt;? super Integer> subscriber) {
+              ExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+
+              executorService.submit(() -> {
+                  publisher.subscribe(new Subscriber&lt;Integer>() {
+                      @Override
+                      public void onSubscribe(Subscription subscription) {
+                          subscriber.onSubscribe(subscription);
+                      }
+
+                      @Override
+                      public void onNext(Integer integer) {
+                          subscriber.onNext(integer);
+                      }
+
+                      @Override
+                      public void onError(Throwable t) {
+                          subscriber.onError(t);
+                      }
+
+                      @Override
+                      public void onComplete() {
+                          subscriber.onComplete();
+                          executorService.shutdown();
+                      }
+                  });
+              });
+
+          }
+      };
+
+      Subscriber&lt;Integer> subscriber = new Subscriber&lt;Integer>() {
+          @Override
+          public void onSubscribe(Subscription subscription) {
+              subscription.request(Long.MAX_VALUE);
+          }
+
+          @Override
+          public void onNext(Integer integer) {
+              System.out.println( Thread.currentThread().getName() + " onNext : " + integer);
+          }
+
+          @Override
+          public void onError(Throwable t) {
+
+          }
+
+          @Override
+          public void onComplete() {
+
+          }
+      };
+
+      operator.subscribe(subscriber);
+  }
+}
+                              </code>
+                            </pre>
                           </li>
                           <li class="list-group-item">
                             데이터 생성은 빠르지만 데이터를 소모하는 과정이 소요시간이 발생하는 경우 : PublishOn  
+                            <pre class="Java">
+                              <code>
+
+  public class PublisherOn {
+    public static void main(String[] args) {
+
+        List&lt;Integer> arrayList = Stream.iterate(1 , i -> i + 1).limit(100).collect(Collectors.toList());
+
+        // Subscriber 가 아주 느린 경우에 이를 사용하는 방식이다.
+        Publisher&lt;Integer> publisher = new Publisher&lt;Integer>() {
+            @Override
+            public void subscribe(Subscriber&lt;? super Integer> subscriber) {
+                subscriber.onSubscribe(new Subscription() {
+                    @Override
+                    public void request(long n) {
+                        arrayList.forEach(integer -> {
+                            subscriber.onNext(integer);
+                        });
+
+                        subscriber.onComplete();
+                    }
+
+                    @Override
+                    public void cancel() {
+
+                    }
+                });
+            }
+        };
+
+        Publisher&lt;Integer> operator = new Publisher&lt;Integer>() {
+            @Override
+            public void subscribe(Subscriber&lt;? super Integer> subscriber) {
+
+                    publisher.subscribe(new Subscriber&lt;Integer>() {
+
+                        ExecutorService executorService = Executors.newSingleThreadExecutor();
+
+                        @Override
+                        public void onSubscribe(Subscription subscription) {
+                            subscriber.onSubscribe(subscription);
+                        }
+
+                        @Override
+                        public void onNext(Integer integer) {
+                            executorService.execute(() -> { subscriber.onNext(integer);   });
+                        }
+
+                        @Override
+                        public void onError(Throwable t) {
+                            executorService.execute(() -> { subscriber.onError(t); });
+                            executorService.shutdown();
+                        }
+
+                        @Override
+                        public void onComplete() {
+                            executorService.execute(() -> { subscriber.onComplete(); });
+                            executorService.shutdown();
+                        }
+
+                });
+
+            }
+        };
+
+        Subscriber&lt;Integer> subscriber = new Subscriber&lt;Integer>() {
+            @Override
+            public void onSubscribe(Subscription subscription) {
+                subscription.request(Long.MAX_VALUE);
+            }
+
+            @Override
+            public void onNext(Integer integer) {
+                System.out.println(Thread.currentThread().getName() + " OnNext : " + integer);
+            }
+
+            @Override
+            public void onError(Throwable t) {
+
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        };
+
+        operator.subscribe(subscriber);
+
+    }
+}
+                              </code>
+                            </pre>
                           </li>
                           <li class="list-group-item">
                             SubscribeOn 과 PublishOn을 같이 사용하면서 Thread를 종료시키는 예제
