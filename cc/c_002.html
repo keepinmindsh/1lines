@@ -1209,7 +1209,7 @@ int main(void)
                       </pre>
                       <hr>
                       구조체 배열 <br>
-                      구조체가 자료형이 되므로 구조체 변수를 
+                      구조체가 자료형이 되므로 구조체 변수를 배열로 선언할 수 도 있습니다. 
                       <pre class="C" >
                         <code>
 #include &lt;stdio.h>
@@ -1224,6 +1224,48 @@ typedef struct USERDATA
 
 int main(void)
 {
+  USERDATA userList[4] = {
+    { 10 , "김어준" , "1234" },
+    { 11 , "정봉주" , "2345" },
+    { 17 , "주진우" , "3456" },
+    { 12 , "김용민" , "4567" },
+  };
+
+  int i = 0;
+
+  // 배열 연산으로 각 USERDATA 인스턴스의 멤버 값을 출력한다. 
+  for ( i = 0 ; i &lt; 4 ; ++i )
+    printf("%d살\t%s\t%s\n", userList[i].nAge, userList[i].szName, userList[i].szPhone );
+
+  return 0;
+}
+                        </code>
+                      </pre>
+
+                      구조체는 사용자가 그 구조를 설계한 자료형입니다. 따라서 메모리를 해석하는 방법이라고 봐야 합니다.
+                      <pre class="C" >
+                        <code>
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+#include &lt;string.h>
+
+typedef struct USERDATA
+{
+  int nAge;
+  char szName[32];
+  char szPhone[32];
+} USERDATA;
+
+int main(void)
+{
+  // USERDATA 구조체에 대한 포인터 변수 선언 및 정의 
+  USERDATA *pUser = NULL;
+
+  // USERDATA 구조체가 저장될 수 있을 수 있는 크기의 메모리 동적할당
+  pUser = (USERDATA*)malloc(sizeof(USERDATA));
+
+  // 포인터 이므로 '.'이 아니라 '->' 연산자로 멤버에 접근한다. 
+  pUser -> nAge = 10;
 
 }
                         </code>
