@@ -863,7 +863,8 @@ function Comment(props) {
                           <li>모든 React 컴포넌트는 자신의 props를 다룰 때 반드시 순수 함수 처럼 동작해야 합니다.</li>
                           <li>props의 이름은 사용될 context가 아닌 컴포넌트 자체의 관점에서 짓는 것을 권장합니다. </li>
                         </ul>
-                        
+                        <hr>
+                        props는 React에서는 사용자가 컴포넌트에서 전달해서 보관하길 원하는 데잍어입니다. 즉, 컴포넌트 내에서 데이터가 보관되면. 이 데이터는 수정되지 않고 보존되어야 하는 법칙이 성립됩니다. 
                         <hr>
                         <pre class="JavaScript" >
                           <code>
@@ -899,6 +900,74 @@ HelloWorld.defaultProps = {
 }
 
 export default HelloWorld;
+                          </code>
+                        </pre>
+                        <hr>
+                        props의 설정은 propTypes를 통해 객체를 설정하거나, getDefaultProps를 통해 props 값을 받아올 수 있습니다. 
+                        <pre class="javascript" > 
+                          <code>
+var post = React.createClass({
+  propTypes : {
+      value : React.PropTypes.String
+  }
+});
+                          </code>
+                        </pre> 
+                        <hr>
+                        컴포넌트가 외부와의 데이터를 주고 받기 위해 props를 사용했는데, 이럴 경우 props의 Type을 확인해줘야하는 필요성이 생깁니다. 
+                        이럴 경우, React.PropType를 이전에서는 사용했지만 React 15.5부터는 prop-types라는 npm을 통해 해결합니다. <br>
+                        Prop-Type에서 제공하는 Type들은 array, bool,func,number,object,string,symbol,node,element 입니다. <br>
+                        Type Checking의 경우, instanceOf(),oneOf([[array]]),oneOfType([[array]]) 와 같은 함수들을 사용해서 Type Checking을 할 수 있습니다. <br>
+                        <pre class="shell" >
+                          <code>
+$ npm install --save prop-types
+                          </code>
+                        </pre>
+                        <pre class="javascript" >
+                          <code>
+                            
+import PropTypes from 'prop-types';
+
+// 아래와 같이 타입을 지정할 수 있습니다. 
+App.propTypes = {
+  value: PropType.string
+}
+                          </code>
+                        </pre>
+                        <hr>
+                        PropTypes의 예제
+                        <pre class="javascript" >
+                          <code>
+var HelloWorld = React.createClass({
+  // Class 컴포넌트 생성 시점에 propTyps를 설정하는 경우 ,
+  propTypes: {
+    name:   React.PropTypes.string.isRequired,
+    id:     React.PropTypes.number.isRequired,
+    width:  React.PropTypes.number.isRequired,
+    height: React.PropTypes.number.isRequired,
+    alt:    React.PropTypes.string
+  },
+  render() {
+    var src = `/img/helloworld/${this.props.id}.png`;
+    return (
+      &lt;div>
+        &lt;img src={src} width={this.props.width} height={this.props.height} alt={this.props.alt} />
+        &lt;span>{this.props.name}&lt;/span>
+      &lt;div>
+    );
+  }
+});
+
+// ES6에서 PropTypes를 지정하는 방식
+HelloWorld.propTypes =  {
+  user: React.PropTypes.shape({
+    id:   React.PropTypes.number.isRequired,
+    name: React.PropTypes.string.isRequired
+  })
+};
+
+
+&lt;HelloWorld name="hello" id=1 width=100 height=100 />
                           </code>
                         </pre>
                       </div>
@@ -989,7 +1058,9 @@ class App extends Component {
                         </pre>    
                         <hr>
                         React는 성능을 위해 여러 setState() 호출을 단일 업데이트로 한꺼번에 처리할 수 있습니다. <br>
-                        this.props 와 this.state가 비동기적으로 업데이트 될 수 있기 때문에 다음 state를 계산할 때 해당 값에 의존해서는 안됩니다. <hr>
+                        this.props 와 this.state가 비동기적으로 업데이트 될 수 있기 때문에 다음 state를 계산할 때 해당 값에 의존해서는 안됩니다. 
+                        <hr>
+                        <Strong>React Hook을 활용한 state 사용 방식</Strong> 
                         <pre>
                           <code class="Javascript" >
 // Correct
