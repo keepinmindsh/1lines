@@ -93,6 +93,8 @@
                   
                       <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                         <div class="card-body">
+                          우리가 만드는 소프트웨어는 변경을 수용하고, 시장의 변화에 맞춰서 변화할 수 있도록 해야하며, 규모가 커짐에 따라서도 빠르게 반응할 수 있어야 한다. 
+                          <hr>
                           모노리스(monoliths) 
                           <ul>
                             <li>예상치 못한 결합</li>
@@ -129,10 +131,19 @@
                           <hr>
                           좋은 아키텍처는 시스템이 모노리틱 구조로 태어나서 단일 파일로 배포되더라도, 이후에는 독립적으로 배포 가능한 단위들의 집합으로 성장하고, 또 독립적인 
                           서비스나 마이크로 서비스 수준까지 성장할 수 있도록 만들어져야 한다. 또한 좋은 아키텍처라면 나중에 상황이 바뀌었을 때 이 진행 방향을 거꾸로 돌려 원래 형태인
-                          모노리팅 구조로 되돌릴 수 있어야 한다. 
+                          모노리틱 구조로 되돌릴 수 있어야 한다. 
                           <hr>
                           모듈화란 소프트웨어 시스템을 분해하여 서브시스템들과 컴포넌트들의 그룹으로 묶는것이다. 
                           주요목적은 시스템 내에 잘 정의된 경계를 도입해 소프트웨어 복잡성을 다루는 것이다. 
+                          <hr>
+                          관심사의 분리를 통해 '어플리케이션'을 외부 기술적인 부분들과 분리시키는 것이 목표이다. 
+                          <hr>
+                          어떤 아키텍처를 선정하여 문제가 해결된다기 보다는 요구사항에 대한 코드의 응집과 결합도를 다스리는 게 무엇 보다 중요하다. <br>
+                          오해하는 것은 아키텍처 스타일이 문제를 해결해주지 않는다. 
+                          <hr>
+                          좋은 구조는 적은 변경 비용을 수용할 수 있어야 한다. 
+                          <hr>
+
                         </div>
                       </div>
                     </div>
@@ -177,9 +188,13 @@
                           Architect Principle <br>
                           JQ Assitance <br>
                           컴포넌트에 의한 패키지는 Coponent Base와 sevice-oriented를 지향한다. <hr>
+                          좋은 아키텍처는 민첩을 가능하게 한다. <br>
+                          거대한 모노리틱 구조의 서비스를 잘게 마이크로 서비스로 분리한 다고 했을때, 효과적인 마이크로 서비스로 만들어지는 것이 아닌 큰 진흙 덩어리가 분산된 수준의 마이크로 서비스로 구성되고 이는 안하느니만 못한 결과를 가져온다. 
+                          따라서 이때의 대안을 우리는 모듈라 모노리스라고 생각한다. 
                           https://www.youtube.com/watch?v=5OjqD-ow8GE <br>
                           https://futurecreator.github.io/2018/09/14/what-is-microservices-architecture/ <br>
-                          https://blog.coderifleman.com/2017/12/18/the-clean-architecture/
+                          https://blog.coderifleman.com/2017/12/18/the-clean-architecture/ <br>
+                          <img src="monolith.png" class="img-fluid" >
                         </div>
                       </div>
                     </div>
