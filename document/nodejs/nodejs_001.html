@@ -132,7 +132,18 @@
 resources = [socketA, socketB, socketC];
 while(!resources.isEmpty()){
   for ( i = 0; i &lt; resources.length ; i ++){
-    
+    resource = reources[i];
+    // 읽기를 시도합니다. 
+    let data = resource.data();
+    if(data == NO_DATA_AVAILABLE)
+      // 당장 읽을 데이터가 없습니다. 
+      continue;
+    if(data == RESOURCE_CLOSED)
+      // 데이터 리소스가 닫혔기 대문에 , 리소스 목록에서 제거합니다. 
+      resources.remove(i);
+    else
+      // 데이터를 도착하여 이를 처리합니다. 
+      consumeData(data);
   }
 }
                             </code>
@@ -145,13 +156,22 @@ while(!resources.isEmpty()){
                       <div class="card-header" id="headingFour">
                         <h2 class="mb-0">
                           <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseTwo">
- 
+                            이벤트 디멀티플렉싱
                           </button>
                         </h2>
                       </div>
                       <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
                         <div class="card-body">
-
+                          Busy-waiting은 논 블로킹 리소스를 처리하기 위한 이상적인 기술은 아니지만 다행스럽게도 대부분의 최신 운영체제는 효율적인 논 블로킹 리소스 처리를 위한 기본적인 메커니즘을 제공합니다. 
+                          이 메커니즘을 동기 이벤트 디멀티플렉서 또는 이벤트 통지 인터페이스라고 합니다. 이 구성요소는 감시된 일련의 리소스들로부터 들어오는 I/O 이벤트를 수집하여 큐에 넣고 처리할 수 있는 새 이벤트가 
+                          있을 때까지 차단합니다. 
+                          <pre class="javascript" >
+                            <code>
+socketA, pipeB;
+watchedList.add(socketA, FOR_READ); 
+watchedList.add(pipeB, FOR_READ);
+                            </code>
+                          </pre>
                         </div>
                       </div>
                     </div>  
