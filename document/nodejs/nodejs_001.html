@@ -167,9 +167,24 @@ while(!resources.isEmpty()){
                           있을 때까지 차단합니다. 
                           <pre class="javascript" >
                             <code>
+// Event Loop 방식 
 socketA, pipeB;
-watchedList.add(socketA, FOR_READ); 
+watchedList.add(socketA, FOR_READ);
 watchedList.add(pipeB, FOR_READ);
+while(events = demultiplexer.watch(watchedList)) { 
+  //이벤트 루프 
+  foreach(event in events){
+    // 여기서 read는 블록되지 않으며 비어 있을지언정, 항상 블록되지 않습니다. 
+    data = event.resource.read();
+    if(data === RESOURCE_CLOSED)
+      // 리소스가 닫혔기 때문에, 리소스 목록에서 제거합니다. 
+      demultiplexer.unwatch(event.resource);
+    else  
+      // 실제 데이터가 도착하여 이를 처리합니다. 
+      consumeData(data);
+  }
+
+}
                             </code>
                           </pre>
                         </div>

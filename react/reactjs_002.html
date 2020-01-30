@@ -1069,7 +1069,7 @@ HelloWorld.propTypes =  {
                         props와의 차이점이라고 하면, state는 컴포넌트의 내부에 존재하고 있기 때문에, 상태 값 변경이 가능하다는 것입니다. <br>
                         this.setState() 메소드를 통해서 stat 값을 변경해줄 수 있습니다.   
                         <hr>
-                        기본적으로 아래와 같이 Contructor에 state 변수를 선언할 때 중첩 문은 동작하지 않는다. 
+                        기본적으로 아래와 같이 Contructor에 state 변수를 선언할 때 중첩 문은 동작하지 않습니다. 
                         <pre>
                           <code class="JavaScript">
 // 아래와 같이 state 에서 중첩문이 적용되지 않음 - value가 undefined로 인식됨                             
@@ -1239,6 +1239,93 @@ class TemperatureInput extends React.Component {
                       </div>
                     </div>
                   </div> 
+                  <div class="card">
+                    <div class="card-header" id="heading5-1-1">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse5-1-1" aria-expanded="false" aria-controls="collapse5-1-1">
+                          React Ref 
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse5-1-1" class="collapse" aria-labelledby="heading5-1-1" data-parent="#accordionExample">
+                      <div class="card-body">
+                        Ref의 바람직한 사용 사례 
+                        <ul>
+                          <li>포커스, 텍스트 선택 영역, 혹은 미디어의 재생을 관리할 때,</li>
+                          <li>애니메이션을 직접적으로 실행시킬 때,</li>
+                          <li>서드파티 DOM 라이브러리를 React와 같이 사용할 때,</li>
+                        </ul>
+                        Ref 생성하기 
+                        <hr>
+                        Ref는 React.createRef를 통해 생성되고, ref 어트리뷰트를 통해 React 엘리먼트에 부착됩니다. 보통, 컴포넌트의 인스턴스가 생성될 대 Ref를 프로퍼티로 추가하고, 그럼으로서 컴포넌트의 
+                        인스턴스 어느 곳에서도 Ref가 접근할 수 있게 합니다. 
+                        <pre class="javascript" >
+                          <code>
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.myRef = React.createRef();
+  }
+  render() {
+    return &lt;div ref={this.myRef} />;
+  }
+}
+                          </code>
+                        </pre>
+                        Ref에 접근하기 
+                        <hr>
+                        <ul>
+                          <li>
+                            ref 어트리뷰트가 HTML 엘리먼트에 쓰였다면, 생성자에서 React.createRef()로 생성된 ref는 자신을 전달받은 DOM 엘리먼트를 current 프로퍼티의 값으로서 받습니다. 
+                          </li>
+                          <li>
+                            ref 어트리뷰트가 커스텀 클래스 컴포넌트에 쓰였다면, ref 객체는 마운트된 컴포넌트의 인스턴스를 current 프로퍼티의 값으로서 받습니다. 
+                          </li>
+                          <li>
+                            함수 컴포넌트는 인스턴스가 없기 때문에 함수 컴포넌트에 ref 어트리뷰트를 사용할 수 없습니다. 
+                          </li>
+                        </ul>
+                        <pre class="javascript" >
+                          <code>
+class CustomTextInput extends React.Component {
+  constructor(props) {
+    super(props);
+    // textInput DOM 엘리먼트를 저장하기 위한 ref를 생성합니다.
+    this.textInput = React.createRef();
+    this.focusTextInput = this.focusTextInput.bind(this);
+  }
+
+  focusTextInput() {
+    // DOM API를 사용하여 명시적으로 text 타입의 input 엘리먼트를 포커스합니다.
+    // 주의: 우리는 지금 DOM 노드를 얻기 위해 "current" 프로퍼티에 접근하고 있습니다.
+    this.textInput.current.focus();
+  }
+
+  render() {
+    // React에게 우리가 text 타입의 input 엘리먼트를
+    // 우리가 생성자에서 생성한 `textInput` ref와 연결하고 싶다고 이야기합니다.
+    return (
+      &lt;div>
+        &lt;input
+          type="text"
+          ref={this.textInput} />
+
+        &lt;input
+          type="button"
+          value="Focus the text input"
+          onClick={this.focusTextInput}
+        />
+      &lt;div>
+    );
+  }
+}
+                          </code>
+                        </pre>
+                        <hr>
+                        
+                      </div>
+                    </div>
+                  </div>  
                   <div class="card">
                     <div class="card-header" id="heading4-2-1">
                       <h2 class="mb-0">

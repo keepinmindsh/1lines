@@ -63,9 +63,11 @@
             <span>목록</span>
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-            <h6 class="dropdown-header">C ++</h6>
+            <h6 class="dropdown-header">C ++/C</h6>
             <a class="dropdown-item" href="../cc/cc_001.html">C++ 의 시작</a>
-            <a class="dropdown-item" href="../cc/cc_003.html"></a>
+            <a class="dropdown-item" href="../cc/c_001.html">C 의 시작</a>
+            <a class="dropdown-item" href="../cc/c_002.html">C 함수 응용</a>
+            <a class="dropdown-item" href="../cc/c_003.html">자료구조</a>
             <a class="dropdown-item" href="../cc/cc_003.html"></a>
             <a class="dropdown-item" href="../cc/cc_004.html"></a>
             <a class="dropdown-item" href="../cc/cc_005.html"></a>
@@ -97,8 +99,6 @@
             <a class="dropdown-item" href="../cc/cc_031.html"></a>
             <a class="dropdown-item" href="../cc/cc_032.html"></a>
             <a class="dropdown-item" href="../cc/cc_033.html">알아두기</a>
-            <a class="dropdown-item" href="../cc/c_001.html">C 의 시작</a>
-            <a class="dropdown-item" href="../cc/c_002.html">C 함수 응용</a>
           </div>
         </li>
       </ul>
@@ -1262,14 +1262,33 @@ int main(void)
   USERDATA *pUser = NULL;
 
   // USERDATA 구조체가 저장될 수 있을 수 있는 크기의 메모리 동적할당
+  // 구조체의 사이즈를 정의할 때는, 메모리를 지정하지 않고 sizeof에 의해서 사용해야한다. 
   pUser = (USERDATA*)malloc(sizeof(USERDATA));
 
   // 포인터 이므로 '.'이 아니라 '->' 연산자로 멤버에 접근한다. 
+  // 구조체 멤버 접근 연산자의 왼쪽 피 연산자가 포인터이면, 기존 연산자인 '.'를 사용할 수 없고 대신 -> 연산자를 사용해야 한다. 
   pUser -> nAge = 10;
+  strcpy(pUser -> szName, "Hoon");
+  strcpy(pUser -> szPhone, "9876");
+
+  printf("%d살\t%s\t%s\n", pUser -> nAge, pUser -> szName, pUser -> szName);
+
+  // 동적 할당한 메모리를 해제한다. 
+  free(pUser);
+  return 0;
 
 }
                         </code>
                       </pre>
+                        *pUser.szName 이라고 표기하면 간접 지정 연산자보다 구조체 멤버 접근 연산자가 우선하므로 최종 결과는 'char 형 l-value'가 됩니다. 구조체 멤버접근 연산자는 괄호, 배열 연산자와 더불어 1순위 연산자입니다. 
+                        pUser -> szName을 다르게 표기하면 (*pUser).szName 이 됩니다. 
+                        <hr>
+                        구조체도 함수의 반환 자료형이나 매개변수가 될 수 있습니다. 그리고 구조체 변수는 배열의 이름과 달리 l-value가 될 수 있습니다. 
+                        <pre class="C" >
+                          <code>
+     .
+                          </code>
+                        </pre>
                     </div>
                   </div>
                 </div> 
