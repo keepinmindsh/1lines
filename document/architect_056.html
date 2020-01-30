@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>1Lines - Architecture</title>
+    <title>1lines - SOLID</title>
 
     <!-- Bootstrap core CSS-->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -22,6 +22,7 @@
 
     <!-- Custom styles for this template-->
     <link href="../css/sb-admin.css" rel="stylesheet">
+
     <link rel="stylesheet" href="../styles/default.css">
     <script src="../highlight.pack.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
@@ -32,7 +33,7 @@
 
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-      <a class="navbar-brand mr-1" href="../index.html">Architecture</a>
+      <a class="navbar-brand mr-1" href="../index.html">1 Lines</a>
 
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
@@ -57,11 +58,11 @@
           </a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-fw fa-folder"></i>
             <span>목록</span>
           </a>
-          <div class="dropdown-menu show" aria-labelledby="pagesDropdown">
+          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">서론</h6>
             <a class="dropdown-item" href="../document/architect_001.html">서론</a>
             <div class="dropdown-divider"></div>
@@ -138,148 +139,50 @@
             <li class="breadcrumb-item">
               <a href="#">Dashboard</a>
             </li>
-            <li class="breadcrumb-item active">Visitor</li>
+            <li class="breadcrumb-item active"></li>
           </ol>
 
           <!-- Area Chart Example-->
           <div class="card mb-3">
             <div class="card-header">
-                
+              Visualizing Architecture
             </div>
             <div class="card-body">
-                
-                  
+              대부분의 개발자가 UML을 활용하고 있지 않다. 그 이유로는 다양한 이유들이 있는데, UML을 만드는 툴이나, 사용법, 오래되보이고, 애자일스럽지 않은 등의 문제를 제기한다. 
+              이 때문에 일부 개발자들은 그냥 화이트 보드에 그리는게 더 낮다고 생각하는 것이다.
+              그래서 화이트 보드를 이용할 때는 정말 다양한 방식의 아키텍처 구성을 표현하는 방식이 나오게 된다. 
+              화이트보드를 이용했을 때, 아키텍처 다이어그램을 그릴 때의 각각의 사이즈, 색상등에 대한 부분들이 명확한 의미 없이 정리되는 경우가 대다수이다. 
               <hr>
-       
+              우리는 아티스트가 아니라 엔지니어이다. 
+              <hr>
+              동일한 방향으로 팀이 빠르게 움직이기 위해서는 좋은 커뮤니케이션이 필요하다. 
+              <hr>
+             공통 셋의 추상화가 하나의 공통 notation 보다 중요한 것은 사실이다. 
+              <hr>
+              위와 같은 상황들을 해소하기 위해서는 새로운 설계 방식이 필요하다. 이를 이용할 때 C4 모델을 이용해보라 <br>
+              <hr>
+              <img src="./4CModel.png" class="img-thumbnail"  alt=""> 
+              <hr>
+              <img src="./4C_advanced.png" class="img-thumbnail" alt=""> 
+              <hr>
+              Context
+              <hr>
+              <img src="./4C_1.png" class="img-thumbnail" alt=""> 
+              <hr>
+              Container
+              <hr>
+              <img src="./4C_2.png" class="img-thumbnail" alt=""> 
+              <hr>
+              Component
+              <hr>
+              <img src="./4C_3.png" class="img-thumbnail" alt=""> 
+              <hr>
+              Code
+              <hr>
+              <img src="./4C_4.png" class="img-thumbnail" alt=""> 
             </div>
         </div>
         <!-- /.container-fluid -->
-
-
-         <!-- Area Chart Example-->
-         <div class="card mb-3">
-          <div class="card-header">
-            
-          </div>
-          <div class="card-body">
-              <p class="card-text">
-                  <div class="accordion" id="accordionExample">
-                      <div class="card">
-                        <div class="card-header" id="heading1">
-                          <h2 class="mb-0">
-                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
-                            
-                            </button>
-                          </h2>
-                        </div>
-                        <div id="collapse1" class="collapse" aria-labelledby="heading1" data-parent="#accordionExample">
-                          <div class="card-body">
-                             
-                          </div>
-                        </div>
-                      </div>
-                      <div class="card">
-                        <div class="card-header" id="headingTwo">
-                          <h2 class="mb-0">
-                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            
-                            </button>
-                          </h2>
-                        </div>
-                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                          <div class="card-body">
-                             
-                          </div>
-                        </div>
-                      </div>
-                      <div class="card">
-                        <div class="card-header" id="heading3">
-                          <h2 class="mb-0">
-                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
-                              
-                            </button>
-                          </h2>
-                        </div>
-                        <div id="collapse3" class="collapse" aria-labelledby="heading3" data-parent="#accordionExample">
-                          <div class="card-body">
-                            
-                          </div>
-                        </div>
-                      </div>
-                      <div class="card">
-                          <div class="card-header" id="headingFour">
-                            <h2 class="mb-0">
-                              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                
-                              </button>
-                            </h2>
-                          </div>
-                          <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
-                            <div class="card-body">
-                                
-                            </div>
-                          </div>
-                        </div>
-                        <div class="card">
-                          <div class="card-header" id="heading5">
-                            <h2 class="mb-0">
-                              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
-                                
-                              </button>
-                            </h2>
-                          </div>
-                          <div id="collapse5" class="collapse" aria-labelledby="heading5" data-parent="#accordionExample">
-                            <div class="card-body">
-                                
-                            </div>
-                          </div>
-                        </div>
-                        <div class="card">
-                          <div class="card-header" id="heading6">
-                            <h2 class="mb-0">
-                              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
-                                
-                              </button>
-                            </h2>
-                          </div>
-                          <div id="collapse6" class="collapse" aria-labelledby="heading6" data-parent="#accordionExample">
-                            <div class="card-body">
-                                
-                            </div>
-                          </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" id="headingFive">
-                              <h2 class="mb-0">
-                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                
-                                </button>
-                              </h2>
-                            </div>
-                            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
-                             
-                            </div>
-                          </div>
-  
-                          <div class="card">
-                            <div class="card-header" id="headingSix">
-                              <h2 class="mb-0">
-                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                                   
-                                </button>
-                              </h2>
-                            </div>
-                            <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
-                              <div class="card-body">
-                                  
-                              </div>
-                            </div>
-                          </div>
-                    </div>
-                </p>
-          </div>
-      </div>
-      <!-- /.container-fluid -->
 
         <!-- Sticky Footer -->
         <footer class="sticky-footer">
@@ -294,6 +197,7 @@
       <!-- /.content-wrapper -->
 
     </div>
+   
     <!-- /#wrapper -->
 
     <!-- Scroll to Top Button-->
@@ -304,6 +208,60 @@
     <!-- Logout Modal-->
  
 
+    <script language="JavaScript">
+
+        var timerID;      // 타이머를 핸들링하기 위한 전역 변수
+        var time = 1200;   // 타이머 시작시의 시간
+    
+        document.getElementById("btnStart").addEventListener("click", function(){
+          start_timer();
+        });
+    
+        /* 타이머를 시작하는 함수 */
+        function start_timer() { 
+          timerID = setInterval("decrementTime()", 1000);
+    
+        }
+    
+        /* 남은 시간을 감소시키는 함수 */
+    
+        function decrementTime() { 
+    
+          var x1 = document.getElementById("time1");
+    
+          x1.innerHTML = toHourMinSec(time);
+    
+          if(time > 0){
+            time--;
+          } else { 
+    
+            // 시간이 0이 되었으므로 타이머를 중지함
+            clearInterval(timerID);
+            x1.innerHTML = "종료!!"
+          }
+        }
+    
+        /* 정수형 숫자(초 단위)를 "시:분:초" 형태로 표현하는 함수 */
+        function toHourMinSec(t) { 
+          var hour;
+          var min;
+          var sec;
+    
+          // 정수로부터 남은 시, 분, 초 단위 계산
+          hour = Math.floor(t / 3600);
+          min = Math.floor( (t-(hour*3600)) / 60 );
+          sec = t - (hour*3600) - (min*60);
+    
+          // hh:mm:ss 형태를 유지하기 위해 한자리 수일 때 0 추가
+          if(hour < 10) hour = "0" + hour;
+          if(min < 10) min = "0" + min;
+          if(sec < 10) sec = "0" + sec;
+    
+          return(hour + ":" + min + ":" + sec);
+    
+        }
+    
+      </script>
     <!-- Bootstrap core JavaScript-->
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
