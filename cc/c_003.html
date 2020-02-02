@@ -122,34 +122,95 @@
               <div class="accordion" id="accordionExample">
                   <div class="card">
                     <div class="card">
-                    <div class="card-header" id="headingThree">
-                      <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                      
-                        </button>
-                      </h2>
-                    </div>
-                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                      <div class="card-body">
+                      <div class="card-header" id="headingThree">
+                        <h2 class="mb-0">
+                          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            시간 복잡도 함수
+                          </button>
+                        </h2>
+                      </div>
+                      <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                        <div class="card-body">
+                          알고리즘 분석의 2가지 측면
+                          <ul>
+                            <li>알고리즘 수행 시간 분석 : 시간 복잡도</li>
+                            <li>알고리즘이 사용하는 기억 공간 분석 : 공간 복잡도</li>
+                          </ul>
+                          <hr>
+                          <strong>시간 복잡도</strong><br>
+                          동일한 조건에서, 똑같은 일을 하는데 알고리즘 A가 30개의 연산을 수행하였고, 알고리즘 B가 300개의 연산을 수행하였다면, 
+                          알고리즘 B가 알고리즘 A보다 수행하는 연산의 수가 더 많다. 따라서 알고리즘 A가 효율적인 알고리즘이라고 할 수 있는데, 이것이 시간 복잡도의 기본 개념이다.  
+                          <br>
+                          연산들의 수행 횟수는 프로그램에서 주어지는 입력의 개수 n에 따라 변하게 된다. 따라서 일반적으로 연산의 수행횟수는 고정된 숫자가 아니라 n에 대한 함수가 된다. 
+                          연산의 수를 입력의 개수 n의 함수로 나타낸 것을 시간 복잡도 함수라고 하고 T(n)으로 표기한다. 
+                          <div class="card-group">
+                            <div class="card">
+                              <div class="card-body">
+                                <h5 class="card-title">알고리즘 A</h5>
+                                <p class="card-text">
+                                  <pre class="C" >
+                                    <code>
+sum &lt;- n * n;
+                                    </code>
+                                  </pre>
+                                </p>
+                              </div>
+                              <div class="card-footer">
+                                연산을 기준으로 대입 연산 1회, 나눗셈 연산 1회 => 총 2회 
+                              </div>
+                            </div>
+                            <div class="card">
+                              <div class="card-body">
+                                <h5 class="card-title">알고리즘 B</h5>
+                                <p class="card-text">
+                                  <pre class="C" >
+                                    <code>
+for i &lt;- 1 to n do  
+  sum &lt;- sum + n;
+                                    </code>
+                                  </pre>
+                                </p>
+                              </div>
+                              <div class="card-footer">
+                                연산을 기준으로 대입 연산 n회, 덧셈 연산 n회 => 총 2n회 
+                              </div>
+                            </div>
+                            <div class="card">
+                              <div class="card-body">
+                                <h5 class="card-title">알고리즘 C</h5>
+                                <p class="card-text">
+                                  <pre class="C" >
+                                    <code>
+for i &lt;- 1 to n do 
+  for j &lt;- 1 to n do 
+    sum &lt;- sum + 1;                                      
+                                    </code>
+                                  </pre>                                  
+                                </p>
+                              </div>
+                              <div class="card-footer">
+                                연산을 기준으로 대입 연산 n*n, 덧셈 연산 n*n => 2n^2 회 
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>  
+                    <div class="card">
+                      <div class="card-header" id="heading7">
+                        <h2 class="mb-0">
+                          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
+                            빅오 표기법 
+                          </button>
+                        </h2>
+                      </div>
+                      <div id="collapse7" class="collapse" aria-labelledby="heading7" data-parent="#accordionExample">
+                        <div class="card-body">
                         
-                    </div>
-                  </div>
-                </div>  
-                <div class="card">
-                  <div class="card-header" id="heading7">
-                    <h2 class="mb-0">
-                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
-                       
-                      </button>
-                    </h2>
-                  </div>
-                  <div id="collapse7" class="collapse" aria-labelledby="heading7" data-parent="#accordionExample">
-                    <div class="card-body">
+                        </div>
+                      </div>
+                    </div> 
                     
-                    </div>
-                  </div>
-                </div> 
-                
                 <div class="card">
                   <div class="card-header" id="heading10">
                     <h2 class="mb-0">

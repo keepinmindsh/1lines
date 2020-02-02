@@ -1286,9 +1286,200 @@ int main(void)
                         구조체도 함수의 반환 자료형이나 매개변수가 될 수 있습니다. 그리고 구조체 변수는 배열의 이름과 달리 l-value가 될 수 있습니다. 
                         <pre class="C" >
                           <code>
-     .
+#include &lt;stdio.h>
+
+// 구조체 선언 및 재선언 
+typedef struct USERDATA
+{
+  int nAge;
+  char szName[32];
+  char szPhone[32];
+} USERDATA;
+
+
+// 구조체 형식을 반환하는 함수 선언 및 정의 
+USERDATA GetUserData(void)
+{
+  USERDATA user = { 0 };
+  // %*c는 '\n'을 제거하기 위한 것이다. 
+  scanf("%d%*c", &user.nAge);
+  gets_s(user.szName, sizof(user.szName));
+  gets_s(user.szPhone, sizeof(user.szPhone));
+  return user;
+}
+
+int main(void)
+{
+  USERDATA user = { 0 };
+
+  // 함수가 반환한 구조체를 저장하고 출력 
+  // 하지만 아래와 같이 구조체 변수를 매겨변수나 반환 자료형식으로 사용하는 것은 비효율 적입니다. 
+  // 구조체가 매개변수나 반환형이 될 때는 Call By reference 형식으로 처리하는게 좋습니다. 
+  user = GetUserData();
+  printf("%d살\t%s\t%s\n", user.nAger, user.szName, user.szPhone);
+
+
+  return 0;
+}
+
+
+// Call By Reference에 의한 구조체 매개변수 전달 
+// 구조체를 함수의 인수로 전달 할 때는 Call By Reference 방식을 사용하는 것이 현명합니다. 
+USERDATA GetUserData(USERDATA *pUser)
+{
+  scanf("%d%*c", &pUser.nAge);
+  gets_s(user.szName, sizof(pUser -> szName));
+  gets_s(user.szPhone, sizeof(pUser -> szPhone));
+  return user;
+}
+
+int main(void)
+{
+  USERDATA user = { 0 };
+  
+  GetUserData(&user);
+
+  printf("%d살\t%s\t%s\n", user.nAger, user.szName, user.szPhone);
+
+  return 0;
+}
                           </code>
                         </pre>
+                        <hr>  
+                          <strong>구조체를 멤버로 가지는 구조체</strong>
+                        <hr>
+                        <pre class="C" >
+
+                          <code>
+typedef struct MYSKILL
+{
+  int nPoint;
+  char szSkilName[32];
+
+} MYSKILL;
+
+typedef struct USERDATA
+{
+  int nAge;
+  char szName[32];
+  char szPhone[32];
+  MYSKILL skill;
+} USERDATA;
+
+int main(void)
+{
+  USERDATA user = {
+    "Jeong",
+    "01000000000",
+    { 90, "Attack" }
+  };
+
+  printf("%d\t%s\n", user.skill.nPoint, user.skill.szSkilName );
+
+  return 0;
+}
+                          </code>
+                        </pre>
+                        <hr>
+                        <strong>자기 참조 구조체</strong>
+                        <hr>
+                        구조체의 멤버로 구조체에 대한 포인터 변수를 선언할 수도 있다. 해당 포인터가 가리키는 대상이 자기 자신이면 자기 참고 구조체라고 부를수 있다. 
+                        <pre class="C" >
+                          <code>
+typedef struct USERDATA
+{
+  int nAge;
+  char szName[32];
+  char szPhone[32];
+  struct USERDATA *pNext; // 자기자신을 가리킬 수 있는 구조체를 포인터로 선언하였다. 
+} USERDATA;
+
+int main(void)
+{
+  USERDATA user = { "홍길동" , "0101231234", NULL };
+  USERDATA newuser = { "유산슬" , "0102345678", NULL }; 
+
+  // pNext를 이용해 위의 user와 newuser를 연결한다. 
+  user.pNext = &newUser;
+
+  printf("%d\t%s\n", user.pNext -> szName , user.pNext -> szPhone );
+
+  return 0;
+}
+
+                          </code>
+                        </pre>
+                        <hr>
+                        <strong>자기 참조 구조체 예제</strong>
+                        <hr>
+                        <pre>
+                          <code>
+int main(void)
+{
+  // 배열로 USERDATA를 구조체 인스턴스 넷을 선언 및 정의 
+  USERDATA userList[4] = {
+    { "홍길동1", "01002341234", NULL }, 
+    { "홍길동2", "01004561234", NULL },
+    { "홍길동3", "01007891234", NULL },
+    { "홍길동4", "01001461234", NULL }
+  }
+
+  USERDATA *pUser = NULL;
+
+  userList[0].pNext = &userList[1];
+  userList[1].pNext = &userList[2];
+  userList[2].pNext = &userList[3];
+
+  userList[3].pNext = NULL;
+
+  pUser = &userList[0];
+
+  while(pUser != NULL){
+    printf("%d\t%s\n", pUser -> szName , pUser -> szPhone );
+
+    pUser = pUser -> pNext;
+  }
+
+  return 0;
+}
+                          </code>
+                        </pre>
+                        <hr>
+                        <strong>구조체 멤버 맞춤</strong>
+                        <hr>
+                        <pre class="C" >
+                          <code>
+// 배열은 각 요소가 연접하여 붙어 있습니다. 그러나 구조체는 연접할 수 도 있고 그렇지 않을 수도 있습니다. 즉 두 멤버 사이에 일정 크기의 공백이 껴들 수 있습니다. 
+// 구조체 멤버 맞춤에 의해서 
+
+typedef struct USERDATA {
+  char value;
+  int number;
+} USERDATA;
+
+// USERDATA 의 sizeof는 5가 되어야할 것 같지만 8이 됩니다. 
+// 그이유는 구조체 멤버 맞춤의 기본 값이 8byte라고 할 때, 1byte짜리 char 에 3byte를 채워, 4(value) + 4(number)로 인식되어 8byte로 만들게 됩니다. 
+
+// 하지만 프로그램을 하다보면, 이 구조체들의 멤버 구성이 어떻게 되어 있던 간에 모든 멤버가 각각 연속적으로 붙어있어야하는 경우에는 
+// 아래와 같이 코드를 작성할 수 있습니다. 
+
+#pragma pack(push, 1)
+
+typedef struct USERDATA {
+  char value;
+  int number;
+} USERDATA;
+
+#pragma pack(pop)
+
+// 위와 같은 코드에서 sizeof로 계산하게 되면 1(value) + 4(number) = 5가 되는 것을 확인 할 수 있습니다. 
+
+                          </code>
+                        </pre>
+                        <hr>
+                        <strong>
+                          
+                        </strong>
                     </div>
                   </div>
                 </div> 
