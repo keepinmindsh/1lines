@@ -1322,7 +1322,59 @@ class CustomTextInput extends React.Component {
                           </code>
                         </pre>
                         <hr>
-                        
+                        CustomTextInput 컴포넌트의 인스턴스가 마운트 된 이후에 즉시 클릭되는 걸 흉내내기 위해 CustomTextInput 컴포넌트를 감싸는 걸 원한다면, ref를 사용하여 CustomTextInput 컴포넌트의 인스턴스에 접근하고 직접 focusTextInput 메소드를 호출 할 수 있습니다. 
+                        <hr>
+                        <pre class="C" >
+                          <code>
+class AutoFocusTextInput extends React.Component {
+  constructor(props) {
+    super(props);
+    this.textInput = React.createRef();
+  }
+
+  componentDidMount() {
+    this.textInput.current.focusTextInput();
+  }
+
+  render() {
+    return (
+      &lt;CustomTextInput ref={this.textInput} />
+    );
+  }
+}
+                          </code>
+                        </pre>
+                        <hr>
+                        Ref와 함수 컴포넌트 
+                        <hr>
+                        함수 컴포넌트는 인스턴스가 없기 때문에 함수 컴포넌트에 ref 어트리뷰트를 사용할 수 없습니다. 다만, DOM 엘리먼트나 클래스 컴포넌트의 인스턴스에 접근하기 위해서 ref 어트리뷰트 함수 컴포넌트를 사용하는 것은 됩니다. 
+                        <pre class="C" >
+                          <code>
+function CustomTextInput(props) {
+  // textInput은 ref 어트리뷰트를 통해 전달되기 위해서
+  // 이곳에서 정의되어야만 합니다.
+  let textInput = React.createRef();
+
+  function handleClick() {
+    textInput.current.focus();
+  }
+
+  return (
+    &lt;div>
+      &lt;input
+        type="text"
+        ref={textInput} />
+      &lt;input
+        type="button"
+        value="Focus the text input"
+        onClick={handleClick}
+      />
+    &lt;div>
+  );
+}
+                            
+                          </code>
+                        </pre>
                       </div>
                     </div>
                   </div>  
