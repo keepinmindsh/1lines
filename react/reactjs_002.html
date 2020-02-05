@@ -1324,7 +1324,7 @@ class CustomTextInput extends React.Component {
                         <hr>
                         CustomTextInput 컴포넌트의 인스턴스가 마운트 된 이후에 즉시 클릭되는 걸 흉내내기 위해 CustomTextInput 컴포넌트를 감싸는 걸 원한다면, ref를 사용하여 CustomTextInput 컴포넌트의 인스턴스에 접근하고 직접 focusTextInput 메소드를 호출 할 수 있습니다. 
                         <hr>
-                        <pre class="C" >
+                        <pre class="javascript" >
                           <code>
 class AutoFocusTextInput extends React.Component {
   constructor(props) {
@@ -1348,7 +1348,7 @@ class AutoFocusTextInput extends React.Component {
                         Ref와 함수 컴포넌트 
                         <hr>
                         함수 컴포넌트는 인스턴스가 없기 때문에 함수 컴포넌트에 ref 어트리뷰트를 사용할 수 없습니다. 다만, DOM 엘리먼트나 클래스 컴포넌트의 인스턴스에 접근하기 위해서 ref 어트리뷰트 함수 컴포넌트를 사용하는 것은 됩니다. 
-                        <pre class="C" >
+                        <pre class="javascript" >
                           <code>
 function CustomTextInput(props) {
   // textInput은 ref 어트리뷰트를 통해 전달되기 위해서
@@ -1375,6 +1375,76 @@ function CustomTextInput(props) {
                             
                           </code>
                         </pre>
+                        <hr>
+                        Forwarding refs to DOM components 
+                        <pre class="javascript" >
+                          <code>
+const FancyButton = React.forwardRef((props, ref) => (
+  &lt;button ref={ref} className="FancyButton">
+    {props.children}
+  &lt;/button>
+));
+
+// You can now get a ref directly to the DOM button:
+const ref = React.createRef();
+&lt;FancyButton ref={ref}>Click me!&lt;/FancyButton>;
+
+/*
+1. React ref를 React.createRef를 호출하여 ref 변수에 할당한다. 
+2. ref 값을 FancyButton을 통해 Fancy Button 내부로 전달한다. 
+3. React는 ref를 forwardRef를 이용해서 함수 내부로 전달한다. 
+4. 우리는 ref 인자를 button의 내부로 JSX Attribute로써 전달한다. 
+5. ref가 연결되었을 대, ref.current는 button 의 DOM node로 전달될 것이다.
+
+*/
+
+                          </code>
+                        </pre>
+                        <hr>
+                        Forwarding Ref Higher Order Component 
+                        <pre class="javascript" >
+                          <code>
+
+  import FancyButton from './FancyButton';
+
+  const ref = React.createRef();
+
+  // The FancyButton component we imported is the LogProps HOC.
+  // Even though the rendered output will be the same,
+  // Our ref will point to LogProps instead of the inner FancyButton component!
+  // This means we can't call e.g. ref.current.focus()
+  &lt;FancyButton
+    label="Click Me"
+    handleClick={handleClick}
+    ref={ref}
+  />;
+
+  
+  function logProps(Component) {
+    class LogProps extends React.Component {
+      componentDidUpdate(prevProps) {
+        console.log('old props:', prevProps);
+        console.log('new props:', this.props);
+      }
+  
+      render() {
+        const {forwardedRef, ...rest} = this.props;
+  
+        // Assign the custom prop "forwardedRef" as a ref
+        return &lt;Component ref={forwardedRef} {...rest} />;
+      }
+    }
+  
+    // Note the second param "ref" provided by React.forwardRef.
+    // We can pass it along to LogProps as a regular prop, e.g. "forwardedRef"
+    // And it can then be attached to the Component.
+    return React.forwardRef((props, ref) => {
+      return &lt;LogProps {...props} forwardedRef={ref} />;
+    });
+  }
+                          </code>
+                        </pre>
+                        <hr>
                       </div>
                     </div>
                   </div>  
