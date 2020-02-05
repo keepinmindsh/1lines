@@ -181,7 +181,7 @@ while(events = demultiplexer.watch(watchedList)) {
       // 리소스가 닫혔기 때문에, 리소스 목록에서 제거합니다. 
       demultiplexer.unwatch(event.resource);
     else  
-      // 실제 데이터가 도착하여 이를 처리합니다. 
+      // 실제 데이터가 도착하여 이를 처리합니다
       consumeData(data);
   }
 
