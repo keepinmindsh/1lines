@@ -1376,7 +1376,8 @@ function CustomTextInput(props) {
                           </code>
                         </pre>
                         <hr>
-                        Forwarding refs to DOM components 
+                        Forwarding refs to DOM components <br>
+                        재 사용성이 중요한 컴포넌트의 경우, 이는 유용하게 사용될 것입니다. 
                         <pre class="javascript" >
                           <code>
 const FancyButton = React.forwardRef((props, ref) => (
@@ -1445,6 +1446,81 @@ const ref = React.createRef();
                           </code>
                         </pre>
                         <hr>
+                        Forwarding refs in higher-order components
+                        <hr>
+                        고차 함수에서 ref를 전달하고 싶을 때, props는 전달이 가능하지만 ref는 props가 아니기 때문에 일반적인 방법으로는 ref를 전달할 수 없습니다. 
+                        하지만 우리는 forwardedRef를 통해서 고차 컴포넌트에 해당 ref 값을 전달 할 수 있게 됩니다. 
+                      
+                        <pre class="javascript">
+                          <code>
+import FancyButton from './FancyButton';
+
+const ref = React.createRef();
+
+// The FancyButton component we imported is the LogProps HOC.
+// Even though the rendered output will be the same,
+// Our ref will point to LogProps instead of the inner FancyButton component!
+// This means we can't call e.g. ref.current.focus()
+&lt;FancyButton
+  label="Click Me"
+  handleClick={handleClick}
+  ref={ref}
+/>; 
+
+
+function logProps(Component) {
+  class LogProps extends React.Component {
+    componentDidUpdate(prevProps) {
+      console.log('old props:', prevProps);
+      console.log('new props:', this.props);
+    }
+
+    render() {
+      const {forwardedRef, ...rest} = this.props;
+
+      // Assign the custom prop "forwardedRef" as a ref
+      return &lt;Component ref={forwardedRef} {...rest} />;
+    }
+  }
+
+  // Note the second param "ref" provided by React.forwardRef.
+  // We can pass it along to LogProps as a regular prop, e.g. "forwardedRef"
+  // And it can then be attached to the Component.
+  return React.forwardRef((props, ref) => {
+    return &lt;LogProps {...props} forwardedRef={ref} />;
+  });
+}
+                          </code>
+                        </pre>
+                        <hr>
+                        Displaying a custom name in DevTools
+                        <hr>
+                        React.forwardRef 는 rendering 기능을 지원하기 때무네 React DevTools에서 무엇을 표시할 지를 정하기 위해서 해당 함수를 사용한다. 
+                        <pre class="javascript">
+                          <code>
+const WrappedComponent = React.forwardRef((props, ref) => {
+  return &lt;LogProps {...props} forwardedRef={ref} />;
+});   
+
+function logProps(Component) {
+  class LogProps extends React.Component {
+    // ...
+  }
+
+  function forwardRef(props, ref) {
+    return &lt;LogProps {...props} forwardedRef={ref} />;
+  }
+
+  // Give this component a more helpful display name in DevTools.
+  // e.g. "ForwardRef(logProps(MyComponent))"
+  const name = Component.displayName || Component.name;
+  forwardRef.displayName = `logProps(${name})`;
+
+  return React.forwardRef(forwardRef);
+}
+
+                          </code>
+                        </pre>
                       </div>
                     </div>
                   </div>  
