@@ -148,7 +148,20 @@
               Hexagonal Architecture
             </div>
             <div class="card-body">
+              하나의 어플리케이션이 사용자나 프로그램이나 자동화된 테스트, 배치 스크립트등에 의해서 운영되는 것을 가능하게 하며, 
+              실시간으로 이벤트가 발생하는 장치나 데이터베이스로부터 고립된 상태에서 테스트되고, 개발되는 것을 가능하게 한다. 
+              <hr>
+              그렇다면 왜 헥사곤인가? 
+              <hr>
+              육각형 모양을 취하고 있는 이 아키텍처는 실제로 각 면의 개수는 비즈니스/업무에 따라 다르다. 
+              각각의 면을 우리는 포트(Port)라고 표시하거나 우리의 어플리케이션의 외부라고 표시한다. 
+              <br>
+              포트(Port)는 요청을 어플리케이션으로 전달하는 역할을 한다. 예를들면 HTTP Port, Queue, Message Protocol 등이 어플리케이션으로 
+              요청을 보내는 역할을 하는 Port가 된다. 
+              <hr>
+              https://fideloper.com/hexagonal-architecture
               https://speakerdeck.com/fideloper/hexagonal-architecture?slide=12
+              
             </div>
         </div>
         <!-- /.container-fluid -->
@@ -176,61 +189,6 @@
 
     <!-- Logout Modal-->
  
-
-    <script language="JavaScript">
-
-        var timerID;      // 타이머를 핸들링하기 위한 전역 변수
-        var time = 1200;   // 타이머 시작시의 시간
-    
-        document.getElementById("btnStart").addEventListener("click", function(){
-          start_timer();
-        });
-    
-        /* 타이머를 시작하는 함수 */
-        function start_timer() { 
-          timerID = setInterval("decrementTime()", 1000);
-    
-        }
-    
-        /* 남은 시간을 감소시키는 함수 */
-    
-        function decrementTime() { 
-    
-          var x1 = document.getElementById("time1");
-    
-          x1.innerHTML = toHourMinSec(time);
-    
-          if(time > 0){
-            time--;
-          } else { 
-    
-            // 시간이 0이 되었으므로 타이머를 중지함
-            clearInterval(timerID);
-            x1.innerHTML = "종료!!"
-          }
-        }
-    
-        /* 정수형 숫자(초 단위)를 "시:분:초" 형태로 표현하는 함수 */
-        function toHourMinSec(t) { 
-          var hour;
-          var min;
-          var sec;
-    
-          // 정수로부터 남은 시, 분, 초 단위 계산
-          hour = Math.floor(t / 3600);
-          min = Math.floor( (t-(hour*3600)) / 60 );
-          sec = t - (hour*3600) - (min*60);
-    
-          // hh:mm:ss 형태를 유지하기 위해 한자리 수일 때 0 추가
-          if(hour < 10) hour = "0" + hour;
-          if(min < 10) min = "0" + min;
-          if(sec < 10) sec = "0" + sec;
-    
-          return(hour + ":" + min + ":" + sec);
-    
-        }
-    
-      </script>
     <!-- Bootstrap core JavaScript-->
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
