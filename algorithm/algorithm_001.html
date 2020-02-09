@@ -234,15 +234,148 @@
                     </div>
                   </div>
                   <div class="card">
-                    <div class="card-header" id="heading5">
+                    <div class="card-header" id="heading6">
                       <h2 class="mb-0">
-                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse5" aria-expanded="true" aria-controls="collapse5">
-                        
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse6" aria-expanded="true" aria-controls="collapse6">
+                          힙
                         </button>
                       </h2>
                     </div>
                 
-                    <div id="collapse5" class="collapse" aria-labelledby="heading5" data-parent="#accordionExample">
+                    <div id="collapse6" class="collapse" aria-labelledby="heading6" data-parent="#accordionExample">
+                      <div class="card-body">
+                         <ul>
+                           <li>완전 이진 트리의 일종으로 우선순위 큐를 위하여 만들어진 자료구조이다.</li>
+                           <li>여러 개의 값들 중에서 최댓값이나 최솟값을 빠르게 찾아내도록 만들어진 자료구조이다.</li>
+                           <li>힙은 일종의 반정렬 상태(느슨한 정렬 상태) 를 유지한다.
+                             <ul>
+                               <li>큰 값이 상위 레벨에 있고 작은 값이 하위 레벨에 있다는 정도</li>
+                               <li>간단히 말하면 부모 노드의 키 값이 자식 노드의 키 값보다 항상 큰(작은) 이진 트리를 말한다.</li>
+                             </ul>
+                           </li>
+                           <li>힙 트리에서는 중복된 값을 허용한다. (이진 탐색 트리에서는 중복된 값을 허용하지 않는다.)</li>
+                         </ul> 
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header" id="heading7">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse7" aria-expanded="true" aria-controls="collapse7">
+                          프로세스
+                        </button>
+                      </h2>
+                    </div>
+                
+                    <div id="collapse7" class="collapse" aria-labelledby="heading7" data-parent="#accordionExample">
+                      <div class="card-body">
+                        프로세스란 수행 중인 프로그램을 뜻한다. <br>
+                        프로그램 자체는 생명이 없다. 프로그램은 보조 기억장치 ( 하드 디스크, SSD)에 존재하며 실행되기를 기다리는 명령어(코드)와 정적인 데이터의 묶음이다. 이 프로그램의 
+                        명령어가 정적 데이터가 메모리에 적재되면 생명이 있는 프로세스가 된다. 즉 프로세스란 실행 중인 프로그램이다. 
+                        <hr>
+                        구성
+                        <ul>
+                          <li>
+                            PID 
+                            <hr>
+                            운영체제가 각 프로세스를 식별하기 위해 부여된 프로세스 식별번호(PID, Process IDentification
+                          </li>
+                          <li>
+                            프로세스 상태
+                            <hr>
+                            CPU는 프로세스를 빠르게 교체하면서 실행하기 때문에 실행중인 프로세스도 있고 대기 중인 프로세스도 있다. 그런 프로세스의 상태를 저장 한다.
+                          </li>
+                          <li>
+                            프로그램 카운터
+                            <hr>
+                            CPU가 다음으로 실행할 명령어를 가리키는 값이다. CPU는 기계어를 한 단위씩 읽어서 처리하는데 프로세스를 실행하기 위해 다음으로 실행할 기계어가 저장된 메모리 주소를 가리키는 값이다.
+                          </li>
+                          <li>
+                            스케줄링 우선순위
+                            <hr>
+                            운영체제는 여러개의 프로세스를 동시에 실행하는 환상을 제공한다. 운영체제가 여러 개의 프로세스가 CPU에서 실행되는 순서를 결정하는 것을 스케줄링이라고 한다. 이 스케줄링에서 우선순위가 높으면 먼저 실행될 수 있는데 이를 스케줄링 우선순위라고 한다.
+                          </li>
+                          <li>
+                            권한
+                            <hr>
+                            프로세스가 접근할 수 있는 자원을 결정하는 정보다.
+                          </li>
+                          <li>
+                            프로세스의 부모와 자식 프로세스
+                            <hr>
+                            최초로 생성되는 init 프로세스를 제외하고 모든 프로세스는 부모 프로세스를 복제해서 생성되고 이 계층관계는 트리를 형성한다. 그래서 각 프로세스는 자식 프로세스와 부모프로세스에 대한 정보를 가지고 있다.
+                          </li>
+                          <li>
+                            프로세스의 데이터와 명령어가 있는 메모리 위치를 가리키는 포인터
+                            <hr>
+                            프로세스는 실행중인 프로그램이다. 따라서 프로그램에 대한 정보를 가지고 있어야한다. 프로그램에 대한 정보는 프로세스가 메모리에 가지는 자신만의 주소 공간에 저장된다. 이 공간에 대한 포인터 값을 가진다. <br>
+                            스택영역과 힙영역 사이에 빈 공간은 컴파일 타임에 지역변수를 얼마나 사용할지 미리 계산할 수 없기 때문에 런타임에 지역변수 선언 순서에 따라 스택영역은 위쪽으로 주소 값을 매기고 동적 할당될때 힙영역은 아래쪽으로 주소값을 매긴다.
+                          </li>
+                          <li>
+                            실행문맥
+                            <hr>
+                            프로세스가 실행상태에서 마지막으로 실행한 프로세서의 레지스터 내용을 담고 있다. CPU에 의해 실행되는 프로세스는 운영체제에 의해 계속 교체되는데 교체되었다가 다시 자신의 차례가 되어서 실행될때 중단된적 없고 마치 연속적으로 실행된것처럼하기 위해 이 레지스터 정보를 가지고 있다.
+                          </li>
+                        </ul>   
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header" id="heading8">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
+                          프로세스 상태 
+                        </button>
+                      </h2>
+                    </div>
+                
+                    <div id="collapse8" class="collapse" aria-labelledby="heading8" data-parent="#accordionExample">
+                      <div class="card-body">
+                        <ul>
+                          <li>시작상태
+                            <hr>
+                            프로세스가 생성중, 프로세스를 위한 각종 자료구조는 생성되었지만 아직 메모리 획득을 승인 받지 못한 상태 
+
+                          </li>
+                          <li>준비상태
+                            <hr>
+                            cpu만 보유하면 당장 명령을 실행 ㅎ라 수 있지만 cpu를 할당받지 못한 상태 
+
+                          </li>
+                          <li>실행상태
+                            <hr>
+                            프로세스가 cpu를 보유하고 기계어 명령을 실행하고 있는 상태 <hr>
+                            일반적인 컴퓨터 시스템에서는 cpu가 한개 이므로 running state인 프로세스는 매 시점 1개만 존재한다.
+
+                          </li>
+                          <li>봉쇄상태
+                            <hr>
+                            프로세스에서 cpu를 주어도 당장 명령을 실행할 수 없는 상태 I/O작업중인 프로세스
+
+
+                          </li>
+                          <li>완료상태
+                            <hr>
+                            프로세스가 완료 됨, 프로세스가 종료되었으나 운영 체제가 그 프로세스와 관련된 자료 구조를 완전히 정리하지 못한 상태
+
+
+                          </li>
+                        </ul>
+                        <hr>   
+                        Table 부터
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header" id="heading9">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
+                          
+                        </button>
+                      </h2>
+                    </div>
+                
+                    <div id="collapse9" class="collapse" aria-labelledby="heading9" data-parent="#accordionExample">
                       <div class="card-body">
                                 
                       </div>
