@@ -240,7 +240,7 @@ while(events = demultiplexer.watch(watchedList)) {
                         각 운영체제에는 Linux의 epoll, Mac OS X의 kqueue 및 Windows의 I/O Completion Port (API)와 같은 이벤트 디 멀티 플렉서에 대한 자체 인터페이스가 있습니다. <br>
                         Unix 에서 일반 파일 시스템의 파일은 논 블로킹 동작을 시물레이션 하려면 이벤트 루프 외부에 별도의 스레드를 사용해야 합니다. 서로 다른 운영체제에서 발생하는 이러한 불 일치 때문에 <br>
                         이벤트 디 멀티 플렉서에 대한 보다 높은 수준의 추상화를 필요로 합니다. <br>
-                        libus는 기본 시스템 호출을 추상화하는 것 외에도 Reactor 패턴을 구현하고 있으므로 이벤트 루프를 만들고, 이벤트 큐를 관리하며, 비동기 입출력 작업을 싱행하고, 다른 유형의 작업을 큐에 담기위한 API들을 제공합니다. 
+                        libuv는 기본 시스템 호출을 추상화하는 것 외에도 Reactor 패턴을 구현하고 있으므로 이벤트 루프를 만들고, 이벤트 큐를 관리하며, 비동기 입출력 작업을 싱행하고, 다른 유형의 작업을 큐에 담기위한 API들을 제공합니다. 
                       </div>
                     </div>
                   </div>  
@@ -248,11 +248,37 @@ while(events = demultiplexer.watch(watchedList)) {
                     <div class="card-header" id="heading6">
                       <h2 class="mb-0">
                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
-                          
+                          Node.js를 위한 구조   
                         </button>
                       </h2>
                     </div>
                     <div id="collapse6" class="collapse" aria-labelledby="heading6" data-parent="#accordionExample">
+                      <div class="card-body">
+                        
+                        <ul>
+                          <li>
+                            libuv와 기타 낮은 수준의 기능들을 JavaScript에 랩핑하고 사용 가능하도록 해주는 바인딩 세트 
+                          </li>
+                          <li>
+                            V8, 이것은 원래 Google에서 Chrome 브라우저 용으로 개발한 Javascript 엔진입니다. 이것이 Node.js가 매우 빠르고 효율적인 이유 중 하나입니다. V8은 혁신적인 설계와 속도 그리고 효율적인 
+                            메모리 관리로 높은 평가를 받고 있습니다. 
+                          </li>
+                          <li>
+                            상위 수준의 Node.js API를 구현하고 있는 코어 JavaScript 라이브러리(노드 코어라고 함)
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>  
+                  <div class="card">
+                    <div class="card-header" id="heading7">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
+                          
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse7" class="collapse" aria-labelledby="heading7" data-parent="#accordionExample">
                       <div class="card-body">
 
                       </div>
