@@ -274,16 +274,57 @@ while(events = demultiplexer.watch(watchedList)) {
                     <div class="card-header" id="heading7">
                       <h2 class="mb-0">
                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
-                          
+                          비동기 프로그램에서 중요한 Callback 및 Event Emitter 
                         </button>
                       </h2>
                     </div>
                     <div id="collapse7" class="collapse" aria-labelledby="heading7" data-parent="#accordionExample">
                       <div class="card-body">
+                        콜백은 작업 결과를 전달하기 위해 호출되는 함수이며, 비동기 작업을 처리할 때 반드시 필요합니다. 
+                        콜백을 구현하는 또 다른 이상적인 구조는 클로저입니다. 클로저를 사용하면 실제로 함수가 작성된 환경을 참조할 수 있습니다. 
+                        <hr>
+                        <strong>연속 전달 방식(The continuation-Passing Style)</strong>
+                        <hr>
+                        Javascript에서 콜백은 다른 함수에 인수로 전달되는 함수이며, 작업이 완료되면 호출됩니다. 함수형 프로그래밍에서 결과를 전달하는 이러한 방식을 연속 전달 방식이라고 합니다. 
+                        <pre class="javascript" >
+                          <code>
+function add(a, b, callback){
+  callback(a + b);
+}
+                          </code>
+                        </pre>
+                        <hr>
+                        <strong>비동기 연속 전달 방식 </strong>
+                        <hr>
+                        <pre class="javascript" >
+                          <code>
+function additionAsync(a, b, callback) {
+  setTimeout(() => callback( a + b), 100);
+}
+
+console.log('before');
+additionAsync(1,2, result => console.log('Result: ' + result));
+console.log('after')
+
+                          </code>
+                        </pre>
+                      </div>
+                    </div>
+                  </div> 
+                  <div class="card">
+                    <div class="card-header" id="heading8">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapse8">
+                          
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse8" class="collapse" aria-labelledby="heading8" data-parent="#accordionExample">
+                      <div class="card-body">
 
                       </div>
                     </div>
-                  </div>  
+                  </div>   
             </div>
             <div class="card-footer small text-muted"></div>
             </div>
