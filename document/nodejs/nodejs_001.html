@@ -304,10 +304,63 @@ function additionAsync(a, b, callback) {
 
 console.log('before');
 additionAsync(1,2, result => console.log('Result: ' + result));
-console.log('after')
-
+console.log('after');
                           </code>
                         </pre>
+                        비동기 작업이 완료되면 실행은 비동기 함수에서 제공된 콜백에서부터 다시 계속된다. 실행은 이벤트 루프에서 시작되기 때문에 새로운 스택을 갖습니다. 
+                        클로져 덕분에 콜백이 다른시점과 다른 위치에서 호출되더다로 비동기 함수의 호출자 컨텍스트를 유지하기 때문입니다. 
+                        <hr>
+                        <strong>비 연속 전달 방식의 콜백</strong>
+                        <hr>
+                        함수에 콜백 인자가 있으면, 함수가 비동기 식이거나 연속 전달 스타입을 사용하다고 가정할 수 있습니다. 
+                        <pre class="javascript" >
+                          <code>
+const result = [1, 5, 7].map(element => element - 1);
+console.log(result);                            
+                          </code>
+                        </pre>
+                        <ul class="list-group">
+                          <li class="list-group-item">
+                            동기냐? 비동기냐?
+                            <hr>
+                            예측할 수 없는 함수                             
+                            <pre class="javascript" >
+                              <code>
+const fs = require('fs');
+const cache = [];
+
+/*
+  이 함수는 fs.readFile() 함수가 결과를 반환할 때까지 캐시가 설정되지 않은 경우 비동기식으로 동작하고, 
+  캐시에 이미 있는 파일에 대한 모든 후속 요청에 대해 동기식으로 변해 즉각적으로 콜백을 호출하므로 위험합니다.
+*/
+function inconsistentRead(finalname, callback){
+  if(cache[filename]){
+    // 동기적으로 호출됨 
+    callback(cache[filename]);
+  } else {
+    // 비동기 함수 
+    fs.readFile(filename, 'utf8', ( err, data) => {
+      cache[filename] = data;
+      callback(data);
+    });
+  }
+}
+                              </code>
+                            </pre>
+                          </li>
+                          <li class="list-group-item">
+
+                          </li>
+                          <li class="list-group-item">
+
+                          </li>
+                          <li class="list-group-item">
+
+                          </li>
+                          <li class="list-group-item">
+
+                          </li>
+                        </ul>
                       </div>
                     </div>
                   </div> 
