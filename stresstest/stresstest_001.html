@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>1lines - Spring Boot</title>
+
+    <!-- Bootstrap core CSS-->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template-->
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Page level plugin CSS-->
+    <link href="../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="../css/sb-admin.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../styles/default.css">
+    <script src="../highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </head>
+
+  <body id="page-top">
+
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+
+      <a class="navbar-brand mr-1" href="index.html">1 Lines</a>
+
+      <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Navbar Search -->
+      
+
+      <!-- Navbar -->
+      
+
+    </nav>
+
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <ul class="sidebar navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>요약</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>목록</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header">Stress Test</h6>
+            <a class="dropdown-item" href="../stresstest/stresstest_001.html">nGrinder</a>
+            
+          </div>
+        </li>
+      </ul>
+
+      <div id="content-wrapper">
+        <div class="container-fluid">
+          <!-- Breadcrumbs-->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">Stress Test</li>
+          </ol>
+
+          <!-- Area Chart Example-->
+          <div class="card mb-3">
+            <div class="card-header">
+              nGrinder
+            </div>
+            <div class="card-body">
+              nGrinder는 네이버에서 성능 측정 목적으로 jython으로 개발 된 오픈 소스 프로젝트 이며, 
+              2011년에 공개하였습니다. 바닥부터 개발을 한 것이 아니라 The Grinder라는 오픈 소스 기반에서
+              개발했습니다. 
+              <hr>
+              nGrinder는 서버에 대한 부하 테스트를 하는 것으로 서버의 성능 측정이라고도 할 수 있습니다. 성능 측정이라는 거은 실제 서비스에
+              투입 되기 전, 실제와 같은 환경을 만들어 놓고 서버가 사용자를 얼마 만큼 수용할 수 있는지를 실험할 때 사용합니다. 
+              <ul>
+                <li>Controller
+                  <br>
+                  퍼포먼스 테스팅을 위해 웹 인터페이스 제공 <br>
+                  테스트 프로세스를 체계화 <br>
+                  테스트 결과를 수집해 통계로 보여줌 
+                </li>
+                <li>Agent : Controller 의 명령을 받아 실행합니다. 
+                  <br>
+                  agent 모드가 실행 될 때, target이 된 머신에 프로세스와 스레드를 실행시켜 부하를 발생 <br>
+                  monitor 모드가 실행되면 대사 시스템의 CPU 와 Memory를 모니터링 <br>
+                </li>
+                <li>Targer : 부하 테스트를 받는 머신입니다.
+
+                </li>
+                <li>
+                  vuser : virtual user 로 동시에 접속하는 유저의 수를 의미합니다. 
+                </li>
+                <li>
+                  TPS : 초당 트랜잭션의 수 - 초당 처리 수 ( Transaction Per Second )
+                  <br>
+                  위 공식으로 에이전트 10개, 프로세스 10개, 각 스레드 300이라면 30,000개의 vuser가 지속적으로 
+                  요청하는 상황. 그래서 30,000 번의 요청을 서버에서 1초 미만으로 처리한다면 TPS는 30,000 이상이 될 것이고, 
+                  30,000 번의 요청을 서버에서 2초 이상으로 처리한다면 TPS는 15,000 이하가 됩니다. 
+                </li>
+                <li>
+                  트랜잭션 : Http Request 가 성공할 때마다, 트랜잭션의 수가 1씩 증가합니다. 
+                </li>
+                <li>
+                  Peak TPS : 초당 처리 수의 최대치
+                </li>
+                <li>
+                  Response Time : 사용자가 reqeust 한 시점에서 시스템이 Response를 할 때 까지의 시간 
+                </li>
+                <li>
+                  Think Time : 사용자에게 전달된 정보는 사용자가 다음 동작을 취할 때 까지의 생각하는 시간이 필요한 시간 
+                </li>
+              </ul>
+              <hr>
+              nGrinder는 최대한 OS 설정과 독립적으로 운영되로록 구현되어 있습니다. 따라서 agent 성능을 최적화하기 위한 OS 튜닝 포인트가 아래 리스트를 제외하고는 거의 없습니다. 
+              <ul>
+                <li>ulimit 파일 오픈 가능 카운트를 1만 이상 유지 
+                  <br>
+                  성능 테스트 시, 소켓을 많이 열 수 있기 때문
+                </li>
+                <li>OS 영역을 제외하고 3G 정도의 Free 메모리를 유지할 것 
+                </li>
+                <li>socket linger option 설정을 조정하여, 소켓이 사용후 반납이 되도록 할 것 
+                  <br>
+                  <ul>
+                    <li>스크립트의 socket linger 를 설정하지 않으면 OS TCP 설정을 따르기 때문에 둘 중 하나를 선택</li>
+                    <li>jython socket 패키지를 사용할 경우 스크립트 상에 다음과 같이 설정하면 가능</li>
+                  </ul>
+                </li>
+              </ul>
+              <hr>
+              <strong>nGrinder 설치하기</strong>
+              <hr>
+            </div>
+            <div class="card-footer small text-muted"></div>
+          </div>
+        <!-- /.container-fluid -->
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright © 1Lines Labs 2019</span>
+            </div>
+          </div>
+        </footer>
+
+      </div>
+      <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Page level plugin JavaScript-->
+    <script src="../vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="../js/sb-admin.min.js"></script>
+
+    <!-- Demo scripts for this page-->
+    <script src="../js/demo/chart-area-demo.js"></script>
+    <script src="../js/demo/chart-bar-demo.js"></script>
+    <script src="../js/demo/chart-pie-demo.js"></script>
+
+  </body>
+
+</html>
