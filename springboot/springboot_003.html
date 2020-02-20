@@ -293,11 +293,33 @@ public class Sample{
               </div>
               <div class="card">
                 <div class="card-header">
-                  
+                  Fluent builder api
                 </div>
                 <div class="card-body">
                   <h5 class="card-title"></h5>
                   <p class="card-text">
+                    우리는 어플리케이션을 구성시에 도메인에 따라서 parent-child 관계로 구성할 수 있다. 
+                    Context의 상속 구조는 다수의 자식이 Parent Context에 Bean을 공유할 수 있다는 것을 의미한다. 
+                    <hr>
+                    SpringApplicationBuilder 는 context 사이에 부모-자식 관계를 구성하기 위해서 fluent API를 제공한다. 
+
+                    <ul>
+                      <li>
+                        SpringApplicationBuilder를 이용하면 SpringApplication의 세부 사항들을 조절 할 수 있다. ApplicationContext의 구현체를 지정하거나 ApplicationListener 등도 조정 가능하다.
+                      </li>
+                      <li>
+                        스프링부트의 AutoConfiguration 기능은 여러 오픈 소스들을 지원하고 기본적인 설정등을 해준다.
+                      </li>
+                    </ul>
+                    <hr>
+                    Fluent API : 함수들을 작성하고 나면, 마치 그 문장이 영어 문장 처럼 읽히는 API를 말합니다. <br>
+                    소프트웨어 공학에서 플루언트 인터페이스(fluent interface)는 메소드 체이닝에 상당 부분 기반한 객체 지향 API 설계 메소드이며, 소스 코드의 가독성을 산문과 유사하게 만드는 것이 목적이다. 특히 인터페이스 안에 도메인 특화 언어를 작성한다. 에릭 에반스와 마틴 폴러가 처음 만든 용어이다. JMock 테스팅 프레임워크에서 유연한 테스트 예측의 예는 다음과 같다:
+                    <pre>
+                      <code>
+mock.expects(once()).method("m").with( or(stringContains("hello"),
+stringContains("howdy")) );                        
+                      </code>
+                    </pre>
                   </p>
                 </div>
               </div>
