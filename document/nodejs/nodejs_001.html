@@ -332,6 +332,8 @@ const cache = [];
 /*
   이 함수는 fs.readFile() 함수가 결과를 반환할 때까지 캐시가 설정되지 않은 경우 비동기식으로 동작하고, 
   캐시에 이미 있는 파일에 대한 모든 후속 요청에 대해 동기식으로 변해 즉각적으로 콜백을 호출하므로 위험합니다.
+
+  예측할 수 없는 함수를 사용하면 어플리케이션이 쉽게 손상될 수 있습니다. 
 */
 function inconsistentRead(finalname, callback){
   if(cache[filename]){
@@ -345,6 +347,33 @@ function inconsistentRead(finalname, callback){
     });
   }
 }
+
+function createFileReader(filename){
+  const listner = [];
+  inconsistentRead(filename, value => {
+    listners.forEach(listner => listner(value));
+  });
+
+  return {
+    onDataReady : listner => listners.push(listner)
+  };
+}
+
+// 아래의 코드에서 reader2에 대한 콜백은 로그 상에서 호출되지 않습니다. 
+// inconsistentRead 함수의 콜백 동작은 실제로 호출 빈도, 인자로 전달되면 파일명 및 파일을 읽어들이는데 걸리는 시간과 같은 여러 요인에 의해 달라지므로 실제로 예측할 수 없습니다.
+const reader1 = createFileReader('data.txt');
+
+reader1.onDataReady(data => {
+  console.log('First Data Call : ' + data);
+
+  // ... 잠시 후 동일한 파일에 대해 다시 읽기를 수행합니다. 
+  const reader2 = createFileReader('data.txt');
+  reader2.onDataReady(data => {
+    console.log('First Data Call : ' + data);
+  });
+});
+
+
                               </code>
                             </pre>
                           </li>

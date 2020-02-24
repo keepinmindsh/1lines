@@ -1473,13 +1473,41 @@ typedef struct USERDATA {
 #pragma pack(pop)
 
 // 위와 같은 코드에서 sizeof로 계산하게 되면 1(value) + 4(number) = 5가 되는 것을 확인 할 수 있습니다. 
+// pragma pack 전처리는 memory packing과 관련한 설정을 변경하는 전처리기 입니다. 
+// 멤버 맞춥에 대한 오류 발생 가능성은 아래의 케이스들에 대해서 반드시 고려되어야 합니다. 
+// * 파일에 저장하거나 읽어오는 경우 
+// * 네트워크로 전송하거나 수신하는 경우 
 
                           </code>
                         </pre>
                         <hr>
                         <strong>
-                          
+                          비트 필드 
                         </strong>
+                        <hr>
+                        비트 필드는 구조체 멤버가 바이트 단위가 아닌 비트 단위 데이터를 다루는 멤버로 선언되는 구조체입니다. 이를 통해 8비트 정보를 쉽게 원하는 크기 만큼 잘라서 사용할 수 있습니다. 
+                        만일 비트 필드를 이용하지 않고도 일정 비트를 잘라내려면 마스크 연산을 비롯한 각종 비트 연산을 수행해야 합니다. 
+                        <pre class="C" >
+                          <code>
+#include &lt;stdio.h>
+
+typeof struct _DATAFLAG
+{
+  unsigned char main : 1; // 8 비트 중 오른쪽 1비트 
+  unsinged char left : 2; // 오른쪽 2~3번째 비트 
+  unsinged char right : 3; // 오른쪽 4~6번째 비트 
+  unsinged char top : 2; // 오른쪽 7~8번째 비트 ( 왼쪽 두 비트 )
+} DATAFLAG;
+
+int main(void){
+  // 1비트 표현범위 : 0 ~ 1
+  // 2비트 표현범위 : 0 ~ 3 
+  // 3비트 표현범위 : 0 ~ 7
+  DATAFLAG flagSwitch = { 0, 3, 7, 4};
+  
+}
+                          </code>
+                        </pre>
                     </div>
                   </div>
                 </div> 
