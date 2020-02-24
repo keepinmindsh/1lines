@@ -315,7 +315,37 @@
                             <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
                               <pre>
                                 <code class="java" >
-  
+Package designpattern.gof_mediator.sample01;
+
+import designpattern.gof_mediator.sample01.destination.AirRoad;
+import designpattern.gof_mediator.sample01.mediator.Mediator;
+import designpattern.gof_mediator.sample01.source.AirPlane;
+import designpattern.gof_mediator.sample01.source.AsianaAir;
+import designpattern.gof_mediator.sample01.source.KoreanAir;
+
+public class ControllerMain {
+    public static void main(String[] args) {
+        Mediator mediator = new Mediator();
+
+        AirPlane asianaAir = new AsianaAir();
+
+        asianaAir.setMediator(mediator);
+
+        AirPlane koreanAir = new KoreanAir();
+
+        koreanAir.setMediator(mediator);
+
+        mediator.addDestination(new AirRoad());
+
+        asianaAir.eventOccured("connected");
+        asianaAir.eventOccured("disconnected");
+
+        System.out.println("-------------------");
+
+        koreanAir.eventOccured("key input");
+        koreanAir.eventOccured("mouse input");
+    }
+}
                                     
                                 </code>
                               </pre>
@@ -323,8 +353,98 @@
                               <hr>
                               <pre>
                                 <code class="Java" >
-  
-  
+package designpattern.gof_mediator.sample01.source;
+
+import designpattern.gof_mediator.sample01.mediator.Mediator;
+
+public interface AirPlane {
+    public void setMediator(Mediator mediator);
+    public void eventOccured(String event);
+} 
+
+package designpattern.gof_mediator.sample01.source;
+
+import designpattern.gof_mediator.sample01.mediator.Mediator;
+
+public class AsianaAir implements AirPlane {
+
+    private Mediator mediator;
+
+
+    public void setMediator(Mediator mediator) {
+        this.mediator = mediator;
+    }
+
+    public void eventOccured(String event) {
+        mediator.onEvent("AsianaAir", event);
+    }
+}
+
+package designpattern.gof_mediator.sample01.source;
+
+import designpattern.gof_mediator.sample01.mediator.Mediator;
+
+public class KoreanAir implements AirPlane {
+
+    private Mediator mediator;
+
+    public void setMediator(Mediator mediator) {
+        this.mediator = mediator;
+    }
+
+    public void eventOccured(String event) {
+        mediator.onEvent("System Signal", event);
+    }
+}
+
+package designpattern.gof_mediator.sample01.mediator;
+
+import designpattern.gof_mediator.sample01.destination.IDestination;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Mediator {
+    List&lt;IDestination> list = new ArrayList&lt;IDestination>();
+
+    public void addDestination(IDestination destination){ list.add(destination); }
+
+    public void onEvent(String from, String event){
+        for(IDestination each : list){ // 이벤트의 전송
+            each.receiveEvent(from, event);
+        }
+    }
+}
+
+package designpattern.gof_mediator.sample01.destination;
+
+public class Log implements IDestination {
+    public void receiveEvent(String from, String event) {
+        System.out.println("Log : From " + from + " event : " + event);
+    }
+}
+
+package designpattern.gof_mediator.sample01.destination;
+
+public interface IDestination {
+    public void receiveEvent(String from, String event);
+}
+
+package designpattern.gof_mediator.sample01.destination;
+
+public class AirRoad implements IDestination {
+    public void receiveEvent(String from, String event) {
+        System.out.println("AirRoad : from " + from + " event : " + event);
+
+        try {
+            Thread.sleep(1500000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+
                                 </code>
                               </pre>
                             </div>

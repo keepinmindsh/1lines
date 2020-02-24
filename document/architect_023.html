@@ -316,6 +316,22 @@
                               <pre>
                                 <code class="java" >
   
+package designpattern.gof_observer.sample01;
+
+import designpattern.gof_observer.sample01.publisher.NewsMachine;
+import designpattern.gof_observer.sample01.subscriber.AnnualSubscriber;
+import designpattern.gof_observer.sample01.subscriber.EventSubscriber;
+
+public class MainClass {
+    public static void main(String[] args) {
+        NewsMachine newsMachine = new NewsMachine();
+        AnnualSubscriber annualSubscriber = new AnnualSubscriber(newsMachine);
+        EventSubscriber eventSubscriber = new EventSubscriber(newsMachine);
+        newsMachine.setNewsInfo("오늘 한파", "전국 영하 18도 입니다.");
+        newsMachine.setNewsInfo("벛꽃 축제합니다", "다같이 벚꽃보러~");
+    }
+}
+
                                     
                                 </code>
                               </pre>
@@ -323,7 +339,122 @@
                               <hr>
                               <pre>
                                 <code class="Java" >
-  
+package designpattern.gof_observer.sample01.publisher;
+
+import designpattern.gof_observer.sample01.subscriber.Observer;
+
+import java.util.ArrayList;
+
+public class NewsMachine implements Publisher {
+
+    private ArrayList&lt;Observer> observers;
+    private String title;
+    private String news;
+
+    public NewsMachine() {
+        observers = new ArrayList&lt;>();
+    }
+
+    @Override
+    public void add(Observer observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void delete(Observer observer) {
+        int index = observers.indexOf(observer);
+        observers.remove(index);
+    }
+
+    @Override
+    public void notifyObserver() {
+        for (Observer observer : observers) {
+            observer.update(title, news);
+        }
+    }
+
+    public void setNewsInfo(String title, String news) {
+        this.title = title;
+        this.news = news;
+        notifyObserver();
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getNews() {
+        return news;
+    }
+}
+
+package designpattern.gof_observer.sample01.publisher;
+
+import designpattern.gof_observer.sample01.subscriber.Observer;
+
+public interface Publisher {
+    public void add(Observer observer);
+
+    public void delete(Observer observer);
+
+    public void notifyObserver();
+}
+
+package designpattern.gof_observer.sample01.subscriber;
+
+import designpattern.gof_observer.sample01.publisher.Publisher;
+
+public class AnnualSubscriber implements Observer {
+    private String newsString;
+    private Publisher publisher;
+
+    public AnnualSubscriber(Publisher publisher) {
+        this.publisher = publisher;
+        publisher.add(this);
+    }
+
+    @Override
+    public void update(String title, String news) {
+        this.newsString = title + " \n -------- \n " + news;
+        display();
+    }
+
+    private void display() {
+        System.out.println("\n\n오늘의 뉴스\n============================\n\n" + newsString);
+    }
+}
+
+package designpattern.gof_observer.sample01.subscriber;
+
+import designpattern.gof_observer.sample01.publisher.Publisher;
+
+public class EventSubscriber implements Observer {
+    private String newsString;
+    private Publisher publisher;
+
+    public EventSubscriber(Publisher publisher) {
+        this.publisher = publisher;
+        publisher.add(this);
+    }
+
+    @Override
+    public void update(String title, String news) {
+        newsString = title + "\n------------------------------------\n" + news;
+        display();
+    }
+
+    public void display() {
+        System.out.println("\n\n=== 이벤트 유저 ===");
+        System.out.println("\n\n" + newsString);
+    }
+
+}
+
+package designpattern.gof_observer.sample01.subscriber;
+
+public interface Observer {
+    public void update(String title, String news);
+}
   
                                 </code>
                               </pre>

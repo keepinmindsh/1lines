@@ -307,21 +307,97 @@
                             <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
                               <pre>
                                 <code class="java" >
-  
-                                    
+package designpattern.gof_memento.sample02;
+
+public class GamePlay {
+
+    public static void main(String[] args) {
+        Game game = new Game();
+        SaveFile storage = new SaveFile();
+
+        storage.saveTempStorage("임시저장 1");
+        
+        storage.saveTempStorage("임시저장 2");
+
+        game.addSaveList(storage.getGameSave());
+
+        storage.saveTempStorage("임시저장 3");
+
+        storage.saveTempStorage("임시저장 4");
+
+        game.addSaveList(storage.getGameSave());
+
+        storage.saveTempStorage("임시저장 5");
+        storage.saveTempStorage("임시저장 6");
+
+        System.out.println(game.loadSaveData(0).getStorage());
+        System.out.println(game.loadSaveData(1).getStorage());
+
+
+    }
+}
+                                                                        
                                 </code>
                               </pre>
                               <hr>
                               <hr>
                               <pre>
                                 <code class="Java" >
-  
-  
+package designpattern.gof_memento.sample02;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Game {
+
+    private static List&lt;Storage> listSave = new ArrayList&lt;>();
+
+    public void addSaveList(Storage storage){
+        listSave.add(storage);
+    }
+
+    public Storage loadSaveData(int savePoint){
+        return listSave.get(savePoint);
+    }
+}
+
+package designpattern.gof_memento.sample02;
+
+public class SaveFile {
+
+    public String storage;
+
+    public Storage getGameSave(){
+        return new Storage(storage);
+    }
+
+    public void saveStorage(String gameStorage){
+        this.storage = gameStorage;
+    }
+
+    public void saveTempStorage(String tempStorage){
+        this.storage = tempStorage;
+    }
+}
+
+package designpattern.gof_memento.sample02;
+
+public class Storage {
+
+    private String storage;
+
+    public Storage(String storage){
+        this.storage = storage;
+    }
+
+    public String getStorage(){
+        return storage;
+    }
+} 
                                 </code>
                               </pre>
                             </div>
                           </div>
-  
                           <div class="card">
                             <div class="card-header" id="headingSix">
                               <h2 class="mb-0">
