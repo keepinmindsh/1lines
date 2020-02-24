@@ -296,7 +296,7 @@ public class Sample{
                   Fluent builder api
                 </div>
                 <div class="card-body">
-                  <h5 class="card-title"></h5>
+                  <h5 class="card-title">Fluent builder api</h5>
                   <p class="card-text">
                     우리는 어플리케이션을 구성시에 도메인에 따라서 parent-child 관계로 구성할 수 있다. 
                     Context의 상속 구조는 다수의 자식이 Parent Context에 Bean을 공유할 수 있다는 것을 의미한다. 
@@ -325,11 +325,86 @@ stringContains("howdy")) );
               </div>
               <div class="card">
                 <div class="card-header">
-                  
+                  Application Events and Listeners 
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">Application Events and Listeners </h5>
+                  <p class="card-text">
+                    
+                    <ul>
+                      <li>ApplicationStartedEvent
+                        <hr>
+                        run이 시작시 전송된다. 
+                      </li>
+                      <li>ApplicationEnvironmentPreparedEvent
+                        <hr>
+                        컨텍스트에 알려진 Evironment가 사용될 때 전송된다. 그러나 컨텍스트 생성 전이다. 
+                      </li>
+                      <li>ApplicationPreparedEvent
+                        <hr>
+                        컨텍스트 리프레쉬 전에 전송된다. 빈 정의가 다 로딩된 시점이다. 
+
+                      </li>
+                      <li>ApplicationFailedEvent
+                        <hr>
+                        스타트업에 실패시 전송된다. 
+                      </li>
+                    </ul>
+                  </p>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header">
+                  CommandLineRunner 
                 </div>
                 <div class="card-body">
                   <h5 class="card-title"></h5>
                   <p class="card-text">
+                      CommandLineRunner 를 이용하면 Sprng Application 이 기동될 때 필요한 특정 코드를 동작시킬수 있다. 
+                      <pre class="java" >
+                        <code>
+@Bean
+CommandLineRunner createException() {
+  return args -> Integer.parseInt("test") ;
+}
+                        </code>
+                      </pre>
+                  </p>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header">
+                  Application exit/Destroy
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title"></h5>
+                  <p class="card-text">
+                    각 SpringApplication은 ApplicationContext가 종료될때  shutdown hook을 등록할 수 있다. 
+                    모든 표준 스프링 라이프사이클 콜백( DisposableBean 이나 PreDestory)를 사용할 수 있다. 
+                    <pre class="java" >
+                      <code>
+@Bean
+ExitCodeExceptionMapper exitCodeToexceptionMapper() {
+  return exception -> { // set exit code base on the exception type
+      if (exception.getCause() instanceof NumberFormatException) {
+        return 22;
+      }
+      return 1;
+  };
+}
+
+
+@Component
+public class DestoryEvent {
+
+    //소멸 메소드
+    @PreDestroy
+    public void destory(){
+        System.out.println("종료 직전!!");
+    }
+}
+                      </code>
+                    </pre>
                   </p>
                 </div>
               </div>
