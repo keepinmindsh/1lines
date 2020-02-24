@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>1Lines - Gradle</title>
+
+    <!-- Bootstrap core CSS-->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template-->
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Page level plugin CSS-->
+    <link href="../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="../css/sb-admin.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../styles/default.css">
+    <script src="../highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </head>
+
+  <body id="page-top">
+
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+
+      <a class="navbar-brand mr-1" href="../index.html">Algorithm</a>
+
+      <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Navbar Search -->
+      
+
+      <!-- Navbar -->
+      
+
+    </nav>
+
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <ul class="sidebar navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="../index.html">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>요약</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>목록</span>
+          </a>
+          <div class="dropdown-menu show" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header">서론</h6>
+            <a class="dropdown-item" href="../gradle/gradle_001.html">Basic</a>
+            <a class="dropdown-item" href=""></a>
+            
+          </div>
+        </li>
+      </ul>
+
+      <div id="content-wrapper">
+        <div class="container-fluid">
+          <!-- Breadcrumbs-->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">Gradle</li>
+          </ol>
+
+          <!-- Area Chart Example-->
+          <div class="card mb-3">
+              <div class="card-header">
+              </div>
+              <div class="card-body">
+                <div class="accordion" id="accordionExample">
+                  <div class="card">
+                    <div class="card-header" id="heading1">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                          Gradle
+                        </button>
+                      </h2>
+                    </div>
+                
+                    <div id="collapse1" class="collapse" aria-labelledby="heading1" data-parent="#accordionExample">
+                      <div class="card-body">
+                        Gradle 이란 "자동화 빌드 도구"로 프로그래밍 방식과 다양한 플러그인을 지원하는 하나의 빌드 플랫폼이다. 
+                        소스코드를 컴파일 하고 jar나 war 형태 등으로 패키징하여 deploy 하는 일을 자동화 해줄 수 있다. 
+                        <hr>
+                        빌드 자동화를 위한 툴은 언어마다 다양하게 존재한다. 
+                        <ul>
+                          <li> C , C ++ : Makefile</li>
+                          <li> Java : Ant, Maven</li>
+                          <li> Scala : sbt</li>
+                        </ul>
+                        주로 사용하는 툴은 위와 같이 사용하는데, Gradle는 여러가지 언어에 대해서 빌드 환경을 구성할 수 있는 오픈 소스이다. 
+                        Gradle 은 기본적으로 Groovy라는 언어를 활용하여 DSL 을 스트립트로 사용한다. 
+                        <hr>
+                        Gradle은 성능 향상을 위해서 증분 빌드, 작업 결과 캐싱, 증분 하위 작업, 데몬 프로세스 재사용, 병렬 실행, 병렬 다운로드 기능을 지원한다. 
+                        <hr>
+                        멀티 프로젝트 : Gradle은 멀티 프로젝트 구성이 가능하다. 하나의 repository 내에 여러 개의 하위 프로젝트를 구성할 수 있다. 하나의 아티팩르를 만들기 위해서 별도의 프로젝트를 만들고 Repository를 구성할 필요가 없다. 
+                        <hr>
+                        유연성 + 확장성 : Groovy 기반 스크립팅을 통해서 다양한 기능을 스크립트 안에 직접 구현할 수 있다. 예를 들어 시스템 프로퍼티에서 현재 빌드를 사용하고 있는 사용자의 아이디나 OS 버전 정보를 가져와서 버전 정보로 사용할 수 있다. 
+                        직접 Task를 만들어서 기능을 추가할 수 있다. 
+                      </div>
+                    </div>
+                  </div>
+                
+                  <div class="card">
+                    <div class="card-header" id="heading2">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
+                          Gradle 기본 구성
+                        </button>
+                      </h2>
+                    </div>
+                
+                    <div id="collapse2" class="collapse" aria-labelledby="heading2" data-parent="#accordionExample">
+                      <div class="card-body">
+                        <img src="./gradle_foldersturucture.png" class="img-thumbnail" alt="" srcset="">
+                        <hr>
+                        <ul class="list-group">
+                          <li class="list-group-item">
+                            <Strong>Gradle Wrapper</Strong> <br>
+                            이미 존재하는 프로젝트를 새로운 환경에 설치 할 때 별도의 설치나 설정과정 없이 곧 바로 빌드 할 수 있게 하기 위함이다. 
+                            java 나 gradle도 설치할 필요가 없다. 또한 로컬에 설치된 Gradle 또는 Java의 버전도 신경 쓸 필요가 없다. 
+                            따라서 항상 Wrapper 를 사용할 것을 권장한다. 
+                          </li>
+                          <li class="list-group-item">
+                            <Strong>gradlaw</Strong> <br>
+                            유닉스용 실행 스크립트다. Gradle로 컴파일이나 빌드 등을 할 때, 아래와 같은 명령어로 로컬에 설치된 Gradle를 사용할 수 있다. 
+                            <pre class="shell" >
+                              <code>
+# 아래와 같이 실행하면 로컬 환경에 Java, Gradle이 설치되어 있어야 한다. 
+# 또한 로컬에 설치된 Gradle 버전에 따라서 build시 에러가 발생할 수 있다. 
+gradle build
+
+# 아래의 명령을 사용하면 별도의 로컬 환경의 정보를 사용하지 않고, Gradle Wrapper를 활용할 수 있다. 
+./gradlew build
+                              </code>
+                            </pre>
+                          </li>
+                          <li class="list-group-item">
+                            gradlew.bat 파일은 윈도우용 실행 배치 스크립트다. 윈도우에서 실행 가능하다는 점만 제외하면 gradlew 와 동일하다. 
+                          </li>
+                          <li class="list-group-item">
+                            gradle/wrapper/gradle-wrapper.jar 파일은 Wrapper 파일이다. gradlew나 gradlew.bat 파일이 프로젝트 내에 설치하는 이 파일을 사용하여 
+                            gradle task 를 실행하기 때문에 로컬 환경의 영향을 받지 않는다. 
+                          </li>
+                          <li class="list-group-item">
+                            gradle/wrapper/gradle-wrapper.properties 파일은 Gradle Wrapper 설정 파일이다. 이 파일의 wrapper 버전 등을 변경하면 task 실행 시, 자동으로 새로운 Wrapper 파일을 로컬 캐시에 다운로드 받는다. 
+                          </li>
+                          <li class="list-group-item">
+                            build.gradle 파일은 의존성이나 플로그인 설정 등을 위한 스크립트 파일이다. 
+                          </li>
+                          <li class="list-group-item">
+                            settings.gradle 파일은 프로젝트의 구성 정보를 기록하는 파일이다. 어떤 하위 프로젝트 들이 어떤 관계로 구성되어 있는지를 기술한다. Gradle은 이 파일에 기술된 대로 프로젝트를 구성한다. 
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header" id="heading3">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
+                          Gradle을 이용한 multimodule 구성 
+                        </button>
+                      </h2>
+                    </div>
+                
+                    <div id="collapse3" class="collapse" aria-labelledby="heading3" data-parent="#accordionExample">
+                      <div class="card-body">
+                        <ul>
+                          <li>rootProject.name 은 상위 프로젝트이다. </li>
+                          <li>include는 rootProject의 하위 프로젝트이다. </li>
+                          <li>하위 프로젝트의 하위 프로젝트는 java1::java3 과 같이 하여 java3 모듈이 java1의 하위 프로젝트가 된다. </li>
+                        </ul>
+                        <img src="./setting_gradle_01.png" class="img-thumbnail" alt="" srcset="">
+                        <hr>
+                        <pre class="shell" >
+                          <code>
+# java1, java2 의 소스 경로 생성 
+
+$ mkdir -p java1/src/main/java1 
+$ mkdir -p java2/src/main/java2 
+
+# 각 하위 프로젝트에 적용할 gradle 설정 적용 
+
+$ touch java1/build.gradle 
+$ touch java2/build.gradle 
+                          </code>
+                        </pre>
+                        <hr>
+                        <img src="./gradle_folder.png" class="img-thumbnail" alt="" srcset="">   
+                        <hr>
+                        <pre class="shell" >
+                          <code>
+# setting.gradle 
+rootProject.name = 'gradlesample01'
+
+include 'java1'
+include 'java2'
+
+
+# build.gradle - 상위 
+subprojects {
+  group = "com.lines"    // 생성될 아티팩트의 그룹명
+
+  repositories {
+      mavenCentral()
+  }
+
+  dependencies {
+  }
+}
+
+# build.gradle - 하위
+apply plugin: 'java'        // 'java'라는 Gradle 플러그인 적용
+sourceCompatibility = 1.8   // Java 호환 버전을 1.8로 설정
+dependencies {
+    compile 'ch.qos.logback:logback-classic:1.2.3'
+    compile 'ch.qos.logback:logback-core:1.2.3'
+    testCompile 'junit:junit:4.12'
+}
+
+
+# build.gradle - 하위
+apply plugin: 'java'        // 'java'라는 Gradle 플러그인 적용
+sourceCompatibility = 1.8   // Java 호환 버전을 1.8로 설정
+dependencies {
+    compile 'ch.qos.logback:logback-classic:1.2.3'
+    compile 'ch.qos.logback:logback-core:1.2.3'
+    testCompile 'junit:junit:4.12'
+}
+
+# build.gradle - 하위
+apply plugin: 'java'        // 'java'라는 Gradle 플러그인 적용
+sourceCompatibility = 1.8   // Java 호환 버전을 1.8로 설정
+dependencies {
+    compile 'ch.qos.logback:logback-classic:1.2.3'
+    compile 'ch.qos.logback:logback-core:1.2.3'
+    testCompile 'junit:junit:4.12'
+}
+                          </code>
+                        </pre>
+                                 
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header" id="heading4">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
+                          Gradle 용어집
+                        </button>
+                      </h2>
+                    </div>
+                
+                    <div id="collapse4" class="collapse" aria-labelledby="heading4" data-parent="#accordionExample">
+                      <div class="card-body">
+                        <div class="list-group">
+                          <a href="#" class="list-group-item list-group-item-action active">
+                            <div class="d-flex w-100 justify-content-between">
+                              <h5 class="mb-1">Repository</h5>
+                            </div>
+                            <p class="mb-1">
+                              사용할 라이브러리 들이 저장된 위치 기술, Apache Ivy에 기반 <br>
+                              의존성을 가져올 주소를 설정 <br>
+                              jcenter는 그레이들에서 중앙 저장소로 이용되는 저장소이다.
+                              메이븐 중앙 저장소는 mavenCentral 메서드를 이용해서 사용할 수 있다
+                            </p>
+                          </a>
+                          <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                              <h5 class="mb-1">credential</h5>
+                            </div>
+                            <p class="mb-1">
+                              인증이 필요한 Repository
+                            </p>
+                          </a>
+                          <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                              <h5 class="mb-1">
+                                Dependency
+                              </h5>
+                            </div>
+                            <p class="mb-1">
+                              라이브러리 사용을 위한 의존 설정 
+                            </p>
+                          </a>
+                          <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                              <h5 class="mb-1">
+                                dependencies > compile fileTree
+                              </h5>
+                            </div>
+                            <p class="mb-1">
+                              로컬 jar 파일의 의존성 
+                            </p>
+                          </a>
+                          <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                              <h5 class="mb-1">
+                                dependencies > compile project
+                              </h5>
+                            </div>
+                            <p class="mb-1">
+                              로컬 프로젝트간 의존성 설정 
+                            </p>
+                          </a>
+                          <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                              <h5 class="mb-1">
+                                dependencies > compile / implementation / api
+                              </h5>
+                            </div>
+                            <p class="mb-1">
+                              컴파일 타임에 의존성을 받아옴 
+                              <hr>
+                              gradle 3.0이 나오면서 compile은 deprecated 되었고, implementation 또는 api를 써야한다. 
+                              <br>
+                              api dependency는 consumer 에게 library 가 노출이 되어, consumer 의 classpath 에 포함이 된다.
+                              의존 라이브러리 수정시 의존하는 모듈들도 재빌드 
+                              <br>
+                              implementation 은 consumer 에게 노출되지 않아, compile classpath 에 들어가지 않는다. 
+                              의존 라이브러리 수정시 본 모듈까지만 재빌드
+                              <br>
+                              implementation 키워드 만으로 빌드에 문제가 없다면, implementation을 이용하여 빌드 속도를 올리는 도움을 받을 수 있을 것이고, 
+                              제대로 동작하지 않고 api 키워드를 사용해야 한다면, 각 라이브러리의 종속성에 대해 좀 더 이해해보고 잘 사용해야 할 필요가 있습니다.  
+                            </p>
+                          </a>
+                          <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                              <h5 class="mb-1">
+                                dependencies > compileOnly
+                              </h5>
+                            </div>
+                            <p class="mb-1">
+                              컴파일 할 때 사용하고 , 아티펙트를 만들때는 포함하지 않음 
+                            </p>
+                          </a>
+                          <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                              <h5 class="mb-1">
+                                dependencies > runtimeOnly 
+                              </h5>
+                            </div>
+                            <p class="mb-1">
+                              runtime 시에만 필요한 라이브러리 인 경우 
+                            </p>
+                          </a>
+                          <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                              <h5 class="mb-1">
+                                dependencies > testImplementation
+                              </h5>
+                            </div>
+                            <p class="mb-1">
+                              test 시에만 의존되며 본 모듈을 의존하는 다른 모듈은 빌드에 영향이 없게 함 
+                            </p>
+                          </a>
+                          <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                              <h5 class="mb-1">
+                                ./gradlew build --console=verbose
+                              </h5>
+                            </div>
+                            <p class="mb-1">
+                              함축적이고 컬러로 출력된다. 빌드과정이 일렬로 출력되기를 원하면 사용 가능하다. 
+                              <br>
+                              다른 방식 : ./gradlew build --info
+                            </p>
+                          </a>
+                          <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                              <h5 class="mb-1">
+                                gradle init
+                              </h5>
+                            </div>
+                            <p class="mb-1">
+                              Gradle 프로젝트 초기 생성시에 사용한다. 
+                            </p>
+                          </a>
+                          <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                              <h5 class="mb-1">
+                                import 
+                              </h5>
+                            </div>
+                            <p class="mb-1">
+                              <pre class="shell" >
+                                <code>
+import org.apache.commons.math.fraction.Fraction
+
+initscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'org.apache.commons:commons-math:2.0'
+    }
+}
+
+println Fraction.ONE_FIFTH.multiply(2)
+                                </code>
+                              </pre>
+                            </p>
+                          </a>
+                          <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                              <h5 class="mb-1">
+
+                              </h5>
+                            </div>
+                            <p class="mb-1">
+                              
+                            </p>
+                          </a>
+                          <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                              <h5 class="mb-1">
+
+                              </h5>
+                            </div>
+                            <p class="mb-1">
+                              
+                            </p>
+                          </a>
+                          <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                              <h5 class="mb-1">
+
+                              </h5>
+                            </div>
+                            <p class="mb-1">
+                              
+                            </p>
+                          </a>
+                          <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                              <h5 class="mb-1">
+
+                              </h5>
+                            </div>
+                            <p class="mb-1">
+                              
+                            </p>
+                          </a>
+                          <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                              <h5 class="mb-1">
+
+                              </h5>
+                            </div>
+                            <p class="mb-1">
+                              
+                            </p>
+                          </a>
+                          <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                              <h5 class="mb-1">
+
+                              </h5>
+                            </div>
+                            <p class="mb-1">
+                              
+                            </p>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header" id="heading6">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse6" aria-expanded="true" aria-controls="collapse6">
+                          
+                        </button>
+                      </h2>
+                    </div>
+                
+                    <div id="collapse6" class="collapse" aria-labelledby="heading6" data-parent="#accordionExample">
+                      <div class="card-body">
+                       
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header" id="heading7">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse7" aria-expanded="true" aria-controls="collapse7">
+                         
+                        </button>
+                      </h2>
+                    </div>
+                
+                    <div id="collapse7" class="collapse" aria-labelledby="heading7" data-parent="#accordionExample">
+                      <div class="card-body">
+                       
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header" id="heading8">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
+                          
+                        </button>
+                      </h2>
+                    </div>
+                
+                    <div id="collapse8" class="collapse" aria-labelledby="heading8" data-parent="#accordionExample">
+                      <div class="card-body">
+                        
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header" id="heading9">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
+                          
+                        </button>
+                      </h2>
+                    </div>
+                
+                    <div id="collapse9" class="collapse" aria-labelledby="heading9" data-parent="#accordionExample">
+                      <div class="card-body">
+                                
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <div class="card-footer small text-muted"></div>
+          </div>
+        </div>
+        <!-- /.container-fluid -->
+
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright © 1Lines Labs 2019</span>
+            </div>
+          </div>
+        </footer>
+
+      </div>
+      <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+ 
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Page level plugin JavaScript-->
+    <script src="../vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="../js/sb-admin.min.js"></script>
+
+    <!-- Demo scripts for this page-->
+    <script src="../js/demo/chart-area-demo.js"></script>
+    <script src="../js/demo/chart-bar-demo.js"></script>
+    <script src="../js/demo/chart-pie-demo.js"></script>
+
+  </body>
+
+</html>

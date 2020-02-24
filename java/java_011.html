@@ -71,8 +71,8 @@
             <a class="dropdown-item" href="../java/java_007.html">Rules - Exception</a>
             <a class="dropdown-item" href="../java/java_008.html">Abstract, Interface</a>          
             <a class="dropdown-item" href="../java/java_009.html">Rules - Class, Inteface</a>
-            <a class="dropdown-item" href="../java/java_010.html"></a>
-            <a class="dropdown-item" href="../java/java_011.html"></a>
+            <a class="dropdown-item" href="../java/java_010.html">Classes/Lambda</a>
+            <a class="dropdown-item" href="../java/java_011.html">Annotations</a>
             <a class="dropdown-item" href="../java/java_012.html"></a>
             <a class="dropdown-item" href="../java/java_013.html"></a>
             <a class="dropdown-item" href="../java/java_014.html"></a>
@@ -121,14 +121,132 @@
                       <div class="card-header" id="headingOne">
                         <h2 class="mb-0">
                           <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            
+                            Annotations
                           </button>
                         </h2>
                       </div>
-                  
                       <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                         <div class="card-body">
-                        
+                          <ul>   
+                            <li>Java 5 부터 추가된 기능 </li>
+                            <li>클래스나 메소드 위에서 붙여 사용 ex) @Override </li> 
+                            <li>소스코드에 메타코드(추가정보)를 주는 것</li>
+                            <li>사용자 정의 가능 -> 커스텀 어노테이션</li>
+                          </ul>
+                          <hr>
+                          A metadata facility <br> 
+                          클래스, 인터페이스, 필드 그리고 메소드에 대해서 개별의 특성을 가질 수 있도록 만든다. metadata도 데이터에 대한 것이다. metadata는 실제 데이터에 flags를 추가하는 것으로, runtime 시점에 
+                          JVM이 해당 flags를 인식할 수 잇게 하여 context에 대해서 적절한 결정을 할 수 있도록 meta 정보를 조합할 수 있다. 
+                          <hr>
+                          <ul class="list-group">
+                            <li class="list-group-item">
+                              요소(Element)의 기본 값 
+                              <hr>
+                              요소에 기본 값을 지정할 수 있다. class 에서 annotation을 선언하여 사용할 때, 해당 값이 선언되지 않으면 default에 있는 값을 입력한다. 
+                              <pre class="java" >
+                                <code>
+@interface HelloAnnotation {
+  String value() default "hello my friends";
+}                                  
+                                </code>
+                              </pre>
+                            </li>
+                            <li class="list-group-item">
+                              @Retention
+                              <pre class="java" >
+                                <code>
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+  
+//@Retention(RetentionPolicy.CLASS)  /* 컴파일 이후에도 JVM에 의해서 참조가 가능합니다. */
+@Retention(RetentionPolicy.RUNTIME)  /* 컴파일러가 클래스를 참조할 때까지 유효합니다. */ 
+//@Retention(RetentionPolicy.SOURCE) /* 어노테이션 정보는 컴파일 이후 없어집니다. */
+public @interface HelloAnnotation
+{
+    //some code
+}
+                                </code>
+                              </pre>
+                            </li>
+                            <li class="list-group-item">
+                              @Documented
+                              <hr>
+                              @Documented 어노테이션이 지정된 대상의 JavaDoc에 이 어노테이션의 존재를 표기하다록 지정 
+                              <pre class="java" >
+                                <code>
+import java.lang.annotation.Documented;
+
+@Documented
+public @interface HelloAnnotation {
+    //Some other code
+}
+                                </code>
+                              </pre>
+                            </li>
+                            <li class="list-group-item">
+                              @Target
+                              <hr>
+                              해당 어노테이션이 사용하게 될 자바 요소를 지정할 수 있다. 
+                              <ul>
+                                <li>ElementType.PACKAGE, // 패키지 선언시</li>
+                                <li>ElementType.TYPE, // 타입 선언시</li>
+                                <li>ElementType.CONSTRUCTOR, // 생성자 선언시</li>
+                                <li>ElementType.FIELD, // 멤버 변수 선언시</li>
+                                <li>ElementType.METHOD, // 메소드 선언시</li>
+                                <li>ElementType.ANNOTATION_TYPE, // 어노테이션 타입 선언시</li>
+                                <li>ElementType.LOCAL_VARIABLE, // 지역 변수 선언시</li>
+                                <li>ElementType.PARAMETER, // 매개 변수 선언시</li>
+                                <li>ElementType.TYPE_PARAMETER, // 매개 변수 타입 선언시</li>
+                                <li>ElementType.TYPE_USE // 타입 사용시</li>
+                              </ul>
+                              <pre class="java" >
+                                <code>
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Target;
+  
+@Target(value = {
+  ElementType.TYPE, 
+  ElementType.METHOD, 
+  ElementType.CONSTRUCTOR, 
+  ElementType.ANNOTATION_TYPE, 
+  ElementType.FIELD, 
+  ElementType.LOCAL_VARIABLE,                
+  ElementType.PACKAGE, 
+  ElementType.PARAMETER
+})
+public @interface HelloAnnotation {
+    //Some other code
+}
+                                </code>
+                              </pre>
+                            </li>
+                            <li class="list-group-item">
+                              @Inherited
+                              <hr>
+                              이 어노테이션을 사용한 슈퍼 클래스를 상속한 서브 클래스에서도 해당 어노테이션을 갖도록 한다. 
+                              <pre class="java" >
+                                <code>
+import java.lang.annotation.Inherited;
+
+@Inherited
+public @interface HelloAnnotation {
+    //Some other code
+}
+                                </code>
+                              </pre>
+                            </li>
+                            <li class="list-group-item">
+                              @Repeatable
+                              <pre class="java" >
+                                <code>
+@Repeatable(Schedules.class)
+public @interface Schedule { 
+  ... 
+}
+                                </code>
+                              </pre>
+                            </li>
+                          </ul>
                         </div>
                       </div>
                     </div>
