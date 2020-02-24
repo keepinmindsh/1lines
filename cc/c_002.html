@@ -495,7 +495,7 @@ int main(int argc, char* argv[]){
                               그러나 그 안에 담겨있던 정보는 호출자 함수인 main() 함수에 반환 값으로 전달됩니다.
                               <hr>
                               피호출자 함수가 메모리를 동적 할당하고 해제하지 않았으나, 해제의 열쇠가 되는 기준 주소를 호출자에 반환함으로써 
-                              대상 메모리에 이를 수 있는 방법이 사라지지 않았다는 점이다. 그래서 GetName 함수가 반홚하는 순간에 메모리가 누수될 
+                              대상 메모리에 이를 수 있는 방법이 사라지지 않았다는 점이다. 그래서 GetName 함수가 반환하는 순간에 메모리가 누수될 
                               뻔 하였으나 이를 main() 함수에서 다시 선으로 이어 줌으로써 대상 메모리를 계속 관리할 수 있었습니다. 
                               그리고 만일 main() 함수에서 메모리를 해제하지 않고 함수가 반환한다면 메모리 누수가 발생합니다. 
                               <hr>
@@ -591,7 +591,7 @@ int main(int argc, char* argv[]){
                     <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                       <div class="card-body">
                          재귀 호출(recursive function)은 함수가 내부에서 다시 자기 자신을 호출하는 것입니다. 반복문과 스택 자료구조를 합친 것이 바로 재귀 호출입니다. 
-                         논리적인 코....드의 구조는 반복문과 같으나 반복과정에서 선형 자료 구조인 스택이 필요한 경우 재귀호출을 사용합니다. 
+                         논리적인 코드의 구조는 반복문과 같으나 반복과정에서 선형 자료 구조인 스택이 필요한 경우 재귀호출을 사용합니다. 
                          <hr>
                          <pre class="C" >
                            <code>
@@ -1504,10 +1504,23 @@ int main(void){
   // 2비트 표현범위 : 0 ~ 3 
   // 3비트 표현범위 : 0 ~ 7
   DATAFLAG flagSwitch = { 0, 3, 7, 4};
+
+  printf("%d\n", flagSwitch.main);
+  printf("%d\n", flagSwitch.left);
+  printf("%d\n", flagSwitch.right);
+  // 4는 2비트 표현범위를 넘어선 값이므로 출력할 수 없다. ( 0 출력 )
+  printf("%d\n", flagSwitch.top);
+
+  printf("%d\n", *((unsinged char *)&flagSwitch));
+  printf("%d\n", sizeof(flagSwitch));
   
+  return 0;
 }
                           </code>
                         </pre>
+                        <hr>
+                        다시 말하지만 반드시 표현범위를 잘 따져봐야합니다. 그렇지 않으면 멤버인 top 처럼 4가 아니라 
+                        0이 들어가버릴 수도 있습니다. 만일 표현의 범위가 넘어가면 넘어간 만큼의 정보는 모두 잘립니다. 
                     </div>
                   </div>
                 </div> 
@@ -1516,13 +1529,43 @@ int main(void){
                   <div class="card-header" id="heading10">
                     <h2 class="mb-0">
                       <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse10" aria-expanded="false" aria-controls="collapse10">
-                      
+                        공용체 
                       </button>
                     </h2>
                   </div>
                   <div id="collapse10" class="collapse" aria-labelledby="heading10" data-parent="#accordionExample">
                     <div class="card-body">
-                      
+                      공용체는 서로 다른 자료형 여러개가 모여 새로운 한덩어리를 이룬 구조체와 달리 한 가지 자료에 대해 여러가지 해석법을 부여하는 문법이다. 
+<pre class="C" >
+  <code>
+#include &lt;stdio.h>
+
+// IP_ADDR '공용체' 선언 및 형 재선언 
+// 4바이트를 세 가지 형식으로 달리 해석할 수 있도록 선언한다. 
+typedef union _IP_ADDR 
+{
+  int nAddress;
+  short awData[2];
+  unsigned char addr[4];
+} IP_ADDR
+
+int main(void){
+  IP_ADDR Data = { 0 };
+  // 한 멤버에 대해 단순 대입을 시도하면 대상 메모리에 쓰기가 일어날 것이고, 이를 아래에서 전혀 다른 방법으로 해석하고 활용할 수 있습니다. 
+  Data.nAddress = 0x41424344;
+
+  // 0x41424344 를 8비트씩 0x41, 0x42, 0x43, 0x44 넷으로 잘라 영문자로 출력한다. 
+  printf("%c%c%c%c\n", Data.addr[0], Data.addr[1], Data.addr[2], Data.addr[3]);
+  // 16 비트씩 둘로 잘라 출력한다. 
+  printf("%X %d\n", Data.awData[0], Data.awData[0]);
+  printf("%X %d\n", Data.awData[1], Data.awData[1]);
+
+  return 0;
+}
+  </code>
+</pre>
+<hr>
+                    IP_ADD 공용체 멤버인 nAddress, awData, addr 은 4바이트 메모리에 대한 세가지 해석방법입니다. 즉, 대상 메모리는 같은 곳이고 자료형만 달라집니다. 
                     </div>
                   </div>
                 </div> 
@@ -1530,13 +1573,34 @@ int main(void){
                   <div class="card-header" id="heading11">
                     <h2 class="mb-0">
                       <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse11" aria-expanded="false" aria-controls="collapse11">
-                      
+                        파일 입출력 
                       </button>
                     </h2>
                   </div>
                   <div id="collapse11" class="collapse" aria-labelledby="heading11" data-parent="#accordionExample">                        
                     <div class="card-body">
+                      변수나 동적 할당한 메모리가 주기억장치를 사용하기 위한 요소라면 파일은 보조기억장치를 사용하기 위한 요소이며, 파일 시스템이라고 부르는 별도의 관리 체계가 존재합니다. 
+                      <hr>
+                      보조기억장치는 주기억장치와 달리 용량문제에 매우 둔감합니다. malloc() 함수로 메모리를 확보하라면 인수로 필요한 메모리 크기를 바이트 단위로 명시해야하지만 파일은 그럴 필요가 없습니다. 
+                      주기억장치나, 보조기억장치나 같은 메모리지만 사용하는 방법은 그 속성 만큼이나 서로 다릅니다. 
+                      <hr>
+                      <strong>파일 시스템 기본 이론</strong>
+                      <hr>
+                      파일 시스템은 파일 단위의 정보를 생성, 삭제, 저장, 검색할 수 있도록 정보를 구성하는 방법을 말한다. <br>
+                      폴더는 디렉터리(directory)를 말합니다. <br>
+                      파일의 위치를 말할 때, 경로를 말을 사용하는데, 이는 윈도우 운영체제를 기준으로 "드라이드명:\폴더명\폴더명" 형식으로 표현되는 정보로서, 파일시스템에서 특정 파일의 논리적인 위치를 표시합니다. <br>
+                      <hr>
+                      절대 경로  : 디스크 볼륨이름부터 파일명에 이르는 전체 정보를 표시한 것 <br>
+                      상대 경로  : 프라이브명과 폴더명을 생략하여 파일이름만 표시한 것, 상대 경로로 설정할 경우에는 프로세스의 현재 경로를 기본 경로로 설정하여 파일의 논리적 위치를 결정합니다. <br>
+                      <hr>
+                      텍스트 파일과 바이너리 파일 <br>
+                      파일은 크게 텍스트 파일과 바이너리 파일로 나눌 수 있습니다. 텍스트 파일은 파일에 저장된 정보가 모두 ASCII 코드나 문자열로 해석할 수 있는 정보들로만 구성된 파일을 말합니다. <br>
+                      텍스트 파일의 중요한 특징 중 하나는 -1이라는 정수값을 '파일의 끝(EOF)'로 인식한다는 것. 
+                      <hr>
                       
+
+                      
+                    
                     </div>
                   </div>
                 </div> 
