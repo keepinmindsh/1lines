@@ -335,6 +335,27 @@ stringContains("howdy")) );
                       <li>ApplicationStartedEvent
                         <hr>
                         run이 시작시 전송된다. 
+                        <pre class="java" >
+                          <code>
+package com.lines.springeventlisteners.listeners;
+
+import org.springframework.boot.context.event.ApplicationStartedEvent;
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.event.EventListener;
+import org.springframework.stereotype.Component;
+
+@Configuration
+public class StartListener {
+
+    @EventListener(ApplicationStartedEvent.class)
+    public void eventListenerStart(){
+        System.out.println("Application Start Event");
+    }
+}
+                            
+                          </code>
+                        </pre>
                       </li>
                       <li>ApplicationEnvironmentPreparedEvent
                         <hr>
@@ -345,9 +366,66 @@ stringContains("howdy")) );
                         컨텍스트 리프레쉬 전에 전송된다. 빈 정의가 다 로딩된 시점이다. 
 
                       </li>
+                      <li>
+                        ContextRefreshedEvent
+                        <hr>
+                        Application Context가 갱신되었을 때 실행된다. ( Refreshed 되었을 때 )
+                        <pre class="java" >
+                          <code>
+package com.lines.springeventlisteners.listeners;
+
+import com.lines.springeventlisteners.beans.EventHolderBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.stereotype.Component;
+
+@Component
+public class ContextRefreshedListener implements ApplicationListener&lt;ContextRefreshedEvent> {
+
+    private EventHolderBean eventHolderBean;
+
+    @Autowired
+    public void setEventHolderBean(EventHolderBean eventHolderBean){
+        this.eventHolderBean = eventHolderBean;
+    }
+
+    @Override
+    public void onApplicationEvent(ContextRefreshedEvent event) {
+        System.out.println("ContextRefreshedListener");
+
+        this.eventHolderBean.setEventFired(true);
+    }
+}
+                            
+                          </code>
+                        </pre>
+                      </li>
                       <li>ApplicationFailedEvent
                         <hr>
                         스타트업에 실패시 전송된다. 
+                      </li>
+                      <li>ApplicationReadyEvent
+                        <hr>
+                        스타트업 후 준비 완료시 전송된다. 
+                        <pre class="java">
+                          <code>
+package com.lines.springeventlisteners.listeners;
+
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.event.EventListener;
+
+@Configuration
+public class ReadyListener {
+
+    @EventListener(ApplicationReadyEvent.class)
+    public void EventListenerExecute(){
+        System.out.println("Application Ready Event");
+    }
+}                            
+                          </code>
+                        </pre>
                       </li>
                     </ul>
                   </p>
@@ -405,6 +483,243 @@ public class DestoryEvent {
 }
                       </code>
                     </pre>
+                  </p>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header">
+                  Spring에서 Event 실행하기 
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">일반적인 방식</h5>
+                  <p class="card-text">
+                    <pre class="java" >
+                      <code>
+CustomSpringEventPublisher customSpringEventPublisher = configurableApplicationContext.getBean(CustomSpringEventPublisher.class);
+
+customSpringEventPublisher.doStuffAndPublishAnEvent("이벤트 실행!");
+
+
+package com.lines.springeventlisteners.event.basic;
+
+import org.springframework.context.ApplicationEvent;
+
+public class CustomSpringEvent extends ApplicationEvent {
+
+    private String message;
+
+    public CustomSpringEvent(Object source, String message) {
+        super(source);
+
+        this.message = message;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+}
+
+package com.lines.springeventlisteners.event.basic;
+
+import org.springframework.context.ApplicationListener;
+import org.springframework.stereotype.Component;
+
+@Component
+public class CustomSpringEventListener implements ApplicationListener&lt;CustomSpringEvent> {
+    @Override
+    public void onApplicationEvent(CustomSpringEvent event) {
+        System.out.println("Received spring custm event - " + event.getMessage());
+    }
+}
+
+package com.lines.springeventlisteners.event.basic;
+
+import org.springframework.context.ApplicationListener;
+import org.springframework.stereotype.Component;
+
+@Component
+public class CustomSpringEventListener2 implements ApplicationListener&lt;CustomSpringEvent> {
+    @Override
+    public void onApplicationEvent(CustomSpringEvent event) {
+        System.out.println("Received spring custm event - " + event.getMessage());
+    }
+}
+
+                      </code>                      
+                    </pre>
+                  </p>
+                  <h5 class="card-title">Generic을 이용한 방식</h5>
+                  <p class="card-text">
+                    <pre class="java" >
+                      <code>
+GenericCustomSpringEventPublisher genericSpringEventPublisher = configurableApplicationContext.getBean(GenericCustomSpringEventPublisher.class);
+
+genericSpringEventPublisher.doStuffAndPublishAnEvent(new PrintCommand(), true);
+
+package com.lines.springeventlisteners.event.custom;
+
+import com.lines.springeventlisteners.command.Command;
+
+public class GenericCommandSprintAppEvent extends GenericSpringEvent&lt;Command>
+{
+    public GenericCommandSprintAppEvent(Command what, boolean success) {
+        super(what, success);
+    }
+}
+
+package com.lines.springeventlisteners.event.custom;
+
+public class GenericSpringEvent&lt;T> {
+
+    private T what;
+    protected boolean success;
+
+    public GenericSpringEvent(T what, boolean success) {
+        this.what = what;
+        this.success = success;
+    }
+
+    public T getWhat() {
+        return what;
+    }
+
+    public boolean isSuccess() {
+        return success;
+    }
+}
+
+package com.lines.springeventlisteners.event.custom;
+
+import com.lines.springeventlisteners.command.Command;
+import org.springframework.context.event.EventListener;
+import org.springframework.stereotype.Component;
+
+@Component
+public class GenericSpringEventListener  {
+
+    @EventListener
+    public void handleSuccessful(GenericCommandSprintAppEvent event) {
+        Command command = event.getWhat();
+
+        command.execute();
+    }
+}
+
+package com.lines.springeventlisteners.command;
+
+public interface Command {
+
+    public void execute();
+}
+
+package com.lines.springeventlisteners.command.impl;
+
+import com.lines.springeventlisteners.command.Command;
+
+public class PrintCommand implements Command {
+
+    @Override
+    public void execute() {
+        System.out.println("나는 출력된다. ");
+    }
+}
+                      </code>
+                    </pre>
+                  </p>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header">
+                  Spring Bean Lifecycle 
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">기본적인 annotation에 의한 초기화, 종료 이벤트 </h5>
+                  <p class="card-text">
+                    <pre class="java" >
+                      <code>
+package com.lines.springeventlisteners.lifecycle;
+
+import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
+@Component
+public class DestoryEvent {
+
+    @PostConstruct
+    public void init(){
+        System.out.println("초기화 메소드!!");
+    }
+
+    //소멸 메소드
+    @PreDestroy
+    public void destory(){
+        System.out.println("종료 직전!!");
+    }
+}
+                        
+                      </code>
+                    </pre>
+                  </p>
+                  <h5 class="card-title"> Bean에 의한 Destory, Init 방식</h5>
+                  <p class="card-text">
+                    <pre class="java" >
+                      <code>
+@Bean(destroyMethod = "destroy")
+public LifeCycle lifeCycle(){
+  return new LifeCycle();
+}
+
+package com.lines.springeventlisteners.lifecycle;
+
+public class LifeCycle {
+    public void destroy() throws Exception {
+        System.out.println("destroy");
+    }
+}                        
+                      </code>
+                    </pre>
+                  </p>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header">
+                  
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title"></h5>
+                  <p class="card-text">
+                  </p>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header">
+                  
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title"></h5>
+                  <p class="card-text">
+                  </p>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header">
+                  
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title"></h5>
+                  <p class="card-text">
+                  </p>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header">
+                  
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title"></h5>
+                  <p class="card-text">
                   </p>
                 </div>
               </div>
