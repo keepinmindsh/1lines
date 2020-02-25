@@ -1595,8 +1595,105 @@ int main(void){
                       <hr>
                       텍스트 파일과 바이너리 파일 <br>
                       파일은 크게 텍스트 파일과 바이너리 파일로 나눌 수 있습니다. 텍스트 파일은 파일에 저장된 정보가 모두 ASCII 코드나 문자열로 해석할 수 있는 정보들로만 구성된 파일을 말합니다. <br>
-                      텍스트 파일의 중요한 특징 중 하나는 -1이라는 정수값을 '파일의 끝(EOF)'로 인식한다는 것. 
+                      텍스트 파일의 중요한 특징 중 하나는 -1이라는 정수값을 '파일의 끝(EOF)'로 인식한다는 것. <br>
+                      텍스트 파일을 제외한 모든 파일들은 바이너리 파일로 인식한다. 
                       <hr>
+                      <strong>fopen , fclose</strong><br>
+                      <ul>
+                        <li>
+                           FILE *fopen(const char *filename, const char *mode);
+                           <hr>
+                           인자 
+                           <hr>
+                            filename : 열고자 하는 대상 파일의 절대 경로 문자열  <br>
+                            mode : 접근 모드를 명시한 문자열 
+                           <hr>
+                           반환값 
+                           <hr>
+                           FILE 구조체에 대한 주소 반환, 만일 에러가 발생하면 NULL 반환 
+                           <hr>
+                           설명
+                           <hr>
+                           반환된 FILE 구조체는 fclose() 함수를 이용하여 반드시 닫아야 한다. 
+                           <hr>
+                           <table class="table">
+                            <thead>
+                              <tr>
+                                <th scope="col">모드</th><th scope="col">의미</th><th scope="col">파일이 존재할 때</th><th scope="col">파일이 없을 때</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th scope="row">r</th><td>텍스트 읽기</td><td>파일 열기</td><td>에러</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">w</th><td>텍스트 쓰기</td><td>기존 내용 지우고 열기</td><td>새로 만듦</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">a</th><td>텍스트 추가</td><td>기존 내용 뒤에 추가 </td><td>새로 만듦</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">r+</th><td>텍스트 읽기 + 갱신</td><td>파일열기</td><td>에러</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">w+</th><td>텍스트 쓰기 + 갱신</td><td>기존 내용 지우고 열기</td><td>새로 만듦</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">a+</th><td>텍스트 추가 + 갱신</td><td>기존 내용 뒤에 추가</td><td>새로 만듦</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">rb</th><td>바이너리 읽기</td><td>파일열기</td><td>에러</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">wb</th><td>바이너리 쓰기</td><td>기존 내용 지우고 열기</td><td>새로 만듦</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">ab</th><td>바이너리 추가</td><td>기존 내용 뒤에 추가</td><td>새로 만듦</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">rb+</th><td>바이너리 읽기 + 갱신</td><td>파일열기</td><td>에러</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">wb+</th><td>바이너리 쓰기 + 갱신</td><td>기존 내용 지우고 열기</td><td>새로 만듦</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">ab+</th><td>바이너리 추가 + 갱신</td><td>기존 내용 뒤에 추가</td><td>새로 만듦</td>
+                              </tr>
+                             
+                            </tbody>
+                          </table>
+                        </li>
+                        <li>
+                          int fclose(File *stream);
+                          <hr>
+                          인자 
+                          <hr>
+                           stream : 닫을 파일에 대한 FILE 구조체 주소  
+                          <hr>
+                          반환값 
+                          <hr>
+                           함수가 성공하면 0을 반환하고 만일 에러가 발생하면 EOF를 반환 
+                          <hr>
+                          설명
+                          <hr>
+                           이 함수는 파일의 입출력을 끝내고 파일을 닫는다. 
+                       </li>
+                       <li>
+                        int _fcloseall(void);
+                        <hr>
+                        인자 
+                        <hr>
+                         없음
+                        <hr>
+                        반환값 
+                        <hr>
+                         닫은 파일의 개수
+                        <hr>
+                        설명
+                        <hr>
+                         프로그램에서 열어둔 모든 파일을 닫는다. 
+                     </li>
+                      </ul>
                       
 
                       

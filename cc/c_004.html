@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>1lines</title>
+
+    <!-- Bootstrap core CSS-->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template-->
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Page level plugin CSS-->
+    <link href="../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="../css/sb-admin.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../styles/default.css">
+    <script src="../highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </head>
+
+  <body id="page-top">
+
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+
+      <a class="navbar-brand mr-1" href="../index.html">1Lines</a>
+
+      <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Navbar Search -->
+      
+
+      <!-- Navbar -->
+      
+
+    </nav>
+
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <ul class="sidebar navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="../index.html">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>요약</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>목록</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header">C ++/C</h6>
+            <a class="dropdown-item" href="../cc/cc_001.html">C++ 의 시작</a>
+            <a class="dropdown-item" href="../cc/c_001.html">C 의 시작</a>
+            <a class="dropdown-item" href="../cc/c_002.html">C 함수 응용</a>
+            <a class="dropdown-item" href="../cc/c_003.html">자료구조</a>
+            <a class="dropdown-item" href="../cc/c_004.html">Redis 분석하기</a>
+            <a class="dropdown-item" href="../cc/cc_003.html"></a>
+            <a class="dropdown-item" href="../cc/cc_004.html"></a>
+            <a class="dropdown-item" href="../cc/cc_005.html"></a>
+            <a class="dropdown-item" href="../cc/cc_006.html"></a>
+            <a class="dropdown-item" href="../cc/cc_007.html"></a>
+            <a class="dropdown-item" href="../cc/cc_008.html"></a>          
+            <a class="dropdown-item" href="../cc/cc_009.html"></a>
+            <a class="dropdown-item" href="../cc/cc_010.html"></a>
+            <a class="dropdown-item" href="../cc/cc_011.html"></a>
+            <a class="dropdown-item" href="../cc/cc_012.html"></a>
+            <a class="dropdown-item" href="../cc/cc_013.html"></a>
+            <a class="dropdown-item" href="../cc/cc_014.html"></a>
+            <a class="dropdown-item" href="../cc/cc_015.html"></a>
+            <a class="dropdown-item" href="../cc/cc_016.html"></a>
+            <a class="dropdown-item" href="../cc/cc_017.html"></a>
+            <a class="dropdown-item" href="../cc/cc_018.html"></a>
+            <a class="dropdown-item" href="../cc/cc_019.html"></a>
+            <a class="dropdown-item" href="../cc/cc_020.html"></a>
+            <a class="dropdown-item" href="../cc/cc_021.html"></a>
+            <a class="dropdown-item" href="../cc/cc_022.html"></a>
+            <a class="dropdown-item" href="../cc/cc_023.html"></a>
+            <a class="dropdown-item" href="../cc/cc_024.html"></a>
+            <a class="dropdown-item" href="../cc/cc_025.html"></a>
+            <a class="dropdown-item" href="../cc/cc_026.html"></a>
+            <a class="dropdown-item" href="../cc/cc_027.html"></a>
+            <a class="dropdown-item" href="../cc/cc_028.html"></a>
+            <a class="dropdown-item" href="../cc/cc_029.html"></a>
+            <a class="dropdown-item" href="../cc/cc_030.html"></a>
+            <a class="dropdown-item" href="../cc/cc_031.html"></a>
+            <a class="dropdown-item" href="../cc/cc_032.html"></a>
+            <a class="dropdown-item" href="../cc/cc_033.html">알아두기</a>
+          </div>
+        </li>
+      </ul>
+
+      <div id="content-wrapper">
+        <div class="container-fluid">
+          <!-- Breadcrumbs-->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="#">Dashboard</a>
+            </li>
+
+          </ol>
+
+          <!-- Area Chart Example-->
+          <div class="card mb-3">
+            <div class="card-header">
+                Redis 분석하기
+            </div>
+            <div class="card-body">
+              <pre class="C" >
+                <code>
+// strdup 함수는 C++ 프로그램에서 사용 가능합니다. 프로그램이 __cplusplus__strings__ 매크로를 정의할 때만 C에서 사용 가능합니다.     
+// #include &lt;string.h>
+// char *strdup(const char *string);           
+char *hi_strdup(const char *str) {
+  char *newstr = strdup(str);
+  if (newstr == NULL)
+      HIREDIS_OOM_HANDLER;
+
+  return newstr;
+}
+                </code>
+              </pre>     
+              <pre class="C" >
+                <code>
+/*
+ #define 이란 값을 치환해주는 것 , 공통의 값이 들어갈 때 사용하는 전처리기
+ #ifndef는 #ifdef와 반대로 정의되어있지 않으면 발생하는 전처리기
+   > #define 문장으로 정의하지 않았다면 아래에 등장하는 #endif 문장 이전의 내용들을
+   > include 영역에 포함시키라는 뜻이다.
+   
+ #ifdef는 어떤 변수가 #define되있는지 알아보는 기능
+*/
+#ifndef HIREDIS_ALLOC_H
+
+#include &lt;stdlib.h> /* for size_t */
+
+#ifndef HIREDIS_OOM_HANDLER
+#define HIREDIS_OOM_HANDLER abort()
+#endif
+
+void *hi_malloc(size_t size);
+void *hi_calloc(size_t nmemb, size_t size);
+void *hi_realloc(void *ptr, size_t size);
+char *hi_strdup(const char *str);
+
+#endif 
+                </code>
+              </pre>    
+              <pre class="C" >
+                <code>
+/* Functions managing dictionary of callbacks for pub/sub. */
+/*
+  void 포인터는 자료형의 크기가 정해져 있지 않기 때문에 +, -로 연산을 해도 얼마만큼 이동할지 알 수가 없습니다. 따라서 void 포인터는 포인터 연산을 할 수 없습니다.
+  만약 void 포인터로 포인터 연산을 하고 싶다면 다른 포인터로 변환한 뒤 연산을 하면 됩니다
+  const 포인터로 입력 매개 변수를 약속하는 것은 해당 함수를 호출하면 전달된 메모리 주소에 있는 값을 변경하지 않겠다는 약속이기 때문에 신뢰하고 사용할 수 있습니다.
+  void 포인터 형식의 변수는 선언 시에 원소 형식을 명시하지 않고 코드 상에서 어떠한 형식의 포인터도 받을 수 있는 형식입니다. 하지만 반대로 void 포인터 변수의 값을 
+  일반(void 포인터형이 아닌) 포인터 변수에 대입할 경우 그 이후에 간접 연산자에 의해 모순된 작업이 될 개연성이 있습니다.     
+  void *vp;
+  void형 포인터는 어떠한 데이터라도 가리킬 수 있습니다.
+  이렇게 선언하면 vp 포인터 변수의 가리키는 자료는 void형이 되며 이는 곧 가리키는 자료가 정해져 있지 않다는 의미입니다.
+  void형은 함수와 포인터 변수에게만 적용되는 자료형이며 일반 변수에는 쓸 수 없습니다.         
+  void형 포인터는 임의의 포인터를 대입 받을 수 있지만 반대로 임의의 포인터에 void형 포인터를 대입할 때는 반드시 형 변환을 해야 합니다.      
+*/
+static unsigned int callbackHash(const void *key) {
+    return dictGenHashFunction((const unsigned char *)key,
+                                sdslen((const sds)key));
+}
+                </code>
+              </pre>
+                 
+            </div>
+            <div class="card-footer small text-muted"></div>
+          </div>
+          
+        <!-- /.container-fluid -->
+
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright © 1Lines Labs 2019</span>
+            </div>
+          </div>
+        </footer>
+
+      </div>
+      <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+ 
+
+    <!-- Custom scripts for all pages-->
+    <script src="../js/sb-admin.min.js"></script>
+  </body>
+
+</html>
