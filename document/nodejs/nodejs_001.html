@@ -382,9 +382,14 @@ reader1.onDataReady(data => {
                             </pre>
                             정리 <br>
                             순수한 동기식 함수에 대해서는 직접스타일(연속전달방식)을 사용하세요. <br>
-                            위의 작성한 코드의 이상적인 방식은 
                             <pre class="javascript" >
                               <code>
+// 동기 API의 활용 
+/*
+ 동기 API는 이벤트 루프를 블록하고 동시 요청을 보류합니다. JavaScript 동시성 모델을 깨뜨려서 전체 어플리케이션 속도를 떨어뜨립니다. 
+ 어플리케이션이 동시 요청을 처리하는데 영향을 주지 않는 경우에믄 블로킹 API를 사용하십시오. 
+
+*/
 const fs = require('fs');
 const cache = {};
 
@@ -401,7 +406,9 @@ function consistenReadSync(filename){
                             </pre>
                           
                             <hr>
-                            
+                            <strong>지연 실행</strong>
+                            inconsistentRead 함수를 수정하는 또 다른 방법은 완전히 비동기로 만드는 것입니다. 여기서 트릭은 동기 콜백 호출이
+                            동일한 이벤트 루프 사이클에서 즉시 실행되는 대신 "가까운 미래에" 실행되도록 예약하는 것입니다.
                           </li>
                           <li class="list-group-item">
 
