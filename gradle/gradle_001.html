@@ -263,6 +263,61 @@ dependencies {
                     </div>
                   </div>
                   <div class="card">
+                    <div class="card-header" id="heading6">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse6" aria-expanded="true" aria-controls="collapse6">
+                          Gradle Nested Project 구성 시 ( 중첩 모듈 )
+                        </button>
+                      </h2>
+                    </div>
+                
+                    <div id="collapse6" class="collapse" aria-labelledby="heading6" data-parent="#accordionExample">
+                      <div class="card-body">
+                        이미 Module로 구성된 프로젝트안에 추가적으로 Module 프로젝트를 구성하고 싶은 경우에는 
+                        아래와 같은 방식을 통해서 처리가 가능하다. 
+                        <hr>
+                        <ul>
+                          <li>
+                            모듈로 구성된 프로젝트 내부에 Gradle 프로젝트를 추가한다.  <br>
+                            프로젝트 명 : A <br>
+                            내부에 추가된 프로젝트 명 : B <br>
+                          </li> 
+                          <li>
+                            추가된 프로젝트에 대해서 Root Gradle 프로젝트의 Setting.gradle 파일을 아래와 같이 조정한다. 
+                            <pre class="gradle" >
+                              <code>
+# setting.gradle 
+
+include 'A:B'
+                              </code>
+                            </pre>
+                          </li>
+                          <li>
+                            해당 프로젝트에 대한 설정을 Root build.gradle에 설정한다. <br>
+                            
+                            <pre class="gradle" >
+                              <code>
+# build.gradle 
+
+project(':OtherProject'){
+
+	dependencies {
+        compile project(':A:B')
+  }
+  
+}
+                              </code>
+                            </pre>
+                          </li>
+                          <li>
+                            기본적인 중첩 모듈 프로젝트를 Gradle 기준으로 추가할 때 사용할 수 있는 방법이다. 
+                            이후 활용하기에 따라서 root 프로젝트에서만 위와 같이 적용해야 하는 것은 아니며, 프로젝트의 구성 방식이 따라 달라질수 있다. 
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
                     <div class="card-header" id="heading4">
                       <h2 class="mb-0">
                         <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
@@ -274,7 +329,7 @@ dependencies {
                     <div id="collapse4" class="collapse" aria-labelledby="heading4" data-parent="#accordionExample">
                       <div class="card-body">
                         <div class="list-group">
-                          <a href="#" class="list-group-item list-group-item-action active">
+                          <a href="#" class="list-group-item list-group-item-action">
                             <div class="d-flex w-100 justify-content-between">
                               <h5 class="mb-1">Repository</h5>
                             </div>
@@ -305,7 +360,7 @@ dependencies {
                           </a>
                           <a href="#" class="list-group-item list-group-item-action">
                             <div class="d-flex w-100 justify-content-between">
-                              <h5 class="mb-1">
+                              <h5 class="mb-1"> 
                                 dependencies > compile fileTree
                               </h5>
                             </div>
@@ -485,21 +540,7 @@ println Fraction.ONE_FIFTH.multiply(2)
                       </div>
                     </div>
                   </div>
-                  <div class="card">
-                    <div class="card-header" id="heading6">
-                      <h2 class="mb-0">
-                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse6" aria-expanded="true" aria-controls="collapse6">
-                          
-                        </button>
-                      </h2>
-                    </div>
-                
-                    <div id="collapse6" class="collapse" aria-labelledby="heading6" data-parent="#accordionExample">
-                      <div class="card-body">
-                       
-                      </div>
-                    </div>
-                  </div>
+
                   <div class="card">
                     <div class="card-header" id="heading7">
                       <h2 class="mb-0">
