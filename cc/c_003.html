@@ -393,6 +393,35 @@ power(x , n) :
     then return x * power(x^2, (n-1)/2);
                         </code>
                       </pre>
+                      <pre class="C" >
+                        <code>
+// 순환적인 거듭 제곱 계산 
+// 순환을 사용하게 되면 단순하게 작성이 가능하며 가독성이 높아진다. 그러나 똑같은 계산을 몇번씩 반복한다면 아주 단순한 경우라 할지라도 
+// 계산 시간이 엄청나게 길어질 수 있다. 
+double power(double x, int n ){
+  if ( n == 0) return 1;
+  else if ( (n%2) == 0) 
+    return power(x*X, n/2 )
+  else return x * power(x*x, (n-1)/2);
+}
+                        </code>
+                      </pre>
+                      <hr>
+                      <strong>피보나치 수열</strong> <br>
+                      <img src="./pibonacci_sequence.PNG" class="img-thumbnail" alt="" srcset=""> <br>
+                      피보나치 수열은 이탈리아 수학자가 발견한 수열로서 한 쌍의 토끼가 번식하는 상황을 수열로 만든 것이다. 
+                      <br>
+                      <pre class="C" >
+                        <code>
+// 순환적인 피보나치 수열 계산
+int fib(int n){
+  if ( n == 0) return 0;
+  if ( n == 1) return 1;
+  return ( fib(n-1) + fib(n-2));
+}
+                        </code>
+                      </pre>
+                      위의 코드는 단순하고 이해하기 쉽지만 굉장히 비효율 적인 코드이다. 
                     </div>
                   </div>
                 </div> 
@@ -400,7 +429,7 @@ power(x , n) :
                   <div class="card-header" id="heading11">
                     <h2 class="mb-0">
                       <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse11" aria-expanded="false" aria-controls="collapse11">
-                        g
+                        
                       </button>
                     </h2>
                   </div>
