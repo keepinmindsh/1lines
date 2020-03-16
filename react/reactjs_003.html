@@ -405,90 +405,89 @@ function List({ list }) {
                     </div>
                   </div> 
                   <div class="card">
-                    <div class="card-header" id="heading7">
-                      <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
-                            Higher Order Components 
-                        </button>
-                      </h2>
-                    </div>
-                    <div id="collapse7" class="collapse" aria-labelledby="heading7" data-parent="#accordionExample">
-                      <div class="card-body">
-                          <pre>
-                              <code class="Javascript" >
-  // HOC declaration
-  function withLoadingIndicator(Component) {
-    return function EnhancedComponent({ isLoading, ...props }) {
-      if (!isLoading) {
-        return  &lt;Component { ...props } />;
-      }
-  
-      return  &lt;div> &lt;p>Loading... &lt;/p> &lt;/div>;
-    };
-  }
-  
-  // Usage
-  const ListWithLoadingIndicator = withLoadingIndicator(List);
-  
-  &lt;ListWithLoadingIndicator
-    isLoading={props.isLoading}
-    list={props.list}
-  />    
-                              </code>
-                            </pre>       
-                      </div>
-                    </div>
-                  </div>                
-                  <div class="card">
-                    <div class="card-header" id="heading9">
-                      <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse9" aria-expanded="false" aria-controls="collapse9">
-                            External Templating Components
-                        </button>
-                      </h2>
-                    </div>
-                    <div id="collapse9" class="collapse" aria-labelledby="heading9" data-parent="#accordionExample">
-                      <div class="card-body">
-                          <pre>
-                              <code class="Javascript" >
-   &lt;Choose>
-     &lt;When condition={isLoading}>
-       &lt;div> &lt;p>Loading... &lt;/p> &lt;/div>
-     &lt;/When>
-     &lt;Otherwise>
-       &lt;div>{list.map(item =>  &lt;ListItem item={item} />)} &lt;/div>
-     &lt;/Otherwise>
-   &lt;/Choose>                              
-                              </code>
-                            </pre>                         
-                      </div>
-                    </div>
-                  </div>    
-                  <div class="card">
-                    <div class="card-header" id="heading10">
-                      <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse10" aria-expanded="false" aria-controls="collapse10">
-                          React Dev tools 활용하기 
-                        </button>
-                      </h2>
-                    </div>
-                    <div id="collapse10" class="collapse" aria-labelledby="heading10" data-parent="#accordionExample">
-                      <div class="card-body">
-                        https://github.com/facebook/react/tree/master/packages/react-devtools            
-                      </div>
-                    </div>
-                  </div> 
-                  <div class="card">
                     <div class="card-header" id="heading11">
                       <h2 class="mb-0">
                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse11" aria-expanded="false" aria-controls="collapse11">
-                          
+                          State 끌어올리기
                         </button>
                       </h2>
                     </div>
                     <div id="collapse11" class="collapse" aria-labelledby="heading11" data-parent="#accordionExample">                        
                       <div class="card-body">
-                            
+                          
+                        <hr>
+                        종종 동일한 데이터에 대한 변경 사항을 여러 컴포넌트에 반영해야 할 필요가 있습니다. 이럴 때는 가장 가까운 공통 조상으로 state를 끌어올리는 것이 좋습니다. 
+                        <pre class="javascript" >
+                          <code>
+class Calculator extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleCelsiusChange = this.handleCelsiusChange.bind(this);
+    this.handleFahrenheitChange = this.handleFahrenheitChange.bind(this);
+    this.state = {temperature: '', scale: 'c'};
+  }
+
+  handleCelsiusChange(temperature) {
+    this.setState({scale: 'c', temperature});
+  }
+
+  handleFahrenheitChange(temperature) {
+    this.setState({scale: 'f', temperature});
+  }
+
+  render() {
+    const scale = this.state.scale;
+    const temperature = this.state.temperature;
+    const celsius = scale === 'f' ? tryConvert(temperature, toCelsius) : temperature;
+    const fahrenheit = scale === 'c' ? tryConvert(temperature, toFahrenheit) : temperature;
+
+    return (
+      &lt;div>
+        &lt;TemperatureInput
+          scale="c"
+          temperature={celsius}
+          onTemperatureChange={this.handleCelsiusChange} />
+
+        &lt;TemperatureInput
+          scale="f"
+          temperature={fahrenheit}
+          onTemperatureChange={this.handleFahrenheitChange} />
+
+        &lt;BoilingVerdict
+          celsius={parseFloat(celsius)} />
+
+      &lt;div>
+    );
+  }
+}
+
+class TemperatureInput extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e) {
+    this.props.onTemperatureChange(e.target.value);
+  }
+
+  render() {
+    const temperature = this.props.temperature;
+    const scale = this.props.scale;
+    return (
+      &lt;fieldset>
+        &lt;legend>Enter temperature in {scaleNames[scale]}:&lt;legend>
+        &lt;input value={temperature}
+               onChange={this.handleChange} />
+      &lt;fieldset>
+    );
+  }
+}
+                          </code>
+                        </pre>
+                        React 애플리케이션 안에서 변경이 일어나는 데이터에 대해서는 "진리의 원천"을 하나만 두어야 합니다. 보통의 경우, state는 렌더링에 그 값을 필요로 하는 컴포넌트에 먼저 추가됩니다. 
+                        그리고 나서 다른 컴포넌트도 역시 그 값이 필요하게 되면 그 값을 그들의 가장 가까운 공통 조상으로 끌어올리면 됩니다. 다른 컴포넌트 간에 존쟇나는 state를 동기화 시키려고 노력하는 대신 
+                        하향식 데이터 흐름에 기대는 걸 추천합니다.   
                       </div>
                     </div>
                   </div> 
@@ -496,13 +495,53 @@ function List({ list }) {
                     <div class="card-header" id="heading12">
                       <h2 class="mb-0">
                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse12" aria-expanded="false" aria-controls="collapse12">
-                          
+                          Prop-Types 를 활용한 타입 체크 
                         </button>
                       </h2>
                     </div>
                     <div id="collapse12" class="collapse" aria-labelledby="heading12" data-parent="#accordionExample">
                       <div class="card-body">
-                        
+                        <pre class="javascript" >
+                          <code>
+// 컴포넌트 클래스에서 활용 방식                             
+import PropTypes from "prop-types"
+
+export default class HelloWorld extends Component {
+
+  static propTypes = {
+    helloWorld : PropsTypes.string
+  }
+
+
+  render() {
+    return {
+      &lt;div >
+        &lt;div > { this.props.helloWorld} &lt;/div >
+      &lt;/div >
+    }
+  }
+}
+
+// 함수형 컴포넌트에서 활용 방식 
+import React from 'react';
+import PropTypes from 'prop-types';
+
+const HelloWorld = props => (
+  &lt;div className={props.classes}>
+    &lt;img src={props.src} alt={props.alt} title={props.title} />
+  &lt;/div>
+);
+
+HelloWorld.propTypes = {
+  alt: PropTypes.string,
+  title: PropTypes.string,
+  classes: PropTypes.string,
+  src: PropTypes.string.isRequired
+};
+
+export default Thumb;
+                          </code>
+                        </pre>
                       </div>
                     </div>
                   </div> 
@@ -510,16 +549,204 @@ function List({ list }) {
                     <div class="card-header" id="heading13">
                       <h2 class="mb-0">
                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse13" aria-expanded="false" aria-controls="collapse13">
-                          
+                          Javascript Filter 활용 방식 
                         </button>
                       </h2>
                     </div>
                     <div id="collapse13" class="collapse" aria-labelledby="heading13" data-parent="#accordionExample">
                       <div class="card-body">
-                        
+                        <pre class="javascript" >
+                          <code>
+const filter = ( props ) => {
+  return props.valudList.filter( item => {
+
+    if(item.isValid){
+      return true;
+    }else{
+      return false;
+    }
+  }).slice(0, 10);
+}
+                          </code>
+                        </pre>
+                      </div>
+                    </div>
+                  </div> 
+                  <div class="card">
+                    <div class="card-header" id="heading13-1">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse13-1" aria-expanded="false" aria-controls="collapse13-1">
+                          Component 사용시 PureComponent의 활용 
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse13-1" class="collapse" aria-labelledby="heading13-1" data-parent="#accordionExample">
+                      <div class="card-body">
+/*
+  Pure Component는 리액트를 이용한 컴포넌트 기본 개발 방법에서 가장 기본적인 컴포넌트입니다. 
+  Pure Component와 Component는 매우 유사하지만. 다른점이 있다면 React의 생명주기 메소드인 shouldComponentUpdate 를 다루는 방식에 있다. 
+  Component의 경우 setState가 실행되는 모든 순간에 Component가 Re-Rendering이 발생하지만, PureComponent의 경우에는 setState에서 Value가 
+  실제로 변경될 때만 Re-Rendering이 일어나게 된다. 
+
+*/
+import React, { PureComponent } from "react";
+import PropTypes from "prop-types";
+
+import "./SearchInput.css";
+
+export default class HelloSearchForm extends PureComponent {
+  static propTypes = {
+    textChange: PropTypes.func
+  };
+
+  handleChange = event => {
+    this.props.textChange(event);
+  };
+
+  render() {
+    return (
+      &lt;div className="component-search-input">
+          &lt;div>
+            &lt;input onChange={this.handleChange} />
+          &lt;/div>
+      &lt;/div>
+    );
+  }
+}
                       </div>
                     </div>
                   </div>   
+                  <div class="card">
+                    <div class="card-header" id="heading13-2">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse13-2" aria-expanded="false" aria-controls="collapse13-2">
+                          env 설정 값을 사용하는 방식 
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse13-2" class="collapse" aria-labelledby="heading13-2" data-parent="#accordionExample">
+                      <div class="card-body">
+                        <pre class="javascript" >
+                          <code>
+handleUpdate(update) {
+  if (!this.isMounted()) {
+    if (process.env.NODE_ENV !== 'production') {
+      console.warn(
+        `Skipping update as the ${this.props.type} Stories component is no longer mounted.`
+      )
+    }
+    return
+  }
+  update.limit = update.ids.length
+  this.setState(update)
+},
+                          </code>
+                        </pre>
+                      </div>
+                    </div>
+                  </div>   
+
+                  <div class="card">
+                    <div class="card-header" id="heading13-3">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse13-3" aria-expanded="false" aria-controls="collapse13-3">
+                          Pagenation 구현하기 
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse13-3" class="collapse" aria-labelledby="heading13-3" data-parent="#accordionExample">
+                      <div class="card-body">
+                        <pre class="javascript" >
+                          <code>
+var Paginator = React.createClass({
+  _onClick(e) {
+    setTimeout(function() { window.scrollTo(0, 0) }, 0)
+  },
+
+  render() {
+    if (this.props.page === 1 && !this.props.hasNext) { return null }
+    return &lt;div className="Paginator">
+      {this.props.page > 1 && &lt;span className="Paginator__prev">
+        &lt;Link to={{pathname: `/${this.props.route}`, query: {page: this.props.page - 1}}} onClick={this._onClick}>Prev&lt;/Link>
+      &lt;/span>}
+      {this.props.page > 1 && this.props.hasNext && ' | '}
+      {this.props.hasNext && &lt;span className="Paginator__next">
+        &lt;Link to={{pathname: `/${this.props.route}`, query: {page: this.props.page + 1}}} onClick={this._onClick}>More&lt;/Link>
+      &lt;/span>}
+    &lt;/div>
+  }
+})
+                          </code>
+                        </pre>
+                      </div>
+                    </div>
+                  </div>  
+                  <div class="card">
+                    <div class="card-header" id="heading13-4">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse13-4" aria-expanded="false" aria-controls="collapse13-4">
+                          ... 을 이용하는 방식 
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse13-4" class="collapse" aria-labelledby="heading13-4" data-parent="#accordionExample">
+                      <div class="card-body">
+                          <pre class="javascript" >
+                            <code>
+const initialState = {
+  data: {
+    productQuantity: 0,
+    installments: 0,
+    totalPrice: 0,
+    currencyId: 'USD',
+    currencyFormat: '$'
+  }
+};
+
+export default function(state = initialState, action) {
+  switch (action.type) {
+    case HELLOWORD :
+      return {
+        ...state,
+        data: action.payload
+      };
+    default:
+      return state;
+  }
+}
+                            </code>
+                          </pre>
+                      </div>
+                    </div>
+                  </div> 
+                  <div class="card">
+                    <div class="card-header" id="heading13-5">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse13-5" aria-expanded="false" aria-controls="collapse13-5">
+                          
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse13-5" class="collapse" aria-labelledby="heading13-5" data-parent="#accordionExample">
+                      <div class="card-body">
+                        
+                      </div>
+                    </div>
+                  </div> 
+                  <div class="card">
+                    <div class="card-header" id="heading13-6">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse13-6" aria-expanded="false" aria-controls="collapse13-6">
+                          
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse13-6" class="collapse" aria-labelledby="heading13-6" data-parent="#accordionExample">
+                      <div class="card-body">
+                        
+                      </div>
+                    </div>
+                  </div> 
                   <div class="card">
                     <div class="card-header" id="heading4-3">
                       <h2 class="mb-0">
@@ -921,6 +1148,34 @@ class NameForm extens React.Component {
   }
 }                               
 
+
+// React Hook을 활용한 입력값 바인딩 처리 방식 
+import { useState } from "react";
+
+const HelloForm = callback => {
+  const [values, setValues] = useState({});
+
+  const handleSubmit = event => {
+    if (event) event.preventDefault();
+    callback(values);
+  };
+
+  const handleChange = event => {
+    event.persist();
+    setValues(values => ({
+      ...values,
+      [event.target.name]: event.target.value
+    }));
+  };
+
+  return {
+    handleChange,
+    handleSubmit,
+    values
+  };
+};
+
+export default HelloForm
                             </code>
                           </pre>
                           <hr>
@@ -1402,6 +1657,66 @@ const BlueButton = () => &lt;Button className="blue">
                     </div>
                   </div>  
                   <div class="card">
+                    <div class="card-header" id="heading7">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
+                            Higher Order Components 
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse7" class="collapse" aria-labelledby="heading7" data-parent="#accordionExample">
+                      <div class="card-body">
+                          <pre>
+                              <code class="Javascript" >
+  // HOC declaration
+  function withLoadingIndicator(Component) {
+    return function EnhancedComponent({ isLoading, ...props }) {
+      if (!isLoading) {
+        return  &lt;Component { ...props } />;
+      }
+  
+      return  &lt;div> &lt;p>Loading... &lt;/p> &lt;/div>;
+    };
+  }
+  
+  // Usage
+  const ListWithLoadingIndicator = withLoadingIndicator(List);
+  
+  &lt;ListWithLoadingIndicator
+    isLoading={props.isLoading}
+    list={props.list}
+  />    
+                              </code>
+                            </pre>       
+                      </div>
+                    </div>
+                  </div>                
+                  <div class="card">
+                    <div class="card-header" id="heading9">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse9" aria-expanded="false" aria-controls="collapse9">
+                            External Templating Components
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse9" class="collapse" aria-labelledby="heading9" data-parent="#accordionExample">
+                      <div class="card-body">
+                          <pre>
+                              <code class="Javascript" >
+   &lt;Choose>
+     &lt;When condition={isLoading}>
+       &lt;div> &lt;p>Loading... &lt;/p> &lt;/div>
+     &lt;/When>
+     &lt;Otherwise>
+       &lt;div>{list.map(item =>  &lt;ListItem item={item} />)} &lt;/div>
+     &lt;/Otherwise>
+   &lt;/Choose>                              
+                              </code>
+                            </pre>                         
+                      </div>
+                    </div>
+                  </div>    
+                  <div class="card">
                     <div class="card-header" id="heading116">
                       <h2 class="mb-0">
                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse116" aria-expanded="false" aria-controls="collapse116">
@@ -1421,6 +1736,20 @@ const BodyWrapper = styled.div`
     &lt;Route component={Home} />
   &lt;/Switch>
 &lt;/BodyWrapper>
+                      </div>
+                    </div>
+                  </div> 
+                  <div class="card">
+                    <div class="card-header" id="heading10">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse10" aria-expanded="false" aria-controls="collapse10">
+                          React Dev tools 활용하기 
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse10" class="collapse" aria-labelledby="heading10" data-parent="#accordionExample">
+                      <div class="card-body">
+                        https://github.com/facebook/react/tree/master/packages/react-devtools            
                       </div>
                     </div>
                   </div>                     
