@@ -505,6 +505,7 @@ return factorial(n - 1)*n;
                   </div>
                   <div id="collapse11" class="collapse" aria-labelledby="heading11" data-parent="#accordionExample">                        
                     <div class="card-body">
+                      <strong>배열</strong><br>
                       <pre class="C" >
                         <code>
 객체 : &lt; 인덱스, 값 > 쌍의 집합 
@@ -514,6 +515,46 @@ return factorial(n - 1)*n;
   - set(A, i, v) ::= 배열 A의 i 번째 위치에 값 v 저장. 
                         </code>
                       </pre>
+                      컴파일러에서 배열 요소에 대한 메모리 주소 구현 방식 <br>
+                      <ul>
+                        <li>list[0] : 기본주소=base</li>
+                        <li>list[1] : base + 1*sizeof(int)</li>
+                        <li>...</li>
+                      </ul>
+                      우리가 프로그램에서 list[i]라고 적으면 컴파일러는 주소 base + i*sizeof(int)에 있는 값을 가져온다. 
+                      <hr>
+                      <strong>구조체</strong><br>
+                      복잡한 객체에는 다양한 타입의 데이터들이 한데 묶여져서 있다. 배열이 타입이 같은 데이터의 모임이라면 구조체는 타입이 다른 데이터를 묶는 방법이다. <br>
+                      <pre class="C" >
+                        <code>
+struct 구조체이름 {
+  항목1;
+  항목2;
+  ...
+}
+
+// 구조체 변수 선언 방식 
+struct 구조체이름 구조체변수;
+                        </code>
+                      </pre>
+                      <pre class="C" >
+                        <code>
+#include &lt;stdio.h>
+
+typedef struct studentTag {
+  char name[10];
+  int age;
+  double gpa;
+} student; 
+
+int main(void) {
+  student a = { "kim", 30, 4.3 };
+  student b = { "park", 21, 4.2 };
+  return 0;
+}
+                        </code>
+                      </pre>
+                      <hr>
                       
                     </div>
                   </div>
