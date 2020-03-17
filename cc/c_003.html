@@ -555,7 +555,41 @@ int main(void) {
                         </code>
                       </pre>
                       <hr>
-                      
+                      <strong>배열의 응용  : 다항식</strong><br>
+                      <ul>
+                        <li>
+                          <strong>첫번째 방법</strong><br>
+                          <pre class="C" >
+                            <code>
+10x^5 + 0 * x^4 + 0 * x^3 + 0 * x^2 + 6 * x + 3 
+
+
+#define MAX_DEGREE 101 
+
+typedef struct {
+  int degree;
+  float coef[MAX_DEGREE];
+} polynomial 
+
+polynomial a = { 5, { 10, 0 , 0, 0, 6 , 3}}
+                            </code>
+                          </pre>
+                        </li>
+                        <li>
+                          <strong>두번째 방법</strong><br>
+                          <pre class="C" >
+                            <code>
+#define MAX_TERMS 101
+
+typedef struct {
+  float coef;
+  int expon;
+} terms[MAX_TERMS];
+int avail; 
+                            </code>
+                          </pre>
+                        </li>
+                      </ul>
                     </div>
                   </div>
                 </div> 
