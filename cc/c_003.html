@@ -586,6 +586,34 @@ typedef struct {
   int expon;
 } terms[MAX_TERMS];
 int avail; 
+
+terms[MAX_TERMS] = {{ 8,3 }, { 7,1 } , { 1, 0 } , { 10, 3 } , { 3 , 2 } , { 1 , 0 } }
+                            </code>
+                          </pre>
+                        </li>
+                        <li>
+                          <strong>희소 행렬</strong><br>
+                          <pre class="C" >
+                            <code>
+// 희소 행렬의 표현 방법 #1
+#define MAX_ROWS 100
+#define MAX_COLS 100
+int matrix[MAX_ROWS][MAX_COLS];
+
+
+// 희소 행렬의 표현방법 #2
+struct matrix {
+  int x,
+  int y, 
+  char value
+}
+
+int main(){
+  struct matrix m[100] = { { .x = 1 , .y= 1 , .value = 'G' }, ... }
+}
+
+
+
                             </code>
                           </pre>
                         </li>
