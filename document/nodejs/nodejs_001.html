@@ -458,8 +458,74 @@ fs.readFile('foo.txt', 'utf8', ( err, data) => {
                               </li>
                               <li>
                                 오류 전파 
-                                
+                                <pre class="javascript" >
+                                  <code>
+// 에러를 전파할 때 return 문을 사용한다는 것!                                     
+const fs = require('fs');
+funtion readJson(filename, callback){
+  fs.readFile(filename, 'utf8', ( err, data) => {
+    let parsed;
+    if(err){
+      // 오류를 전달하고 현재 함수를 종료
+      return callback(err);
+    }
+
+    try{
+      // 파일의 내용을 해석
+      parsed = JSON.parse(data);
+    } catch(err) {
+      return callback(err);
+    }
+
+    // 에러가 없으면 데이터를 전달 
+    callback(null, parsed);
+  });
+};
+                                  </code>
+                                </pre>
                               </li>
+                               <li>
+                                 캐치되지 않는 예외 
+                                 <pre class="javascript" >
+                                   <code>
+/*
+  비동기 콜백 내부에서 예외를 발생시키면 예외가 이벤트 루프로 이동하여 다음 콜백으로 전파되지 않습니다. 
+  
+  아래의 코드는 JSON 구문 분석의 예외를 받지 못힙니다. 예외가 발생한 스택과 실행 스택이 다르기 때문입니다. 
+  비동기 함수의 실행은 이벤트 루프에 의해 각기 다른 스택에서 실행되기 때문에 트리거 함수가 아닌 이벤트 
+  루프에서 끝납니다. 
+*/
+
+try {
+  readJSONThrows('nonJSON.txt', function(err, result){
+    //...
+
+      // 에러없이 데이터만 전달 
+      callback( null, JSON.parse(data));
+  });
+}catch(err){
+  console.log("")
+}
+
+/*
+  캐치되지 않은 예외가 어플리케이션의 일관성을 보장할 수 없는 상태로 만듭니다. 
+  이로 인해 예기치 않는 문제가 발생할 수 있음을 이해하는 것이 중요합니다. 예를 들어, 
+  여전히 불완전한 I/O 요청이 실행 중이너가 클로저가 일치하지 않을 수 있습니다. 따라서, 
+  어쨌든 잡히지 않는 예외가 수신된 후, 특히 실제 운영환경에서는 항상 어플리케이션을 
+  종료하는 것이 좋습니다. 
+*/
+
+process.on('uncaughtException', (err) => {
+  console.error('This will catch at last the ' + 
+  'JSON parsing exception: ' + err.message);
+  // 종료 코드 1 (오류)로 어플리케이션을 종료 
+  // 다음 줄이 없으면 어플리케이션 계속됨 
+  process.exit(1)
+})
+
+                                   </code>
+                                 </pre>
+                               </li>
                             </ul>
                           </li>
                           <li class="list-group-item">
