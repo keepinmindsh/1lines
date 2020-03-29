@@ -699,6 +699,38 @@ free(p);
                       </pre>
                       동적 메모리가 할당되는 공간을 히프라고 한다. 히프는 운영체제가 사용되지 않는 메모리 공간을 모아 놓은 곳이다. 필요한 만큼 할당을 받고 또 필요한 대에 사용하고 반납하기 때문에 
                       메모리를 매우 효율적으로 사용할 수 있다. 
+                      <hr>
+                      <strong>구조체와 포인터</strong><br>
+                      우리는 구조체에 포인터를 선언하고 포인터를 통하여 구조체 멤버에 접근할 수 있다. 여기에서 하나 주의할 것은 포인터를 통하여 구조체의 멤버에 접근하는 편리한 표기법 "->"이다. <br>
+                      <pre class="C" >
+                        <code>
+// (*ps).i 보다 ps -> i 라고 쓰는 것이 더 편리하다. 
+
+typedef struct studentTag {
+  char name[10];
+  int age;
+  double gpa;
+} student;
+
+int main(void) {
+  student s*;
+
+  s = (student *)malloc(sizof(student));
+  if ( s == NULL ){
+    fprintf(stderr, "메모리가 부족해서 할당할 수 없습니다. \n");
+    exit(1);
+  } 
+
+  strcpy(s -> name,  "Park");
+  s -> age = 20;
+
+  free(s);
+  return 0;
+}
+
+                        </code>
+                      </pre>
+
                     </div>
                   </div>
                 </div> 
