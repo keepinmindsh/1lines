@@ -59,7 +59,7 @@
           <div class="dropdown-menu show" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">Reactive Programming</h6>
             <a class="dropdown-item" href="../reactive/reactive_001.html">Reactive with Java</a>
-            <a class="dropdown-item" href="../reactive/reactive_002.html"></a>
+            <a class="dropdown-item" href="../reactive/reactive_002.html">Async Process</a>
             <a class="dropdown-item" href="../reactive/reactive_003.html"></a>
             <a class="dropdown-item" href="../reactive/reactive_004.html"></a>
             <a class="dropdown-item" href="../reactive/reactive_005.html"></a>
@@ -123,54 +123,72 @@
                 
                     <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                       <div class="card-body">
-                        <a href="https://gist.github.com/staltz/868e7e9bc2a7b8c1f754" target="_blank" >Reactive Programming</a> <br>
+                        <a href="https://gist.github.com/staltz/868e7e9bc2a7b8c1f754" target="_blank" >Reactive Programming</a> 
+                        <hr>
                         "외부의 어떤 이벤트나 데이터가 발생하면 거기에 대응하면 방식으로 동작하는 프로그램을 만드는 것" <br>
                         "데이터 플로우와 상태 변경을 전파한다는 생각에 근간을 둔 프로그래밍 패러다임" <br>
                         "막힘 없이 흘러다니는 데이터(이벤트)를 통해 사용자에게 자연스러운 응답을 주고, 규모 탄력적으로 리소스를 사용하며 실패에 있어서 유연하게 대처한다."
-                        
                         <hr>
-                        <ul class="list-group">
-                          <li class="list-group-item" >Reactive
-                            <hr>
-                              Responsive : 사용자에 대한 반응 <br>
-                              시스템이 적시에 응답한다. 응답성은 사용성과 기능성의 기반인데, 그것보다 더 응답성은 문제에 대해서 빠르게 감지하는 것과 효율성을 다루는 것에 초점을 둔다.
-                              반응성(응답성)이 좋은 시스템은 속도와 일정한 응답성을 제공하고 , 신뢰할 수 있는 상향 경계를 수립하므로써, 일정한 품질의 서비스를 제공하는 것에 있다. 
-                              이 일관성있는 행동은 에러 처리를 간편화 하고, 사용자 신뢰를 구축하고, 앞선 상호작용을 장려한다. 
-                              
-                            <hr>
-                              Scalable(Elastic) : 부하에 대한 반응 <br>
-                              시스템은 다양한 작업하에 응답성을 유지한다. Reactive System은 서비스에 제공되기 위한 입력을 할당한 자원을 증가시키거나 감소시키는 것으로써 입력 량의 변화에 응답할 수 있다.
-                              이것은 경합 포인트나 병목현상 가지지 않게 설계되었으며, 공유하고, 컴포넌트를 복제하고, 입력을 분산할 수 있도록 하는 결과를 의도한다. Reactive System은 응답성 뿐만 아니라 
-                              예측 가능성을 지원하는데 이는 실시간 성능 측정을 제공하여 알고리즘을 조정할 수 있습니다. 상용 하드웨어 및 소프트웨어 플랫폼에서 비용 효율적인 방식으로 탄력성을 얻을 수 있습니다. 
+                        <strong>Reactive</strong>
+                        <hr>
+                          Responsive : 사용자에 대한 반응 <br>
+                          시스템이 적시에 응답한다. 응답성은 사용성과 기능성의 기반인데, 그것보다 더 응답성은 문제에 대해서 빠르게 감지하는 것과 효율성을 다루는 것에 초점을 둔다.
+                          반응성(응답성)이 좋은 시스템은 속도와 일정한 응답성을 제공하고 , 신뢰할 수 있는 상향 경계를 수립하므로써, 일정한 품질의 서비스를 제공하는 것에 있다. 
+                          이 일관성있는 행동은 에러 처리를 간편화 하고, 사용자 신뢰를 구축하고, 앞선 상호작용을 장려한다. 
+                          
+                        <hr>
+                          Scalable(Elastic) : 부하에 대한 반응 <br>
+                          시스템은 다양한 작업하에 응답성을 유지한다. Reactive System은 서비스에 제공되기 위한 입력을 할당한 자원을 증가시키거나 감소시키는 것으로써 입력 량의 변화에 응답할 수 있다.
+                          이것은 경합 포인트나 병목현상 가지지 않게 설계되었으며, 공유하고, 컴포넌트를 복제하고, 입력을 분산할 수 있도록 하는 결과를 의도한다. Reactive System은 응답성 뿐만 아니라 
+                          예측 가능성을 지원하는데 이는 실시간 성능 측정을 제공하여 알고리즘을 조정할 수 있습니다. 상용 하드웨어 및 소프트웨어 플랫폼에서 비용 효율적인 방식으로 탄력성을 얻을 수 있습니다. 
 
-                            <hr>
-                              Resillent : 실패 상황에 대한 반응 <br>
-                              시스템은 장애가 발생하더라도 응답성을 유지합니다. 이는 고 가용성, Mission Critical 시스템에 적용 됩니다. 탄력성은 복제, 유지, 격리 및 위임에 의해 획득할 수 있습니다. 
-                              장애는 각각의 컴포넌트에 포함되어 있기 때문에 각각으로 부터 컴포넌트가 고립하되는 것으로 시스템 전체에 영향일 미치지 않고, 시스템의 일부가 장애 및 복구되는 것을 보장할 수 있습니다. 
-                              각각의 컴포넌트의 복수는 새로운 컴포넌트에게 위임되고, 고가용성은 필요에 따라 복제 따라서 보장됩니다. 고객의 기능은 장애를 처리함으로써 부담을 받지 않아도 됩니다.
-                            <hr>
-                              Event-Driven( Message-Driven ) : 이벤트에 대한 반응 <br>
-                              Reactive 시스템은 Location Transparency, Isolation, Loose Coupling을 보장하는 컴포넌트들 사이의 경제를 수입하기 위해서 비동기적인 Message 전달 (Asynchronouse message-passing)에 의존합니다.
-                              이 경제는 메세지로서 장애를 위임하기 위한 의도를 제공합니다. 명시적인 Message 전달을 이용하면 부하관리, 탄력성,  흐름제어 및 시스템에서의 메세지 큐 모니터링, 필요에 따라 Back Pressure를 적용하는 것 을
-                              가능하게 한다. 통신수단으로의 Location Transparent Message는 동일한 구조와 의미의 단일 호스트 또는 클러스터와 동작하기 위한 장애의 관리를 가능하게 합니다. 
-                              Non-Blocking Communication은  수신자로 하여금 활성 상태에서만 자원을 소모할 수 있게 하여 시스템의 오버헤드를 줄일 수 있습니다. 
-                            <hr>
-                          </li>
-                          <li class="list-group-item">
-                            Functional Reactive Programming
-                          </li>
-                          <li class="list-group-item">
-                            Rx : 비동기와 이벤트 기반 프로그램을 작성하는데 필요한 Observable 시퀀스 처리 라이브러리
-                            <hr>
-                            2009:RxNet, 2010:RxJS, 2013:RxJava
-                          </li>
-                          <li class="list-group-item">
-                            RFP
+                        <hr>
+                          Resillent : 실패 상황에 대한 반응 <br>
+                          시스템은 장애가 발생하더라도 응답성을 유지합니다. 이는 고 가용성, Mission Critical 시스템에 적용 됩니다. 탄력성은 복제, 유지, 격리 및 위임에 의해 획득할 수 있습니다. 
+                          장애는 각각의 컴포넌트에 포함되어 있기 때문에 각각으로 부터 컴포넌트가 고립하되는 것으로 시스템 전체에 영향일 미치지 않고, 시스템의 일부가 장애 및 복구되는 것을 보장할 수 있습니다. 
+                          각각의 컴포넌트의 복수는 새로운 컴포넌트에게 위임되고, 고가용성은 필요에 따라 복제 따라서 보장됩니다. 고객의 기능은 장애를 처리함으로써 부담을 받지 않아도 됩니다.
+                        <hr>
+                          Event-Driven( Message-Driven ) : 이벤트에 대한 반응 <br>
+                          Reactive 시스템은 Location Transparency, Isolation, Loose Coupling을 보장하는 컴포넌트들 사이의 경제를 수입하기 위해서 비동기적인 Message 전달 (Asynchronouse message-passing)에 의존합니다.
+                          이 경제는 메세지로서 장애를 위임하기 위한 의도를 제공합니다. 명시적인 Message 전달을 이용하면 부하관리, 탄력성,  흐름제어 및 시스템에서의 메세지 큐 모니터링, 필요에 따라 Back Pressure를 적용하는 것 을
+                          가능하게 한다. 통신수단으로의 Location Transparent Message는 동일한 구조와 의미의 단일 호스트 또는 클러스터와 동작하기 위한 장애의 관리를 가능하게 합니다. 
+                          Non-Blocking Communication은  수신자로 하여금 활성 상태에서만 자원을 소모할 수 있게 하여 시스템의 오버헤드를 줄일 수 있습니다. 
 
-                          </li>
-                          <li class="list-group-item">
-                            에릭마이어 <br>
-                            - <strong>Duality</strong> <br>
+
+                        <hr>
+                        <strong> Functional Reactive Programming</strong>
+                        <hr>
+                        Functional Reactive Programming 은 위에서 살펴본 Reactive Programming을 Functional Programming의 원리를 통해 구현하는 것을 말합니다. 
+                        쉽게 말하자면, 비동기적인 데이터 처리를 간단한 함수를 통해 수행하는 프로그래밍을 말합니다. 
+                        <hr>
+                        여기에서 Functional Programming에 대해서 먼저 알아보고 가야하는데, Functional Programming이란 어떤 문제를 해결하는데 있어서 그 과정이나 공식에 
+                        매몰되기보다는 그냥 이미 만들어진 함수를 활용하는 방식을 말합니다. 다만, 무조건 활용하는 것이 아니라 함수 자체가 '숨겨진 input과 output'이 없도록
+                        설계되어야 하는 것이 전제 조건입니다. 
+                        <pre>
+                          <code class="c" >
+// side-cause와 side-effect가 존재하는 함수 
+// 함수를 콜할 때 implementation detail을 살펴보지 못한다면 무엇이 어떻게 변할지 알 수 없음                                     
+func add() {
+number = 5
+letter = "S"
+title = title + " \ (number) " + letter 
+}                                         
+
+// 숨겨진 input/ouput이 없는 함수
+func add(numberOnt: Int, numberTwo: Int) -> Int {
+return numberOne + numberTwo
+}
+                          </code>
+                        </pre>
+                        결국 Functional Programming이라는 것은, 결과에 집중하는 실용적인 함수를 정의하고 활용하되, 
+                        이러한 함수안에 숨겨진 input과 output이 최대한 없을 수 있도록 선언하는 프로그래밍 패러다임입니다. 
+                        <hr>
+                        <strong>Reactive Stream 근간 개념</strong>
+                        <hr>
+                        <ul>
+                          <li>
+                            Duality
+                            <br>
                             <div class="alert alert-dark" role="alert">
                                 어떤 체계 간에 존재하는 다음과 같은 논리적 성질. 각각 1:1로 대응하는 개념 xi와 yi(i＝1, 2, …)로 <br>
                                 이루어진 체계 S1＝{x1, x2, …}, S2＝{y1, y2, …} 등이 있다고 하자. <br>
@@ -181,102 +199,44 @@
                                 전기 회로에서 는 표와 같이 대응할 때마다 쌍대성이 존재하여 중요하다. <br>
                                 [네이버 지식백과] 쌍대성 [duality] (IT용어사전, 한국정보통신기술협회)<br>
                             </div>
-                            <hr>
-                            - Observer <br>
-                            - Reactive Streams - 표준 ( 유수의 기업들이 모여 표준을 만듬 - Netflix, Pivotal, etc ) > Java 9의 표준으로 적용됨 <br>
+                          </li>
+                          <hr>
+                          <li>
+                            Observer 
+                            <br>
+                            Reactive Programming을 위해서 유저가 입력할 때마다 즉각적으로 반응하려면, 프로그램이 지속적으로 <br>
+                            값을 관찰(Observe)해야하고, 값에 변화가 일어날 때 마다 특정 연산이 수행되어야 합니다. <br>
+                            이러한 관찰 패턴을 Observer 또는 Observation 디자인 패턴이라고 하며, <br>
+                            비동기 이벤트를 처리하는 Reactive Programming의 근간이 됩니다. 
+                          </li>
+                          <hr>
+                          <li>
+                            Reactive Streams - 표준 ( 유수의 기업들이 모여 표준을 만듬 - Netflix, Pivotal, etc ) > Java 9의 표준으로 적용됨
                           </li>
                         </ul>
                         <hr>
                         <strong> Reactive Programming의 핵심은 비동기(Async) 이벤트와 Observer 디자인 패턴입니다. </strong>
                         <hr>
-                        <div class="card">
-                          <div class="card-header">
-                            비동기 ( Aynchronous ) 
-                          </div>
-                          <div class="card-body">
-                            <p class="card-text">
-                                비동기 이벤트란 프로그램에서 다양한 작업들이 동시에 수행되는 중에 
-                                어떤 작업이 완료되는 것과 같은 이벤트를 말합니다. 앱에서 발생하는 비동기적인 이벤트는 정말 다양합니다.
-                                즉, 유저가 앱에 로그인 하는 행위, 로그인해서 유저가 올린 이미지를 조회하는 행위, 
-                                모바일 카메라를 작동하는 행위, 다른 사람이 올린 이미지를 조회하는 행위, 다른 사람에게 글과 그림을 공유하는 행위 
-                                등이 일어나 앱이 서버와 교신 할 때 마다 알게 모르게 비동기적인 이벤트가 발생하게 됩니다. 
-                            </p>
-                          </div>
-                        </div>
+                        <strong>비동기 ( Aynchronous ) </strong><br>
+                        비동기 이벤트란 프로그램에서 다양한 작업들이 동시에 수행되는 중에 
+                        어떤 작업이 완료되는 것과 같은 이벤트를 말합니다. 앱에서 발생하는 비동기적인 이벤트는 정말 다양합니다.
+                        즉, 유저가 앱에 로그인 하는 행위, 로그인해서 유저가 올린 이미지를 조회하는 행위, 
+                        모바일 카메라를 작동하는 행위, 다른 사람이 올린 이미지를 조회하는 행위, 다른 사람에게 글과 그림을 공유하는 행위 
+                        등이 일어나 앱이 서버와 교신 할 때 마다 알게 모르게 비동기적인 이벤트가 발생하게 됩니다. 
                         <hr>
-                        <div class="card">
-                          <div class="card-header">
-                            Non-Bloking
-                          </div>
-                          <div class="card-body">
-                            <p class="card-text">
-                              자신이 호출 되었을 때 제어권을 자신을 호출한 쪽으로 넘기며, 자신을 호출한 쪽에서 다른 일을 할 수 있도록 하는 것을 의미하는 것 
-                              <hr>
-                              Non-Blocking 이란, 어떤 스레드에서 오류가 발생하거나 멈추었을 때 다른 쓰레드에게 영향을 끼치지 않도록 만드는 방법들을 말한다. 
-                              공유 자원(메모리, 파일등)를 사용하는 멀티 쓰레드 프로그래밍을 할 때, 특정 공유 자원을 사용하는 부분에서 뮤텍스나 세마포어 등을 사용하여 여러 쓰레드에서
-                              동시에 접근하지 못하도록 개발자가 보장하는 것이 전통적인 방법이었다. 반면 Non-Blocking Algorithm(Wait-freedom, Lock-freedom) 을 사용하면 공유 자원을 안전하게 동시에 사용할 수 있다. 
-                              <hr>
-                              https://stackoverflow.com/questions/37742306/examples-of-wait-lock-obstruction-freedom-and-ooc-methods
-                              <hr>
-                              Wait-freedom : 모든 호출이 한정된 수의 단계로 끝나도록 보장되는 경우 메소드는 대기하지 않아도 됩니다. wait-free 메소드는 결코 블로킹되지 않으며 교착상태가 발생하지 않으며
-                              참여자는 제한된 수의 호출 후 진행할 수 있으므로 궁핍현상이 발생하지 않습니다. 
-                              <hr>
-                              Lock-freedom : Lock이 없기 때문에 교착상태가 발생하지 않지만 호출이 결국 완료되는 것을 보장하지 않기 때문에 궁핍 현상을 보장하기에는 충분하지 않습니다. 
-                            </p>
-                          </div>
-                        </div>
-                        <hr>
-                        <div class="card">
-                          <div class="card-header">
-                            Oservation 
-                          </div>
-                          <div class="card-body">
-                            <p class="card-text">
-                              Reactive Programming을 위해서 유저가 입력할 때마다 즉각적으로 반응하려면, 프로그램이 지속적으로 <br>
-                              값을 관찰(Observe)해야하고, 값에 변화가 일어날 때 마다 특정 연산이 수행되어야 합니다. <br>
-                              이러한 관찰 패턴을 Observer 또는 Observation 디자인 패턴이라고 하며, <br>
-                              비동기 이벤트를 처리하는 Reactive Programming의 근간이 됩니다. 
-                            </p>
-                          </div>
-                        </div>
-                        <hr>
-                        <strong>Functional Reactive Programming</strong>
-                        <hr>
-                        <div class="card">
-                            <div class="card-header">
-                              Functional Reactive Programming  
-                            </div>
-                            <div class="card-body">
-                              <p class="card-text">
-                                Functional Reactive Programming 은 위에서 살펴본 Reactive Programming을 Functional Programming의 원리를 통해 구현하는 것을 말합니다. 
-                                쉽게 말하자면, 비동기적인 데이터 처리를 간단한 함수를 통해 수행하는 프로그래밍을 말합니다. 
-                                <hr>
-                                여기에서 Functional Programming에 대해서 먼저 알아보고 가야하는데, Functional Programming이란 어떤 문제를 해결하는데 있어서 그 과정이나 공식에 
-                                매몰되기보다는 그냥 이미 만들어진 함수를 활용하는 방식을 말합니다. 다만, 무조건 활용하는 것이 아니라 함수 자체가 '숨겨진 input과 output'이 없도록
-                                설계되어야 하는 것이 전제 조건입니다. 
-                                <pre>
-                                  <code class="c" >
-// side-cause와 side-effect가 존재하는 함수 
-// 함수를 콜할 때 implementation detail을 살펴보지 못한다면 무엇이 어떻게 변할지 알 수 없음                                     
-func add() {
-  number = 5
-  letter = "S"
-  title = title + " \ (number) " + letter 
-}                                         
-
-// 숨겨진 input/ouput이 없는 함수
-func add(numberOnt: Int, numberTwo: Int) -> Int {
-  return numberOne + numberTwo
-}
-                                  </code>
-                                </pre>
-                                <hr>
-                                결국 Functional Programming이라는 것은, 결과에 집중하는 실용적인 함수를 정의하고 활용하되, 
-                                이러한 함수안에 숨겨진 input과 output이 최대한 없을 수 있도록 선언하는 프로그래밍 패러다임입니다. 
-                              </p>
-                            </div>
-                          </div>
-                          <hr>
+                        <strong>Non-Bloking</strong><br>
+                        자신이 호출 되었을 때 제어권을 자신을 호출한 쪽으로 넘기며, 자신을 호출한 쪽에서 다른 일을 할 수 있도록 하는 것을 의미하는 것 
+                        <br>
+                        Non-Blocking 이란, 어떤 스레드에서 오류가 발생하거나 멈추었을 때 다른 쓰레드에게 영향을 끼치지 않도록 만드는 방법들을 말한다. 
+                        공유 자원(메모리, 파일등)를 사용하는 멀티 쓰레드 프로그래밍을 할 때, 특정 공유 자원을 사용하는 부분에서 뮤텍스나 세마포어 등을 사용하여 여러 쓰레드에서 동시에 접근하지 못하도록 개발자가 보장하는 것이 전통적인 방법이었다. 
+                        반면 Non-Blocking Algorithm(Wait-freedom, Lock-freedom) 을 사용하면 공유 자원을 안전하게 동시에 사용할 수 있다. 
+                        <br>
+                        https://stackoverflow.com/questions/37742306/examples-of-wait-lock-obstruction-freedom-and-ooc-methods
+                        <br>
+                        Wait-freedom : 모든 호출이 한정된 수의 단계로 끝나도록 보장되는 경우 메소드는 대기하지 않아도 됩니다. wait-free 메소드는 결코 블로킹되지 않으며 교착상태가 발생하지 않으며
+                        참여자는 제한된 수의 호출 후 진행할 수 있으므로 궁핍현상이 발생하지 않습니다. 
+                        <br>
+                        Lock-freedom : Lock이 없기 때문에 교착상태가 발생하지 않지만 호출이 결국 완료되는 것을 보장하지 않기 때문에 궁핍 현상을 보장하기에는 충분하지 않습니다. 
                       </div>
                     </div>
                   </div>
@@ -284,7 +244,7 @@ func add(numberOnt: Int, numberTwo: Int) -> Int {
                     <div class="card-header" id="headingTwo">
                       <h2 class="mb-0">
                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                          Duality 
+                          Reactive Stream의 수학적 개념 : Duality 
                         </button>
                       </h2>
                     </div>
@@ -424,7 +384,7 @@ public interface Subscriber {
                                 </code>
                               </pre>
                               <hr>
-                              <img src="../reactive/Subscriber_Process.png" class="img-fluid" alt="" srcset="">
+                              <img src="../reactive/Subscriber_Process.png" class="img-thumbnail" alt="" srcset="">
                               <hr>
                               <ul>
                                 <li>onSubscribe : 최초 호출되는 메소드, Subscriber를 사용할 때는 무조건 처음에 호출해야합니다.</li>
@@ -469,7 +429,7 @@ public interface Subscription {
                           <hr>
                           <strong>Reactive Basic Flow : Publisher - Subscriber - Subscription</strong>
                           <hr>
-                          <img src="../reactive/Reactive Basic Flow.png" class="img-fluid" alt="" srcset="">
+                          <img src="../reactive/Reactive Basic Flow.png" class="img-thumbnail" alt="" srcset="">
                           <hr>
                           Subscriber가 Publisher에게 subscribe 하면 Publisher가 데이터 또는 시퀀스를 전달하게 된다. 전달하기 전에 Publisher는 Subscribe에 정의된 onSubscribe()를 호출하고, 
                           Subscriber는 request(n)를 호출하여 몇 개의 데이터를 보내달라고 요청하게 된다. 이때 Subscription을 사용하는데, Request(n)을 호출하여 데이터 전송 요청을 하게 되면
