@@ -738,14 +738,45 @@ int main(void) {
                   <div class="card-header" id="heading13">
                     <h2 class="mb-0">
                       <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse13" aria-expanded="false" aria-controls="collapse13">
-                      
+                        스택   
                       </button>
                     </h2>
                   </div>
                   <div id="collapse13" class="collapse" aria-labelledby="heading13" data-parent="#accordionExample">
                     <div class="card-body">
+                      스택에서의 입출력은 맨 위에서만 일어나고 스택의 중간에서는 데이터를 삭제할 수 없다. 
+                      스택에서 입출력이 이루어지는 부분을 스택 상단이라고 하고 반대쪽인 바닥부분을 스택 하단이라고 한다. 스택에 저장되는 것을 요소라 부른다. 
+                      <hr>
+                      후입 선출 ( LIFO : Last In First Out )
+                      <hr>
+                      함수는 실행이 끝나면 자신을 호출한 함수로 되돌아가야한다. 이때 스택이 사용되는데, 즉 복귀할 주소를 기억하는데 사용된다. 
+                      <hr>
+                      추상 자료형 스택 
                       <pre class="C" >
                         <code>
+- 객체 : 0개 이상의 원소를 가지는 유한 선형 리스트 
+- 연산 : 
+  create(size)  ::= 최대크키가 size인 공백 스택을 생성한다. 
+  is_full(s) ::= 
+    if(스택의 원소수 == false) return TRUE;
+    else return FALSE;
+  is_empty(s)   ::= 
+    if(스택의 원소수 == 0) return TRUE;
+    else return FALSE;
+  push(s, item) ::=
+    if( is_full(s) ) retirm ERROR_STACKFULL;
+    else 스택의 맨 위에 item을 추가한다. 
+  pop(s) ::=
+    if ( is_empty(s) ) return ERROR_STACKEMPTY;
+    else 스택의 맨 위의 원소를 제거해서 반환한다.
+  peeck(s) ::=
+    if( is_empty(s) ) return ERROR_STACKEMPTY;
+    else 스택의 맨 위의 원소를 제거하지 않고 반환한다.                          
+
+                        </code>
+                      </pre>
+                      Stack은 기본적으로 Push와 Pop의 두가지 연산으로 이루어져있고, 실제 Stack에서 허용하는 Item 갯수가 가득찼는지 pop을 했을 때 더 빼낼 아이템이 없는지를
+                      체크하기 위한 Validation이 존재한다. 
 
                     </div>
                   </div>
