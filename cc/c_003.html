@@ -777,6 +777,30 @@ int main(void) {
                       </pre>
                       Stack은 기본적으로 Push와 Pop의 두가지 연산으로 이루어져있고, 실제 Stack에서 허용하는 Item 갯수가 가득찼는지 pop을 했을 때 더 빼낼 아이템이 없는지를
                       체크하기 위한 Validation이 존재한다. 
+                      <hr>
+                      <strong>스택의 구현</strong><br>
+                      <pre class="C" >
+                        <code>
+is_empty(S):
+  if top == -1
+    then return TRUE
+    then return FALSE 
+
+is_full(S):
+  if top >= ( MAX_STACK_SIZE )
+    then return TRUE 
+    then return FALSE 
+
+push(S,x):
+  if is_full(S)
+    then error "overflow"
+    else top &lt;- top + 1
+         stack[top] &lt;- x
+  
+
+                        </code>
+                      </pre>
+                      
 
                     </div>
                   </div>
