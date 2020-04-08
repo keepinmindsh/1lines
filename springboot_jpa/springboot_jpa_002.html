@@ -505,13 +505,264 @@ public class LineParent {
       
               </div>
               <hr>
-                위의 코드는 데이터베이스의 관계를 단방향 관곌 나타낸 것입니다. 테이블 간의 관계에서는 단방향과 양방향에 대한 구분이 없지만 JPA 상에서는 사용하는 Entity에 따른 차이가 존재합니다. 
+                위의 코드는 데이터베이스의 관계를 단방향 관계를 나타낸 것입니다. 테이블 간의 관계에서는 단방향과 양방향에 대한 구분이 없지만 JPA 상에서는 사용하는 Entity에 따른 차이가 존재합니다. 
                 양방향 관계를 지정할 때 유의해야할 점은 서로의 Entity 데이타에 대한 동일한 사용 권한을 가지기 때문에 의도치 않은 데이터의 오염이 일어날 수 있다는 점입니다. Entity 의 값이 변경되었는데 
                 이게 누구에 의한 데이타의 변경인지 파악하기 어려워 진다는 점입니다. 그래서 그로그램을 개발할 때 데이터의 변경에는 최대한 폐쇄적으로 접근하는게 좋기 때문에 가급적이면 양방향의 관계는 사용하지 
                 않는 것이 좋습니다. <br>
                 https://jogeum.net/8?category=766565
               <hr>
 
+              <strong>고급매핑</strong> 
+              <hr>
+              <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">조인</h5>
+                    <small class="text-muted"></small>
+                  </div>
+                  <p class="mb-1">
+                    <pre class="java" >
+                      <code>
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "LINE")
+@Data
+public abstract class LineValue {
+  @Id
+  @GeneratedValue
+  private Long id;
+
+  private String value;
+}
+
+@Entity
+@DiscriminatorValue("A")
+@Data
+public class ValueA extends LineValue {
+  private String valueA;
+}
+
+@Entity
+@DiscriminatorValue("B")
+@Data
+public class ValueB extends LineValue {
+  private String valueB;
+}
+
+@Entity
+@DiscriminatorValue("C")
+@Data
+public class ValueC extends LineValue {
+  private String valueC;
+}
+                      </code>
+                    </pre>
+                    <hr>
+                    <ul>
+                      <li>
+                        @Inheritance(strategy = InheritanceType.JOINED) <br>
+                        상속 매핑은 부모 클래스에 Inheritance를 사용해야 한다. 매핑 전략은 조인전략을 사용하므로 InheritanceType.JOINED 을 사용하였다.
+                      </li>
+                      <li>
+                        @DiscriminatorColumn(name = “DTYPE”) <br>
+                        부모 클래스에 구분 컬림이다. 이 컬럼으로 저장된 자식 테이블을 구분 할 수 있다. 기본값은 DTYPE이다.
+                      </li>
+                      <li>
+                        @DiscriminatorValue(“A”) <br>
+                        엔티티를 저장할 때 구분컬럼에 입력할 값을 지정한다.
+                      </li>
+                      <li>
+                        @PrimaryKeyJoinColumn(name = "LINE_VALUE") <br>
+                        자식 테이블을 부모 테이블 ID 컬럼 명을 그대로 사용하는데 만약 자식 테이블의 기본키를 변경하고 싶을 때 사용한다. 
+                      </li>
+                    </ul>
+                  </p>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">단일 테이블</h5>
+                    <small class="text-muted"></small>
+                  </div>
+                  <p class="mb-1">
+                    <pre class="java" >
+                      <code>
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "LINE")
+@Data
+public abstract class Line {
+  @Id
+  @GeneratedValue
+  @Column(name = "LINE_ID")
+  private Long id;
+
+  private String lineValue;
+}
+
+@Entity
+@DiscriminatorValue("ValueA")
+@Data
+public class ValueA extends Line {
+  private String valueA;
+}
+
+@Entity
+@Data
+@DiscriminatorValue("ValueB")
+@PrimaryKeyJoinColumn(name = "LINESVALUE")
+public class ValueB extends Line {
+  private String valueB;
+}
+
+@Entity
+@DiscriminatorValue("ValueC")
+@Data
+public class ValueC extends Line {
+  private String valueC;
+}
+                      </code>
+                    </pre>
+                    <hr>
+                    딱히 소스를 수정할 필요는 없고 @Inheritance(strategy = InheritanceType.SINGLE_TABLE) 어노테이션의 값만 바꾸면 된다. 
+                    그러면 테이블이 한 개만 생긴다. 
+                  </p>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"></h5>
+                    <small class="text-muted">구현 클래스</small>
+                  </div>
+                  <p class="mb-1">
+                    <pre class="java" >
+                      <code>
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@DiscriminatorColumn(name = "LINE")
+@Data
+public abstract class Line {
+  @Id
+  @GeneratedValue
+  @Column(name = "LINE_ID")
+  private Long id;
+
+  private String lineValue;
+}
+
+@Entity
+@DiscriminatorValue("ValueA")
+@Data
+public class ValueA extends Line {
+  private String valueA;
+}
+
+@Entity
+@Data
+@DiscriminatorValue("ValueB")
+@PrimaryKeyJoinColumn(name = "LINESVALUE")`
+public class ValueB extends Line {
+  private String valueB;
+}
+
+@Entity
+@DiscriminatorValue("ValueC")
+@Data
+public class ValueC extends Line {
+  private String valueC;
+}
+                      </code>
+                    </pre>
+                    <hr>
+                    <strong>@MappedSuperclass</strong><br>
+                    <pre class="java" >
+                      <code>
+@MappedSuperclass
+@Data
+public abstract class LineEntity {
+  @Id
+  @GeneratedValue
+  private Long id;
+}
+
+@Entity
+@Data
+public class LineValueA extends LineEntity {
+  private String valueA;
+}
+
+@Entity
+@Data
+public class LineValueB extends LineEntity {
+  private String valueB;
+}
+                        
+                      </code>
+                    </pre>
+                  </p>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">복합키와 식별 관계 매핑</h5>
+                    <small class="text-muted"></small>
+                  </div>
+                  <p class="mb-1">
+                    식별 관계 <br>
+                    비식별 관계 <br>
+                    <hr>
+                    @IdClass <br>
+                    복합키 테이블은 비식별 관계고 PARENT는 복합 기본 키를 사용한다. 
+                    <pre class="java" >
+                      <code>
+
+                      </code>
+                    </pre>
+                  </p>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"></h5>
+                    <small class="text-muted"></small>
+                  </div>
+                  <p class="mb-1">
+
+                  </p>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"></h5>
+                    <small class="text-muted"></small>
+                  </div>
+                  <p class="mb-1">
+
+                  </p>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"></h5>
+                    <small class="text-muted"></small>
+                  </div>
+                  <p class="mb-1">
+
+                  </p>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"></h5>
+                    <small class="text-muted"></small>
+                  </div>
+                  <p class="mb-1">
+
+                  </p>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"></h5>
+                    <small class="text-muted"></small>
+                  </div>
+                  <p class="mb-1">
+
+                  </p>
+                </a>
+              </div>  
             </div>
             <div class="card-footer small text-muted"></div>
           </div>
