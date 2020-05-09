@@ -1283,6 +1283,102 @@ int main(void){
 }
                         </code>
                       </pre>
+                      <hr>
+                      <strong>중위 표기 수식을 후위 표기 수식으로 전환</strong>
+                      <hr>
+                      <pre>
+                        <code class="c">
+infix_to_postfix(exp);
+
+스택 s를 생성하고 초기화 
+while ( exp에 처리할 문자가 남아 있으면 )
+    ch &lt;- 다음에 처리할 문자 
+    switch ( ch )
+    case 연산자 : 
+        while ( peek(s)의 우선순위 >= ch의 우선순위 ) do 
+            e &lt;- pop(s)
+            e를 출력 
+        push(s, ch);
+        break;
+    case 왼쪽 괄호 : 
+        push(s, ch);
+        break;
+    case 오른쪽 괄호 : 
+        e &lt;- pop(s);
+        while( e != 왼쪽괄호 ) do 
+            e를 출력 
+            e &lt;- pop(s);
+        break;
+    case 피연산자 : 
+        ch를 출력
+        break;
+
+while( not is_empty(s) ) do 
+    e &lt;- pop(s)
+    e를 출력 
+                        </code>
+                      </pre>
+                      <pre>
+                        <code class="C" >
+#include &lt;stdio.h>
+#incldue &lt;stdlib.h>
+#define MAX_STACK_SIZE 100
+
+typedef char element;
+
+int prec(char op)
+{
+  switch(op) {
+    case '(' : case ')' : return 0;
+    case '+' : case '-' : return 1;
+    case '*' : case '/' : return 2;
+  }
+  return -1;
+}
+
+void infix_to_postfix(char exp[]){
+  int i = 0;
+  char ch, top_op;
+  int len = strlen(exp);
+  StackType s;
+
+  init_stack(&s);
+  for ( i = 0; i &lt; len; i ++){
+    ch = exp[i];
+    switch(ch) {
+      case '+' : case '-' : case '*' : case '/' : 
+        while ( !is_empty(&s) && (prec(ch) &lt;= prec(&s)))
+          prinf("%sc", pop(&s));
+        push(&s, ch);
+        break;
+      case '(' :
+        push(&s, ch);
+        break;
+      case ')' :
+        top_op = pop(&s);
+        while ( top_op != '('){
+          printf("%c", top_op);
+          top_op = pop(&s);
+        }
+        break;
+      default:
+        printf("%c", pop(&s));
+        break;
+    }
+  }
+  while( !is_empty(&s))
+    printf("%c", pop(&s));
+}
+
+init main(void){
+  char *s = "(2+3)*4+9";
+  printf("중위 표시 수식  %s \n", s);
+  printf("후위 표시 수식 ");
+  infix_to_postfix(s);
+  printf("\n");
+}
+                        </code>
+                      </pre>
                     </div>
                   </div>
                 </div> 
