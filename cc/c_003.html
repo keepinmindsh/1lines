@@ -347,7 +347,7 @@ int factorial( int n )
                       <hr>
                       반복이란 for나 while 등의 반복구조로 되풀이 하는 방법이다. 반복을 제어하는 변수를 사용하여 일정횟수 동안 반복 시킬수도 있고 어떤 조건이 만족될 때까지 반복시킬 수도 있다. 
                       반복은 간명하고 효율적으로 되풀이를 구현하는 방법이다. 
-                      반면에 때로는 반복을 사용하게 되면 지나치게 복잡해지는 문제들도 존재한다. 이런 경우에는 순환이 좋은 해결책이 될 p47수 있다. 순환은 주어진 문제를 해결하기 위하여 자신을 다시 호출하여 
+                      반면에 때로는 반복을 사용하게 되면 지나치게 복잡해지는 문제들도 존재한다. 이런 경우에는 순환이 좋은 해결책이 될 수 있다. 순환은 주어진 문제를 해결하기 위하여 자신을 다시 호출하여 
                       수행하는 방식이다. 순환은 본질적으로 순환적인 문제나 그러한 자료구조를 다루는 프로그램에 적합하다. 
                       <br>
                       문제의 크기가 순환이 진행될수록 작아지는 것에 유의해야 한다. 
@@ -1148,7 +1148,7 @@ int main(void){
                       <hr>
                       <ul>
                         <li>왼쪽 괄호의 개수와 오른쪽 괄호의 개수가 같아야 한다.</li>
-                        <li>같은 종류의 괄호에서 왼쪽 관ㄹ호는 오른쪽 괄호보다 먼저 나와야 한다.</li>
+                        <li>같은 종류의 괄호에서 왼쪽 괄호는 오른쪽 괄호보다 먼저 나와야 한다.</li>
                         <li>서로 다른 종류의 왼쪽 괄호와 오른쪽 괄호 쌍은 서로를 교차하면 안된다.</li>
                       </ul>
                       <pre>
@@ -1379,6 +1379,85 @@ init main(void){
 }
                         </code>
                       </pre>
+                      <hr>
+                      <strong>미로 탐색 프로그램</strong>
+                      <hr>
+                      <pre>
+                        <code class="C" >
+maze_search();
+
+스택 s과 출구의 위치 x, 현재 생쥐의 위치를 초기화 
+while( 현재의 위치가 출구가 아니면 ) do 
+    현재 위치를 방문한 것으로 표기 
+    if( 현재위치의 위, 아래, 왼쪽, 오른쪽 위치가 아직 방문되지 않았고 갈 수 있으면 )
+        then 그 위치들을 스택에 push 
+    if( is_empty(s) )
+        then 실패 
+    else 스택에서 하나의 위치를 꺼내어 현재 위치로 만든다. 
+성공;                           
+                        </code>
+                      </pre>
+                      <pre>
+                        <code class="C" >
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+#include &lt;string.h>
+#define MAX_SIZE 6
+
+typedef struct {
+  short r;
+  short c;
+} element;
+
+element here = { 1, 0}, entry = { 1, 0 };
+
+void push_loc(StackType *s, int r, int c){
+  if( r &lt; 0 || c &lt; 0) return;
+  if( maze[r][c] != '1' && maze[r][c] != '.' ) {
+    element tmp;
+    tmp.r = r;
+    tmp.c = c;
+    push(s, tmp);
+  }
+}
+
+void maze_print(char maz[MAZE_SIZE][MAZE_SIZE]){
+  print("\n");
+  for( int r = 0; r &lt; MAZE_SIZE; r++){
+    for( int c = 0; c &lt; MAZE_SIZE; c++){
+      print("%c", maze[r][c]);
+    }
+    printf("\n");
+  }
+}
+
+int main(void){
+  int r,c;
+  StackType s;
+
+  init_stack(&s);
+  here = entry;
+  while ( maze[here.r][here.c] != 'x'){
+    r = here.r;
+    c = here.c;
+    maze[r][c] = '.';
+    maze_print(maze);
+    push_loc(&s. r - 1, c);
+    push_loc(&s. r + 1, c);
+    push_loc(&s. r , c - 1);
+    push_loc(&s. r , c + 1);
+    if(is_empty(&s)){
+      printf("실패\n");
+      return;
+    }
+    else 
+      here = pop(&s);
+  }
+  printf("성공\n");
+  return 0;
+}
+                        </code>
+                      </pre>
                     </div>
                   </div>
                 </div> 
@@ -1386,13 +1465,333 @@ init main(void){
                   <div class="card-header" id="heading14">
                     <h2 class="mb-0">
                       <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse14" aria-expanded="false" aria-controls="collapse14">
-                        
+                        큐
                       </button>
                     </h2>
                   </div>
                   <div id="collapse14" class="collapse" aria-labelledby="heading14" data-parent="#accordionExample">
                     <div class="card-body">
-                      
+                      스택의 경우, 나중에 들어온 데이터가 먼저 나가는 구조인데 반하여 큐는 먼저 들어온 데이터가 먼저 나가는 구조로 이러한 특성을 선입선출(First In First Out)이라고 한다. 
+                      <hr>
+                      <strong>ADT : 큐</strong>
+                      <hr>
+                      <pre>
+                        <code class="C" >
+객체 : 0개 이상의 요소들로 구성된 선형 리스트 
+
+연산 : 
+    create(max_size) ::=
+        최대 크기가 max_size 인 공백큐를 생성한다. 
+    is_empty(q) ::= 
+        if(size == max_size) return TRUE;
+        else return FALSE;
+    is_full(q) ::=
+        if(size == max_size ) return TRUE;
+        else return FALSE;
+    enqueue(q, e) ::=
+        if( is_full(q) ) queue_full 오류;
+        else q의 끝에 e를 추가한다. 
+    dequeue(q) ::=
+        if( is_empty(q) ) queue_empty 오류:
+        else q의 맨 앞에 있는 e를 제거하여 반환한다. 
+    peek(q) ::=
+        if( is_empty(q) ) queue_empty 오류;
+        else q의 맨 앞에 있는 e를 읽어서 반환한다.                       
+
+                        </code>
+                      </pre>
+                      <hr>
+                      많이 이용되는 분야는 컴퓨터를 이용하여 현실 세계의 실제 상황을 시뮬레이션 하는 것이다, 예를 들면 은행에서 기다리는 사람들의 대기열, 공항에서 이륙하는 비행기들, 인터넷에서 전송되는 데이터 패킷들을 모델링하는 데 큐가 이용된다. 
+                      큐는 운영체제에서도 중요하게 사용된다. 예를 들면 운영체제에는 인쇄 작업큐가 존재한다. 프린터는 속도가 늦고 상대적으로 컴퓨터의 CPU는 속도가 빠르기 때문에 CPU는 빠른 속도로 인쇄 데이터를 만든 다음, 인쇄 작업 큐에 저장하고
+                      다른 작업으로 넘어간다. 
+                      <hr>
+                      <strong>선형 큐</strong>
+                      <hr>
+                      <pre>
+                        <code class="C" >
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+#define MAX_QUEUE_SIZE 5
+
+typedef int element;
+typedef struct {
+  int front;
+  int rear;
+  element data[MAX_QUEUE_SIZE];
+} QueueType;
+
+void error(char *message){
+  fprintf(stderr, "%s\n", message);
+  exit(1);
+}
+
+void init_queue(QueueType *q){
+  q -> rear = -1;
+  q -> front = -1;
+}
+
+void queue_print(QueueType *q){
+  for ( int i = 0; i &lt; MAX_QUEUE_SIZE; i ++ ) {
+    if ( i &lt;= q -> front || i > q -> rear ){
+      printf(" | ");
+    }else{
+      printf("%d | ", q -> data[i]);
+    }
+  }
+  printf("\n");
+}
+
+int is_full(QueueType *q){
+  if( q -> rear == MAX_QUEUE_SIZE - 1 )
+    return 1;
+  else 
+    return 0;
+}
+
+int is_empty(QueueType *q){
+  if( q -> front ==  q -> rear )
+    return 1;
+  else 
+    return 0;
+}
+
+void enqueue(QueueType *q, int item){
+  if(is_full(q)) {
+    error("큐가 포화상태입니다. ")
+    return;
+  }
+  q -> data[++(q->rear)] = item;
+}
+
+int dequeue(QueueType *q){
+  if(is_empty(q)){
+    error("큐가 공백상태입니다. ");
+    return 1;
+  }
+  int item = q -> data[++(q->front)];
+  return item;
+}
+
+int main(void){
+  int item = 0;
+  QueueType q;
+
+  init_queue(&q);
+
+  enqueue(&q, 10); queue_print(&q);
+  enqueue(&q, 20); queue_print(&q);
+  enqueue(&q, 30); queue_print(&q);
+
+  item = dequeue(&q); queue_print(&q);
+  item = dequeue(&q); queue_print(&q);
+  item = dequeue(&q); queue_print(&q);
+  return 0;
+}
+
+
+                        </code>
+                      </pre>
+                      <hr>
+                      <strong>원형큐</strong>
+                      <hr>
+                      <pre>
+                        <code class="C" >
+* 원형큐에서의 삽입 알고리즘 
+enqueue(Q, x):
+    rear &lt;- ( rear + 1) % MAX_QUEUE_SIZE;
+    Q[rear] &lt;- x;                          
+
+* 원형큐에서의 삭제 알고리즘
+    front &lt;- ( front + 1) % MAX_QUEUE_SIZE;
+    return Q[front];                          
+                        </code>
+                      </pre>
+                      <pre>
+                        <code class="C" >
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+
+#define MAX_QUEUE_SIZE 5
+typedef int element;
+typedef struct {
+  element data[MAX_QUEUE_SIZE];
+  int front;
+} QueueType;
+
+void error(char *message){
+  fprintf(stderr, "%s\n", message);
+  exit(1);
+}
+
+void init_queue(QueueType *q)
+{
+  q -> front = q -> rear = 0;
+}
+
+int is_empty(QueueType *q)
+{
+  return ( q -> front == q -> rear);
+}
+
+int is_full(QueueType *q){
+  return ((q -> rear + 1)% MAX_QUEUE_SIZE == q -> front);
+}
+
+void queue_print(QueueType *q){
+  printf("QUEUE(front=%d rear=%d) = " , q -> front, q -> rear );
+  if(!is_empty(q)) {
+    int i = q -> front;
+    do {
+      i = ( i + 1) % ( MAX_QUEUE_SIZE );
+      printf("%d | " , q -> data[i]);
+      if( i == q -> rear ){
+        break;
+      }
+    } while ( i != q -> front );
+  }
+
+  printf("\n");
+}
+
+void enqueue(QueueType *q, element item){
+  if(is_full(q))
+    error("큐가 포화상태입니다. ");
+  q -> rear = ( q -> rear + 1) % MAX_QUEUE_SIZE;
+  q -> data[q->rear] = item;
+}
+
+element dequeue(QueueType *q){
+  if(is_empty(q)){
+    error("큐가 공백상태입니다.");
+  }
+  q -> front = ( q -> front + 1) % MAX_QUEUE_SIZE;
+}
+
+element peek(QueueType *q){
+  if(is_empty(q))
+    error("큐가 공백상태입니다.");
+  return q -> data[(q->front+1 ) % MAX_QUEUE_SIZE;
+}
+
+int main(void){
+  QueueType queue;
+  int element;
+
+  init_queue(&queue);
+  printf("--데이터 추가 단계--\n");
+  while(!is_full(&queue)){
+    printf("정수를 입력하시오 : ");
+    scanf(%d, &element);
+    enqueue(&queue, element);
+    queue_print(&queue);
+  }
+  printf("큐는 포화상태입니다. \n\n");
+
+  printf("--데이터 삭제 단계--\n");
+  while(!is_empty(&queue)){
+    element = dequeue(&queue);
+    printf("꺼내진 정수 : %d \n", element);
+    queue_print(&queue);
+  }
+  printf("큐는 공백상태입니다. \n");
+  return 0;
+}
+                        </code>
+                      </pre>
+                      <hr>
+                      <strong>Queue의 버퍼</strong>
+                      <hr>
+                      <p>
+                        버퍼란? <br>
+                        버퍼란 임시 저장 공간을 의미합니다. 임시 저장 공간이라고 해서 생뚱맞게 보일 수 있지만 정확히 말하면 A와 B가 서로 입출력을 수행하는 데에 있어서 속도차이를 극복하기 위해 사용하는 임시 저장 공간을 의미합니다. <br>
+                        프로그래밍에서의 버퍼는 거의 대부분 CPU와 보조 기억 장치 사이에서 사용되는 임시저장 공간을 의미합니다. 버퍼라는 것은 속도차가 큰 대상이 입출력을 수행할 때 효율성을 위해 사용하는 임시 저장공간이라고 할 수 있겠습니다. 
+                      </p>
+                      <pre>
+                        <code class="C" >
+큐를 버퍼처럼 사용할 수 잇는데, 
+
+#include &lt;stdio.h>
+#include &lt'stdlib.h>
+
+int main(void){
+  QueueType queue;
+  int element;
+
+  init_queue(&queue);
+  srand(time(NULL));
+
+  for(int i = 0; i &lt; 100; i++ ){
+    if(rand() % 5 == 0){
+      enqueue(&queue , rand()%100);
+    }
+    queue_print(&queue);
+    if(rand() % 10 == 0){
+      int data = dequeue(&queue);
+    }
+    queue_print(&queue);
+  }
+  return 0;
+}
+                        </code>
+                      </pre>
+                      <p>
+                        랜덤한 수(난수)를 생성하는 함수 <br>
+                        <ul>
+                          <li>
+                            int rand(void)
+                            <br>
+                            랜덤한 숫자를 반환합니다. 
+                            그 범위는 0 ~ RAND_MAX 까지 인데요. RAND_MAX 라는 것은 stdlib.h 헤더파일에 매크로로 작성되어 있습니다. <br>
+                            RAND_MAX = 32767 <br>
+                          </li>
+                          <li>
+                            void srand(unsigned int seed) <br>
+                            rand 함수에 사용될 수를 초기화 한다. 이 초기화를 매개변수로 받는 seed값을 이용해서 합니다. <br>
+                          </li>
+                          <li>
+                            time_t time(time_t* timer); <br>
+                            UCT 기준 1970년 1월 1일 0시 0분 0초 부터 경과된 시간을 초(sec)로 반환하는 함수 
+                          </li>
+                        </ul>
+                      </p>
+                      <p>
+                        매크로(#define) <br>
+                        매크로란 어떤 것을 대신하여 사용하는 이름을 말한다. 즉, 어떤 특정한 값이나 처리 명령어를 하나의 이름을 부여하고 그 특정한 값이나 처리 명령어를 사용할 때 부여한 이름을 사용하여 대신 코딩하는 것을 말합니다. 
+                        <pre>
+                          <code class="C" >
+#include &lt;stdio.h>
+
+#define MAIN main(int argc, char *argv[])
+#define BEGIN {
+#define END } 
+#define OUTPUT printf
+
+MAIN
+BEGIN
+OUTPUT("Hello World! \n");
+END
+                          </code>
+                        </pre>
+                      </p>
+                      <hr>
+                      <Strong>덱(double-ended queue)</Strong>
+                      <hr>
+                      <pre>
+                        <code class="C" >
+객체 : n개의 element형의 요소들의 순서 있는 모임 
+연산 :
+    create() ::= 덱을 생성한다. 
+    init(dq) ::= 덱을 초기화한다. 
+    is_empty(dq) ::= 덱이 공백상태인지를 검사한다. 
+    is_full(dq) ::= 덱이 포화 상태 인지를 검사한다. 
+    add_front(dq, e) ::= 덱의 앞에 요소를 추가한다. 
+    add_rear(dq, e) ::= 덱의 뒤에 요소를 추가한다. 
+    delete_front(dq) ::= 덱의 앞에 있는 요소를 반환한 다음 삭제한다. 
+    delete_rear(dq) ::= 덱의 뒤에 있는 요소를 반환한 다음 삭제한다. 
+    get_front(q) ::= 덱의 앞에서 삭제하지 않고 앞에 있는 요소를 반환한다.
+    get_rear(q) ::= 덱의 뒤에서 삭제하지 않고 뒤에 있는 요소를 반환한다. 
+                        </code>
+                      </pre>
                     </div>
                   </div>
                 </div> 
