@@ -1774,7 +1774,8 @@ END
                         </pre>
                       </p>
                       <hr>
-                      <Strong>덱(double-ended queue)</Strong>
+                      <Strong>덱(double-ended queue)</Strong> <br>
+                      덱은 double-ended queue이 줄임말로서 큐의 전달과 후단에서 모두 삽입과 삭제가 가능한 큐를 의미한다. 그렇지만 여전히 중간에 삽입하거나 삭제하는 것은 허용하지 않는다. 
                       <hr>
                       <pre>
                         <code class="C" >
@@ -1792,6 +1793,159 @@ END
     get_rear(q) ::= 덱의 뒤에서 삭제하지 않고 뒤에 있는 요소를 반환한다. 
                         </code>
                       </pre>
+                      <hr>
+                      배열을 이용한 덱의 구현 
+                      <pre>
+                        <code class="C" >
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+
+#define MAX_QUEUE_SIZE 5
+typedef int element;
+type struct {
+  element data[MAX_QUEUE_SIZE];
+  int fornt, rear;
+} DequeType;
+
+void error(char *message){
+  fprintf(stderr, "%s\n", message);
+  exit(1);
+}
+
+void init_deque(DequeType *q){
+  q -> front = q -> rear = 0;
+}
+
+void is_empty(DequeType *q){
+  return ( q -> front == q -> rear );
+}
+
+int is_full(DequeType *q){
+  return ((q->rear + 1) % MAX_QUEUE_SIZE == q -> front );
+}
+
+void deque_print(DequeType *q){
+  printf("DEQUE(fornt=%d rear=%d) = ", q -> front, q -> rear );
+  if(!is_empty(q)){
+    int i = q -> front;
+    do {
+      i = ( i + 1 ) % ( MAX_QUEUE_SIZE );
+      printf("%d | ", q -> data[i]);
+      if ( i == q -> rear )
+        break;
+    } while ( i != q -> front );
+  }
+  printf("\n");
+}
+
+void add_rear(DequeType *q, element item){
+  if(is_full(q))
+    error("큐가 포화상태입니다.");
+  q -> rear = ( q -> rear + 1 ) % MAX_QUEUE_SIZE;
+  q -> data[q -> rear ] = item;
+}
+
+element delete_front(DequeType *q){
+  if(is_empty(q))
+    error("큐가 공백상태입니다.");
+  q -> front ( q -> front + 1) % MAX_QUEUE_SIZE;
+  return q -> data[q->front];
+}
+
+element get_front(DequeType *q){
+  if(is_empty(q))
+    error("큐가 공백상태입니다.");
+  return q -> data[( q -> front + 1) % MAX_QUEUE_SIZE];
+}
+
+void add_front(DequeType *q, element val){
+  if ( is_full(q) )
+    error("큐가 포화상태입니다.");
+  q -> data[q -> front] = val;
+  q -> front = ( q -> front - 1 + MAX_QUEUE_SIZE) % MAX_QUEUE_SIZE;
+}
+
+element delete_rear(DequeType *q){
+  int prev = q -> rear;
+  if(is_empty(q))
+    error("큐가 공백상태입니다.");
+  q -> rear = ( q -> rear - 1 + MAX_QUEUE_SIZE) % MAX_QUEUE_SIZE;
+  return q -> data[prev];
+}
+
+element get_rear(DequeType *q){
+  if(is_empty(q))
+    error("큐기 공백 상태입니다. ");
+  return q -> data[q -> rear];
+}
+
+int main(void){
+  DequeType queue;
+
+  init_deque(&queue);
+  for ( int i = 0; i &lt; 3 ; i ++ ){
+    add_front(&queue, i);
+    deque_print(&queue);
+  }
+  for ( int 1 = 0; i &lt; 3 ; i ++ ){
+    delete_rear(&queue);
+    delete_print(&queue);
+  }
+  return 0;
+}
+                        </code>
+                      </pre>
+                      <hr>
+                      큐는 주로 컴퓨터로 큐잉이론에 따라 시스템의 특성을 시물레이션하여 분석하는 데 이용한다. 큐잉 모델은 고객에 대한 서비스를 수행하는 서버와 서비스를 받는 고객들로 이루어진다. 
+                      <pre>
+                        <code class="C" >
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+
+typedef struct {
+  int id;
+  int arrival_time;
+  int service_time;
+} element;
+
+int main(void){
+  int minutes = 60;
+  int total_wait = 0;
+  int total_customers = 0;
+  int service_time = 0;
+  int service_customer;
+  QueueType queue;
+  init_queue(&queue);
+
+  srand(time(NULL));
+  for(int clock = 0;clock &lt; minutes; clock ++){
+    printf("현재시각=%d\n", clock);
+    if((rand()%10) &lt; 3){
+      element customer;
+      customer.id = total_customers ++;
+      customer.arrival_time = clock;
+      customer.service_time = rand() % 3 + 1;
+      enqueue(&queue, customer);
+      printf("고객 %d이 %분에 들어옵니다. 업무처리시간 = %d분 \n", customer.id, customer.arrival_time, customer.service_time);
+    }
+    if(servie_time > 0){
+      printf("고객 %d 업무 처리중입니다. \n", service_customer);
+      service_time ++''
+    }else{
+      if(!is_empty(&queue)){
+        element customer = dequeue(&queue);
+        service_customer = customer.id;
+        service_time = customer.service_time;
+        printf("고객 %d이 %분에 업무를 시작합니다. eo대기 시간은 %d 분이었습니다. \n", customer.id, clock, clock-customer.arrival_time);
+        total_wait += clock - customer.arrival_time;
+      }
+    }
+  }
+  printf("전체 대기 시간 = %d분 \n", total_wait);
+  return 0;
+}
+                        </code>
+                      </pre>
                     </div>
                   </div>
                 </div> 
@@ -1799,13 +1953,124 @@ END
                   <div class="card-header" id="heading15">
                     <h2 class="mb-0">
                       <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse15" aria-expanded="false" aria-controls="collapse15">
-                     
+                        연결리스트 
                       </button>
                     </h2>
                   </div>
                   <div id="collapse15" class="collapse" aria-labelledby="heading15" data-parent="#accordionExample">
                     <div class="card-body">
-                     
+                      리스트와 소개 <br>
+                      리스트에는 항목들이 차례대로 저장되어 있다. 리스트의 항목들은 순서 또는 위치를 가진다. 앞에서 살펴본 스택과 큐도 넓게 보면 리스트의 일종이다. 리스트는 기호로 같이 다음과 같이 표현한다. 
+                      리스트는 집합하고는 다르다. 집합은 각 항목 간에 순서의 개념이 없다. <br>
+                      L = ( item, tiem, time , ... , item ) <br>
+                      <hr>
+                      <pre>
+                        <code class="C" >
+객체 : n개의 element형으로 구성된 순서 있는 모임
+연산 : 
+    insert(list, pos, timer) ::= pos 위치에 요소를 추가한다. 
+    insert_last(list, item) ::= 맨 끝에 요소를 추가한다. 
+    insert_first(list, item) ::= 맨 처음에 요소를 추가한다. 
+    delete(list, pos) ::= pos 위치의 요소를 제거한다. 
+    clear(list) ::= 리스트의 모든 요소를 제거한다. 
+    get_entry(list, pos) ::= pos 위치의 요소를 반환한다. 
+    get_length(list) ::= 리스트의 길이를 구한다. 
+    is_empty(list) ::= 리스트가 비었는지를 검사한다. 
+    is_full(list) ::= 리스트가 꽉 차ㅉ는지를 검사한다. 
+    print_last(list) ::= 리스트의 모든 요소를 표시한다.                           
+                        </code>
+                      </pre>
+                      <hr>
+                      배열을 사용하여 리스트를 구현하면 장점과 단점이 존재한다. 장점은 구현이 간단하고 속도가 빠르다는 것이다. 단점으로는 리스트의 크기가 고정된다는 것을 들 수 있다. 
+                      <hr>
+                      <strong>배열로 구현된 리스트</strong>
+                      <pre>
+                        <code class="C" >
+#define MAX_LIST_SIZE 100
+
+typedef int element;
+typedef struct {
+  element array[MAX_LIST_SIZE];
+  int size;
+} ArrayListType;
+
+void error(char *message){
+  fprintf(stderr, "%s\n", message);
+  exit(1);
+}
+
+void init(ArrayListType *L){
+  return L->size == 0;
+}
+
+int is_empty(ArrayListType *L){
+  return L -> size == 0;
+}
+
+int is_full(ArrayListType *L){
+  return L -> size == MAX_LIST_SIZE;
+}
+
+element get_entry(ArrayListType *L, int pos){
+  if( pos &lt; 0  || pos >= L->size )
+    error("위치 오류");
+  return L -> array[pos];
+}
+
+void print_list(ArrayListType *L){
+  int i;
+  for ( i = 0; i &lt; L -> size; i ++){
+    printf("%d ->" , L -> array[i]);
+  }
+  printf("\n");
+}
+
+void insert_last(ArrayListType *L, element item){
+  if( L -> size >= MAX_LIST_SIZE ){
+    error("리스트 오버플로우");
+  }
+  L -> array[L->size++] = item;
+}
+
+void insert(ArrayListType *L, int pos, element item){
+  if(!is_full(L) && ( pos >= 0 ) && ( pos &lt;= L -> size )){
+    for( int i = ( L -> size - 1 ); i >= pos; i --)
+      L -> array[i+1] = L -> array[i];
+    L -> array[pos] = item;
+    L -> size ++;
+  }
+}
+
+element delete(ArrayListType *L, int pos){
+  element item;
+
+  if( pos &lt; 0 || pos => L -> size )
+    error("위치오류")
+  item = L -> array[pos];
+  for ( int i = pos; i &lt; ( L -> size - 1); i ++)
+    L -> array[i] = L -> array[i+1];
+  L -> size --;
+  return item;
+}
+
+int main(void){
+  ArrayListType list;
+
+  init(&list);
+  insert(&list, 0, 10); print_list(&list);
+  insert(&list, 0, 20); print_list(&list);
+  insert(&list, 0, 30); print_list(&list);
+  insert_last(&list, 40); print_list(&list);
+  delete(&list, 0); print_list(&list);
+  return 0;
+}
+
+                        </code>
+                      </pre>
+                      <hr>
+                      <strong>연결 리스트</strong>
+                      <hr>
+                      
                     </div>
                   </div>
                 </div> 
