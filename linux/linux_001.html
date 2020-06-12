@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>1lines - Linux</title>
+
+    <!-- Bootstrap core CSS-->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template-->
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Page level plugin CSS-->
+    <link href="../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="../css/sb-admin.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../styles/default.css">
+    <script src="../highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </head>
+
+  <body id="page-top">
+
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+
+      <a class="navbar-brand mr-1" href="../index.html">1 Lines</a>
+
+      <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Navbar Search -->
+      
+
+      <!-- Navbar -->
+      
+
+    </nav>
+
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <ul class="sidebar navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="../index.html">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>요약</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>목록</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header">리눅스 기본</h6>
+            <a class="dropdown-item" href="../linux/linux_001.html">리눅스 기본</a>
+            
+          </div>
+        </li>
+      </ul>
+
+      <div id="content-wrapper">
+        <div class="container-fluid">
+          <!-- Breadcrumbs-->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active"></li>
+          </ol>
+
+          <!-- Area Chart Example-->
+          <div class="card mb-3">
+            <div class="card-header">
+              리눅스 기본 
+            </div>
+            <div class="card-body">
+              <ul>
+                <li>ls
+                  <pre>
+                    <code class="shell" >
+ls -l : 파일의 상세 정보 표시 
+ls -a : 숨어있는 파일 표시 
+ls -t : 파일들이 생성된 시간별로 표시 
+ls -rt : 파일들이 오래된 시간부터 표시 
+ls -F : 파일 표시시에 마지막에 유형을 나타내는 파일 명 표시 
+                    </code>
+                  </pre>
+                </li>
+                <li>cd
+                  <pre>
+                    <code class="shell" >
+cd ~ : 자신이 로그인 해있는 유저의 홈 디렉토리 이동 
+cd .. : 상위 디렉토리로 이동 
+cd /folder : 절대 경로의 folder라는 폴더로 이동할 경우 사용한다. 
+cd - : 이동하기 바로전의 디렉토리로 이동한다. 
+
+                    </code>
+                  </pre>
+                </li>
+                <li>touch
+                  <pre>
+                    <code class="shell" >
+touch 
+touch filename : filename의 파일을 생성합니다. 
+touch -c filename : filename의 시간을 현재 시간으로 변경합니다. 
+touch -t 200001011200 filename : filename의 시간을 날짜정보로 변경합니다. 
+touch -r filename1 filename2 : filename2의 날짜 정보를 filename1의 날짜 정보가 같게 한다. 
+                    </code>
+                  </pre>
+                </li>
+                <li>mkdir
+                  <pre>
+                    <code class="shell" >
+mkdir foldername : foldername이라는 폴더를 생성합니다. 
+mkdir -p foldername/subfolder : 존재하지 않는 디렉토리의 하위 디렉토리까지 생성합니다. 
+mk -m 644 foldername : 특정 권한을 부여한 폴더를 생성합니다. 
+                    </code>
+                  </pre>
+                </li>
+                <li>cp
+                  <pre>
+                    <code class="shell" >
+cp file cfile : file을 cfile로 복사합니다. 
+cp -f file cfile : 복사할때 복사할 대상이 있으면 지우고 강제로 복사합니다. 
+cp -R folder cfolder : 폴더를 복사할 때 사용하며, 폴더 안의 하위 폴더, 파일까지 모두 복사합니다. 
+                    </code>
+                  </pre>
+                </li>
+                <li>mv
+                  <pre>
+                    <code class="shell" >
+mv fname mfname : fname의 파일을 mfname의 이름으로 이동/변경합니다. 
+mv -b fname mfnmae : mfname 의 파일이 존재하면 mfname을 백업한 뒤에 이동합니다. 
+mv -f fname mfname : mfname 의 파일이 존재하면 백업 없이 덮어 씁니다. 
+                    </code>
+                  </pre>
+                </li>
+                <li>rm
+                  <pre>
+                    <code class="shell" >
+rm fname : fname을 삭제합니다. 
+rm -f fname : fname을 묻지 않고 삭제합니다. 
+rm -f folder : folder를 삭제합니다. 하위의 모든 파일도 삭제합니다. 
+                    </code>
+                  </pre>
+                </li>
+                <li>cat
+                  <pre>
+                    <code class="shell" >
+cat fname : fname의 내용을 출력합니다. 
+cat fname1 fname2 : fname1과 fname2 의 내용을 이어서 출력합니다. 
+cat fname1 fname2 | more : fname1 , fname2를 출력하는데 페이지별로 출력합니다. 
+cat fname1 fname2 | head : fname1 , fname2를 출력하는데 처음부터 10번째까지만 출력합니다. 
+cat fname1 fname2 | tail : fname1 , fname2를 출력하는데 끝에서부터 10번째까지만 출력합니다. 
+                    </code>
+                  </pre>
+                </li>
+                <li>redirection
+                  <pre>
+                    <code class="shell" >
+cat fname1 fname2 > fname3 : fname1, fname2 를 출력하고 fname3 이라는 파일에 저장힙니다. 
+cat fname4 >> fname3 : fname3에 fname4의 내용을 추가합니다. 
+cat &lt; fname1 : fname1의 내용을 출력합니다. 
+                    </code>
+                  </pre>
+
+                </li>
+                <li>alias
+                  <pre>
+                    <code class="shell" >
+alias new = 'command' : comand를 실행하는 새 명령어 new를 만듭니다. 
+unalias new : new라는 alias를 해제 합니다. 
+                    </code>
+                  </pre>
+                </li>
+              </ul>
+            </div>
+            <div class="card-footer small text-muted"></div>
+          </div>
+        <!-- /.container-fluid -->
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright © 1Lines Labs 2019</span>
+            </div>
+          </div>
+        </footer>
+
+      </div>
+      <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Page level plugin JavaScript-->
+    <script src="../vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="../js/sb-admin.min.js"></script>
+
+    <!-- Demo scripts for this page-->
+    <script src="../js/demo/chart-area-demo.js"></script>
+    <script src="../js/demo/chart-bar-demo.js"></script>
+    <script src="../js/demo/chart-pie-demo.js"></script>
+
+  </body>
+
+</html>
