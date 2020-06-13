@@ -716,7 +716,15 @@ IntStream.rangeClosed
                           builder 
                           <pre>
                             <code class="java" > 
-                              
+// 빌더(Builder)를 사용하면 스트림에 직접적으로 원하는 값을 넣을 수 있다. 마지막에 build 메소드로 스트림을 반환한다. 
+
+Stream&lt;String> builderStream = Stream.&lt;String>builder()
+  .add("Build1")
+  .add("Build2")
+  .add("Build3")
+  .build();
+
+builderStream.map(item -> item + "Value").forEach(System.out::println);
                             </code>
                           </pre>
                         </li>
@@ -724,7 +732,13 @@ IntStream.rangeClosed
                           distinct
                           <pre>
                             <code class="java" > 
-                             
+// 동일값이 존재하는 경우 stream에서 distinct가 호출되면 동일 값은 하나로 보이게 된다.                               
+List&lt;String> stringList = Arrays.asList("google", "google", "value" , "value1" , "value2" , "value3");
+
+Stream&lt;String> stream1 = stringList.stream();
+Stream&lt;String> stream2 = stream1.distinct();
+
+stream2.forEach(System.out::println);                             
                             </code>
                           </pre>
                         </li>
@@ -732,7 +746,9 @@ IntStream.rangeClosed
                           limit
                           <pre>
                             <code class="java" > 
+# Stream에서 흘러가는 데이터에 대한 제한을 걸어야 할 경우, 사용한다. 
                               
+List&lt;Integer> listInteger = Stream.iterate(0, a -> a + 10).limit(10).collect(Collectors.toList());                              
                             </code>
                           </pre>
                         </li>
@@ -740,7 +756,26 @@ IntStream.rangeClosed
                           skip
                           <pre>
                             <code class="java" > 
-                              
+# skip은 Stream Data에서 선택된 갯수만큼을 제외하고 다음 값부터 처리할 수 있게 필터링 된다. 
+
+List&lt;Integer> listInteger = Stream.iterate(0, a -> a + 10).limit(10).collect(Collectors.toList());
+
+List&lt;Integer> listInteger2 = listInteger.stream()
+        .map(value -> value - 2)
+        .peek(value -> System.out.println("테스트 1 : " + value) )
+        .filter(value -> value > 0 )
+        .peek(value -> System.out.println("테스트 2 : " + value) )
+        .collect(Collectors.toList());
+
+listInteger2.forEach(value -> System.out.println("before filter ["+value+ "]"));
+
+System.out.println("");
+
+List&lt;Integer> listInteger3 = listInteger2.stream()
+        .skip(4)
+        .collect(Collectors.toList());
+
+listInteger3.forEach(value -> System.out.println("after filter ["+value+ "]"));                             
                             </code>
                           </pre>
                         </li>
@@ -748,7 +783,9 @@ IntStream.rangeClosed
                           iterate                        
                           <pre>
                             <code class="java" > 
-                              
+# 반복적으로 반복 데이터를 생성할 수 있다. 기본 시작값 및 반복될 때 계산될 값을 지정할 수 있다. 
+
+List&lt;Integer> listInteger = Stream.iterate(0, a -> a + 10).limit(10).collect(Collectors.toList());
                             </code>
                           </pre>
                         </li>
@@ -756,7 +793,9 @@ IntStream.rangeClosed
                           generate
                           <pre>
                             <code class="java" > 
-                              
+# limit 등의 제한 함수가 선언되기 전까지는 무한히 데이터를 생성할 때 사용한다.       
+
+Stream&lt;String> stream = Stream.generate(() -> "Builder");
                             </code>
                           </pre>
                         </li>  
@@ -764,7 +803,15 @@ IntStream.rangeClosed
                           Sorted
                           <pre>
                             <code class="java" > 
-                              
+// 정렬된 새로운 스트림을 반환
+List&lt;String> stringList = Stream.iterate(0, a -> a + 10).map(item -> item + " Value").limit(20).collect(Collectors.toList());
+
+Stream&lt;String> sortedStream = stringList.stream().sorted(Comparator.comparing(String::length).reversed());
+
+sortedStream.forEach(s -> {
+  log.info("Sorted Values : {}  ", s);
+});
+                                                           
                             </code>
                           </pre>
                         </li>
@@ -772,7 +819,9 @@ IntStream.rangeClosed
                           count 
                           <pre>
                             <code class="java" > 
-                              
+long count = stringList.stream().count();
+
+log.info("Count Value : {}" , count);                              
                             </code>
                           </pre>
                         </li>
@@ -780,7 +829,9 @@ IntStream.rangeClosed
                           min
                           <pre>
                             <code class="java" > 
-                              
+String stringMin = stringList.stream().min(Comparator.comparing(String::valueOf)).get();
+
+log.info("min Value : {}" , stringMin);                             
                             </code>
                           </pre>
                         </li>
@@ -788,7 +839,9 @@ IntStream.rangeClosed
                           max
                           <pre>
                             <code class="java" > 
-                              
+String stringMax = stringList.stream().max(Comparator.comparing(String::valueOf)).get();
+
+log.info("max Value : {}" , stringMax);                             
                             </code>
                           </pre>
                         </li>
@@ -796,7 +849,11 @@ IntStream.rangeClosed
                           sum
                           <pre>
                             <code class="java" > 
-                              
+List&lt;Integer> longStream = Stream.iterate(0, a -> a + 1).limit(50).collect(Collectors.toList());
+
+Integer sum = longStream.stream().mapToInt(Integer::intValue).sum();
+
+log.info("총합계 {}", sum);                             
                             </code>
                           </pre>
                         </li>
@@ -804,7 +861,9 @@ IntStream.rangeClosed
                           average
                           <pre>
                             <code class="java" > 
-                              
+OptionalDouble average = longStream.stream().mapToInt(Integer::intValue).average();
+
+log.info("Average Value : {}" , average.getAsDouble());                             
                             </code>
                           </pre>
                         </li>
@@ -812,7 +871,13 @@ IntStream.rangeClosed
                           foreach
                           <pre>
                             <code class="java" > 
-                              
+List&lt;String> stringList = Stream.iterate(0, a -> a + 10).map(item -> item + " Value").limit(20).collect(Collectors.toList());
+
+Stream&lt;String> sortedStream = stringList.stream().sorted(Comparator.comparing(String::length).reversed());
+
+sortedStream.forEach(s -> {
+      log.info("Sorted Values : {}  ", s);
+    });                              
                             </code>
                           </pre>
                         </li>

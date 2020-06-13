@@ -303,10 +303,10 @@ fi
               setenv.sh 파일에 설정하는 기본적인 옵션들 <br>
               <pre>
                 <code class="shell" >
-JAVA_OPTS=$JAVA_OPTS" -Dfile.encoding=UTF-8 -server -Xms1024m -Xmx1024m -XX:NewSize=384m -XX:MaxNewSize=384m -XX:PermSize=128m -XX:MaxPermSize=128m" 
-JAVA_OPTS=$JAVA_OPTS" -XX:-HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=$CATALINA_HOME/logs" 
-JAVA_OPTS=$JAVA_OPTS" -XX:ParallelGCThreads=2 -XX:-UseConcMarkSweepGC" 
-JAVA_OPTS=$JAVA_OPTS" -XX:-PrintGC -XX:-PrintGCDetails -XX:-PrintGCTimeStamps -XX:-TraceClassUnloading -XX:-TraceClassLoading" 
+JAVA_OPTS=$JAVA_OPTS " -Dfile.encoding=UTF-8 -server -Xms1024m -Xmx1024m -XX:NewSize=384m -XX:MaxNewSize=384m -XX:PermSize=128m -XX:MaxPermSize=128m" 
+JAVA_OPTS=$JAVA_OPTS " -XX:-HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=$CATALINA_HOME/logs" 
+JAVA_OPTS=$JAVA_OPTS " -XX:ParallelGCThreads=2 -XX:-UseConcMarkSweepGC" 
+JAVA_OPTS=$JAVA_OPTS " -XX:-PrintGC -XX:-PrintGCDetails -XX:-PrintGCTimeStamps -XX:-TraceClassUnloading -XX:-TraceClassLoading" 
 JMX_OPTS=" -Dcom.sun.management.jmxremote \ 
            -Dcom.sun.management.jmxremote.authenticate=false \ 
            -Djava.rmi.server.hostname=${HOSTNAME} \ 
