@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>1lines - Server</title>
+
+    <!-- Bootstrap core CSS-->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template-->
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Page level plugin CSS-->
+    <link href="../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="../css/sb-admin.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../styles/default.css">
+    <script src="../highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </head>
+
+  <body id="page-top">
+
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+
+      <a class="navbar-brand mr-1" href="../index.html">1 Lines</a>
+
+      <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Navbar Search -->
+      
+
+      <!-- Navbar -->
+      
+
+    </nav>
+
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <ul class="sidebar navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="../index.html">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>요약</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>목록</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header">Server</h6>
+            <a class="dropdown-item" href="../server/server_001.html">Tomcat & Apache</a>
+            <a class="dropdown-item" href="../server/server_002.html"></a>
+            <a class="dropdown-item" href="../server/server_003.html"></a>
+            <a class="dropdown-item" href="../server/server_004.html"></a>
+            <a class="dropdown-item" href="../server/server_005.html"></a>
+            <a class="dropdown-item" href="../server/server_006.html"></a>
+            <a class="dropdown-item" href="../server/server_007.html"></a>
+            <a class="dropdown-item" href="../server/server_008.html"></a>          
+            <a class="dropdown-item" href="../server/server_009.html"></a>
+            <a class="dropdown-item" href="../server/server_010.html"></a>
+            <a class="dropdown-item" href="../server/server_011.html"></a>
+            <a class="dropdown-item" href="../server/server_012.html"></a>
+            <a class="dropdown-item" href="../server/server_013.html"></a>
+            <a class="dropdown-item" href="../server/server_014.html"></a>
+            <a class="dropdown-item" href="../server/server_015.html"></a>
+            <a class="dropdown-item" href="../server/server_016.html"></a>
+            <a class="dropdown-item" href="../server/server_017.html"></a>
+            <a class="dropdown-item" href="../server/server_018.html"></a>
+            <a class="dropdown-item" href="../server/server_019.html"></a>
+            <a class="dropdown-item" href="../server/server_020.html"></a>
+            <a class="dropdown-item" href="../server/server_021.html"></a>
+            <a class="dropdown-item" href="../server/server_022.html"></a>
+            <a class="dropdown-item" href="../server/server_023.html"></a>
+            <a class="dropdown-item" href="../server/server_024.html"></a>
+            <a class="dropdown-item" href="../server/server_025.html"></a>
+            <a class="dropdown-item" href="../server/server_026.html"></a>
+            <a class="dropdown-item" href="../server/server_027.html"></a>
+            <a class="dropdown-item" href="../server/server_028.html"></a>
+            <a class="dropdown-item" href="../server/server_029.html"></a>
+            <a class="dropdown-item" href="../server/server_030.html"></a>
+            <a class="dropdown-item" href="../server/server_031.html"></a>
+            <a class="dropdown-item" href="../server/server_032.html"></a>
+            <a class="dropdown-item" href="../server/server_033.html"></a>
+          </div>
+        </li>
+      </ul>
+
+      <div id="content-wrapper">
+        <div class="container-fluid">
+          <!-- Breadcrumbs-->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">WAS</li>
+          </ol>
+
+          <!-- Area Chart Example-->
+          <div class="card mb-3">
+            <div class="card-header">
+                Web Server 및 Application Server 의 이해와 구조
+            </div>
+            <div class="card-body">
+              <ul>
+                <li>Web Server
+                  <hr>
+                  <ul>
+                    <li>-	HTTP 프로토콜을 기반으로 하여, Web 클라이언트(브라우저)로 부터의 요청을 서비스하는 기능을 담당하는 프로그램 ( 일반적으로 Apache 를 많이 사용함 )</li>
+                    <li>-	Web 서버의 역할을 html, 이미지(jpg, gif, … 등 ). Xml 등에 대한 처리를 담당 ( CGI 프로그램 요청도 처리 )</li>
+                  </ul>
+                </li>
+                <li>Web Application Server
+                  <hr>
+                  <ul>
+                    <li>
+                      -	여러 Web 클라이언트(브라우저)의 요구를 Web 서버 혼자 감당하기에는 힘들기 때문에, 구조적으로 Web 서버의 기능을 분리하기 위해 만들어진 것으로 Web Application Server(WAS)라고 한다. ( 일반적으로 Tomcat, Weblogic, WebShpare, Jeus, JBoss 등이 이용된다. )
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+              <hr>
+              <strong>Web 서버와 Web Application 서버의 차이점</strong>
+              <hr>
+              Web 서버와 Web Application 서버는 위의 설명처럼 사용의 목적이 다르다. <br>
+              Web 서버는 html, 이미지 들의 요청을 처리하는데 빠르고, Web Application 서버는 Servlet이나, JSP의 비즈니스 로직을 수행하는데 적합하다. <br>
+              ( 웹컨테이너란 이러한 Servler은 JSP를 수행하는 역할을 하는 서버를 말한다. ). <br>
+              그렇다고 Web Application Server가 html, 이미지들의 요청을 못한다는 것이 아니다. <br>
+              다만 처리속도가 Web 서버에 비해 느리다는 것이다. <br>
+            </div>
+            <div class="card-footer small text-muted"></div>
+          </div>
+          <div class="card mb-3">
+            <div class="card-header">
+              Tomcat 
+            </div>
+            <div class="card-body">
+              <strong>Tomcat의 기본 구조</strong><br>
+              <img src="./tomcat_structure.png" class="img-thumbnail" alt="" srcset="">
+              <hr>
+              <strong>Web Application 폴더의 구성</strong><br>
+              아래의 구조는 Application의 설정에 따라 언제든지 변경될 수 있기 때문에, 가장 기본 적인 경우의 사례로 들었다. 
+              <img src="./web_application_structure.png" class="img-thumbnail" alt="" srcset="">
+              <hr>
+              <ul>
+                <li>          
+                  *.html, *.jsp 등 웹 어플리케이션에서 클라이언트 브라우저로 전송이 되는 HTML과 JSP 페이지에 대해서 사용이 가능하다. 정적인 문서 보다는 동적인 페이지 생성 시에 활용된다.   <br>
+                  대규모 어플리케이션에서는 서브 디렉토리 체계로 나누어 놓을 수 있습니다.  <br>
+                  그러나 규모가 작은 어플리케이션이라면 보통은 하나의 디텍토리에서 전체를 관리하는 것이 보다 단순하고 쉽습니다. <br>
+                </li>
+                <li>
+                  /WEB-INF/web.xml  웹 어플리케이션의 웹 어플리케이션 배치 설명자 Web Application Deployment Descriptor.  <br>
+                  서블릿과 웹어플리케이션을 구성하는 다른 컴포넌트들을 설명하고, 각종 초기화 파라미터 들과 서버기능을 활용하기 위한 컨테이너가 관리하는 보안 제한 구역을 지정하는 XML 파일입니다. <br>
+                </li>
+                <li>
+                  /WEB-INF/classes/ 이 디렉토리에는 웹 어플리케이션에서 사용하는 모든 자바 파일이 들어있습니다. <br>
+                  서블릿과 비서블릿 클래스 파일들이며 jar 형태로 묶여있지 않은 것입니다. <br> 
+                  패키지가 선언된 클래스라면 /WEB-INF/classes/를 기준으로 패키지 디렉토리를 만들어 구성하면 됩니다.  <br>
+                  예를 들어 클래스명이 com.mycompany.mypackage.MyServlet  라면 파일의 저장 경로는 /WEB-INF/classes/com/mycompany/mypackage/MyServlet.class이 됩니다. <br>
+                </li>
+                <li>
+                  /WEB-INF/lib/ 이 디렉토리에는 웹어플리케이션에서 사용하는 자바 클래스 파일을 포함하는 JAR 파일들이 위치합니다. <br>
+                  외부 클래스 라이브러리나 JDBC 드라이버 같은 것입니다.
+                </li>
+              </ul>
+              <hr>
+              <strong>Tomcat 설정의 이해</strong>
+              <hr>
+              <pre>
+                <code class="xml" >
+&lt;!--  server.xml 의 root element, server의 shutdown port를 지정 함 -->
+&lt;Server port="8005" shutdown="SHUTDOWN">  
+  |     &lt;!--  server는 1개 이상의  service를 가질 수 있지만, 보통은 server.xml을 분리해서 관리-->
+  +---&lt;Service  name="Catalina">   &lt;!-- service는 독립적인 톰캣의 서비스 이다. -->
+              |    &lt;!-- Connector Client와 요청을 주고 응답을 받는 Interface이다. -->
+              +---&lt;Connector port="8080" protocol="HTTP/1.1">
+              |    &lt;!-- Connector 에는 HTTP와 AJP등이 있다. -->
+              +---&lt;Connector port="8009" protocol="AJP/1.3" >  &lt;!-- Apache Jserv Protocol -->
+              |    &lt;!-- Engine은 적절한 Host로 처리를 넘기는 역할을 한다. -->
+              +---&lt;Engine name="Catalina" defaultHost="localhost">
+                          | &lt;!-- Realm, Valve Component를 이용하면 Database연결, Single Sing On, Access Log등 부가기능을 이용 할 수 있다. -->
+                          +---&lt;Realm>              
+                          |
+                          +---&lt;Valve>
+                          | 
+                          +---&lt;Logger>
+                          |   &lt;!-- 가상 호스트를 정의한다. -->
+                          +---&lt;Host appBase="webapps">
+                                      | &lt;!--가상호스트에서 동작하는 하나의 웹 어플리케이션 이다. -->
+                                      +---&lt;Context path="" docBase="/was/tomcat7-pms1/webapps">
+                                      |
+                                      +---&lt;Valve>
+                                      |
+                                      +---&lt;Realm>
+                                      |
+                                      +---&lt;Logger>
+                </code>
+              </pre>
+              <hr>
+              <ul>
+                <li>
+                  1.	Server 엘리먼트 <br>
+                  Tomcat 서버 구성 요소의 정의 부분이다. 기본 값은 &lt;server port=”8005” shutdown=”shutdown” > 로 되어 있으며, 포트 8005를 감시하고 shutdown 명령어를 접수하도록 설정되어 있다. 서버에서는 복수의 서비스를 관련 지울 수 있다.
+                </li><br>
+                <li>
+                  2.	Service 엘리먼트 <br>
+                  Tomcat service 구성 요소를 정의하고 있다. &lt;service>는 뒤에 기술 할 &lt;Engine>과 그것에 관련된 모든 &lt;Connector>를 그룹화 한 것이다. 기본 값은 &lt;Service name=”Catalina” >로 되어 있다. (name 으로 “Tomcat-Standalone” 설정하는 경우도 있음 ) <br>
+                  Name : Catalina라고 하는 이름으로 서비스가 정의되어 있고, 에러 로그 및 관리 <br>
+                  툴은 이 이름으로 식별한다. 하나의 서버에 복수의 서비스를 정의하는 경우, <br>
+                  Name 속성을 기입할 필요가 있다. <br>
+                  &lt;Service> 는 &lt;Engine> 과 하나 이상의 &lt;Connector>와 관련 짓는 것이 가능하다. &lt;Service>와 &lt;Enging>의 관계는 1:1 <br>
+                </li><br>
+                <li>
+                  3.	Engine 엘리먼트 <br>
+                  &lt;Engine>은 servlet 컨테이너의 인스턴스를 표시하며,  &lt;Connector>로부터 보내진 요구를 처리한다.  &lt;Engine name=”Catalina” defaultHost=”localhost” >
+                  Name :  &lt;Engine>의 이름을 표시하며, 에러 로그 및 관리 툴은 이 이름으로  &lt;Engine>을 식별한다.
+                  Defaulthost : server.xml에 정의되어 있지 않은  &lt;Host>에 요구가 있을 경우 발송되는 가상호스트를 지정한다.  &lt;Engine>에는 하나 이상의  &lt;Host>가 관련 지어져 있다.
+                </li><br>
+                <li>
+                  4.	Connector 엘리먼트 <br>
+                  요구를 &lt;Engine>에 건네 주는 역할을 하는 것이 &lt;Connector>다. &lt;Serviced>는 하나 이상의 &lt;Connector>를 가질 필요 있다. <br> 
+                  사용자는 HTTP또는 HTTP/SSL 등 여러가지 방법으로 &lt;Engine>에 요구를 보낸다. 이것들의 접속 요건 처리는 &lt;Connector> 구성요소에 맡겨진다. <br>
+                  각 프로토콜에 복수의 &lt;Connector>를 갖는 것으로서 어떤 접속에서 요구가 보내져와도 &lt;Engine>이 동일하게 처리하고, 응답을 &lt;Connector>에 맡길 수 있다. <br>
+                  tomcat에는 몇 개의 표준 &lt;Connector>가 탑재되어 있으며, 기본 값은 HTTP1.1 &lt;Connector>와 AJP&lt;Connector>가 준비 되어 있다. <br>
+                </li><br>
+                <li>
+                  5.	DefaultContext <br>
+                  모든 &lt;Context> 공통의 정의부, 기본적으로 설정되어 있지 않다.
+                </li><br>
+                <li>
+                  6.	Realm 엘리먼트 <br>
+                  보안을 위해 role명과 사용자명, 비밀번호의 맵핑을 외부의 데이터베이스로부터 가져오는 장치다. <br>
+                   Tomcat은 UserDataBase, Memory, JNDI 등 몃개의 &lt;Realm>을 가지고 있다. <br>
+                  각 Realm의 차이는 어디로부터 정보를 가져왔는가의 차이밖에 없다. 기본값으로는 UserDataBase 이외의 Realm 은 주석 처리되어 무효로 되어 있다.
+                </li><br>
+                <li>
+                  7.	Logger 엘리먼트 <br>
+                  로그 파일으 작성 방법을 설정한다. &lt;Logger>는 server.xml 구조에서 보듯이 &lt;Engine>레벨에서 설정할 수 있다. <br>
+                  &lt;Logger className=”org.apache.catalina.logger.FileLogger”  <br>
+                          Prefix=”sever-log.” Suffix=”.txt”<br>
+                          timestamp=”true” ><br>
+                  위의 예는 tomcat의 FileLogger클래스를 사용. Prefix, suffix, timestamp 속성에서 로그 파일명을 정의하고 있다. <br> 
+                   이 경우, 로그 파일은 [Sever-log.2008_08.txt] 과 같은 형식으로 $CATALINA_HOME/log 디렉토리에 출력된다.<br>
+                </li><br>
+                <li>
+                  8.	Host 엘리먼트 <br>
+                  &lt;Engine>에 관련된 가상 호스트를 정의한다. 기본값으로 다음과 같이 되어 있다. <br>
+                  &lt;Host name-“localhost” appBase=”webapps” unpackWARs=”true” xmlValidation=”false” xmlNamespaceAware=”false” > <br>
+                  가상 호스트 명을 “localhost”로 설정하고 appBase 속성에서 어플리케이션이 탑재되어 있는 디렉토리를 “webapps”로 설정하고 있다. <br> 
+                  별도로 unpackWARs에서는 WAR 파일을 전개하고 나서 실행할 것인지의 여부를 autoDeploy 속성을 tomcat이 기동 중에 웹 어플리케이션을 배치한 경우에 자동으로 읽어드릴 것인지의 여부를 설정할 수 있다. <br>
+                </li><br>
+                <li>
+                  9.	Value 엘리먼트 <br>
+                  Tomcat의 특유 기능이다. &lt;Value>는 상위 구성요소로의 필터 처리를 담당한다. <br>
+                  &lt;Enging>, &lt;Host>, &lt;Context> 와 관련 짓는 것이 가능하다. <br>
+                  또, Tomcat에는 표준으로 다음과 같은 몇 개의 &lt;Value>가 준비되어 있다. <br>
+                </li>
+              </ul>  
+              <hr>
+              <strong>Catalina 설정</strong>
+              <hr>
+              톰캣의 catalina.sh 파일에는 다양한 설정이 존재한다. catalina.sh 파일에는 자바 옵션 설정 및 톰캣 로그 경로 등 각종 설정을 저장할 수 있다. 이 때문에 설정 변경시 실수가 발생할 가능성이 높다. 
+              만약 톰캣 버전이 업그레이드 되거나 서버 이전이 되는 경우 설정된 옵션을 반영하기 위해 조심히 추출 해야한다. 그래서 추가 옵션을 설정하는 또다른 방법으로 bin 디렉토리 하위의 setenv.sh 파일을 생성하고 
+              추가 커스텀 옵션을 설정할 수 있다. 
+              <pre>
+                <code class="shell" >
+# 아래와 같이 catalina.sh이 실행될 때 setenv.sh 파일의 옵션을 등록하게 된다.
+
+# Ensure that any user defined CLASSPATH variables are not used on startup,
+# but allow them to be specified in setenv.sh, in rare case when it is needed.
+
+CLASSPATH=
+
+if [ -r "$CATALINA_BASE/bin/setenv.sh" ]; then
+
+  . "$CATALINA_BASE/bin/setenv.sh"
+
+elif [ -r "$CATALINA_HOME/bin/setenv.sh" ]; then
+
+  . "$CATALINA_HOME/bin/setenv.sh"
+
+fi
+
+
+출처: https://lucaskim.tistory.com/37 [Lucas Kim]
+                </code>
+              </pre>
+              setenv.sh 파일에 설정하는 기본적인 옵션들 <br>
+              <pre>
+                <code class="shell" >
+JAVA_OPTS=$JAVA_OPTS" -Dfile.encoding=UTF-8 -server -Xms1024m -Xmx1024m -XX:NewSize=384m -XX:MaxNewSize=384m -XX:PermSize=128m -XX:MaxPermSize=128m" 
+JAVA_OPTS=$JAVA_OPTS" -XX:-HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=$CATALINA_HOME/logs" 
+JAVA_OPTS=$JAVA_OPTS" -XX:ParallelGCThreads=2 -XX:-UseConcMarkSweepGC" 
+JAVA_OPTS=$JAVA_OPTS" -XX:-PrintGC -XX:-PrintGCDetails -XX:-PrintGCTimeStamps -XX:-TraceClassUnloading -XX:-TraceClassLoading" 
+JMX_OPTS=" -Dcom.sun.management.jmxremote \ 
+           -Dcom.sun.management.jmxremote.authenticate=false \ 
+           -Djava.rmi.server.hostname=${HOSTNAME} \ 
+           -Dcom.sun.management.jmxremote.ssl=false " 
+CATALINA_OPTS=" ${JMX_OPTS} ${CATALINA_OPTS}"
+
+출처: https://lucaskim.tistory.com/37 [Lucas Kim]
+                </code>
+              </pre>
+              <ul>
+                <li>CATALINA_OPTS : start, run, debug 명령어 구동시 사용되는 자바 런타임 옵션에 해당한다. 톰캣 자체에서만 사용되는 옵션들만 포함되며 중지 프로세스, 버전 명령 등으로는 사용해서는 안된다.  </li>
+                <li>JAVA_OPTS : 명령이 실행될 때 사용되는 자바 런타임 옵션이다. 톰캣에 의해서 사용가능하고 중비 프로세스, 버전 명령에도 사용된다. </li>
+              </ul>
+            </div>
+            <div class="card-footer small text-muted"></div>
+          </div>
+          <div class="card mb-3">
+            <div class="card-header">
+              Apache 
+            </div>
+            <div class="card-body">
+              인터넷상에서 우리는 보통 www이라고 치면서 접속한다. www이라고 치면서 들어갈 때 우리는 특별한 프로토콜을 이용하게 되는데 그 프로토콜이 HTTP이다. 
+              이 HTTP프로토콜을 리눅스(유닉스)에서는 보통 httpd라는 데몬으로 서비스하며, 보통 우리는 Webserver라고 부른다. 
+              이러한 Webserver중에서 가장 대표적인 것이 Apache이다.
+              <hr>
+              아래의 아파치 예제는 아파치 2.2 버전을 기준으로 설명되었으며, 아파치 2.4의 경우에는 경로 및 설정 파일 명칭 등이 모두 변경되었다. 또한 
+              설정 파일의 세팅 위치 또한 서버 관리자의 설정 및 설치 위치에 따라서 달라질 수 있는 점을 참고하며, 아래는 일반적인 경우에 대해서 설명한다. 
+              <hr>
+              apache 연관 파일 ( http 기준 ) <br>
+              <ul>
+                <li>httpd.conf</li>
+                <li>workers.properties</li>
+              </ul>
+              <hr>
+               http 아파치 설정 파일 ( 아래 ) <br>
+              <hr>
+              /etc/httpd/conf/ <br>
+              <img src="./conf.png" class="img-thumbnail"  alt="" srcset="">
+              <hr>
+              https 아파치 설정 파일 ( 아래 )
+              <hr>
+              /etc/httpd/conf.d/ <br>
+              <img src="./sslconf.png" class="img-thumbnail" alt="">
+              <hr>
+              <a href="http://attiadmin.guyweb.co.kr/server/apache.html" target="_blank" rel="noopener noreferrer">아파치 1.3 기준 상세 설명</a>
+            </div>
+            <div class="card-footer small text-muted"></div>
+          </div>
+          
+        <!-- /.container-fluid -->
+
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright © 1Lines Labs 2019</span>
+            </div>
+          </div>
+        </footer>
+
+      </div>
+      <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Page level plugin JavaScript-->
+    <script src="../vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="../js/sb-admin.min.js"></script>
+
+    <!-- Demo scripts for this page-->
+    <script src="../js/demo/chart-area-demo.js"></script>
+    <script src="../js/demo/chart-bar-demo.js"></script>
+    <script src="../js/demo/chart-pie-demo.js"></script>
+
+  </body>
+
+</html>
