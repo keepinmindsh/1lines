@@ -66,6 +66,7 @@
             <h6 class="dropdown-header">리눅스 기본</h6>
             <a class="dropdown-item" href="../linux/linux_001.html">리눅스 기본</a>
             <a class="dropdown-item" href="../linux/linux_002.html">리눅스 응용</a>
+            <a class="dropdown-item" href="../linux/linux_003.html">서버 접속하기</a>
             
           </div>
         </li>
@@ -87,6 +88,45 @@
               리눅스 응용 
             </div>
             <div class="card-body">
+              <strong>리눅스의 Root</strong>
+              <hr>
+                리눅스 시스템에서 루트(root)라고 얘기하면 root 사용자 계정과, root 디렉터리 중 하나를 의미한다.
+              <br>
+              - 리눅스 시스템은 사용자(user) 중심의 시스템이다. 따라서 리눅스 시스템을 사용하기 위해서는 사용자 계정이 있어야 한다.
+              <br>
+              - 사용자 계정은 두 가지로 나눌 수 있다.
+              <br>
+              ◈ 시스템 관리를 위한 관리자 계정(수퍼 유저 : Super User)  <br>
+              ◈ 일반 사용자 계정 
+              <hr>
+
+              <ul>
+                <li>리눅스 및 유닉스에서는 모든 권한을 가진 최고관리자 계정이 root이다.</li>
+                <li>root는 리눅스 시스템에서 시스템 관리자로서의 역할을 수행하기 위한 사용자 계정으로서 리눅스 시스템을 운영하기 위한 모든 권한을 가지며 수퍼유저라고 지칭하기도 한다.</li>
+                <li>리눅스 파일체제이 최상위 디렉토리를 루트(/)라고 한다. 이것은 리눅스의 모든 디렉토리들의 시작점이다. 즉 모든 디렉토리들을 절대 경로로 표기할 때에 이 디렉토리부터 시작한다. (/root는 root 사용자의 홈 디렉토리를 의미한다. )</li>
+              </ul>
+              <hr>
+              <strong>리눅스 디렉토리</strong> 
+              <hr>
+                <ul>
+                  <li>/ : 최상위 경로</li>
+                  <li>/bin : 기본 명령어 위치, CentOS 7부터는 /usr/bing으로 심볼릭 링크 되어 있다.</li>
+                  <li>/boot : 커널 이미지, 부트로드 관련 파일 존재,별도의 파티션으로 할당을 권장하고 있다.</li>
+                  <li>/dev : 장치 파일이 저장된 디렉토리</li>
+                  <li>/etc : 설정관련 파일 및 디렉터리</li>
+                  <li>/lib : 라이브러리, CentOS 7부터는 /usr/lib으로 심볼릭 링크 되어 있다.</li>
+                  <li>/media : CD, DVD, USB 저장장치 마운트되는 곳이다.</li>
+                  <li>/opt : 추가적인 소프트웨어 설치 디렉터리</li>
+                  <li>/sbin : 시스템 관리자를 위해 사용되는 명령어 등이 저장되는 디렉토리, CentOS 7부터는 /usr/sbin으로 심볼릭 링크되어 잇다.</li>
+                  <li>/srv : 시스템 서비스들</li>
+                  <li>/tmp : 임시 디렉터리</li>
+                  <li>/usr : 시스템이 아닌 일반 사용자가 사용하는 프로그램이 설치된 디렉터리</li>
+                  <li>/var : 시스템 운용중에 저장되는 자료</li>
+                  <li>/home : 사용자들의 홈 디렉터리</li>
+                  <li>/root : root 사용자의 홈 디렉터리</li>
+                  <li>/proc : 커널과 프로세스를 위한 가상 파일 시스템</li>
+                </ul>
+              <hr>
               <strong>VIM 편집기</strong>
               <pre>
                 <code class="shell" >
@@ -132,6 +172,33 @@ D 또는 X
                 </code>
               </pre>
               <hr>
+              <strong>sudoer 만들기</strong>
+              <pre>
+                <code class="shell" >
+[root@dataplatform10 ~]# chmod u+w /etc/sudoers
+[root@dataplatform10 ~]# ll /etc/sudoers
+-rw-r-----. 1 root root 3729 2015-12-08 21:43 /etc/sudoers
+[root@dataplatform10 ~]#
+
+#vim 편집기를 통해 sudoer 파일 수정 
+
+# 특정 사용자 또는 그룹에에 sudo 권한을 부여하는 경우 
+# user1 사용자에게 sudo 권한 
+user1    ALL=(ALL)       ALL
+ 
+# wheel 그룹의 모든 사용자에게 sudo 권한을 부여하는 경우
+%wheel        ALL=(ALL)       ALL
+
+# 패스워드 확인 없이 sudo 권한을 사용하고 싶은 경우 
+# 사용자의 경우
+user1        ALL=(ALL)       NOPASSWD: ALL
+
+# 그룹의 경우
+%wheel        ALL=(ALL)       NOPASSWD: ALL
+
+출처: https://sseungshin.tistory.com/82 [My Dev. story]
+                </code>
+              </pre>
               
             </div>
             <div class="card-footer small text-muted"></div>

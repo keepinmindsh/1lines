@@ -67,8 +67,8 @@
             <a class="dropdown-item" href="../java/java_007.html">Rules - Exception</a>
             <a class="dropdown-item" href="../java/java_008.html">Abstract, Interface</a>          
             <a class="dropdown-item" href="../java/java_009.html">Rules - Class, Inteface</a>
-            <a class="dropdown-item" href="../java/java_010.html"></a>
-            <a class="dropdown-item" href="../java/java_011.html"></a>
+            <a class="dropdown-item" href="../java/java_010.html">Classes/Lambda</a>
+            <a class="dropdown-item" href="../java/java_011.html">Annotations</a>
             <a class="dropdown-item" href="../java/java_012.html"></a>
             <a class="dropdown-item" href="../java/java_013.html"></a>
             <a class="dropdown-item" href="../java/java_014.html"></a>
@@ -88,7 +88,7 @@
             <a class="dropdown-item" href="../java/java_028.html"></a>
             <a class="dropdown-item" href="../java/java_029.html">Java 8</a>
             <a class="dropdown-item" href="../java/java_030.html">병렬 프로그래밍</a>
-            <a class="dropdown-item" href="../java/java_030.html">Transaction</a>
+            <a class="dropdown-item" href="../java/java_034.html">Transaction</a>
             <a class="dropdown-item" href="../java/java_031.html">스프링</a>
             <a class="dropdown-item" href="../java/java_032.html">알아두기</a>
             <a class="dropdown-item" href="../java/java_033.html">문제풀이</a>
@@ -382,6 +382,34 @@ public void executeWithSupplier(Supplier&lt;String> supplier);
   이는 좋은 방식은 아니다. 첫번째 안으로 고려하여 처리할 필요가 있다. 
 */
 }
+                          </code>
+                        </pre>
+                      </li>
+                      <li>
+                        <pre>
+                          <code class="java" >
+// statement 
+
+either
+  (parameters) -> expression            //1
+or
+  (parameters) -> { statements; }       //2
+or 
+  () -> expression                      //3
+
+// sample code 
+
+(int a, int b) ->    a * b               // takes two integers and returns their multiplication
+ 
+(a, b)          ->   a - b               // takes two numbers and returns their difference
+ 
+() -> 99                                 // takes no values and returns 99
+ 
+(String a) -> System.out.println(a)      // takes a string, prints its value to the console, and returns nothing 
+ 
+a -> 2 * a                               // takes a number and returns the result of doubling it
+ 
+c -> { //some complex statements }       // takes a collection and do some procesing
                           </code>
                         </pre>
                       </li>
