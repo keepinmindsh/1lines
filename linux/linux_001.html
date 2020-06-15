@@ -366,7 +366,29 @@ netstat -anp | grep LISTEN | grep :80
 cat /etc/*release*
                 </code>
               </pre>
-            
+              <strong>방화벽 설정 ( iptables )</strong>
+              <pre>
+                <code class="shell">                  
+iptables -A INPUT -s [발신지] --sport [발신지 포트] -d [목적지] --dport [목적지 포트] -j [정책]
+iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+iptables -A OUTPUT -p tcp --dport 80 -j ACCEPT
+iptables --list
+
+1) 기본정책을 ACCEPT로 설정하는 법 :
+  # iptables -P INPUT ACCEPT
+  # iptables -P OUTPUT ACCEPT
+  # iptables -P FORWARD ACCEPT
+2) 현재 자신의 방화벽 규칙을 볼 수 있는 명령 :
+  # iptables --list 또는 iptables -L
+3) 규칙 추가 후에 저장하기 :
+  # service iptables save  
+      -> /etc/sysconfig/iptables 에 저장됨
+
+Chain INPUT : 서버로 들어오는 기본 정책
+Chain FORWARD : 서버에서 forwarding 기본 정책
+Chain OUTPUT : 서버에서 나가는 기본 정책                  
+                </code>
+              </pre>
               
             </div>
             <div class="card-footer small text-muted"></div>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>1lines - Linux</title>
+
+    <!-- Bootstrap core CSS-->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template-->
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Page level plugin CSS-->
+    <link href="../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="../css/sb-admin.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../styles/default.css">
+    <script src="../highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+  </head>
+
+  <body id="page-top">
+
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+
+      <a class="navbar-brand mr-1" href="../index.html">1 Lines</a>
+
+      <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Navbar Search -->
+      
+
+      <!-- Navbar -->
+      
+
+    </nav>
+
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <ul class="sidebar navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="../index.html">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>요약</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>목록</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header">리눅스 기본</h6>
+            <a class="dropdown-item" href="../linux/linux_001.html">리눅스 기본</a>
+            <a class="dropdown-item" href="../linux/linux_002.html">리눅스 응용</a>
+            
+          </div>
+        </li>
+      </ul>
+
+      <div id="content-wrapper">
+        <div class="container-fluid">
+          <!-- Breadcrumbs-->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active"></li>
+          </ol>
+
+          <!-- Area Chart Example-->
+          <div class="card mb-3">
+            <div class="card-header">
+              리눅스 응용 
+            </div>
+            <div class="card-body">
+              <strong>VIM 편집기</strong>
+              <pre>
+                <code class="shell" >
+#파일 생성하기 / 파일 열기
+
+dream$ vi text.txt
+
+# 현재 커서의 위치부터 입력 : i 
+# 현재 커서의 위치 다음 칸 부터 입력 : a 
+# 현재 커서의 다음 줄에 입력 : o 
+# 현재 커서 위치의 한 글자를 지우고 입력 : s 
+
+# 현재 커서 줄의 맨 앞에서부터 입력 : I 
+# 현재 커서 줄의 맨 마지막 부터 입력 : A 
+# 현재 커서의 이전 줄에 입력 : O 
+# 현재 커서의 한 줄을 지우고 입력 : S
+
+# 줄의 첫문자로 이동 : ^
+# 줄의 맨 끝으로 이동 : $
+# 첫번째 열로 이동 : 0
+# 제일 끝 행으로 이동 : G
+# 제일 첫 행으로 이동 : gg 
+# n 번째 행으로 이동 : nG
+# 해당 숫자의 행으로 이동 : :숫자 + Enter
+# 화면의 첫 줄로 이동 : H 
+# 화면의 중간으로 이동 : M 
+# 화면의 끝 줄로 이동 : L 
+
+#문자열 바꾸기(치환)
+
+* 현재 문서를 편집중이라면, 키보드의 Esc 키를 눌러 편집모드에서 빠져나옵니다.
+* 콜론(:)을 누르고 %s/foo/bar 라고 하면 모든 foo라는 문자열이 bar로 한꺼번에 치환됩니다.
+다음과 같이 c 라는 옵션을 붙이면
+:%s/foo/bar/c
+  바꿀 때마다 바꾸어도 좋은지 물어보기에 더 안전합니다. y를 누르면 바꾸고, n을 누르면 다음으로 건너뛰고, a를 누르면 모두 바꿉니다.
+:%s/&lt;foo>/bar
+
+블록 선택 삭제
+Ctrl + V
+
+블록 선택 
+D 또는 X
+                </code>
+              </pre>
+              <hr>
+              
+            </div>
+            <div class="card-footer small text-muted"></div>
+          </div>
+        <!-- /.container-fluid -->
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright © 1Lines Labs 2019</span>
+            </div>
+          </div>
+        </footer>
+
+      </div>
+      <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Page level plugin JavaScript-->
+    <script src="../vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="../js/sb-admin.min.js"></script>
+
+    <!-- Demo scripts for this page-->
+    <script src="../js/demo/chart-area-demo.js"></script>
+    <script src="../js/demo/chart-bar-demo.js"></script>
+    <script src="../js/demo/chart-pie-demo.js"></script>
+
+  </body>
+
+</html>
