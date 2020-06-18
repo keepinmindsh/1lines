@@ -346,13 +346,43 @@ public class FunctionalInterfaceList {
                 <div class="card-header" id="heading17">
                   <h2 class="mb-0">
                     <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse17" aria-expanded="true" aria-controls="collapse17">
-                        Lambda Express 사용시 유의 사항
+                        Lambda Expression 사용시 유의 사항
                     </button>
                   </h2>
                 </div>
                 <div id="collapse17" class="collapse" aria-labelledby="heading17" data-parent="#accordionExample">
                   <div class="card-body">
                     <ul class="list-group">
+                      <li class="list-group-item">
+                        <strong>기본 사용 방법</strong> 
+                        <hr>
+                        <pre>
+                          <code class="java" >
+// statement 
+
+either
+  (parameters) -> expression            //1
+or
+  (parameters) -> { statements; }       //2
+or 
+  () -> expression                      //3
+
+// sample code 
+
+(int a, int b) ->    a * b               // takes two integers and returns their multiplication
+ 
+(a, b)          ->   a - b               // takes two numbers and returns their difference
+ 
+() -> 99                                 // takes no values and returns 99
+ 
+(String a) -> System.out.println(a)      // takes a string, prints its value to the console, and returns nothing 
+ 
+a -> 2 * a                               // takes a number and returns the result of doubling it
+ 
+c -> { //some complex statements }       // takes a collection and do some procesing
+                          </code>
+                        </pre>
+                      </li>
                       <li class="list-group-item">
                         Functional Interface에 대해서 너무 많은 Default 메소드를 사용하지 말 것 
                         <pre>
@@ -385,34 +415,7 @@ public void executeWithSupplier(Supplier&lt;String> supplier);
                           </code>
                         </pre>
                       </li>
-                      <li>
-                        <pre>
-                          <code class="java" >
-// statement 
-
-either
-  (parameters) -> expression            //1
-or
-  (parameters) -> { statements; }       //2
-or 
-  () -> expression                      //3
-
-// sample code 
-
-(int a, int b) ->    a * b               // takes two integers and returns their multiplication
- 
-(a, b)          ->   a - b               // takes two numbers and returns their difference
- 
-() -> 99                                 // takes no values and returns 99
- 
-(String a) -> System.out.println(a)      // takes a string, prints its value to the console, and returns nothing 
- 
-a -> 2 * a                               // takes a number and returns the result of doubling it
- 
-c -> { //some complex statements }       // takes a collection and do some procesing
-                          </code>
-                        </pre>
-                      </li>
+                     
                       <li class="list-group-item">
                         가능하면 코드 블록 {} 을 사용하지 않을 수 있도록 긴 코드를 사용하지말고 별도의 함수를 선언하여 이를 람다식에 적용하라. <br>
                         하지만 2~3줄 짜리의 람다식에 대해서이를 함수로 빼내는 것이 옳은 일인지도 판단해야한다. 
