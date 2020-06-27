@@ -215,33 +215,127 @@
                 <a href="#" class="list-group-item list-group-item-action">
                   <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">
+                      Replace Type Code wit Class
                     </h5>
                   </div>
                   <p class="mb-1">
+                      어떤 필드 타입이 부적합한 값의 대입이나 유효하지 않은 동일성 검사(비교)를 방지하지 못한다면, 필드의 타입을 클래스로 바꿔 값의 대입과 동일성 검사에 제약 조건을 부여한다. 
                   </p>
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">
                   <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">
+                      Replace State-Altering Conditional with State
                     </h5>
                   </div>
                   <p class="mb-1">
+                      어떤 객체의 상태 전이를 제어하는 조건 로직이 복잡하다면, 각 상태에 해당하는 스테이브 클래스를 하나씩 만들고 그들이 스스로 다른 상태로 전이하는 것을 책임지도록하는 복잡한 조건 로직을 제거한다. 
                   </p>
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">
                   <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">
+                      Introduce Null Object
                     </h5>
                   </div>
                   <p class="mb-1">
+                      어떤 필드나 변수의 값이 널인지 검사하는 로직이 코드의 여기 저기 중복되어 있다면, 값이 널인 경우에 행할 작업을 대신하는 널 객체를 사용하도록 수정한다. 
                   </p>
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">
                   <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">
+                      Inline Singleton
                     </h5>
                   </div>
                   <p class="mb-1">
+                    코드의 여러곳에서 접근할 수 있어야 하지만 전역적일 필요 까지는 없는 객체가 싱글턴으로 구현되어 있다면, 싱글턴 객체를 저장하고 그에 대한 접근 경로를 제공하는 클래스로 싱글턴의 기능을 옮긴다. 그리고 싱글턴은 제거한다. 
+                  </p>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">
+                      Limit Instantiation with Singleton
+                    </h5>
+                  </div>
+                  <p class="mb-1">
+                    어떤 클래스의 인스턴스를 여러 개 생성해 사용하고 있는데, 그로 인해 메모리 사용량이 너무 커지거나 시스템 성능이 저하된다면, 여러개의 객체를 하나의 싱글턴 객체로 대체한다. 
+                  </p>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">
+                      Replace Hard-Coded Notifications with Observer
+                    </h5>
+                  </div>
+                  <p class="mb-1">
+                    어떤 상속 구조 내의 서브클래스들이 자신과 관련된 클래스에 통보하는 기능을 하드 코딩으로 각자 구현하고 있다면, 
+                    Observer 인터페이스를 통해 그 수퍼 클래스가 임의의 다른 클래스에 통보할 수 있도록 일반적인 통보 기능을 만들고 서브 클래스는 제거한다. 
+                  </p>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">
+                      Move Embellishment to Decorator
+                    </h5>
+                  </div>
+                  <p class="mb-1">
+                    어떤 클래스에서 핵심 기능을 위한 코드와 꾸밈 코드가 뒤섞여 있으면, 꾸밈 코드를 데코레이터로 옮긴다. 
+                  </p>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">
+                      Unify Interfaces
+                    </h5>
+                  </div>
+                  <p class="mb-1">
+                    수퍼클래스(또는 인터페이스)가 서브 클래스와 동일한 인터페이스를 가질 필요가 있다면, 
+                    서브 클래스에서 수퍼클래스에 없는 모든 public 메서드를 찾아 이를 수퍼 클래스에 추가한다. 이때 메서드 몸체는 비워놓아 아무 일도 하지 않도록 만든다. 
+                  </p>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">
+                      Extract Parameter
+                    </h5>
+                  </div>
+                  <p class="mb-1">
+                    메서드나 생성자 내에서 생성한 값을 필드에 저장하고 있다면,
+                    대입문의 우변을 새 파라미터로 대체해 클라이언트가 그 값을 저장할 수 있도록 한다. 
+                  </p>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">
+                      Move Creation Knowlege to Factory
+                    </h5>
+                  </div>
+                  <p class="mb-1">
+                    어떤 클래스에 인스턴스를 생성하는데 사용되는 데이터와 코드가 여러 클래스에 퍼져있다면 , 
+                    그 생성  지식을 하나의 팩터리 클래스로 옮긴다. 
+                  </p>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">
+                      Move Accumulation to Visitor 
+                    </h5>
+                  </div>
+                  <p class="mb-1">
+                    어떤 메서드가 이질적인 여러 클래스들로 부터 정보를 언더 축적하고 있다면,
+                    각 클래스를 방문해 정보를 축적하는 방문자 객체로 축적 기능을 옮긴다. 
+                  </p>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">
+                      Replace Implicit Language with Interpreter
+                    </h5>
+                  </div>
+                  <p class="mb-1">
+                    한 클래스 내의 여러 메서드에서 일종의 묵시적 언어를 이루는 요소들을 조합하고 있다면, 
+                    그 묵시적 언어의 요소들을 각각의 클래스로 정의하고 그 객체의 조합을 해석 가능한 수식을 만들어 낼 수 있도록 한다. 
                   </p>
                 </a>
               </div>
