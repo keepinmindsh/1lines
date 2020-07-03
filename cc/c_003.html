@@ -3007,6 +3007,7 @@ int main(void){
                       <hr>
                       이진 트리를 순회하는 표준적인 방법에는 전위, 중위, 후위의 3가지 방법이 있다. 루트 방문하는 작업을 V라고 하고 왼쪽 서브 트리 방문을 L, 오른쪽 서브트리 방문을 R이라고 하면 다음 과 같이 3가지 방법을 생각할 수 있다. 
                       즉 루트를 서브 트리에 앞서서 먼저 방문하면 전위순회, 루트를 왼쪽과 오른쪽 서브트리 중간에 방문하면 중위순회, 루트를 서브 트리 방문 후에 방문하면 후위 순회가 된다. 
+                      <hr>
                       <ul>
                         <li>전위 순회 : VLR 
                           <ul>
@@ -3615,6 +3616,166 @@ int main(void){
 }
                         </code>
                       </pre>
+                      <strong>이진 탐색 트리 분석</strong> <br>
+                      이진 탐색 트리에서의 탐색, 삽입, 삭제 연산의 시간 복잡도는 트리의 높이를 h라고 했을 때 O(h)가 된다, 따라서 n 개의 노드를 가지는 이진 탐색 트리의 경우, 
+                      일반적인 이진 트리의 높이는 [log2n] 이므로 이진 탐색 트리 연산의 평균적인 경우 시간 복잡도는 O(log2h)이다. 
+                      <br>
+                      <strong>사례 개발 : 이진 탐색 트리를 이용한 영어 사전 프로그램</strong>
+                      <pre>
+                        <code class="C" >
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+#include &lt;string.h>
+#include &lt;memory.h>
+
+#defined MAX_WORD_SIZE  100
+#defined MAX_MEANING_SIZE 200
+
+typedef struct {
+  char word[MAX_WORD_SIZE];
+  char meaning[MAX_MEANING_SIZE];
+} element;
+
+typedef struct TreeNode {
+  element key;
+  TreeNode *left, *right;
+} TreeNode;
+
+// 만약 e1 &lt; e2 이면 -1 반환 
+// 만약 e1 == e2 이면 0 반환
+// 만약 e1 > e2 이면 1 반환 
+int compare(element e1, element e2){
+  return strcmp(e1.word, e2.word);
+}
+
+// 이진 탐색 트리 출력 함수 
+void display(TreeNode *p){
+  if( p != NULL){
+    printf("(");
+    display( p -> left );
+    printf("%s:%s", p -> key.word , p -> key.meaning );
+    display(p -> right);
+    printf(")");
+  }
+}
+
+// 이진 탐색 트리 탐색 함수  
+TreeNode *search(TreeNode *root, element key) {
+  TreeNode *p = root;
+
+  while ( p != NULL ) {
+    if( compare(key, p -> key ) == 0 )
+      return p;
+    else if (compare(key, p -> key ) &lt; 0)
+      p = p -> left;
+    else if (compare(key, p -> key ) > 0 )
+      p = p -> right;
+  }
+  return p;
+}
+
+TreeNode *new_node(element item){
+  TreeNode *temp = (TreeNode*)malloc(sizeof(TreeNode));
+  temp -> key = item;
+  temp -> left = temp -> right = NULL;
+  return temp;
+}
+
+TreeNode *insert_node(TreeNode *node, element key){
+  if( node == NULL ) return new_node(key);
+
+  if ( compare(key, node -> key) &lt; 0 ){
+    node -> left = insert_node(node -> left, key);
+  } else {
+    node -> right = insert_node(node -> right, key);
+  }
+
+  return node;
+}
+
+TreeNode *min_value_node(TreeNode *node){
+  TreeNode *current = node;
+  while ( current -> right != NULL )
+    current = current -> left;
+  return current;
+}
+
+TreeNode *delete_node(TreeNode *root, element key){
+  if( root == NULL ) return root;
+  // 만약 키가 루트보다 작으면 왼쪽 서브 트리에 있는 것임 
+  if ( compare(key, root -> key ) &lt; 0 )
+    root -> left = delete_node(root -> left, key);
+  // 만약 키가 루트보다 크면 오른쪽 서브 트리에 있는 것임 
+  if ( compare(key, root -> key) > 0 )
+    root -> right = delete_node(root -> right, key);
+  // 키가 루트와 같으면 이 노드를 삭제하면 됨 
+  else {
+    // 첫 번째나 두 번재 경우
+    if( root -> elft == NULL) {
+      TreeNode *temp = root -> right;
+      free(root);
+      return temp;
+    }else if(root -> right == NULL){
+      TreeNode *temp = root -> left;
+      free(root);
+      return temp;
+    } 
+    //새번째 경우 
+
+    TreeNode *temp = min_value_node(root -> right);
+
+    root -> key = temp -> key;
+
+    root -> right = delete_node(root -> right, temp -> key);
+  }
+  return root
+}
+
+void help() {
+  printf("\n**** i: 입력, d:삭제, s: 탐색, p: 출력, q: 종료 ****: ")
+}
+
+int main(void){
+  char command;
+  element e;
+  TreeNode *root = NULL;
+  TreeNode *tmp;
+
+  do {
+    help();
+    command = getchar();
+    getchar();
+    switch(command){
+      case 'i' :
+        printf("단어 : ");
+        gets(e.word);
+        printf("의미 : ");
+        gets(e.meaning);
+        root = insert_node(root, e);
+        break;
+      case 'd' :
+        printf("단어 : ");
+        gets(e.word);
+        root = delete_node(root, e);
+        break; 
+      case 'p' :
+        display(root);
+        printf("\n");
+        break;
+      case 's' :
+        printf("단어:");
+        gets(e.word);
+        tmp = search(root, e);
+        if ( tmp != NULL ){
+          printf("의미:%s\n", e.meaning);
+        }
+        break;
+    }
+  } while ( command != 'q' );
+  return 0;
+}
+                        </code>
+                      </pre>
 
                     </div>
                   </div>
@@ -3623,13 +3784,47 @@ int main(void){
                   <div class="card-header" id="heading17">
                     <h2 class="mb-0">
                       <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse17" aria-expanded="false" aria-controls="collapse17">
-                        
+                        우선순위 큐 
                       </button>
                     </h2>
                   </div>
                   <div id="collapse17" class="collapse" aria-labelledby="heading17" data-parent="#accordionExample">
                     <div class="card-body">
-                      
+                      우선 순위 큐는 우선 순위의 개념을 큐에 도입한 자료구조 이다. 보통의 큐는 선입 선출의 원칙에 의하여 먼저 들어온 데이터가 먼저 나가게 된다. 
+                      그러나 우선 순위 큐에선는 데이터들이 우선 순위를 가지고 있고 우선 순위가 높은 데이터가 먼저 나가게 된다. 
+                      <hr>
+                      <pre>
+                        <code class="C" >  
+객체 : n개의 element 형의 우선 순위를 가진 요소들의 모임 
+연산 :
+    create() ::= 우선 순위 큐를 생성한다. 
+    init(q) ::= 우선 순위 큐 q를 초기화한다. 
+    is_empty(q) ::= 우선 순위 큐 q가 비어있는지를 검사한다. 
+    is_full(q) ::= 우선 순위 큐 q가 가득 찼는가를 검사한다. 
+    insert(q, x) ::= 우선 순위 큐 q에 요소 x를 추가한다. 
+    delete(q) ::= 우선 순위 큐로부터 가장 우선순위가 높으면 높은 요소를 삭제하고 이 요소를 반환한다. 
+    find(q) ::= 우선 순위가 가장 높은 요소를 반환한다.                           
+                        </code>
+                      </pre>
+                      <hr>
+                      <strong>우선 순위 큐의 구현 방법</strong>
+                      <ul>
+                        <li>
+                          배열 활용 <br>
+                          정렬이 되었냐 안되었느냐에 따라서 시간 복잡도가 차이가 발생한다. 
+                          삽입의 경우에는 제일 마지막 위치에 넣으면 되기 때문에 문제가 되지 않지만 삭제를 해야하는 경우에는 시간복잡도가 O(n)으로 증가한다. 
+                          정렬이 되어 있는 배열의 경우 순차 탐색이나 이진 탐색 과 같은 방법을 이용할 수 있다. 
+
+                        </li>
+                        <li>
+                          연결 리스트 활용 <br>
+                          삽입시 배열과 달리 다른 노트
+
+                        </li>
+                        <li>히프 활용
+
+                        </li>
+                      </ul>
                     </div>
                   </div>
                 </div>
