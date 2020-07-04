@@ -250,6 +250,113 @@ public class Medic implements Unit {
                   </div>
                   <p class="mb-1">
                     중복된 코드를 갖는 생성자가 여러 개 있다면, 중복을 최소화하기 위해 생성자들이 서로 호출하게 한다.
+                    <pre>
+                      <code class="java" >
+package pattern.sample.patternuse02;
+
+import pattern.sample.patternuse02.building.inf.Constructor;
+import pattern.sample.patternuse02.code.BuildType;
+import pattern.sample.patternuse02.unit.creator.SCV;
+
+public class BattleGround {
+    public static void main(String[] args) {
+
+        Constructor barrack1 = SCV.createBuilding(BuildType.BARRACK, 150, 0);
+
+        Constructor factory1 = SCV.createBuilding(BuildType.FACTORY, 150, 150);
+
+        barrack1.createBuilding();
+        factory1.createBuilding();
+    }
+}
+
+package pattern.sample.patternuse02.code;
+
+public enum BuildType {
+    BARRACK,
+    FACTORY
+}
+                        
+package pattern.sample.patternuse02.unit.creator;
+
+import pattern.sample.patternuse02.building.Barrack;
+import pattern.sample.patternuse02.building.constructor.BuildingConstructor;
+import pattern.sample.patternuse02.building.Factory;
+import pattern.sample.patternuse02.code.BuildType;
+
+public class SCV {
+    public static BuildingConstructor createBuilding(BuildType buildType, int mineral, int gas){
+        switch (buildType){
+            case BARRACK:
+                return new BuildingConstructor(mineral, gas, new Barrack());
+            case FACTORY:
+                return new BuildingConstructor(mineral, gas, new Factory());
+            default:
+                return null;
+        }
+    }
+}
+
+package pattern.sample.patternuse02.building.constructor;
+
+import lombok.RequiredArgsConstructor;
+import pattern.sample.patternuse02.building.inf.Building;
+import pattern.sample.patternuse02.building.inf.Constructor;
+
+@RequiredArgsConstructor
+public class BuildingConstructor implements Constructor {
+
+    private final int mineral;
+    private final int gas;
+    private final Building building;
+
+    public Building createBuilding(){
+        return building;
+    }
+}
+
+package pattern.sample.patternuse02.building;
+
+import pattern.sample.patternuse02.ability.Heal;
+import pattern.sample.patternuse02.ability.Shot;
+import pattern.sample.patternuse02.building.inf.Building;
+import pattern.sample.patternuse02.code.UnitType;
+import pattern.sample.patternuse02.unit.Marine;
+import pattern.sample.patternuse02.unit.Medic;
+import pattern.sample.patternuse02.unit.NotUnit;
+import pattern.sample.patternuse02.unit.inf.Unit;
+
+public class Barrack implements Building {
+
+    public Unit makeUnit(UnitType unitType){
+
+        switch (unitType){
+            case MARINE:
+                return new Marine(new Shot());
+            case MEDIC:
+                return new Medic(new Heal());
+            default:
+                return new NotUnit();
+        }
+    }
+}
+
+package pattern.sample.patternuse02.building;
+
+import pattern.sample.patternuse02.building.inf.Building;
+import pattern.sample.patternuse02.code.UnitType;
+import pattern.sample.patternuse02.unit.inf.Unit;
+
+public class Factory implements Building {
+    @Override
+    public Unit makeUnit(UnitType unitType) {
+        return null;
+    }
+}
+
+                        
+                      </code>
+                    </pre>
                   </p>
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">
