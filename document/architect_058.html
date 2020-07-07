@@ -368,6 +368,132 @@ public class Factory implements Building {
                   <p class="mb-1">
                     클라이언트가 한 패키지 내의, 공통 인터페이스를 가지는 클래스들의 인스턴스를 직접 생성하고 있다면, 
                     그 클래스의 생성자를 클라이언트가 직접 볼 수 없게 바꾸고 클라이언트는 팩터리 를 통해 그 인스턴스를 얻도록 한다. 
+                    <hr>
+                    <ul>
+                      <li>용도를 쉽게 알아볼 수 있는 생성 메서드를 제공하여, 클라이언트가 원하는 종류의 객체르리 쉽게 생성할 수 있도록 한다. </li>
+                      <li>공개될 필요가 없는 클래스들을 숨겨 패키지의 '개념적 무게'를 줄인다. </li>
+                      <li>클라이언트가 '구현에 대해서가 아니라, 인터페이스에 대해 프로그래밍' 하게 된다. </li>
+                      <li>새로운 종류의 객체가 필요할 경우에는 생성 메서드를 추갛거나 수정해야 한다. </li>
+                      <li>팩터리의 소스 코드가 아닌 바이너리만 배포할 경우에는 클라이언트가 쉽게 수정할 수 없게 된다. </li>
+                    </ul>
+                    <pre>
+                      <code class="java" >
+package pattern.sample.patternuse03;
+
+import pattern.sample.patternuse03.building.Barrack;
+import pattern.sample.patternuse03.operation.Armed;
+
+public class BattleGround {
+    public static void main(String[] args) {
+        Armed armedMarine = Barrack.forMarine();
+
+        Armed armedMedic = Barrack.forMedic();
+    }
+}
+
+package pattern.sample.patternuse03.building;
+
+import pattern.sample.patternuse03.equipment.AttackingGloves;
+import pattern.sample.patternuse03.equipment.CMCArmor;
+import pattern.sample.patternuse03.equipment.HealGloves;
+import pattern.sample.patternuse03.equipment.MedicArmor;
+import pattern.sample.patternuse03.operation.Armed;
+import pattern.sample.patternuse03.unit.Marine;
+import pattern.sample.patternuse03.unit.Medic;
+
+public class Barrack {
+
+    public static Armed forMarine(){
+        return new Armed(new Marine(new CMCArmor(), new AttackingGloves()));
+    }
+
+    public static Armed forMedic(){
+        return new Armed(new Medic(new MedicArmor(), new HealGloves()));
+    }
+}
+
+package pattern.sample.patternuse03.operation;
+
+import lombok.RequiredArgsConstructor;
+import pattern.sample.patternuse03.unit.inf.Unit;
+
+@RequiredArgsConstructor
+public class Armed {
+
+    private final Unit unit;
+}
+
+
+package pattern.sample.patternuse03.equipment.inf;
+
+public interface Armor {
+}
+
+package pattern.sample.patternuse03.equipment;
+
+import pattern.sample.patternuse03.equipment.inf.Armor;
+
+public class CMCArmor implements Armor {
+}
+
+package pattern.sample.patternuse03.equipment;
+
+import pattern.sample.patternuse03.equipment.inf.Armor;
+
+public class MedicArmor implements Armor {
+}
+
+package pattern.sample.patternuse03.equipment.inf;
+
+public interface Gloves {
+}
+
+package pattern.sample.patternuse03.equipment;
+
+import pattern.sample.patternuse03.equipment.inf.Gloves;
+
+public class AttackingGloves implements Gloves {
+}
+
+package pattern.sample.patternuse03.equipment;
+
+import pattern.sample.patternuse03.equipment.inf.Gloves;
+
+public class HealGloves implements Gloves {
+}
+
+package pattern.sample.patternuse03.unit.inf;
+
+public interface Unit {
+}
+
+package pattern.sample.patternuse03.unit;
+
+import lombok.RequiredArgsConstructor;
+import pattern.sample.patternuse03.equipment.inf.Armor;
+import pattern.sample.patternuse03.equipment.inf.Gloves;
+import pattern.sample.patternuse03.unit.inf.Unit;
+
+@RequiredArgsConstructor
+public class Marine implements Unit {
+    private final Armor armor;
+    private final Gloves gloves;
+}
+
+package pattern.sample.patternuse03.unit;
+
+import lombok.RequiredArgsConstructor;
+import pattern.sample.patternuse03.equipment.inf.Armor;
+import pattern.sample.patternuse03.equipment.inf.Gloves;
+import pattern.sample.patternuse03.unit.inf.Unit;
+
+@RequiredArgsConstructor
+public class Medic implements Unit {
+    private final Armor armor;
+    private final Gloves gloves;
+}
+                      </code>
+                    </pre>
                   </p>
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">
