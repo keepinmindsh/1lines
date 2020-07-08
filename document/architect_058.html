@@ -505,6 +505,159 @@ public class Medic implements Unit {
                   <p class="mb-1">
                     한 상속 구조 내의 클래스들이 어떤 메서드를 각자 구현하는데 객체 생성 단계만 제외하고 나머지가 서로 유사하다면, 
                     그 메서드를 수퍼 클래스로 옮기고 객체 생성은 팩터리 메서드에 맡기도록 한다. 
+                    <hr>
+                    <ul>
+                      <li>객체를 생성하는 과정에서의 코드 중복을 줄인다.</li>
+                      <li>객체를 생성하는 곳이 실제로는 어디고, 또 어떻게 오버라이드 하면 되는지 잘 드러난다. </li>
+                      <li>팩터리 메서드에서 인스턴스로 만들 클래스가 특정 타입을 구현하도록 강제할 수 있다. </li>
+                    </ul>
+                    <pre>
+                      <code class="java" >
+package pattern.sample.patternuse04;
+
+import pattern.sample.patternuse04.building.Barrack;
+import pattern.sample.patternuse04.code.UnitType;
+import pattern.sample.patternuse04.unit.inf.Unit;
+
+public class BattleGround {
+    public static void main(String[] args) {
+
+        Unit marine = Barrack.createUnit(UnitType.MARINE);
+        Unit medic = Barrack.createUnit(UnitType.MEDIC);
+        Unit firebat = Barrack.createUnit(UnitType.FIREBAT);
+
+        marine.action();
+        medic.action();
+        firebat.action();
+    }
+}
+
+package pattern.sample.patternuse04.building;
+
+import pattern.sample.patternuse04.code.UnitType;
+import pattern.sample.patternuse04.trainer.FireBatTrainer;
+import pattern.sample.patternuse04.trainer.MarineTrainer;
+import pattern.sample.patternuse04.trainer.MedicTrainer;
+import pattern.sample.patternuse04.trainer.factory.Trainer;
+import pattern.sample.patternuse04.unit.inf.Unit;
+
+public class Barrack {
+
+    public static Unit createUnit(UnitType unitType){
+
+        Trainer trainer;
+
+        switch (unitType){
+            case MARINE:
+                trainer = new MarineTrainer();
+            case MEDIC:
+                trainer = new MedicTrainer();
+            default:
+                trainer = new FireBatTrainer();
+        }
+
+        return trainer.createUnit();
+    }
+}
+
+package pattern.sample.patternuse04.code;
+
+public enum UnitType {
+    MARINE,
+    MEDIC,
+    FIREBAT
+}
+
+package pattern.sample.patternuse04.trainer.factory;
+
+import pattern.sample.patternuse04.unit.inf.Unit;
+
+public abstract class Trainer {
+
+    public abstract Unit createUnit();
+}
+
+package pattern.sample.patternuse04.trainer;
+
+import pattern.sample.patternuse04.trainer.factory.Trainer;
+import pattern.sample.patternuse04.unit.FireBat;
+import pattern.sample.patternuse04.unit.inf.Unit;
+
+public class FireBatTrainer extends Trainer {
+    @Override
+    public Unit createUnit() {
+        return new FireBat();
+    }
+}
+
+package pattern.sample.patternuse04.trainer;
+
+import pattern.sample.patternuse04.trainer.factory.Trainer;
+import pattern.sample.patternuse04.unit.Marine;
+import pattern.sample.patternuse04.unit.inf.Unit;
+
+public class MarineTrainer extends Trainer {
+    @Override
+    public Unit createUnit() {
+        return new Marine();
+    }
+}
+
+package pattern.sample.patternuse04.trainer;
+
+import pattern.sample.patternuse04.trainer.factory.Trainer;
+import pattern.sample.patternuse04.unit.Medic;
+import pattern.sample.patternuse04.unit.inf.Unit;
+
+public class MedicTrainer extends Trainer {
+    @Override
+    public Unit createUnit() {
+        return new Medic();
+    }
+}
+
+package pattern.sample.patternuse04.unit.inf;
+
+public interface Unit {
+
+    public void action();
+}
+
+package pattern.sample.patternuse04.unit;
+
+import pattern.sample.patternuse04.unit.inf.Unit;
+
+public class FireBat implements Unit {
+    @Override
+    public void action() {
+
+    }
+}
+
+package pattern.sample.patternuse04.unit;
+
+import pattern.sample.patternuse04.unit.inf.Unit;
+
+public class Marine implements Unit {
+    @Override
+    public void action() {
+
+    }
+}
+
+package pattern.sample.patternuse04.unit;
+
+import pattern.sample.patternuse04.unit.inf.Unit;
+
+public class Medic implements Unit {
+    @Override
+    public void action() {
+
+    }
+}
+
+                      </code>
+                    </pre>
                   </p>
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">
