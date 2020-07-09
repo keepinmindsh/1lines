@@ -3976,6 +3976,44 @@ int main(void){
 }
                         </code>
                       </pre>
+                      <hr>
+                      <strong>히프 정렬</strong>
+                      <hr>
+                      최대 히프를 이용하면 정렬을 할 수 있다. 한 번에 하나씩 요소를 꺼내서 배열의 뒤쪽부터 저장하면 된다. 배열 요소들은 값이 증가되는 순서로 정렬되게 된다. 
+                      이렇게 히프를 사용하는 정렬 알고리즘을 히트 정렬이라고 한다. 
+                      <pre>
+                        <code class="C" >
+#include &lt;stdio.h>
+#include &lt;stdlib.h> 
+
+void heap_sort(element a[], int n){
+  int i;
+  HeapType* h;
+
+  h = create();
+  init(h);
+  for ( i = 0; i &lt; n ; i ++){
+    insert_max_heap(h, a[i]);
+  }
+  for ( i = ( n - 1 ); i >= 0; i -- ){
+    a[i] = delete_max_heap(h);
+  }
+  free(h);
+}
+
+#define SIZE 8
+int main(void){
+  element list[SIZE] = { 23, 56, 11, 9, 56, 99, 27, 34 };
+  heap_sort(list, SIZE);
+  for(int i = 0; i &lt; SIZE; i ++){
+    printf("%d ", list[i].key);
+  }
+  printf("\n");
+  return 0;
+}
+
+                        </code>
+                      </pre>
                     </div>
                   </div>
                 </div>
