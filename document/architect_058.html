@@ -804,6 +804,183 @@ public class Medic implements Unit {
                   <p class="mb-1">
                     한 상속 구조 내의 어떤 두 서브 클래스가 유사한 단위 작업을 같은 순서로 실행하는 메서드를 각자 구현하고 있다면, 
                     각 단위 작업을 별도의 메서드로 뽑아내어 두 메서드를 일반화하고 이렇게 일반화 된 메서드를 수퍼 클래스로 올려 템플릿 메서드로 만든다. 
+                    <pre>
+                      <code class="java" >
+package pattern.sample.patternuse06;
+
+import pattern.sample.patternuse06.building.Barrack;
+import pattern.sample.patternuse06.code.UnitType;
+import pattern.sample.patternuse06.unit.inf.Unit;
+
+public class BattleGround {
+    public static void main(String[] args) {
+        Unit marine = Barrack.createUnit(UnitType.MARINE);
+
+        marine.Action();
+
+        Unit medic = Barrack.createUnit(UnitType.MEDIC);
+
+        medic.Action();
+    }
+}
+
+package pattern.sample.patternuse06.building;
+
+import pattern.sample.patternuse06.code.UnitType;
+import pattern.sample.patternuse06.template.Training;
+import pattern.sample.patternuse06.template.impl.MarineTraining;
+import pattern.sample.patternuse06.template.impl.MedicTraining;
+import pattern.sample.patternuse06.unit.Marine;
+import pattern.sample.patternuse06.unit.Medic;
+import pattern.sample.patternuse06.unit.inf.Unit;
+
+import static pattern.sample.patternuse06.code.UnitType.MARINE;
+import static pattern.sample.patternuse06.code.UnitType.MEDIC;
+
+public class Barrack {
+    public static Unit createUnit(UnitType unitType){
+        Training training;
+
+        switch (unitType){
+            case MARINE:
+                training = new MarineTraining();
+
+                return new Marine(training.trainingUnit(MARINE));
+
+            case MEDIC:
+                training = new MedicTraining();
+
+                return new Medic(training.trainingUnit(MEDIC));
+
+            default:
+                return null;
+        }
+    }
+}
+
+
+package pattern.sample.patternuse06.code;
+
+public enum UnitType {
+    MARINE,
+    MEDIC
+}
+
+package pattern.sample.patternuse06.template;
+
+import pattern.sample.patternuse06.code.UnitType;
+import pattern.sample.patternuse06.unit.action.inf.Action;
+
+public abstract class Training {
+
+    public Action trainingUnit(UnitType unitType){
+
+        return training();
+    }
+
+    public abstract Action training();
+}
+
+
+package pattern.sample.patternuse06.template.impl;
+
+import pattern.sample.patternuse06.template.Training;
+import pattern.sample.patternuse06.unit.action.Attack;
+import pattern.sample.patternuse06.unit.action.inf.Action;
+
+public class MarineTraining extends Training {
+    @Override
+    public Action training() {
+        return new Attack();
+    }
+}
+
+package pattern.sample.patternuse06.template.impl;
+
+import pattern.sample.patternuse06.template.Training;
+import pattern.sample.patternuse06.unit.action.Heal;
+import pattern.sample.patternuse06.unit.action.inf.Action;
+
+public class MedicTraining extends Training {
+    @Override
+    public Action training() {
+        return new Heal();
+    }
+}
+
+package pattern.sample.patternuse06.unit.action.inf;
+
+public interface Action {
+    public void act();
+}
+
+package pattern.sample.patternuse06.unit.action;
+
+import lombok.extern.slf4j.Slf4j;
+import pattern.sample.patternuse06.unit.action.inf.Action;
+
+@Slf4j
+public class Attack implements Action {
+    @Override
+    public void act() {
+        log.info("공격하다.");
+    }
+}
+
+package pattern.sample.patternuse06.unit.action;
+
+import lombok.extern.slf4j.Slf4j;
+import pattern.sample.patternuse06.unit.action.inf.Action;
+
+@Slf4j
+public class Heal implements Action {
+    @Override
+    public void act() {
+        log.info("치료하다.");
+    }
+}
+
+package pattern.sample.patternuse06.unit.inf;
+
+public interface Unit {
+    public void Action();
+}
+
+package pattern.sample.patternuse06.unit;
+
+import lombok.RequiredArgsConstructor;
+import pattern.sample.patternuse06.unit.action.inf.Action;
+import pattern.sample.patternuse06.unit.inf.Unit;
+
+@RequiredArgsConstructor
+public class Marine implements Unit {
+
+    private final Action action;
+
+    @Override
+    public void Action() {
+        action.act();
+    }
+}
+
+package pattern.sample.patternuse06.unit;
+
+import lombok.RequiredArgsConstructor;
+import pattern.sample.patternuse06.unit.action.inf.Action;
+import pattern.sample.patternuse06.unit.inf.Unit;
+
+@RequiredArgsConstructor
+public class Medic implements Unit {
+
+    private final Action action;
+
+    @Override
+    public void Action() {
+        action.act();
+    }
+}
+                      </code>
+                    </pre>
                   </p>
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">
