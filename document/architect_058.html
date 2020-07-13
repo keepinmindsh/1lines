@@ -1075,6 +1075,159 @@ public class List...
                   </div>
                   <p class="mb-1">
                     실질적으로 트리 구조인 데이터를 String 과 같은 기본 타입으로 표현하고 있다면, 그 기본 타입의 표현을 컴포짓 구조로 바꾼다. 
+                    <ul>
+                      <li>코드를 더 단순하게 만들기 위해서 Composite 패턴을 사용한다. </li>
+                      <li>노드를 추가/삭제/포매팅하는 등의 반복적인 코드를 캡슐화 한다. </li>
+                      <li>빈번하게 사용하는 유사한 로직을 다루기 위한 일반화된 방법을 제공한다.</li>
+                      <li>클라이언트가 데이터를 생성하는 방법이 단순해진다. </li>
+                    </ul>
+                    <hr>
+                    묵시적 트리 중에서 새로운 클래스로 모델화할 수 있는 부분인, 묵시적 종단을 찾는다. 이 때 새로운 클래스는 종단 노드를 나타내는 것으로, Composite:Leaf에 해당한다. 종단 노드 클래스는 리팩터링 또는 테스트 주도 갭잘을 통해서 생성할 수 있다. 
+                    <pre>
+                      <code class="java" >
+package pattern.sample.patternuse07;
+
+import pattern.sample.patternuse07.building.Barrack;
+import pattern.sample.patternuse07.unit.UnitComposite;
+import pattern.sample.patternuse07.unit.type.MarineType;
+import pattern.sample.patternuse07.unit.type.MedicType;
+
+public class BattleGround {
+    public static void main(String[] args) {
+        UnitComposite unitList = Barrack.requestUnit();
+
+        unitList.addTrainedUnit(new MedicType());
+        unitList.addTrainedUnit(new MarineType());
+        unitList.addTrainedUnit(new MarineType());
+        unitList.addTrainedUnit(new MarineType());
+        unitList.addTrainedUnit(new MarineType());
+        unitList.addTrainedUnit(new MedicType());
+        unitList.addTrainedUnit(new MedicType());
+        unitList.addTrainedUnit(new MedicType());
+        unitList.addTrainedUnit(new MedicType());
+
+        unitList.trainingUnit();
+
+        unitList.checkTrainedUnit();
+    }
+}
+
+package pattern.sample.patternuse07.building;
+
+import pattern.sample.patternuse07.unit.UnitComposite;
+
+public class Barrack {
+    public static UnitComposite requestUnit(){
+        return new UnitComposite();
+    }
+}
+
+
+package pattern.sample.patternuse07.unit;
+
+import lombok.RequiredArgsConstructor;
+import pattern.sample.patternuse07.unit.impl.Marine;
+import pattern.sample.patternuse07.unit.impl.Medic;
+import pattern.sample.patternuse07.unit.inf.Unit;
+import pattern.sample.patternuse07.unit.type.MarineType;
+import pattern.sample.patternuse07.unit.type.MedicType;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+@RequiredArgsConstructor
+public class UnitComposite {
+
+    private final List&lt;UnitComposite> unitCompositeList = new ArrayList&lt;>();
+    private List&lt;Unit> unitList;
+
+    public void trainingUnit(){
+        unitList = unitCompositeList.stream().map(trainingType -> {
+            trainingType.trainingUnit();
+
+            if(trainingType instanceof MarineType){
+                return new Marine();
+            }else if(trainingType instanceof MedicType){
+                return new Medic();
+            }else {
+                return null;
+            }
+        }).collect(Collectors.toList());
+    }
+
+    public void checkTrainedUnit(){
+        unitList.forEach(Unit::checkUnit);
+    }
+
+    public void addTrainedUnit(UnitComposite unitComposite){
+        unitCompositeList.add(unitComposite);
+    }
+}
+
+package pattern.sample.patternuse07.unit.type;
+
+import lombok.extern.slf4j.Slf4j;
+import pattern.sample.patternuse07.unit.UnitComposite;
+
+@Slf4j
+public class MedicType extends UnitComposite {
+    @Override
+    public void trainingUnit() {
+        log.info("메딕 훈련을 시작합니다. ");
+    }
+}
+
+package pattern.sample.patternuse07.unit.type;
+
+import lombok.extern.slf4j.Slf4j;
+import pattern.sample.patternuse07.unit.UnitComposite;
+
+@Slf4j
+public class MarineType extends UnitComposite {
+
+    @Override
+    public void trainingUnit() {
+        log.info("마린 훈련을 시작합니다. ");
+    }
+}
+
+package pattern.sample.patternuse07.unit.inf;
+
+public interface Unit {
+    public void checkUnit();
+}
+
+package pattern.sample.patternuse07.unit.impl;
+
+import lombok.extern.slf4j.Slf4j;
+import pattern.sample.patternuse07.unit.inf.Unit;
+
+@Slf4j
+public class Marine implements Unit {
+    @Override
+    public void checkUnit() {
+        log.info("Marine 입니다.");
+    }
+}
+
+package pattern.sample.patternuse07.unit.impl;
+
+import lombok.extern.slf4j.Slf4j;
+import pattern.sample.patternuse07.unit.inf.Unit;
+
+@Slf4j
+public class Medic implements Unit {
+    @Override
+    public void checkUnit() {
+        log.info("Medic 입니다.");
+    }
+}
+
+
+
+                      </code>
+                    </pre>
                   </p>
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">
