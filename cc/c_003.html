@@ -3874,7 +3874,7 @@ delete_max_heap(A);
 3. heap_size &lt;- heap_size - 1;
 4. i &lt;- 2;
 5. while i &lt;=  heap_size do 
-6.    if i &lt; heap_size adn A[i+1] > A[i];
+6.    if i &lt; heap_size and A[i+1] > A[i];
 7.      then largest &lt;- i + 1;
 8.      else largest &lt;- i;
 9.    if A[PARENT(largest)] > A[largest]
@@ -4133,7 +4133,174 @@ int main(void){
                       이러한 해독과정을 가능하게 하는 원인은 코드를 관찰하여 보면 모든 코드가 다른 코드의 첫 부분이 아니라는 것이다. 따라서 코딩된 비트열을 왼쪽에서 오른쪽을 조사하여 보면 정확히 하나의 코드만 일치하는 것을 알 수 있다. 
                       이러한 특수한 코드를 만들기 위하여 이진 트리를 사용할 수 있다. 이런 종류의 코드를 호프만 코드라고한다. 
                       <hr>
-                      이 허프만 트리에서 왼쪽 간선은 비트 1을 나태니고 오른쪽 간선은 비트 0을 나타낸다. 
+                      이 허프만 트리에서 왼쪽 간선은 비트 1을 나태니고 오른쪽 간선은 비트 0을 나타낸다. <br>
+                      <hr>
+                      각 글자에 대한 호프만 코드는 단순히 루트 노드에서 단말 노드까지의 경로에 있는 간선의 라벨값을 읽으면 된다. 즉 빈도수 6에 해당하는 글자인 i의 코드는 100이 된다. 
+                      같은 식으로 하여 다른 글자에 대한 허프만 코드 값을 얻을 수 있다. 허프만 코드 알고리즘에서 가장 작은 2개의 빈도수를 얻는 과정이 있다. 이것은 히프트리를 이용하면 가장 효율적으로 구성될 수 있다. 
+                      여기서는 최소 히프를 이용하여야 한다. 따라서 히프 트리 코드를 약간 변경하였다. 다음의 프로그램은 먼저 각 빈도수를 단일 노드로 만든 다음에 가장 작은 빈도수를 갖는 노드 2개를 합쳐서 하나의 트리로 
+                      만드는 과정을 되풀이 한다. 
+
+                      <pre>
+                        <code class="C" >
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+#define MAX_ELEMENT 200
+
+typedef struct TreeNode {
+  int weight;
+  char ch;
+  struct TreeNode *left;
+  struct TreeNode *right;
+} TreeNode;
+
+typedef struct {
+  TreeNode* ptree;
+  char ch;
+  int key;
+} element;
+
+typedef struct {
+  element heap[MAX_ELEMENT];
+  int heap_size;
+} HeapType;
+
+// 생성함수 
+HeapType* create() {
+  return (HeapType*)malloc(sizeof(HeapType));
+}
+
+// 초기화 함수 
+void init(HeapType* h){
+  h -> heap_size = 0;
+}
+
+// 현재 요소의 개수가 heap_size 인 히프 h 에 item을 삽입한다. 
+// 삽입 함수 
+void insert_min_heap(HeapType* h, element item){
+  int i;
+  i = ++ ( h -> heap_size );
+
+  // 트리를 거슬러 올라가면서 부모 노드와 비교하는 과정 
+  while( ( i != 1) && ( item.key &lt; h -> heap[ i / 2].key )) {
+    h -> heap[i] = h -> heap[i / 2];
+    i /= 2;
+  }
+  h -> heap[i] = item;
+}
+
+// 삭제 함수 
+element delete_min_heap(HeapType* h){
+  int parent, child;
+  element item, temp;
+
+  item = h -> heap[1];
+  item = h -> heap[(h -> heap_size)--];
+  parent = 1;
+  child = 2;
+  while ( child &lt;= h -> heap_size ) {
+    // 현재 노드의 자식 노드 중 더 작은 자식 노드를 찾는다. 
+    if ( ( child &lt; h -> heap_szie ) && ( h -> heap[child].key > h -> heap[child + 1].key ) )
+      child ++;
+    if( temp.key &lt; h -> heap[child].key ) break;
+      h -> heap[parent] = h -> heap[child];
+      parent = child;
+      child *= 2;
+  }
+  h -> heap[parent] = temp;
+  return item;
+}
+
+
+// 이진 트리 생성 함수 
+TreeNode* make_tree(TreeNode* left, TreeNode* right){
+  TreeNode *node = (TreeNode*)malloc(sizeof(TreeNode));
+  node -> left = left;
+  node -> right = right;
+  return node;
+}
+
+// 이진 트리 제거 함수 
+void destroy_tree(TreeNode* root){
+  if ( root == NULL ) return;
+  destroy_tree(root -> left);
+  destroy_tree(root -> right);
+  free(root);
+}
+
+int is_leaf(TreeNode* root){
+  return !(root -> left) && !(root -> right);
+}
+
+void print_array(int codes[], int n){
+  for ( int i = 0; i &lt; n ; i ++){
+    printf("%d", codes[i]);
+  }
+  printf("\n");
+}
+
+void print_codes(TreeNode* root, int codes[], int top){
+  // 1 을 저장하고 순환 호출한다. 
+  if ( root -> left ) {
+    codes[top] = 1;
+    print_codes(root -> left, codes, top + 1);
+  }
+
+  // 0을 저장하고 순환호출한다. 
+  if( root -> right) {
+    codes[top] = 0;
+    print_codes(root -> right, codes, top + 1);
+  }
+
+  // 단말노드이면 코드를 출력한다. 
+  if(is_leaf(root)){
+    printf("%c : ", root -> ch);
+    print_array(codes, top);
+  }
+}
+
+// 허프만 코드 생성 함수 
+void huffman_tree(int freq[], char ch_list[], int n ){
+  int i;
+  TreeNode *node , *x;
+  HeapType* heap;
+  element e1, e2, e3;
+  int codes[100];
+  int top = 0;
+
+  heap = create();
+  init(heap);
+  for( i = 0; i &lt; n ; i ++){
+    node = make_tree(NULL, NULL);
+    e.ch = node -> ch = ch_list[i];
+    e.key = node -> weight = freq[i];
+    e.ptree = node;
+    insert_min_heap(heap, e);
+  }
+  for ( i = 1; i &lt; n ; i ++){
+    // 최소값을 가지는 두개의 노드를 삭제 
+    e1 = delete_min_heap(heap);
+    e2 = delete_min_heap(heap);
+    // 두개의 노드를 합친다. 
+    x = make_tree(e1.ptree, e2.ptree);
+    e.key = x => weight = e1.key + e2.key;
+    e.ptree = x;
+    printf("%d + %d -> %d \n", e1.key, e2.key, e.key );
+    insert_min_heap(heap, e);
+  }
+  e = delete_min_heap(heap);
+  print_codes(e.ptree, codes, top);
+  destroy_tree(e.ptree);
+  free(heap);
+}
+
+int main(void){
+  char ch_list[] = { 's', 'i' , 'n', 't', 'e' };
+  int freq[] = { 4, 6, 8, 12, 15 };
+  huffman_tree(freq, ch_list, 5);
+  return 0;
+}
+                        </code>
+                      </pre>
                     </div>
                   </div>
                 </div>
@@ -4141,13 +4308,230 @@ int main(void){
                   <div class="card-header" id="heading18">
                     <h2 class="mb-0">
                       <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse18" aria-expanded="false" aria-controls="collapse18">
-                 
+                        그래프 I
                       </button>
                     </h2>
                   </div>
                   <div id="collapse18" class="collapse" aria-labelledby="heading18" data-parent="#accordionExample">
                     <div class="card-body">
+                      그래프는 객체 사이의 연결관계를 표현할 수 있는 자료 구조다. 그래프의 대표적인 예는 지도이다. 지하철 노선도는 여러 개의 역들이 어떻게 연결되었는지를 보여준다. 지도를 그래프로 표현하면 
+                      지하철의 특정한 역에서 다른 역으로 가는 최단 경로를 쉽게 프로그래밍 해서 찾을 수 있다. 또한 전기 소자를 그래프로 표현하기 뒤면 전기 회로의 소자들이 어떻게 연결되어 있는지를 표현해야 
+                      회로가 제대로 동작하는지 분석할 수 있으며, 운영 체제에서는 프로세스와 자원들이 어떻게 연관되는지를 그래프로 분석하여 시스템의 효율이나 교착 상태 유무 등을 알아낼 수 있다. 
+                      <hr>
+                      이러한 많은 문제들은 공통적으로 도시, 소자, 자원, 프로젝트 등의 객체들이 서로 연결되어 있는 구조로 표현가능하다. 그래프는 이러한 많은 문제들을 표현할 수 있는 훌륭한 논리적 도구이다. 우리가 여태 까지 배워온 선형 리스트나 트리의 구조로는 위와 같은 
+                      복잡한 문제들을 표현할 수 없다. 그래프 구조는 인접 행렬이나 인접 리스트로 메모리에 표현되고 처리될 수 있으므로 광벙위한 분야의 다양한 문제들을 그래프로 표현하여 해결할 수 있다. 
+                      <hr>
+                      <img src="./eulerianTour.png" class="img-thumbnail" alt="" srcset=""><br>
+                      수학자 오일러는 Konigsberg의 다리 문제를 해결하기 위하여 그래프를 처음으로 사용하였다. Konigs시의 한 가운데는 Pregen 강이 흐르고 있고 여기에는 7개의 사리가 있다. 'Konigsbergs의 다리' 문제란 "임의의 지역에서 출발하여 모든 다리를 단 한번만
+                      건너서 처음 출발했던 지역으로 돌아올 수 있는가"이다. 많은 사람들이 이 문제의 답을 찾기 위해 노력을 했다. 여러분도 한번 시도해보면 알 수 있지만 그런 방법은 없다는 것이 정답니다. 오일러는 어떤 한 지역에서 시작하여 모든 다리를 한 번씩만 지나서 
+                      처음 출발점으로 되돌아오려면 각 지역에 연결된 다리의 개수가 모두 짝수이어야 함을 증명하였다. 
+                      <br>
+                      특정 지역은 정점(node)로, 다리는 간선(edge)로 표현하여 그래프 문제로 변경하였다. 오일러는 이러한 그래프에 존재하는 모든 간선을 한번만 통과하면서 처음 정점으로돌아오는 경로를 오일러 경로라고 정의하고, 그래프의 모든 정점에 연결된 간선의 개수가 
+                      짝수일 때만 오일러 경로가 존재한다는 오일러의 정의를 증명하였다.
+                      <hr>
+                      <strong>그래프로 표현할 수 있는 것들</strong>
+                      <ul>
+                        <li>도로 - 도로의 교차점과 일방통행길 등을 그래프로 효과적으로 표현할 수 있다. </li>
+                        <li>미로 - 미로도 그래프를 이용하여 효과적으로 표현이 가능하다. </li>
+                        <li>대학교에서 전공 과목을 수강하기 위해서는 미리 들어야 하는 선수과목들이 있다. 그래프는 이러한 선수과목 관계를 효과적으로 표현할 수 있다. 
+                        </li>
+                      </ul>
+                      <hr>
+                      <strong>그래프의 정의와 용어</strong><br>
+                      그래프는 정점과 간선들의 유한 집합이라고 할 수 있다. 
+                      수학적으로는 G = ( V, E)와 같이 표시한다. 여기서, V(G)는 그래프 G의 정점들의 집합을, E(G)는 그래프 G의 간선들의 집합을 의미한다. 정점은 여러 가지 특성을 가질 수 있는 객체를 의미하고, 간선은 이러한 정점들 간의 관계를 의미한다. 
+                      정점은 노드라고도 부리며, 간선은 링크라고도 불린다. 이 책에서는 '정점'과 '간선'이라는 용어로 통일해서 사용하고자 한다. <br>
+                      <hr>
+                      <div class="card">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <img src="./vertextandedge.png" class="img-thumbnail" >
+                          </div>
+                          <div class="col-md-6">
+                            <div class="card-body">
+                              <h5 class="card-title">
+                                그래프 ( 정점, 간선 )
+                              </h5>
+                              <p class="card-text">
+                                V(G1) = { 0, 1, 2, 3 } <br>
+                                E(G1) = { (0, 1), (0, 2), (0, 3), (1, 2) }
+                              </p>
+                              <p class="card-text"><small class="text-muted"></small></p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="row">
+                          <div class="col-md-3">
+                            <h5 class="card-title">
+                              무 방향 그래프
+                            </h5>
+                            <img src="./vertextandedge.png" class="img-thumbnail" >
+                          </div>
+                          <div class="col-md-3">
+                            <h5 class="card-title">
+                              방향 그래프 
+                            </h5>
+                            <img src="./vertextandedge2.png" class="img-thumbnail" >
+                          </div>
+                          <div class="col-md-6">
+                            <div class="card-body">
+                              <h5 class="card-title">
+                                무 방향 그래프와 방향 그래프 
+                              </h5>
+                              <p class="card-text">
+                                무방향 그래프의 간선은 간선을 통해서 양방향으로 갈 수 있음을 나타내며 점정 A와 정점 B 를 연결하는 간선은 ( A, B) 와 같이 정점의 쌍으로 표현한다. <br>
+                                V(G1) = { 0, 1, 2, 3 } <br>
+                                E(G1) = { (0, 1), (0, 2), (0, 3), (1, 2) }
+                                <hr>
+                                방향 그래프는 간선에 양방향이 존재하는 그래프로서 도로의 일방통행길처럼 간선을 통하여 한쪽 방향으로만 갈 수 있음을 나타낸다. 정점 A에서 정점 B로만 갈 수 있는 간선은 
+                                &lt;A, B> 로 표시한다. 방향 그래프에서 &lt; A, B>와 &lt; B, A>는 서로 다른 간선이다. <br>
+                                V(G1) = { 0, 1, 2, 3 } <br>
+                                E(G1) = { &lt;0, 1>, &lt;0, 2>, &lt;0, 3>, &lt;1, 2> }
+                              </p>
+                              <p class="card-text"><small class="text-muted"></small></p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <img src="./vertextandedge3.png" class="img-thumbnail" >
+                          </div>
+                          <div class="col-md-6">
+                            <div class="card-body">
+                              <h5 class="card-title">
+                                네트워크 
+                              </h5>
+                              <p class="card-text">
+                                간선에 가중치를 할당하게 되면, 간선의 역할이 두 정점 간에 연결 유무 뿐만 아니라 연결 강도까지 나타낼 수 있으므로 
+                                보다 복잡한 관계를 표현할 수 있게 된다. 이렇게 간선에 비용이나 가중치가 할당된 그래프를 가중치 그래프 또는 네트워크라고 하며 좌측의 
+                                이미지와 같이 나타낸다. 
+                              </p>
+                              <p class="card-text"><small class="text-muted"></small></p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <img src="./vertextandedge4.png" class="img-thumbnail" >
+                          </div>
+                          <div class="col-md-6">
+                            <div class="card-body">
+                              <h5 class="card-title">
+                                부분 그래프 
+                              </h5>
+                              <p class="card-text">
+                                어떤 그래프의 정점의 일부와 간선의 일부로 이루어진 그래프를 부분 그래프라 한다. 그래프 G의 부분 그래프 S는 아래와 같은 그래프이다. 
+                              </p>
+                              <p class="card-text"><small class="text-muted"></small></p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="card-body">
+                              <h5 class="card-title">
+                                연결 그래프 
+                              </h5>
+                              <p class="card-text">
+                                그래프에서 인접 정점란 간선에 의해 직접 연결된 정점을 뜻한다. 그래스에서 정점 0의 인접 정점은 정점 1, 정점 2, 정점 3이다. 무방향 
+                                그래프에서 정점의 차수는 그 정점에 인접한 정점의 수를 말한다. 
+                              </p>
+                              <p class="card-text"><small class="text-muted"></small></p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="card-body">
+                              <h5 class="card-title">
+                                경로 
+                              </h5>
+                              <p class="card-text">
+                                무방향 그래프에서 정점 s로부터 정점 e까지의 경로는 정점의 나열 s, v1, v2, ... vk, e 로서 , 나열된 정점들 간에는 반드시 간선 
+                                (s, v1), ( v1, v2), ... , ( vk, e)가 존재해야 한다. 만약 방향 그래프라면 &lt; s, v1> , &lt; v1, v2 >, ... , &lt; vk, e > 가 있어야 한다. 
+                                아래의 그래프에서 0, 1, 2, 3은 경로지만 0, 1, 3, 2는 경로가 아니다. 왜냐하면 간선 ( 1 , 3 ) 이 존재하지 않기 때문이다.    
+                                <hr>
+                                경로 중에서 반복되는 간선이 없을 경우에 이러한 경로는 단순 경로라 한다. 만약에 단순 경로의 시작 정점과 종료 정점이 동일하다면 이라한 경로를 싸이클이라 한다. 
+                              </p>
+                              <p class="card-text"><small class="text-muted"></small></p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="card-body">
+                              <h5 class="card-title">
+                                연결 그래프
+                              </h5>
+                              <p class="card-text">
+                                무방향 그래프 G에 있는 모든 정점 쌍에 대하여 항상 경로가 존재한다면 G는 연결되었다고 하며, 이러한 무방향 그래프 G 를 연결 그래프라 부른다. 
+                                그렇지 않은 그래프는 비 연결 그래프라고 한다. 트리는 그래프의 특수한 형태로서 사이클을 가지지 않는 연결 그래프이다. 
+                              </p>
+                              <p class="card-text"><small class="text-muted"></small></p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="card-body">
+                              <h5 class="card-title">
+                                완전 그래프 
+                              </h5>
+                              <p class="card-text">
+                                그래프에 속해 있는 모든 정점이 서로 연결되어 있는 그래프를 완전 그래프라고 한다. 무방향 완전 그래프의 정점수를 n 이라고 하면, 
+                                하나의 정점은 n - 1  개의 다른 정점으로 연결되므로 간선의 수는 n * ( n - 1 ) / 2 가 된다. 만약 완전 그래프에서 n = 4라면 간선의 수는
+                                ( 4 * 3 ) / 2 = 6 이다. 
+                              </p>
+                              <p class="card-text"><small class="text-muted"></small></p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                       
+                      <hr>
+                      <strong>그래프 추상 데이터 타입</strong>
+                      <pre>
+                        <code class="C" >
+객체 : 정점의 집합과 간선의 집합
+연산 :
+  create_graph() ::= 그래프를 생성한다. 
+  init(g) ::= 그래프 g를 초기화한다. 
+  insert_vertex(g,v) ::= 그래프 g에 정점 v를 삽입한다. 
+  insert_edge(g,u,v) ::= 그래프 g에 간선 ( u , v )를 삽입한다. 
+  delete_vertex(g,v) ::= 그래프 g의 정점 v를 삭제한다. 
+  delete_edge(g,u,v) ::= 그래프 g의 간선 ( u , v )를 삭제한다. 
+  is_empty(g) ::= 그래프 g가 공백 상태인지 확인한다. 
+  adjacent(v) ::= 정점 v에 인접한 정점들의 리스트를 반환한다. 
+  destroy_graph(g) ::= 그래프 g를 제거한다. 
+                        </code>
+                      </pre>
+                      <strong>그래프의 표현 방법</strong>
+                      <ul>
+                        <li>인접 행렬 : 2차원 배열을 사용하여 그래프를 표현한다. </li>
+                        <li>인접 리스트 : 연결 리스트를 사용하는 그래프를 표현한다. </li>
+                      </ul>
+                      <strong>인접행렬</strong><br>
+                      그래프의 정점 수가 n 이라면 n * n 의 2차원 배열인 인접 행렬 M 의 각 원소를 다음 규칙에 의해 할당함으로써 그래프를 메모리에 표현할 수 있다. 
+                      <pre>
+                        <code class="C" >
+if(간선 ( i , j)가 그래프에 존재 ) M[i][j] = 1;
+otherwise                     M[i][j] = 0;
+                        </code>
+                      </pre>
                     </div>
                   </div>
                 </div>
