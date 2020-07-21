@@ -1247,6 +1247,122 @@ public class Medic implements Unit {
                       <li>캡슐화된 컴포짓 구조 또는 복잡한 객체의 여러 다양한 표현이 가능하게 한다.</li>
                       <li>인터페이스의 의도가 덜 명확해질 수 있다. </li>
                     </ul>
+                    <pre>
+                      <code class="java" >
+package pattern.sample.patternuse08;
+
+import pattern.sample.patternuse08.building.Barrack;
+import pattern.sample.patternuse08.code.UnitType;
+import pattern.sample.patternuse08.unit.inf.Unit;
+import pattern.sample.patternuse08.unitBuilder.UnitBuilder;
+
+public class BattleGround {
+    public static void main(String[] args) {
+        Unit marine = Barrack.createUnit(UnitBuilder.builder()
+                                    .unitName("Marine")
+                                    .unitType(UnitType.MARINE).build());
+
+
+    }
+}
+
+package pattern.sample.patternuse08.building;
+
+import pattern.sample.patternuse08.unit.inf.Unit;
+import pattern.sample.patternuse08.unitBuilder.UnitBuilder;
+
+public class Barrack {
+
+    public static Unit createUnit(UnitBuilder unitBuilder){
+        return unitBuilder.createUnit();
+    }
+
+}
+
+package pattern.sample.patternuse08.code;
+
+public enum UnitType {
+    MARINE,
+    MEDIC,
+    SCV
+}
+
+package pattern.sample.patternuse08.unit.inf;
+
+public interface Unit {
+}
+
+package pattern.sample.patternuse08.unit;
+
+import lombok.extern.slf4j.Slf4j;
+import pattern.sample.patternuse08.unit.inf.Unit;
+
+@Slf4j
+public class Marine implements Unit {
+    public Marine() {
+        log.info("Marine이 생성되었습니다. ");
+    }
+}
+
+package pattern.sample.patternuse08.unit;
+
+import lombok.extern.slf4j.Slf4j;
+import pattern.sample.patternuse08.unit.inf.Unit;
+
+@Slf4j
+public class Medic implements Unit {
+    public Medic(){
+        log.info("Medic이 생성되었습니다.");
+    }
+}
+
+package pattern.sample.patternuse08.unit;
+
+import lombok.extern.slf4j.Slf4j;
+import pattern.sample.patternuse08.unit.inf.Unit;
+
+@Slf4j
+public class SCV implements Unit {
+    public SCV() {
+        log.info("SCV이 생성되었습니다.");
+    }
+}
+
+package pattern.sample.patternuse08.unitBuilder;
+
+import lombok.Builder;
+import pattern.sample.patternuse08.code.UnitType;
+import pattern.sample.patternuse08.unit.Marine;
+import pattern.sample.patternuse08.unit.Medic;
+import pattern.sample.patternuse08.unit.SCV;
+import pattern.sample.patternuse08.unit.inf.Unit;
+
+public class UnitBuilder {
+
+    private final String unitName;
+    private final UnitType unitType;
+
+    @Builder
+    public UnitBuilder(String unitName, UnitType unitType){
+        this.unitName = unitName;
+        this.unitType = unitType;
+    }
+
+    public Unit createUnit(){
+        switch (unitType){
+            case MEDIC:
+                return new Medic();
+            case MARINE:
+                return new Marine();
+            default:
+                return new SCV();
+        }
+    }
+}
+
+                        
+                      </code>
+                    </pre>
                   </p>
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">
