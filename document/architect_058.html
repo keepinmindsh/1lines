@@ -1358,9 +1358,7 @@ public class UnitBuilder {
                 return new SCV();
         }
     }
-}
-
-                        
+}                    
                       </code>
                     </pre>
                   </p>
@@ -1382,8 +1380,6 @@ public class UnitBuilder {
                       <li>다루기 어려울 정도로 비대한 메서드를 작고 간단하며 이해하기 쉬운 여러 개의 메서드로 분해하는 데 도움이 된다. </li>
                       <li>코드의 실행 속도가 향상될 수 있다. </li>
                     </ul>
-                    
- 
                   </p>
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">
@@ -1394,6 +1390,13 @@ public class UnitBuilder {
                   </div>
                   <p class="mb-1">
                     한 상속 구조 내의 서브 클래스가 동일한 컴포짓 기능을 각자 구현하고 있다면, 컴포짓 기능을 수퍼 클래스로 옮겨 구현한다. 
+                    <hr>
+                    어떤 상속 구조 내의 서브 클래스들이 자신의 자식 객체를 컬렉션에 저장하고 그 자식 객체들의 기능에 접근하기 위한 메서드를 각자 구현하는 것은 자주 볼 수 있다. 
+                    이때 만약 자식 객체의 타입이 부모 객체와 동일한 상속 구조 내의 타임이라면 , Composite패턴으로 리팩터링하여 많은 코드 중복을 제거할 수 있다. 
+                    <ul>
+                      <li>중복된 자식 객체 저장/처리 로직을 제거한다.</li>
+                      <li>자식 객체 처리 로직을 상속 받아 그대로 사용할 수 있음이 명확히 드러난다. </li>
+                    </ul>
                   </p>
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">
