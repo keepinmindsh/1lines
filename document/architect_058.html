@@ -1380,6 +1380,249 @@ public class UnitBuilder {
                       <li>다루기 어려울 정도로 비대한 메서드를 작고 간단하며 이해하기 쉬운 여러 개의 메서드로 분해하는 데 도움이 된다. </li>
                       <li>코드의 실행 속도가 향상될 수 있다. </li>
                     </ul>
+                    <pre>
+                      <code class="java" >
+package pattern.sample.patternuse09;
+
+import lombok.extern.slf4j.Slf4j;
+import pattern.sample.patternuse09.building.Barrack;
+import pattern.sample.patternuse09.code.UnitType;
+import pattern.sample.patternuse09.unit.inf.Unit;
+
+@Slf4j
+public class BattleGround {
+    public static void main(String[] args) {
+        Unit unit = Barrack.getUnit(UnitType.MARINE);
+
+        Unit unitMedic = Barrack.getUnit(UnitType.MEDIC);
+
+        log.info("결과 : {}" ,unit.checkAbility());
+        log.info("결과 : {}" ,unitMedic.checkAbility());
+    }
+}
+
+package pattern.sample.patternuse09.builder;
+
+import lombok.Builder;
+import pattern.sample.patternuse09.order.inf.Training;
+import pattern.sample.patternuse09.unit.inf.Unit;
+
+@Builder
+public class TrainingBuilder {
+    private final Training walking;
+    private final Training running;
+    private final Training jumping;
+    private final Training hiding;
+    private final Training watching;
+    private final Unit unit;
+
+    public Unit trainingUnit(){
+
+        walking.practice(unit);
+
+        running.practice(unit);
+
+        jumping.practice(unit);
+
+        hiding.practice(unit);
+
+        watching.practice(unit);
+
+        return unit;
+    }
+}
+
+package pattern.sample.patternuse09.building;
+
+import pattern.sample.patternuse09.builder.TrainingBuilder;
+import pattern.sample.patternuse09.code.UnitType;
+import pattern.sample.patternuse09.order.*;
+import pattern.sample.patternuse09.unit.Marine;
+import pattern.sample.patternuse09.unit.Medic;
+import pattern.sample.patternuse09.unit.inf.Unit;
+
+public class Barrack {
+    public static Unit getUnit(UnitType unitType){
+
+        if(unitType == UnitType.MARINE){
+            return TrainingBuilder
+                    .builder()
+                    .unit(new Marine())
+                    .hiding(new Hiding())
+                    .jumping(new Jumping())
+                    .running(new Running())
+                    .walking(new Walking())
+                    .watching(new Watching())
+                    .build().trainingUnit();
+        }else{
+            return TrainingBuilder
+                    .builder()
+                    .unit(new Medic())
+                    .hiding(new Hiding())
+                    .jumping(new Jumping())
+                    .running(new Running())
+                    .walking(new Walking())
+                    .watching(new Watching())
+                    .build().trainingUnit();
+        }
+    }
+}
+
+package pattern.sample.patternuse09.code;
+
+public enum UnitType {
+    MARINE,
+    MEDIC,
+    SCV
+}
+
+package pattern.sample.patternuse09.order.inf;
+
+public interface Training&lt;ReturnR> {
+
+    public ReturnR practice(ReturnR returnR);
+}
+
+package pattern.sample.patternuse09.order;
+
+import lombok.RequiredArgsConstructor;
+import pattern.sample.patternuse09.order.inf.Training;
+import pattern.sample.patternuse09.unit.inf.Unit;
+
+@RequiredArgsConstructor
+public class Hiding implements Training&lt;Unit> {
+
+    @Override
+    public Unit practice(Unit unit) {
+
+        unit.trainAbility(" 숨기 능력이 추가되었습니다.");
+
+        return unit;
+    }
+}
+
+package pattern.sample.patternuse09.order;
+
+import lombok.RequiredArgsConstructor;
+import pattern.sample.patternuse09.order.inf.Training;
+import pattern.sample.patternuse09.unit.inf.Unit;
+
+@RequiredArgsConstructor
+public class Jumping implements Training&lt;Unit> {
+
+    @Override
+    public Unit practice(Unit unit) {
+        unit.trainAbility(" 점프 능력이 추가되었습니다.");
+        return unit;
+    }
+}
+
+package pattern.sample.patternuse09.order;
+
+import lombok.RequiredArgsConstructor;
+import pattern.sample.patternuse09.order.inf.Training;
+import pattern.sample.patternuse09.unit.inf.Unit;
+
+@RequiredArgsConstructor
+public class Running  implements Training&lt;Unit> {
+
+    @Override
+    public Unit practice(Unit unit) {
+        unit.trainAbility(" 달리기 능력이 추가되었습니다.");
+        return unit;
+    }
+}
+
+package pattern.sample.patternuse09.order;
+
+import lombok.RequiredArgsConstructor;
+import pattern.sample.patternuse09.order.inf.Training;
+import pattern.sample.patternuse09.unit.inf.Unit;
+
+@RequiredArgsConstructor
+public class Walking  implements Training&lt;Unit> {
+
+    @Override
+    public Unit practice(Unit unit) {
+        unit.trainAbility(" 걷기 능력이 추가되었습니다.");
+        return unit;
+    }
+}
+
+package pattern.sample.patternuse09.order;
+
+import lombok.RequiredArgsConstructor;
+import pattern.sample.patternuse09.order.inf.Training;
+import pattern.sample.patternuse09.unit.inf.Unit;
+
+@RequiredArgsConstructor
+public class Watching  implements Training&lt;Unit> {
+
+    @Override
+    public Unit practice(Unit unit) {
+        unit.trainAbility(" 보기 능력이 추가되었습니다.");
+        return unit;
+    }
+}
+
+package pattern.sample.patternuse09.unit.inf;
+
+public interface Unit {
+
+    public void trainAbility(String ability);
+
+    public String checkAbility();
+}
+
+package pattern.sample.patternuse09.unit;
+
+import pattern.sample.patternuse09.unit.inf.Unit;
+
+public class Marine implements Unit {
+
+    private StringBuilder abilities = new StringBuilder();
+    private final String unitName;
+
+    public Marine(){
+        unitName = "Marine";
+    }
+
+    public void trainAbility(String ability){
+        abilities.append("능력 : " + ability + "\r\n");
+    }
+
+    public String checkAbility(){
+        return abilities.toString();
+    }
+
+}
+
+package pattern.sample.patternuse09.unit;
+
+import pattern.sample.patternuse09.unit.inf.Unit;
+
+public class Medic implements Unit {
+
+    private StringBuilder abilities = new StringBuilder();
+    private final String unitName;
+
+    public Medic(){
+        unitName = "Medic";
+    }
+
+    public void trainAbility(String ability){
+        abilities.append("능력 : " + ability + "\r\n");
+    }
+
+    public String checkAbility(){
+        return abilities.toString();
+    }
+}
+
+
+                        
+                      </code>
+                    </pre>
                   </p>
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">
