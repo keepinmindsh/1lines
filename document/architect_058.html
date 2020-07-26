@@ -1640,6 +1640,203 @@ public class Medic implements Unit {
                       <li>중복된 자식 객체 저장/처리 로직을 제거한다.</li>
                       <li>자식 객체 처리 로직을 상속 받아 그대로 사용할 수 있음이 명확히 드러난다. </li>
                     </ul>
+                    <pre>
+                      <code class="java" >
+package pattern.sample.patternuse10;
+
+import pattern.sample.patternuse10.action.Act;
+import pattern.sample.patternuse10.action.Hiding;
+import pattern.sample.patternuse10.action.Running;
+import pattern.sample.patternuse10.action.Walking;
+import pattern.sample.patternuse10.action.composite.Action;
+import pattern.sample.patternuse10.code.ActionType;
+import pattern.sample.patternuse10.unit.Marine;
+import pattern.sample.patternuse10.unit.inf.Unit;
+
+public class BattleGround {
+    public static void main(String[] args) {
+
+        Action action = new Act();
+
+        action.actionAdd(new Running());
+        action.actionAdd(new Hiding());
+        action.actionAdd(new Walking());
+
+        Unit marine = new Marine(action);
+
+        marine.act(ActionType.HIDING);
+        marine.act(ActionType.HIDING);
+        marine.act(ActionType.WALK);
+        marine.act(ActionType.RUNNING);
+    }
+}
+
+package pattern.sample.patternuse10.action.composite;
+
+import pattern.sample.patternuse10.action.Hiding;
+import pattern.sample.patternuse10.action.Running;
+import pattern.sample.patternuse10.action.Walking;
+import pattern.sample.patternuse10.code.ActionType;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
+
+public abstract class Action {
+
+    protected List&lt;Action> actionList = new ArrayList&lt;>();
+
+    public void actionAdd(Action action){
+        actionList.add(action);
+    }
+
+    public Action action(ActionType actionType){
+
+        AtomicReference&lt;Action> action = new AtomicReference&lt;>();
+
+        actionList.forEach(actionFromList -> {
+            switch (actionType){
+                case RUNNING:
+                    if(actionFromList instanceof Running){
+                        action.set(actionFromList);
+                    }
+                    return;
+                case HIDING:
+                    if(actionFromList instanceof Hiding) {
+                        action.set(actionFromList);
+                    }
+                    return;
+                case WALK:
+                    if(actionFromList instanceof Walking ){
+                        action.set(actionFromList);
+                    }
+                    return;
+                }
+        });
+
+        return action.get();
+    }
+
+    public abstract void act();
+}
+
+package pattern.sample.patternuse10.action;
+
+import pattern.sample.patternuse10.action.composite.Action;
+import pattern.sample.patternuse10.code.ActionType;
+
+import java.util.concurrent.atomic.AtomicReference;
+
+public class Act extends Action {
+
+    @Override
+    public Action action(ActionType actionType){
+
+        AtomicReference&lt;Action> action = new AtomicReference&lt;>();
+
+        super.actionList.forEach(actionFromList -> {
+            switch (actionType){
+                case RUNNING:
+                    if(actionFromList instanceof Running){
+                        action.set(actionFromList);
+                    }
+                    return;
+                case HIDING:
+                    if(actionFromList instanceof Hiding) {
+                        action.set(actionFromList);
+                    }
+                    return;
+                case WALK:
+                    if(actionFromList instanceof Walking ){
+                        action.set(actionFromList);
+                    }
+                    return;
+            }
+        });
+
+        return action.get();
+    }
+
+    @Override
+    public void act() {
+
+    }
+}
+
+package pattern.sample.patternuse10.action;
+
+import lombok.extern.slf4j.Slf4j;
+import pattern.sample.patternuse10.action.composite.Action;
+
+@Slf4j
+public class Hiding extends Action {
+    @Override
+    public void act() {
+        log.info("Hiding Action start!");
+    }
+}
+
+package pattern.sample.patternuse10.action;
+
+import lombok.extern.slf4j.Slf4j;
+import pattern.sample.patternuse10.action.composite.Action;
+
+@Slf4j
+public class Running  extends Action {
+    @Override
+    public void act() {
+        log.info("Running Action start!");
+    }
+}
+
+package pattern.sample.patternuse10.action;
+
+import lombok.extern.slf4j.Slf4j;
+import pattern.sample.patternuse10.action.composite.Action;
+
+@Slf4j
+public class Walking  extends Action {
+    @Override
+    public void act() {
+        log.info("Waling Action start!");
+    }
+}
+
+package pattern.sample.patternuse10.code;
+
+public enum ActionType {
+    WALK,
+    RUNNING,
+    HIDING
+}
+
+package pattern.sample.patternuse10.unit.inf;
+
+import pattern.sample.patternuse10.code.ActionType;
+
+public interface Unit {
+
+    public void act(ActionType actionType);
+}
+
+package pattern.sample.patternuse10.unit;
+
+import lombok.RequiredArgsConstructor;
+import pattern.sample.patternuse10.action.composite.Action;
+import pattern.sample.patternuse10.code.ActionType;
+import pattern.sample.patternuse10.unit.inf.Unit;
+
+@RequiredArgsConstructor
+public class Marine implements Unit {
+    private final Action action;
+
+    @Override
+    public void act(ActionType actionType) {
+        action.action(actionType).act();
+    }
+}                    
+                      </code>
+                    </pre>
                   </p>
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">
@@ -1660,6 +1857,105 @@ public class Medic implements Unit {
                       <li>컴포짓을 생성하는 동안 타입 안전성을 위해 런타임 타입 검사가 필요할 수 있다. </li>
                     </ul> 
                     <hr>
+                    <pre>
+                      <code class="java" >
+package pattern.sample.patternuse11;
+
+import pattern.sample.patternuse11.building.Barrack;
+import pattern.sample.patternuse11.unit.Marine;
+import pattern.sample.patternuse11.unit.Medic;
+
+import java.util.Arrays;
+
+public class BattleGround {
+    public static void main(String[] args) {
+
+        Barrack barrack = new Barrack();
+
+        barrack.isTrainedUnit(new Marine());
+
+        barrack.isTrainedUnit(Arrays.asList(new Marine(), new Medic()));
+    }
+}
+
+package pattern.sample.patternuse11.building;
+
+import pattern.sample.patternuse11.unit.UnitPackage;
+import pattern.sample.patternuse11.unit.composit.Unit;
+
+import java.util.List;
+
+public class Barrack {
+
+    public boolean isTrainedUnit(Unit unit){
+
+        // isTrainedUnit에 대한 중복 로직을 해당 메소드에서 공통적으로 처리할 수 있다.
+
+        return unit.checkUnitStatus();
+    }
+
+    public boolean isTrainedUnit(List&lt;Unit> unitList){
+        return isTrainedUnit(new UnitPackage(unitList));
+    }
+}
+
+package pattern.sample.patternuse11.unit.composit;
+public abstract class Unit {
+
+    public abstract boolean checkUnitStatus();
+}
+
+package pattern.sample.patternuse11.unit;
+
+import pattern.sample.patternuse11.unit.composit.Unit;
+
+public class Marine extends Unit {
+    @Override
+    public boolean checkUnitStatus() {
+        return false;
+    }
+}
+
+package pattern.sample.patternuse11.unit;
+
+import pattern.sample.patternuse11.unit.composit.Unit;
+
+public class Medic extends Unit {
+    @Override
+    public boolean checkUnitStatus() {
+        return false;
+    }
+}
+
+package pattern.sample.patternuse11.unit;
+
+import lombok.RequiredArgsConstructor;
+import pattern.sample.patternuse11.unit.composit.Unit;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@RequiredArgsConstructor
+public class UnitPackage extends Unit {
+
+    private final List&lt;Unit> unitList;
+    private List&lt;Unit> filteredUnitList = new ArrayList&lt;>();
+
+    public void add(Unit unit){
+        unitList.add(unit);
+    }
+
+    public List&lt;Unit> getSpecs(){
+        return filteredUnitList;
+    }
+
+    @Override
+    public boolean checkUnitStatus() {
+        return false;
+    }
+}                       
+                      </code>
+                    </pre>
                   </p>
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">
@@ -1679,6 +1975,76 @@ public class Medic implements Unit {
                       <li>간단한 코드로 구현할 수 있다.</li>
                       <li>조건적 디스패처로도 충분한 상황에서는 괜히 설계만 복잡하게 만드는 것이다. </li>
                     </ul>
+                    <pre>
+                      <code class="java" >
+package pattern.sample.patternuse12;
+
+import pattern.sample.patternuse12.building.Barrack;
+import pattern.sample.patternuse12.code.UnitType;
+import pattern.sample.patternuse12.unit.inf.Unit;
+
+public class BattleGround {
+    public static void main(String[] args) {
+        Barrack barrack = new Barrack();
+
+        Unit marineUnit = barrack.createUnit(UnitType.MARINE);
+        Unit medicUnit = barrack.createUnit(UnitType.MEDIC);
+    }
+}
+
+package pattern.sample.patternuse12.building;
+
+import pattern.sample.patternuse12.code.UnitType;
+import pattern.sample.patternuse12.unit.Marine;
+import pattern.sample.patternuse12.unit.Medic;
+import pattern.sample.patternuse12.unit.inf.Unit;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class Barrack {
+
+    private final Map&lt;UnitType, Unit> unitMap;
+
+    public Barrack(){
+        unitMap = new HashMap&lt;>();
+
+        unitMap.put(UnitType.MARINE, new Marine());
+        unitMap.put(UnitType.MEDIC, new Medic());
+    }
+
+    public Unit createUnit(UnitType unitType){
+        return unitMap.get(unitType);
+    }
+}
+
+package pattern.sample.patternuse12.code;
+
+public enum UnitType {
+    MARINE,
+    MEDIC
+}
+
+package pattern.sample.patternuse12.unit.inf;
+
+public interface Unit {
+}
+
+package pattern.sample.patternuse12.unit;
+
+import pattern.sample.patternuse12.unit.inf.Unit;
+
+public class Marine implements Unit {
+}
+
+package pattern.sample.patternuse12.unit;
+
+import pattern.sample.patternuse12.unit.inf.Unit;
+
+public class Medic implements Unit {
+}
+                      </code>
+                    </pre>
                   </p>
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">
@@ -1719,6 +2085,11 @@ public class Medic implements Unit {
                       <li>자주 변하는 코드를 시스템과 분리할 수 있다. </li>
                       <li>원래 있던 중요 기능을 어댑터에서 제공하지 못하면, 클라이언트가 그런 중요 기능에 접근하는데 장벽이 될 수 있다. </li>
                     </ul>
+                    <pre>
+                      <code>
+
+                      </code>
+                    </pre>
                   </p>
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">
