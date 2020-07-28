@@ -4618,6 +4618,98 @@ void main(){
 }
                         </code>
                       </pre>
+                      <hr>
+                      <strong>인접 리스트</strong><br>
+                      인접 리스트는 그래프를 표현함에 있어 각각의 정점에 인접한 정점들을 연결 리스트로 표시한 것이다. 각 연결 리스트의 노드들은 인접 정점을 저장하게 된다. 각 연결 리스트들은 헤러 노드를 가지고 있고 이 헤더 
+                      노드들은 인접 정점을 저장하게 된다. <br>
+                      <img src="./Graph01.PNG" class="img-thumbnail" alt="" srcset=""><br>
+                      정점의 수가 n 개이고 간선의 수가 e개인 무방향 그래프를 표시하기 위해서는 n 개의 연결 리스트가 필요하고, n개의 헤더 노드와 2e 개의 노드가 필요하다. 따라서 인접 행렬 표현은 간선의 개수가 적은 희소 그래프의 표현에 
+                      적합하다. 그래프에 간선의 존재여부나 정점 i의 차수를 알기 위해서는 인접 리스트 에서의 정점 i의 연결 리스트를 탐색해야 하므로 연결 리스트에 있는 노드의 수 만큼, 즉 정점 차수 만큼의 시간이 필요하다. 
+                      즉 n 개의 정점과 e개의 간선을 가진 그래프에서 전체 간선의 수를 알아내려면 헤더 노드를 포함하여 모든 인접 리스트를 조사해야하므로 O(n + e)의 연산이 요구된다. 
+                      <pre>
+                        <code class="C" >
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+
+#define MAX_VERTICES 50
+
+typedef struct GraphNode {
+  int vertex;
+  struct GraphNode* link;
+} GraphNode;
+
+typedef struct GraphType {
+  int n; // 정점의 개수 
+  GraphNode* adj_list[MAX_VERTICES];
+} GraphType;
+
+// 그래프 초기화 
+void init(GraphType* g){
+  int v;
+  g -> n = 0;
+  for ( v = 0; v &lt; MAX_VERTICES; v ++){
+    g -> adj_list[v] = NULL;
+  }
+}
+
+// 정점 삽입 연산 
+void insert_vertex(GraphType* g, int v){
+  if ((g -> n) + 1) > MAX_VERTICES ) {
+    fprintf(stderr, "그래프 : 정점의 개수 초과");
+    return;
+  }
+  g -> n ++;
+}
+
+// 간선 삽입 연산, v를 u의 인접 리스트에 삽입한다. 
+// 정점  u에 간선 ( u , v )를 삽입하는 연산은 정점 u의 인접 리스트에 간선을 나타내는 노드를 하나 생성하여 삽입하면 된다. 위치는 상관 없으므로, 삽입을 쉽게 하기 위하여 연결 리스트의 맨 처음에 삽입한다. 
+void insert_edge(GrapthType* g, int u, int v){
+  GraphNode* node;
+  if ( u >= g -> n || v >= g -> n ) {
+    fprintf(stderr, "그래프: 정점 번호 오류 ");
+    return;
+  }
+  node = (GraphNode*)malloc(sizeof(GraphNode));
+  node -> vertex = v;
+  node -> link = g -> adj_list[u];
+  g -> adj_list[u] = node;
+}
+
+void print_adj_list(GraphType* g){
+  for( int i = 0 ; i &lt; g -> n ; i++){
+    GraphNode* p = g -> adj_list[i];
+    printf("정점 %d의 인접 리스트 ", i);
+    while( p != NULL ){
+      printf("-> %d", p -> vertex);
+      p = p -> link;
+    } 
+    printf("\n");
+  }
+}
+
+int main() {
+  GraphType *g;
+  g = (GraphType *)malloc(sizeof(GraphType));
+  init(g);
+  for(int i = 0; i &lt; 4 ; i ++)
+    insert_vertex(g, i);
+  
+  insert_edge(g, 0, 1);
+  insert_edge(g, 1, 0);
+  insert_edge(g, 0, 2);
+  insert_edge(g, 2, 0);
+  insert_edge(g, 0, 3);
+  insert_edge(g, 3, 0);
+  insert_edge(g, 1, 2);
+  insert_edge(g, 2, 1);
+  insert_edge(g, 2, 3);
+  insert_edge(g, 3, 2);
+  print_adj_list(g);
+  free(g);
+  return 0;
+}
+                        </code>
+                      </pre>
                     </div>
                   </div>
                 </div>
