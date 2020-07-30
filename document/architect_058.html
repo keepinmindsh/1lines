@@ -2066,7 +2066,7 @@ public class Medic implements Unit {
                           서브 시스템 전체를 어댑팅하는 것이다. Facade 패턴은 레거시 시스템과 통신하기 위해 사용하는 경우가 많다. 예를 들어, 어떤 기업에 COBOL 로 작성된 시스템이 있는데, 이 시스템의 코드가 매우 복잡 미묘하고 2백만 줄이나 된다고 하자. 이 시스템은 한번도 리팩토링 작업을 
                           거친 적이 없기 때문에 확장과 유지보수가 매우 어렵다. 그럼에도 불구하고 , 이 시스템에는 중욯나 기능이 포함되어 있기 때문에 새로 만드는 시스템도 이 레거시 시스템에 의존할 수 밖에 없다. 
                           이런 상황에서는 Facade패턴이 유용하다. 퍼사드는 새 시스템에 설계가 좋지 않고 복잡한 게러시 코드에 대한 좀더 단순한 뷰를 제공한다. 새 시스템은 퍼사드 객체와 통신하고 이 퍼사드 객체가 레거시 코드와 관련된 복잡한 작업을 대신하는 것이다. 
-                          레거시 시스템의 서브시스템 하나씩을 퍼사드로 대체해 나가면서, 결국에는 레거시 시스템 전체를 안전하게 새로 구현할 수 ㅇㅆ다. 
+                          레거시 시스템의 서브시스템 하나씩을 퍼사드로 대체해 나가면서, 결국에는 레거시 시스템 전체를 안전하게 새로 구현할 수 있다. 
                           <ul>
                             <li>주어진 레거시 시스템의 서브시스템을 확인한다.</li>
                             <li>그 서브시스템을 위한 퍼사드를 구현한다.</li>
@@ -2079,15 +2079,35 @@ public class Medic implements Unit {
                         </p>
                       </div>
                     </div>
+                    <hr>
                     <ul>
                       <li>컴포넌트, 라이브러리 또는 API의 버전에 따른 차이점을 격리한다. </li>
                       <li>클래스가 하나의 버전만 책임지도록 한다.</li>
                       <li>자주 변하는 코드를 시스템과 분리할 수 있다. </li>
                       <li>원래 있던 중요 기능을 어댑터에서 제공하지 못하면, 클라이언트가 그런 중요 기능에 접근하는데 장벽이 될 수 있다. </li>
                     </ul>
+                    <hr>
                     <pre>
                       <code>
+Java의 첫 버전에서는 Enumeration이라는 인터페이스가 있어서 Vector나 HashTable 같은 컬렉션을 순회하는 데 사용되었다. 그런데 Java가 점점더 발전하면서
+JDK에 더 나은 컬렉션 클래스들이 추가되었고 Iterater 인터페이스가 그 역할을 대신하게 되었다. 그러나 Enumeration 인터페이스를 사용해 작성된 코드와도 상호 동작이 가능해 하므로, 
+JDK 에는 다음과 같이 익명 내부 클래스 기능을 이용해 Iterator를 어댑팅하는 생성 메서드를 제공한다. 
 
+public class Collections ... 
+    public static Enumeration enumeration(filnal Collection c){
+        return new Enumeration() {
+            Iterator i = c.iterator();
+
+            public boolean hasMoreElements() {
+              return i.hasNext();
+            }
+
+            public Object nextElement() {
+              return i.next();
+            }
+        }
+    }                        
+}
                       </code>
                     </pre>
                   </p>
@@ -2100,6 +2120,91 @@ public class Medic implements Unit {
                   </div>
                   <p class="mb-1">
                     클라이언트가 두 개의 유사한 클래스를 사용하고 있는데, 그중 한 인터페이스가 다른 하나보다 더 좋아 보이면, 어댑터를 도입해 인터페이스를 도입한다. 
+                    <hr>
+                    아래와 같은 상황 일 경우 Adapter 패턴으로 리팩터링하는 것이 좋다. 
+                    <ul>
+                      <li>두 클래스가 동일하거나 유사한 작업을 수행하지만 인터페이스가 서로 다른 경우, </li>
+                      <li>두 클래스가 공통 인터페이스를 가지면, 클라이언트 코드가 더 간단하고 명료해질 수 있는 경우,</li>
+                      <li>외부 라이브러리 라서 인터페이스를 바꾸고 싶어도 쉽게 바꿀 수 없는 경ㅇ, 또는 인터페이스가 프레임워크의 일부라거 이미 많은 클라이언트에서 사용되고 있는 경으, 또는 소스 코드를 갖고 있지 않는 경우, </li>
+                    </ul>
+                    <ul>
+                      <li>클라이언트가 대체 클래스들을 하나의 인터페이스를 통해서 사용하도록 통합함으로써, 코드의 중복을 업애거나 줄인다. </li>
+                      <li>클라이언트의 코드가 간단해진다. </li>
+                      <li>클라이언트가 대체 클래스들을 사용하는 방식이 통합된다. </li>
+                      <li>해당 클래스의 인터페이스를 직접 바꾸는 것이 가능한 상황에서 Adapter 패턴을 구현하면, 쓸데 없이 설계만 복잡해진다. </li>
+                    </ul>
+                    <pre>
+                      <code class="java" >
+package pattern.sample.patternuse14;
+
+import pattern.sample.patternuse14.v1.weapon.WeaponAdapter;
+import pattern.sample.patternuse14.v1.weapon.inf.Weapon;
+import pattern.sample.patternuse14.v2.weapon.SpeedGun;
+
+public class Barrack {
+    public static void main(String[] args)
+    {
+        Weapon weapon = new WeaponAdapter(new SpeedGun());
+
+        weapon.checkStatus();
+    }
+}
+
+package pattern.sample.patternuse14.v2.weapon;
+
+public interface NewWeapon {
+    public void checkStatus();
+}
+
+
+package pattern.sample.patternuse14.v2.weapon;
+
+public class SpeedGun implements NewWeapon {
+    @Override
+    public void checkStatus() {
+
+    }
+}
+
+package pattern.sample.patternuse14.v1.weapon.inf;
+
+public interface Weapon {
+
+    public void checkStatus();
+}
+
+
+package pattern.sample.patternuse14.v1.weapon;
+
+import pattern.sample.patternuse14.v1.weapon.inf.Weapon;
+
+public class Gun implements Weapon {
+    @Override
+    public void checkStatus() {
+
+    }
+}
+
+package pattern.sample.patternuse14.v1.weapon;
+
+import lombok.RequiredArgsConstructor;
+import pattern.sample.patternuse14.v1.weapon.inf.Weapon;
+import pattern.sample.patternuse14.v2.weapon.NewWeapon;
+
+@RequiredArgsConstructor
+public class WeaponAdapter implements Weapon {
+
+    private final NewWeapon newWeapon;
+
+    @Override
+    public void checkStatus() {
+        newWeapon.checkStatus();
+    }
+}
+
+                        
+                      </code>
+                    </pre>
                   </p>
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">
