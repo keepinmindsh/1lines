@@ -2217,7 +2217,7 @@ public class WeaponAdapter implements Weapon {
                       어떤 필드 타입이 부적합한 값의 대입이나 유효하지 않은 동일성 검사(비교)를 방지하지 못한다면, 필드의 타입을 클래스로 바꿔 값의 대입과 동일성 검사에 제약 조건을 부여한다. 
                       <hr>
                       타입 코드를 클래스로 리팩터링하는 주된 이유는 코드의 타입 안정성을 보장하려는 것이다. 그러기 위한 한 가지 방법은 대입이나 동일성 검사에 사용될 수 있는 값을 제한하는 것이다. <br>
-                      아래의 코드는 그 타입 안정성을 보장하지 않는 주된 예이다. 현재 해당 클래스는 String 값으로 값을 비교하고 세팅하는 구조이기 때문에 언제든지 오탈자의 문제나 문자열로 비교및 값을 세팅하기 때문에 
+                      아래의 코드는 그 타입 안정성을 보장하지 않는 주된 예이다. 현재 해당 클래스는 String 값으로 값을 비교하고 세팅하는 구조이기 때문에 언제든지 오탈자의 문제나 문자열로 비교 및 값을 세팅하기 때문에 
                       타입에 대한 안정성을 보장하기 어렵게 된다. <br>
                       예를 들어 문자열을 실수로 잘못 입력해도 컴파일 에러는 발생하지 않는다. 
                       <pre>
@@ -2261,6 +2261,90 @@ public class PermissionState {
   public final static PermissionState GRANTED = new PermissionState();
   public final static PermissionState DENIED = new PermissionState();
 }
+                        </code>
+                      </pre>
+                      <Strong>Sample Code</Strong>
+                      <pre>
+                        <code class="java" >
+package pattern.sample.patternuse15;
+
+import pattern.sample.patternuse15.unit.impl.Marine;
+import pattern.sample.patternuse15.unit.impl.Medic;
+import pattern.sample.patternuse15.unit.inf.Unit;
+import pattern.sample.patternuse15.unit.state.UnitState;
+
+public class BattleGround {
+    public static void main(String[] args) {
+        Unit marine = new Marine(UnitState.NORMAL);
+        Unit medic = new Medic(UnitState.HURT);
+
+        marine.checkStatus();
+        medic.checkStatus();
+
+    }
+}
+
+package pattern.sample.patternuse15.unit.state;
+
+public class UnitState {
+    private final String name;
+
+    private UnitState(String name){
+        this.name = name;
+    }
+
+    public String toString(){
+        return name;
+    }
+
+    public final static UnitState NORMAL = new UnitState("NORMAL");
+    public final static UnitState HURT = new UnitState("HURT");
+    public final static UnitState DEAD = new UnitState("DEAD");
+}
+
+package pattern.sample.patternuse15.unit.inf;
+
+public interface Unit {
+    public void checkStatus();
+}
+
+package pattern.sample.patternuse15.unit.impl;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import pattern.sample.patternuse15.unit.inf.Unit;
+import pattern.sample.patternuse15.unit.state.UnitState;
+
+@RequiredArgsConstructor
+@Slf4j
+public class Marine implements Unit {
+
+    private final UnitState unitState;
+
+    @Override
+    public void checkStatus() {
+        log.info(unitState.toString());
+    }
+}
+
+package pattern.sample.patternuse15.unit.impl;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import pattern.sample.patternuse15.unit.inf.Unit;
+import pattern.sample.patternuse15.unit.state.UnitState;
+
+@RequiredArgsConstructor
+@Slf4j
+public class Medic implements Unit {
+
+    private final UnitState unitState;
+
+    @Override
+    public void checkStatus() {
+        log.info(unitState.toString());
+    }
+}    
                         </code>
                       </pre>
                   </p>
