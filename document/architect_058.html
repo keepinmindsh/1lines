@@ -2215,6 +2215,54 @@ public class WeaponAdapter implements Weapon {
                   </div>
                   <p class="mb-1">
                       어떤 필드 타입이 부적합한 값의 대입이나 유효하지 않은 동일성 검사(비교)를 방지하지 못한다면, 필드의 타입을 클래스로 바꿔 값의 대입과 동일성 검사에 제약 조건을 부여한다. 
+                      <hr>
+                      타입 코드를 클래스로 리팩터링하는 주된 이유는 코드의 타입 안정성을 보장하려는 것이다. 그러기 위한 한 가지 방법은 대입이나 동일성 검사에 사용될 수 있는 값을 제한하는 것이다. <br>
+                      아래의 코드는 그 타입 안정성을 보장하지 않는 주된 예이다. 현재 해당 클래스는 String 값으로 값을 비교하고 세팅하는 구조이기 때문에 언제든지 오탈자의 문제나 문자열로 비교및 값을 세팅하기 때문에 
+                      타입에 대한 안정성을 보장하기 어렵게 된다. <br>
+                      예를 들어 문자열을 실수로 잘못 입력해도 컴파일 에러는 발생하지 않는다. 
+                      <pre>
+                        <code class="java" >
+public void testHelloWorld() {
+  HelloWorld helloWorld = new HelloWrold();
+
+  assertEquals(helloWorld.state(), "GOOD_WORLD");
+}
+
+// 아래의 HelloWorld에서 정의된 state와 HELLO_WORLD가 String 값이라고 할 때, 
+// 해당 값이 타입 안정성을 지킬 수 있는 구조는 절대 아니다. 
+public class HelloWorld {
+
+  public String BYE_WORLD = "BYE_WORLD";
+  public String HELLO_WORLD = "HELLO_WORLD";
+
+  private String state = "";
+
+  public HelloWorld () {
+    state = HELLO_WORLD;
+  }
+
+  public String state(){
+    return state;
+  }
+}
+                        </code>
+                      </pre>
+                      <hr>
+                      <ul>
+                        <li>부적절할 값의 대입이나 유요하지 않은 동일성 검사로부터 코드를 보호한다. </li>
+                        <li>타입 안정성이 결여된 경우보다 더 많은 코드가 필요하다. </li>
+                      </ul>
+                      <hr>
+                      <pre>
+                        <code class="java" >
+public class PermissionState {
+  public final static PermissionState REQUESTED = new PermissionState();
+  public final static PermissionState CLAIMED = new PermissionState();
+  public final static PermissionState GRANTED = new PermissionState();
+  public final static PermissionState DENIED = new PermissionState();
+}
+                        </code>
+                      </pre>
                   </p>
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">
