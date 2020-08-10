@@ -4986,7 +4986,7 @@ int main(void){
   for ( int i = 0 ; i &lt; 6 ; i ++){
     insert_vertex(g, i);
   }
-  insert_edge(g, 0, 2);
+  insert_edge(g, 0, 2); 
   insert_edge(g, 2, 1);
   insert_edge(g, 2, 3);
   insert_edge(g, 0, 4);
@@ -4997,6 +4997,31 @@ int main(void){
   bfs_mat(g, 0);
   free(g);
   return 0;
+}
+                        </code>
+                      </pre>
+                      <hr>
+                      <strong>너비 우선 탐색의 구현(인접 리스트 버전)</strong>
+                      <pre>
+                        <code class="C" > 
+void bfs_list(GraphType* g, int v){
+  GraphNod* w;
+  QueueType q;
+
+  init(&q);                                            // 큐 초기화 
+  visited[v] = TRUE;                                   // 정점 v 방문 표시 
+  printf("%d 방문 -> ", v);
+  enqueue(&q, v);                                      // 시작 정점을 큐에 저장 
+  while(!is_empty(&q)) {
+    v = dequeue(&q);                                   // 큐에 저장된 정점 탐색 
+    for ( w = g -> adj_list[v] ; w; w = w -> link ){   // 인접 정점 탐색
+      if(!visited[w -> vertex]){                       // 미방문 정점 탐색
+        visited[w -> vertex] = TRUE;                   // 방문 표시
+        printf("%d 방문 -> ", w -> vertex);
+        enqueue(&q , w -> vertex);                     // 정점을 큐에 삽입
+      }
+    }
+  }
 }
                         </code>
                       </pre>
