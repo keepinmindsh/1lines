@@ -2357,6 +2357,188 @@ public class Medic implements Unit {
                   </div>
                   <p class="mb-1">
                       어떤 객체의 상태 전이를 제어하는 조건 로직이 복잡하다면, 각 상태에 해당하는 스테이트 클래스를 하나씩 만들고 그들이 스스로 다른 상태로 전이하는 것을 책임지도록하는 복잡한 조건 로직을 제거한다. 
+                      <hr>
+                      State 패턴으로 리팩터링하는 주된 목적은 상태 전이를 위한 조건 로직이 지나치게 복잡한 경우 이를 해소하는 것이다. 상태 전이 로직이란 객체의 상태와 이들 같의 전이 방법을 제어하는 것으로 , 
+                      클래스 내부 여기 저기에 흩어져 존재하는 경향이 있다. State 패턴을 구현한다는 것은 각 상태에 대응하는 별도의 클래스를 만들고 상태 전이 로직을 그 클래스들로 옮기는 작업을 뜻한다. 
+                      <hr>
+                      State 패턴은 이떤 객체가 여러 상태 간의 전이를 쉽게 하는 데 유용한 반면, Strategy 패턴은 대리 객체를 런타임에 바꿀 수 있게 하여 상황에 맞는 로직 선택을 쉽게 하는 데 유용하다. 
+                      <ul>
+                        <li>상태 전이를 위한 조건 로직을 줄이거나 제거할 수 있다. </li>
+                        <li>복잡한 상태 전이 로직이 단순해진다. </li>
+                        <li>상태 전이 로직을 더 쉽게 알아볼 수 있다. </li>
+                        <li>원래의 상태 전이 로직이 별로 복잡하지 않다면, 괜히 설계만 복잡하게 만드는 것이다. </li>
+                      </ul>
+                      <pre>
+                        <code class="java" >
+package pattern.sample.patternuse16;
+
+import pattern.sample.patternuse16.unit.Marine;
+import pattern.sample.patternuse16.unit.code.ActionType;
+
+public class BattleGround {
+    public static void main(String[] args) {
+        Marine marine = new Marine();
+
+        marine.actionByMouse(ActionType.MOVING);
+
+        marine.actionByMouse(ActionType.ATTACK);
+
+        marine.actionByMouse(ActionType.MOVING);
+
+        marine.actionByMouse(ActionType.HEALING);
+    }
+}
+
+package pattern.sample.patternuse16.unit;
+
+import pattern.sample.patternuse16.unit.action.Action;
+import pattern.sample.patternuse16.unit.code.ActionType;
+import pattern.sample.patternuse16.unit.state.structure.UnitState;
+
+public class Marine {
+
+    public void actionByMouse(ActionType actionType){
+
+        Action action = UnitState
+                .byState(actionType)
+                .byAction();
+
+        action.act();
+    }
+}
+
+package pattern.sample.patternuse16.unit.state.structure;
+
+import pattern.sample.patternuse16.unit.action.Action;
+import pattern.sample.patternuse16.unit.code.ActionType;
+import pattern.sample.patternuse16.unit.state.AttackState;
+import pattern.sample.patternuse16.unit.state.HealingState;
+import pattern.sample.patternuse16.unit.state.MovingState;
+
+public abstract class UnitState {
+
+    public final static UnitState MOVING = new MovingState();
+    public final static UnitState ATTACK = new AttackState();
+    public final static UnitState HEALING = new HealingState();
+
+    public static UnitState byState(ActionType actionType){
+        switch (actionType){
+            case ATTACK:
+                return ATTACK;
+            case MOVING:
+                return MOVING;
+            case HEALING:
+                return HEALING;
+            default:
+                return null;
+        }
+    }
+
+    public abstract Action byAction();
+}
+
+package pattern.sample.patternuse16.unit.state;
+
+
+import lombok.extern.slf4j.Slf4j;
+import pattern.sample.patternuse16.unit.action.Action;
+import pattern.sample.patternuse16.unit.action.impl.Attack;
+import pattern.sample.patternuse16.unit.code.ActionType;
+import pattern.sample.patternuse16.unit.state.structure.UnitState;
+
+@Slf4j
+public class AttackState extends UnitState {
+
+    @Override
+    public Action byAction() {
+        return new Attack();
+    }
+}
+
+package pattern.sample.patternuse16.unit.state;
+
+
+import pattern.sample.patternuse16.unit.action.Action;
+import pattern.sample.patternuse16.unit.action.impl.Healing;
+import pattern.sample.patternuse16.unit.code.ActionType;
+import pattern.sample.patternuse16.unit.state.structure.UnitState;
+
+public class HealingState extends UnitState {
+    @Override
+    public Action byAction() {
+        return new Healing();
+    }
+}
+
+package pattern.sample.patternuse16.unit.state;
+
+
+import pattern.sample.patternuse16.unit.action.Action;
+import pattern.sample.patternuse16.unit.action.impl.Moving;
+import pattern.sample.patternuse16.unit.state.structure.UnitState;
+
+public class MovingState extends UnitState {
+    @Override
+    public Action byAction() {
+        return new Moving();
+    }
+}
+
+package pattern.sample.patternuse16.unit.code;
+
+public enum ActionType {
+    MOVING,
+    ATTACK,
+    HEALING
+}
+
+package pattern.sample.patternuse16.unit.action;
+
+public interface Action {
+    public void act();
+}
+
+package pattern.sample.patternuse16.unit.action.impl;
+
+import lombok.extern.slf4j.Slf4j;
+import pattern.sample.patternuse16.unit.action.Action;
+
+@Slf4j
+public class Attack implements Action {
+    @Override
+    public void act() {
+        log.info("Attack 합니다. ");
+    }
+}
+
+package pattern.sample.patternuse16.unit.action.impl;
+
+import lombok.extern.slf4j.Slf4j;
+import pattern.sample.patternuse16.unit.action.Action;
+
+@Slf4j
+public class Healing implements Action {
+    @Override
+    public void act() {
+        log.info("치료합니다. ");
+    }
+}
+
+
+package pattern.sample.patternuse16.unit.action.impl;
+
+import lombok.extern.slf4j.Slf4j;
+import pattern.sample.patternuse16.unit.action.Action;
+
+@Slf4j
+public class Moving implements Action {
+    @Override
+    public void act() {
+        log.info("움직입니다. ");
+    }
+}
+                        </code>
+                      </pre>
                   </p>
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">
