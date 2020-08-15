@@ -2549,6 +2549,119 @@ public class Moving implements Action {
                   </div>
                   <p class="mb-1">
                       어떤 필드나 변수의 값이 널인지 검사하는 로직이 코드의 여기 저기 중복되어 있다면, 값이 널인 경우에 행할 작업을 대신하는 널 객체를 사용하도록 수정한다. 
+                      <hr>
+                      <pre>
+                        <code class="java" >
+if ( someObject != null ){
+  someObject.doSomething();
+} else {
+  performAlternativeBehavior();
+}
+                        </code>
+                      </pre>
+                      위와 같은 널 검사 로직이 시스템의 한두 곳에서 반복되는 것은 별도 문제되지 않는다. 그러나 여러 곳에서 반복된다면 얘기가 다른다. 널 검사 로직이 없는 코드와 비교했을 때, 그런 코드는 이해하기가 더 어렵고
+                      확장을 하려먼 더 많은 생각을 해야한다. 또 기존의 널 검사 로직으로는 새로 추가한 코드를 보호할 수가 없다. 따라서 새로운 코드를 작성할 때 프로그래머가 널 검사 로직을 빠뜨린다면,
+                      널 관련 오류가 발생하기 시작한다. 
+                      <hr> 
+                      Null Object 패턴은 이런 문제를 위한 해결책으로, 필드나 변수가 항상 설이 아니도록 유지하여 별도의 검사를 하지 않아도 된다. 이 방법은 사실 약간의 속임수다. 평소에는 필드나 변수에 적당한 객체를 대입하고, 
+                      널 일 경우에는 널 객체를 대입하는 것이다. 이 때 널 객체의 해당 메서드는 아무일도 하지 않거나 디폴드 대입하는 것이다. 
+                      <ul>
+                        <li>수많은 널 검사 로직 없이도 널 값으로 인한 에러를 막을 수 있다.</li>
+                        <li>널 검사 로직이 최소화되어 코드가 간단해진다. </li>
+                        <li>시스템에 널 검사 로직이 별도 필요하지 않은 상황에서는 설꼐만 복잡하게 된다. </li>
+                        <li>프로그래머가 널 객체의 존재를 모르고 있다면 , 동일한 널 검사를 쓸데 없이 여러번 하게 될 수 도 있다. </li>
+                        <li>유지보수가 복잡해진다. 널 객체의 수퍼클래스에 새 public 메서드를 추가할 때 마다 널 객체 클래스에서 이를 오버라이드 해야 한다. </li>
+                      </ul>
+                      <pre>
+                        <code class="java" >
+package pattern.sample.patternuse17;
+
+import pattern.sample.patternuse17.unit.Marine;
+import pattern.sample.patternuse17.unit.action.impl.Move;
+import pattern.sample.patternuse17.unit.action.impl.NullAction;
+
+public class BattleGround {
+    public static void main(String[] args) {
+        Marine marine = new Marine();
+
+        marine.setAction(new Move());
+
+        marine.act();
+
+        marine.setAction(new NullAction());
+
+        marine.act();
+    }
+}
+
+package pattern.sample.patternuse17.unit;
+
+import pattern.sample.patternuse17.unit.action.Action;
+
+import java.util.Optional;
+
+public class Marine {
+
+    public Action action;
+
+    public void setAction(Action action){
+        this.action = action;
+    }
+
+    public void act(){
+        Optional.ofNullable(this.action)
+                .ifPresent(action -> {
+                    action.act();
+                });
+    }
+}
+
+package pattern.sample.patternuse17.unit.action;
+
+public interface Action {
+    public void act();
+}
+
+package pattern.sample.patternuse17.unit.action.impl;
+
+import lombok.extern.slf4j.Slf4j;
+import pattern.sample.patternuse17.unit.action.Action;
+
+@Slf4j
+public class Move implements Action {
+    @Override
+    public void act() {
+        log.info("Move!!");
+    }
+}
+
+package pattern.sample.patternuse17.unit.action.impl;
+
+import lombok.extern.slf4j.Slf4j;
+import pattern.sample.patternuse17.unit.action.Action;
+
+@Slf4j
+public class NullAction implements Action {
+    @Override
+    public void act() {
+        log.info("Null Action");
+    }
+}
+
+package pattern.sample.patternuse17.unit.action.impl;
+
+import lombok.extern.slf4j.Slf4j;
+import pattern.sample.patternuse17.unit.action.Action;
+
+@Slf4j
+public class Run implements Action {
+    @Override
+    public void act() {
+        log.info("Run!");
+    }
+}                          
+                        </code>
+                      </pre>
                   </p>
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">
