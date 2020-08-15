@@ -2830,6 +2830,106 @@ public class BattleGround {
                   </div>
                   <p class="mb-1">
                     어떤 클래스에서 핵심 기능을 위한 코드와 꾸밈 코드가 뒤섞여 있으면, 꾸밈 코드를 데코레이터로 옮긴다. 
+                    <hr>
+                    시스템에 새 기능을 추가해야 할 때면, 보톤은 기존 클래스에 코드를 덧붙인다. 이렇게 새로 추가된 코드는 기존 클래스의 핵심 기능 도는 주된 행동 양식에 대한 꾸밈 코드로서 동작하는 경우가 많다. 
+                    문제는 이런 꾸밈 코드로 인해 새로운 필드 또는 메서드, 로직이 추가되고 호스트 클래스가 복잡해진다는 것이다. 게다가 새로 추가된 부분은 특정 조건에서만 쓰이는 것이다. 
+                    <hr>
+                    위와 같은 문제의 해결책은 바로 Decorator패턴이다. 즉 꾸밈 코드를 각자의 클래스로 옮기고, 그 객체가 호스트 객체를 감싸도록 만드는 것이다. 그렇게 하면 , 특별한 처리가 필요한 때에 클라이언트가 호스트 객체를 꾸밈 객체로 감싸 사용함으로써 
+                    특수 기능을 수행할 수 있다. 
+                    <hr>
+                    <strong>Decorator 와 strategy</strong> <br>
+                    Decorator와 Strategy는 서로 대비된다. 공통점은 둘 다 특수한 경우나 별도의 동작 방식을 처리하기 위한 조건 로직을 하나 이상의 새로운 클래스로 옮겨 호스트 클래스에서 제거한다는 것이다. 
+                    그러나 새로 생성된 클래스가 사용되는 방법에는 차이가 있다. 
+                    <ul>
+                      <li>
+                        데코레이터는 공유 할 수 없다. 데코레이터는 각각 자신이 꾸밀 객체를 참조하고 있기 때문이다. 반면에 스트레티지는 Singleton 이나 Flyweight 패턴을 통해서 쉽게 공유할 수 있다. 
+                      </li>
+                      <li>
+                        스트레티지 클래스의 인터페이스는 자유롭게 구성할 수 있는 반면, 데코레이터 클래스는 호스트 클래스와 인터페이스에 맞춰야 한다. 
+                      </li>
+                      <li>
+                        데코레이터는 호스트 클래스와 인터페이스를 공유하는 한 호스트 클래스에 영향을 끼치지 않고 기능을 추가할 수 있다. 반면, 스트레티지를 사용하는 클래스는 스트레티지의 존재와 사용법을 알아야 한다. 
+                      </li>
+                      <li>
+                        Strategy 패턴을 적용할 때는 호스트 클래스에 데이터나 public메서드가 많다고 해서 장애가 되지 않는다. 그러나 그런 호스트 클래스에 Decorator 패턴을 적용한다면, 데코레이터 클래스가 무거워지고 
+                        지나치게 많은 메모리가 필요하게 될 것이다. 
+                      </li>
+                    </ul>
+                    <hr>
+                    <ul>
+                      <li>꾸밈 코드를 제거해 호스트 클래스를 단순하게 만든다. </li>
+                      <li>어떤 클래스의 핵심 기능과 부가 기능을 손쉽게 구별할 수 있다. </li>
+                      <li>서로 관련된 클래스에서 중복된 꾸밈 코드를 줄일 수 있다. </li>
+                      <li>클라이언트의 입장에서는 대상 객체의 타입이 바뀐다. </li>
+                      <li>코드를 이해하고 디버깅하기 어려워질 수도 있다. </li>
+                      <li>데코레이터 객체의 조합 방식이 서로에게 영향을 끼친다면, 설계를 더 복잡하게 만들어야 한다. </li>
+                    </ul>
+                    <pre>
+                      <code class="java" >
+package pattern.sample.patternuse20;
+
+import pattern.sample.patternuse20.property.WeaponProperty;
+import pattern.sample.patternuse20.upgrade.GunUpgrade;
+import pattern.sample.patternuse20.weapon.Gun;
+
+public class BattleGround {
+    public static void main(String[] args) {
+
+        WeaponProperty weaponProperty = new Gun();
+
+        weaponProperty.checkProperty();
+
+        WeaponProperty weaponPropertyByUpgrade = new GunUpgrade(weaponProperty);
+
+        weaponPropertyByUpgrade.checkProperty();
+    }
+}
+
+package pattern.sample.patternuse20.weapon;
+
+import lombok.extern.slf4j.Slf4j;
+import pattern.sample.patternuse20.property.WeaponProperty;
+
+@Slf4j
+public class Gun implements WeaponProperty {
+    @Override
+    public void checkProperty() {
+        log.info("기본 설정 값이 세팅되었습니다. 공격력 : 10");
+    }
+}
+
+package pattern.sample.patternuse20.upgrade;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import pattern.sample.patternuse20.property.WeaponProperty;
+
+@RequiredArgsConstructor
+@Slf4j
+public class GunUpgrade implements WeaponProperty {
+
+    private final WeaponProperty weaponProperty;
+
+    @Override
+    public void checkProperty() {
+        weaponProperty.checkProperty();
+
+        applyAdditionalProperty();
+    }
+
+    public void applyAdditionalProperty(){
+        log.info("공격력이 업그레이드 되었습니다. 공격력 : 10 + 5 ");
+    }
+}
+
+package pattern.sample.patternuse20.property;
+
+public interface WeaponProperty {
+    public void checkProperty();
+}
+
+                      </code>
+                    </pre>
                   </p>
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">
