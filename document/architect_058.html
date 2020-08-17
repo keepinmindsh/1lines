@@ -2941,6 +2941,8 @@ public interface WeaponProperty {
                   <p class="mb-1">
                     수퍼클래스(또는 인터페이스)가 서브 클래스와 동일한 인터페이스를 가질 필요가 있다면, 
                     서브 클래스에서 수퍼클래스에 없는 모든 public 메서드를 찾아 이를 수퍼 클래스에 추가한다. 이때 메서드 몸체는 비워놓아 아무 일도 하지 않도록 만든다. 
+                    <hr>
+                    여러 객체를 다형적으로 처리하려면, 그 클래스들은 수퍼클래스가 됐든 인터페이스가 됐든 동일한 인터페이스를 공유해야 한다. 이 리팩터링은 수퍼 클래스나 인터페이스가 자신의 서브 클래스와 동일한 인터페이스를 가져야할 필요가 있는 경우를 위한 것이다. 
                   </p>
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">
@@ -2952,6 +2954,11 @@ public interface WeaponProperty {
                   <p class="mb-1">
                     메서드나 생성자 내에서 생성한 값을 필드에 저장하고 있다면,
                     대입문의 우변을 새 파라미터로 대체해 클라이언트가 그 값을 저장할 수 있도록 한다. 
+                    <hr>
+                    때로는 객체 내의 필드에 대입할 값을 다른 객체가 지정하도록 하고 싶을 수 있다. 만약 그 필드에 지역 값이 할당되고 있다면, 대입문의 우변을 새로운 파라미터로 대체해 클라이언트가 그 값을 지정하도록 할 수 있다. 
+                    나는 Replace Inheritance with Delegation 리팩터링을 수행한 후에 이 리팩터링이 필요했다. 작업을 위임하는 클래스는 대리 객체에 대한 필드를 가지고 있고, 여기에 새로운 대리 객체 인스턴스를 할당한다. 
+                    그러나 클라이언트가 이 대리 객체를 지정할 수 있어야 했다. Extract Parameters 리팩터링을 통해 대리 객체 생성 코드를 클라이언트가 제공하는 파라미터 값으로 간단히 대체할 수 있었다. 
+
                   </p>
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">
@@ -2963,6 +2970,16 @@ public interface WeaponProperty {
                   <p class="mb-1">
                     어떤 클래스에 인스턴스를 생성하는데 사용되는 데이터와 코드가 여러 클래스에 퍼져있다면 , 
                     그 생성  지식을 하나의 팩터리 클래스로 옮긴다. 
+                    <hr>
+                    객체 생성을 위한 지식이 여러 클래스에 퍼져 있을 때, 이를 문어발 생성이라 한다. 이것은 객체 생성과 상관없는 클래스가 그 책임의 일부를 맡고 있음을 뜻한다. 문어발 생성은 문어발 솔루션 냄새의 한 경우로, 초기의 설꼐 문제 
+                    때문에 발생하는 경우가 많다. 예를 들어 클라이언트가 주어진 외부 설정값에 맞춰 객체의 상태를 조정할 필요가 있지만, 그 객체의 생성을 담당하는 코드에는 쉽게 접근할 수 없다면, 클라이언트가 어떻게 그 객체의 상태를 조정 할 수 있을 것인가? 
+                    <br>
+                    이와 같은 경우 팩터리 메서드 패턴이 도움이 된다. 지나치게 많은 생성 옵션을 지원하려다 보니 팩터리 내의 생성 로직 이 너무 복잡해졌다면, 이를 추상 팩터리로 발전시키는 것도 의미가 있다. 
+                    <ul>
+                      <li>생성 로직과 외부 설정값 처리 로직을 한 곳으로 모은다.</li>
+                      <li>생성 로직으로부터 클라이언트를 분리한다. </li>
+                      <li>직접 생성으로도 충분한 경우라면, 괜히 설계만 복잡하게 만들 뿐이다.</li>
+                    </ul>
                   </p>
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">
@@ -2974,6 +2991,20 @@ public interface WeaponProperty {
                   <p class="mb-1">
                     어떤 메서드가 이질적인 여러 클래스들로 부터 정보를 언더 축적하고 있다면,
                     각 클래스를 방문해 정보를 축적하는 방문자 객체로 축적 기능을 옮긴다. 
+                    <hr>
+                    방문자 클래스는 주어진 객체 구조에 대해 어떤 연산을 수행하는데, 이질적인 클래스들을 대상으로 한다. 즉, 방문을 받는 클래스들이 각가 서로 다른 종류의 정보를 담고, 그에 대한 인터페이스 또한 서로 다를 경우에 사용한다. 
+                    방문자 객체는 이질적인 대상 클래스들로부터 정보를 얻기 위해 이중 대스패티를 이용한다. 즉, 대상 클래스가 제공하는 accept와 같은 수납 메서드의 파라미터를 통해 방문자 객체 자신을 넘기고, 대상 클래스는 수납한 방문자 객체의 
+                    콜백 메서드를 호출하여 정보를 제공하는 것이다. 
+                    <hr>
+                    <ul>
+                      <li>이질적인 클래스들로 이루어진 객체 구조를 처리하는 여러 알고리즘을 수용한다. </li>
+                      <li>하나의 상속 구조 또는 여러 다른 상속 구조 내의 클래스들을 처리할 수 있다. </li>
+                      <li>이질적인 클래스들이 제공하는 메서드들을 타입 변환 없이 호출 할 수 있다. </li>
+                      <li>공통 인터페이스를 도입하여 이질적인 클래스들을 동질적으로 만들 수 있다면 괜히 설꼐만 복잡하게 만드는 것이다. </li>
+                      <li>방문 대상 클래스가 새로 추가되면, '수납' 메서드로 함께 구형해야 하고, 새 클래스에 대응하는 visit...(...) 메서드를 각 방문자 클래스에 추가해야 한다. </li>
+                      <li>대상 클래스의 캡슐화 특성을 깨뜨릴 수 있다. </li>
+                    </ul>
+                    <hr>
                   </p>
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">
@@ -2985,6 +3016,112 @@ public interface WeaponProperty {
                   <p class="mb-1">
                     한 클래스 내의 여러 메서드에서 일종의 묵시적 언어를 이루는 요소들을 조합하고 있다면, 
                     그 묵시적 언어의 요소들을 각각의 클래스로 정의하고 그 객체의 조합을 해석 가능한 수식을 만들어 낼 수 있도록 한다. 
+                    <hr>
+                    Interpreter 는 단순한 언어를 해석할 때 유용한 패턴이다. 문법을 불과 클래스 몇 개로 모델화 할 수 있을 때, 그 언어는 단순하다고 말한다. 단순한 언어의 문장이나 수식은 그 문법을 정의하는 클래스들의 인스턴스를 조합해 표현할 수 있다. <
+                    <hr>
+                    <ul>
+                      <li>언어를 묵시적으로 처리할 때보다 언어 요소를 쉽게 조합할 수 있다. </li>
+                      <li>언어 요소의 새 조합을 지원하기 위해 코드를 추가 작성할 필요가 없다. </li>
+                      <li>시스템의 동작 설정을 런타임에 변경할 수 있게 된다. </li>
+                      <li>문법을 정의하고 이를 이용하도록 클라이언트 코드를 수정하는 초기 비용이 든다. </li>
+                      <li>언어가 복잡하면, 지나치게 많은 작업이 필요하다. </li>
+                      <li>언어가 단순하면, 설계만 복잡해지는 것이다. </li>
+                    </ul>        
+                    <hr>                         
+                    <pre>
+                      <code class="java" >
+
+public interface Expression {
+    public boolean interpret(String context);
+}
+
+public class AndExpression implements Expression {
+    
+    private Expression expr1 = null;
+    private Expression expr2 = null;
+
+    public AndExpression(Expression expr1, Expression expr2) { 
+      this.expr1 = expr1;
+      this.expr2 = expr2;
+    }
+
+    @Override
+    public boolean interpret(String context) {	
+
+      return expr1.interpret(context) && expr2.interpret(context);
+    }
+}
+
+public class OrExpression implements Expression {
+    
+    private Expression expr1 = null;
+    private Expression expr2 = null;
+
+    public OrExpression(Expression expr1, Expression expr2) {
+      this.expr1 = expr1;
+      this.expr2 = expr2;
+    }
+
+    @Override
+    public boolean interpret(String context) {		
+
+      return expr1.interpret(context) || expr2.interpret(context);
+    }
+}
+
+public class TerminalExpression implements Expression {
+  
+    private String data;
+
+    public TerminalExpression(String data){
+      this.data = data; 
+    }
+
+    @Override
+    public boolean interpret(String context) {
+    
+      if(context.contains(data)){
+          return true;
+      }
+
+      return false;
+    }
+}
+
+@Slf4j
+public class InterpreterPatternDemo {
+
+    public static Expression getMaleExpression(){
+
+      Expression robert = new TerminalExpression("Robert");
+
+      Expression john = new TerminalExpression("John");
+
+      return new OrExpression(robert, john);
+    }
+
+    public static Expression getMarriedWomanExpression(){
+
+      Expression julie = new TerminalExpression("Julie");
+
+      Expression married = new TerminalExpression("Married");
+
+      return new AndExpression(julie, married);		
+    }
+
+    public static void main(String[] args) {
+
+      Expression isMale = getMaleExpression();
+
+      Expression isMarriedWoman = getMarriedWomanExpression();
+
+      log.info("John is male? {} " , isMale.interpret("John male"));
+
+      log.info("Julie is a married women? {} " , isMarriedWoman.interpret("Married Julie"));
+    }
+}
+                      </code>
+                    </pre>
                   </p>
                 </a>
               </div>
