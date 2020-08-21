@@ -284,14 +284,108 @@ console.log( person.sayHello() );
                 <div class="card-header" id="heading2">
                   <h2 class="mb-0">
                     <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
-                      
+                      TypeScript Handbook 정리 
                     </button>
                   </h2>
                 </div>
             
                 <div id="collapse2" class="collapse" aria-labelledby="heading2" data-parent="#accordionExample">
                   <div class="card-body">
-                     
+                    <Strong>Types By Inference : 타입 추론</Strong><br>
+                    <pre>
+                      <code class="script" >
+let helloWorld = "Hello World";
+
+/*
+  * 타입에 의한 추론 
+
+  - 명시적으로 데이터의 타입을 지정하지 않더라도 묵시적으로 형을 인식하여 처리된다. 
+
+*/
+
+// ^ = let helloWorld: string 
+                      </code>
+                    </pre>
+                    <hr>
+                    <strong>Defining Types : 타입 정의 </strong><br>
+                    <pre>
+                      <code class="script" >
+/*
+  자바스크립트에서 타입을 자동으로 인식하여 형을 지정하기 어려운 경우들이 있는데,
+    이런 경우를 지원하기 위해서 타입스크립트에서는 어떤 타입을 써야만 하는지를 지정하게 할 수 있다.
+*/
+                        
+const user = {
+  name : "Hayes",
+  id : 0,
+};
+
+interface User {
+  name : string;
+  id : number;
+}
+
+const user : User = {
+  name : "Hayes",
+  id : 0,  
+}
+
+// 자바스크립트에 Class가 도입된 이후로는 Class를 사용하여 interface를 선언할 수 있다. 
+interface User {
+  name : string;
+  id : number;
+}
+
+class UserAccount {
+  name : string;
+  id : number;
+
+  constructor(name: string, id: number){
+    this.name = name;
+    this.id = id;
+  }
+}
+
+const user: User = new UserAccount("Murphy", 1);
+
+// 타입스크립트를 이용해 반환되는 값의 유형을 정의하고자 할 경우, 아래와 같이 사용 
+function getAdminUser() : User {
+  // ... 
+}
+
+// 타입스크립트를 이용해 파라미터를 전달받고 싶은 경우, 아래와 같이 사용
+function deleteUser(user : User) {
+  // ...
+}
+                      </code>
+                    </pre>
+                    <hr>
+                    <strong>Composing Types : 타입 구성 </strong><br>
+                    <pre>
+                      <code class="script" >
+
+// 변수에 대해서 실제 할당 가능한 타입 만을 정의하여 사용하고 싶은 경우, 함수의 파라미터 또는 변수 선언에서 아래와 같이 사용할 수 있다. 
+
+type MyBool = true | false;                        
+type WindowStates = "open" | "closed" | "minimized";
+type LockStates = "locked" | "unlocked";
+type OddNumbersUnderTen = 1 | 3 | 5 | 7 | 9;
+
+function getLength( obj : string | string[] ){
+  return  obj.length;
+}
+
+
+// 함수 내에서 서로 다른 유형의 타입을 하나의 파라미터로 정의하여 typeof를 이용해서 자신의 상황에 맞게 반환할 수 있다. 
+function wrapInArray(obj: string | string[] ){
+  if ( typeof obj === "string" ) {
+    return [obj];
+  }else{
+    return obj;
+  }
+}
+                      </code>
+                    </pre>
                   </div>
                 </div>
               </div>
