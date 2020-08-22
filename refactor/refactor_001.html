@@ -62,12 +62,12 @@
           </a>
           <div class="dropdown-menu show" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">Refactoring</h6>
-            <a class="dropdown-item" href="../refactor/refactor_001.html"></a>
-            <a class="dropdown-item" href="../refactor/refactor_002.html"></a>
-            <a class="dropdown-item" href="../refactor/refactor_003.html"></a>
-            <a class="dropdown-item" href="../refactor/refactor_004.html"></a>
-            <a class="dropdown-item" href="../refactor/refactor_005.html"></a>
-            <a class="dropdown-item" href="../refactor/refactor_006.html"></a>
+            <a class="dropdown-item" href="../refactor/refactor_001.html">Reactoring</a>
+            <a class="dropdown-item" href="../refactor/refactor_002.html">메서드 정리</a>
+            <a class="dropdown-item" href="../refactor/refactor_003.html">객체 간의 기능 이동</a>
+            <a class="dropdown-item" href="../refactor/refactor_004.html">데이터 체계화</a>
+            <a class="dropdown-item" href="../refactor/refactor_005.html">조건문 간결화</a>
+            <a class="dropdown-item" href="../refactor/refactor_006.html">메서드 호출 단순화</a>
             <a class="dropdown-item" href="../refactor/refactor_007.html"></a>
             <a class="dropdown-item" href="../refactor/refactor_008.html"></a>          
             <a class="dropdown-item" href="../refactor/refactor_009.html"></a>
@@ -120,28 +120,91 @@
                     <div class="card-header" id="headingOne">
                       <h2 class="mb-0">
                         <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                          
+                          리팩토링은 무엇인가?
                         </button>
                       </h2>
                     </div>
-                
                     <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                       <div class="card-body">
-                      
-                      </div>
+                        리팩토링(명사) - 겉으로 드러나는 기능은 그대로 둔 채, 알아보기 쉽고 수정하기 간편하게 소프트웨어 내부를 수정하는 작업 
+                        <hr>
+                        리팩토링(동사) - 리팩토링 기법을 연달아 적용해서 겉으로 드러나는 기능은 그대로 둔채 소프트웨어 구조를 변경한다. 
+                        <hr>
+                        위의 정의에서 가장 중요한 것은 <br>
+                        첫째, 리팩토링의 목적은 소프트웨어를 더 이해하기 쉽고 수정하기 쉽게 만드는 것이다. 리팩토링을 수행하면 겉으로 드러나는 기능에 거의 또는 아예 영향을 주지 않은 채 소프트웨어의 각종 기능을 변경할 수 있다. 소프트웨어를 더 이해하기 쉽게 
+                        고치는 방법은 오직 리팩토링 밖에 없다. 리팩토링은 성능 최적화하는 상반된다. 리팩토링과 마찬가지로, 성능 최적화를 수행할 때도 대개는 기능이 변경되지 않으며 단순히 내부 구조만 바뀐다. 그러나 이 둘은 목적이 다른다. 성능 최적화를 수행하면 
+                        코드를 파악하기가 더 어려워질 때가 많지만, 필요한 성능을 얻으려면 어쩔 수 없이 해야한다. <br>
+                        둘때, 리팩토링은 겉으로 드러나는 소프트웨어 기능에 영향을 주지 않는다. 따라서 리팩토링 하기 전의 소프트웨어 기능은 리팩토링을 수행하고 나서도 그대로 이며, 최종 사용자나 다른 소프트웨어 프로그래머는 그 소프트웨어에 변화가 있음을 눈치채지 못한다. 
+                        <hr>
+                        <strong>리팩토링은 왜 해야 하나?</strong><br>
+                        리팩토링의 가치는 확실하며 적어도 코드를 언제든 쉽게 이해햘 수 있게 만드는 도구임엔 틀림 없다. 리팩토링은 다양한 용도로 사용 가능하므로, 다양한 용도로 사용하는 것이 마땅하다. <br>
+                        <ol>
+                          <li>
+                              소프트웨어 설계가 개선되니까 <br>
+                              리팩토링을 실시하지 않으면 프로그램 설계는 점점 노후된다. 단기적인 목적 때문에 코드를 수정하거나 코드의 설꼐를 완벽히 이해하지 않고 코드를 수정하면, 코드 구조가 뒤죽박죽되어 그 코드를 보고 설계를 파악하기가 어려워진다. 리팩토링은 그렇게 구조가 산만해진 코드를 정리하는 작업이다. 
+                              즉, 부적절한 위치에 있는 코드는 제거하는 것이다. 코드 구조는 한 번 엉망이되면 갈수록 뒤죽박죽된다. 코드의 설계를 파악하기 힘들어질수록 설계를 보수하기도 힘들어지니 결국 설계가 더 엉망이 되는 악순환의 고리자 끊기지 않는다. 그러나 코드의 처음 설게 구조를 유지하려면 정기적으로 
+                              리팩토링을 실시해야 한다. 
+                          </li>
+                          <li>
+                              소프트웨어를 이해하기가 더 쉬워지니까 <br>
+                              코드를 이해하기 쉽게 만들면 좋은점이 있다. 리팩토링을 실시하면 낮선 코드를 쉽게 이해 할 수 있다. 나는 어떤 코드를 처음 보면서 파악해야할 때, 그 것의 기능부터 파악한다. 코드의 몇줄을 보고 혼잣말로 "그렇구만, 이 코드의 기능은 이거군"하고 되뇐다. 
+                          </li>
+                          <li>
+                            버그를 찾기 쉬워지니까 <br>
+                            코드를 파악하기 쉬우면 버그 발견도 쉬워진다. 어떤 사람들은 전체 코드를 보면 버그가 눈에 들어온다던데, 솔직히 하는 버그를 찾는 작업에 소질이 없다. 그러나 코드 리팩토링을 실시하면 코드 기능을 근본적으로 이해할 수 있으며 그 새로운 깨달음을 즉시 코드에 반영한다. 프로그램 구조를 명료하게 만들어서 
+                            내가 특정한 전제들이 확실해지면 버그를 놓치는 것이 불가능 할 정도가 된다. 
+                            "난 뛰어난 프로그래머는 아니고, 단지 습관을 잘 들인 착실한 프로그래머다."
+                          </li>
+                          <li>
+                            프로그래밍 속도까 빨라지니까 <br>
+                            깔끔한 설계야 말로 스프트웨어 개발 속도를 높이기 위한 핵심이라고 확신한다. 실제로, 깔끔한 설계는 전적으로 신속한 개발을 목적으로 한다. 설계가 깔끔하지 않으면 개발 초기의 아주 잠시 동안엔 진행이 빠를지 몰라도 얼마 못가서 개발 속도가 떨어진다.
+                            새 기능을 추가할 때 시간이 걸리는 거라면 그나마 다행인데, 버그 찾기에 많은 시간을 낭비해서 문제다.  
+                          </li>
+                          <hr>
+                          <strong>리팩토링은 어떨 때 필요한가?</strong><br>
+                          <ol>
+                            <li>같은 작업의 삼진 아웃 때
+                              <br>
+                              어떤 작업을 처음 할 땐 그냥하고, 비슷한 작업을 두 번째 해야할 땐 중복 작업이라 좀 망설여져도 일단 그냥 하고, 세번째 하게 되면 그때 리팩토링을 실시하는 것이다. 
+                            </li>
+                            <li>기능을 추가할 때
+                              <br>
+                              리팩토링이 절실히 필요한 첫번째 상황은 소프트웨어에 새 기능을 추가해야 할 때다. 이 시점에 해야하는 첫째 이유는 코드를 이해하기 쉽게 만들기 위해서다. <br>
+                              리팩토링이 절힐히 필요한 두번재 상황은 설계가 지저분 해서 어떤 기능을 추가하기 힘들 때다. 
+                            </li>
+                            <li>버그를 수정할 때
+                              <br>
+                              버그를 수정할 땐 주로 코드를 이해하기 쉽게 만들려고 리팩토링한다. 
+                            </li>
+                            <li>코드를 검수할 때
+                              <br>
+                              대규모 설계를 검수할 땐 일반적으로 비교적 큰 검수팀에서 다양한 자문을 구하는 것이 좋다. 이때 그 그룹에 코드를 보여주는 것 보다는 UML 다이어 그램과 CRC 카드를 이용한 시나리오 전개를 발표하는 방식이 좋다. 
+                            </li>
+                          </ol>
+
+                        </ol>
+                      </div> 
                     </div>
                   </div>
                   <div class="card">
                     <div class="card-header" id="headingTwo">
                       <h2 class="mb-0">
                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                          
+                          리팩토링의 효율성 
                         </button>
                       </h2>
                     </div>
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                       <div class="card-body">
-                        
+                        프로그램이 지닌 가치는 두 종류다. 하나는 현재의 기능이라는 가치이고, 또 하나는 미래의 기능이라는 가치다. 프로그래밍 할 때 개발자는 주로 그 프로그램에 현재 무슨 기능을 넣을지를 전념한다. 
+                        프로그램의 현재 기능은 그저 일부에 불과하다는 사실을 깨우치지 않으면 개발자로서 오래 가지 못한다. 오늘 일을 오늘할 수 있어도 내일 일을 내일 할 능력이 없다면 개발자로서 실해하게 된다. <br>
+                        프로그램은 다음 4가지 상황일 때 수정하기 힘들어진다. 
+                        <ul>
+                          <li>코드를 알아보기 힘들 때</li>
+                          <li>중복된 로직이 들어가 있을 때</li>
+                          <li>추가 기능을 넣어야 해서 실행 중인 코드를 변경해야 할 때</li>
+                          <li>조건문 구조가 복잡할 때</li>
+                        </ul>
                       </div>
                     </div>
                   </div>
