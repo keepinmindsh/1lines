@@ -5600,7 +5600,7 @@ int main(void){
                       과목을 수강하는 것도 비슷하다. 성공적으로 학위를 취득하려면 각각의 교과목들을 순서에 따라 성공적으로 수강하여야만 한다. 
                       예를 들어 자료구조를 수강하라면 먼저 전산한 개론과 이산 수학을 수강하여야 한다. 즉 선수 과목은 과목의 선행 관계를 표현하게 된다. 그래프를 사용하면 이 같은 각각의 
                       과목들 간의 선행 관계를 명확하게 표현 할 수 있다. 이러한 방향 그래프에서 간선 &lt; u , v > 가 있다면 정점 u 는 정점 v를 선행한다고 말한다. 
-                      방향 그래프에 존재하는 각 정점들의 성행 순서를 위배하지 않으면서 모든 정점을 나열하는 것을 방향 그래프의 위상 정렬이라고 한다. 
+                      방향 그래프에 존재하는 각 정점들의 선행 순서를 위배하지 않으면서 모든 정점을 나열하는 것을 방향 그래프의 위상 정렬이라고 한다. 
                       <hr>
                       방향 그래프를 대상으로 위상 정렬을 하기 위한 알고리즘은 간단하다. 먼저 진입 차수가 0인 정점을 선택하고, 선택한 정점과 여기에 부착된 모든 간선을 삭제한다. 
                       이와 같은 진입 차수 0인 정점의 선택과 삭제 과정을 반복해서 모든 정점이 선택/삭제 되면 알고리즘이 종료된다. 진입 차수가 0인 정점이 여러 개 존재할 경우 
@@ -5639,6 +5639,120 @@ typedef struct GraphType {
   int n;
   GraphNode *adj_list[MAX_VERTICES];
 } GraphType;
+
+// 그래프 초기화 
+void graph_init(GraphType *g){
+  int v;
+  g -> n = 0;
+  for ( v = 0 ;  v &lt; MAX_VERTICES ; v ++ ){
+    g -> adj_list[v] = NULL;
+  }
+}
+
+// 정점 삽입 연산 
+void insert_vertex(GraphType *g, int v){
+  if(((g -> n) + 1) > MAX_VERTICES ){
+    fprintf(stderr, "그래프: 정점의 개수 초과");
+    return;
+  }
+  g -> n ++;
+}
+
+// 간선 삽입 연산, v를 u의 인접 리스트에 삽입한다. 
+void insert_edge(GraphType *g, int v ){
+  GraphNode *node;
+  if( u >= g -> n || v >= g -> n ) {
+    fprintf(stderr, "그래프 : 정점 번호 오류 ");
+    return;
+  }
+  node = (GraphNode *)malloc(sizeof(GraphNode));
+  node -> vertex = v;
+  node -> link = g -> adj_list[u];
+  g -> adj_list[u] node;
+}                       
+
+#define MAX_STACK_SIZE 100
+typedef int element;
+typedef struct {
+  element stack[MAX_STACK_SIZE];
+  int top;
+}
+
+// 스택 초기화 변수 
+void init(StackType *s){
+  s -> top = -1;
+}
+
+// 공백 상태 검출 함수 
+int is_empty(StackType *s){
+  return ( s -> top == -1 );
+}
+
+// 포화 상태 검출 함수 
+int is_full(StackType *s){
+  return ( s -> top == ( MAX_STACK_SIZE - 1 )) ;
+}
+
+// 삽입 함수 
+void push(StackType *s, element item){
+  if(is_full(s)){
+    fprintf(stderr, " 스택 포화 에러 \n");
+    return;
+  }
+  else s -> stack[(s -> top) --];
+}
+
+// 삭제함수 
+element pop(StackType *s){
+  if(is_empty(s)){
+    fprintf(stderr, "스택 공백 에러\n");
+    exit(1);
+  }
+  else return s -> stack[(s->top)--];
+}
+
+// 위상 정렬을 수행한다. 
+int topo_sort(GraphType *g){
+  int i;
+  StackType s;
+  GraphNode *node;
+
+  // 모든 정점의 진입 차수를 계산 
+  int *in_degree = (int*)malloc(g -> n * sizeof(int));
+  for ( i = 0 ; i &lt; g -> n ; i ++){
+    in_degree[i] = 0;
+  }
+  for( i = 0; i &lt; g -> n ; i ++){
+    GraphNode *node = g -> adj_list[i];
+    while( node != NULL ){
+      in_degree[node -> vertex] ++;
+      node = node -> link;
+    }
+  }
+
+  // 진입 차수가 0인 정점을 스택에 삽입 
+  int(&s);
+  for( i = 0; i &lt; g -> n ; i ++){
+    if ( in_degree[i] == 0 ) push(&s, i);
+  }
+
+  // 위상 순서를 생성 
+  while(!is_empty(&s)){
+    int w;
+    w = pop(&s);
+    printf("정점 %d -> ", w); // 정점 출력 
+    node = g -> adj_list[w];  // 각 정점의 진입 차수를 변경 
+    while ( node != NULL){
+      int u = node -> vertex;
+      in_degree[u]--;
+      if ( in_degree[u] == 0 ) push(&s, u);
+      node = node -> link;
+    }
+  }
+  free(in_degree);
+  printf("\n");
+  return ( i == g -> n );
+}
                         </code>
                       </pre>
                     </div>
