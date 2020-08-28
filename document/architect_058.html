@@ -1019,72 +1019,872 @@ public class Medic implements Unit {
                   </div>
                 </div>
                 <div class="card">
-                  <div class="card-header" id="h1">
+                  <div class="card-header" id="h8">
                     <h2 class="mb-0">
-                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c1" aria-expanded="true" aria-controls="c1">
-              
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c8" aria-expanded="true" aria-controls="c8">
+                        Compose Method
                       </button>
                     </h2>
                   </div>
-                  <div id="c1" class="collapse" aria-labelledby="h1" data-parent="#accordionExample">
+                  <div id="c8" class="collapse" aria-labelledby="h8" data-parent="#accordionExample">
                     <div class="card-body">
-                        
+                      어떤 메서드의 내부 로직이 한 눈에 이해하기 어렵다면, 그 로직을 의도가 잘 드러나며 동등한 수준의 작업을 하는 여러 단계로 나눈다. 
+                      <ul>
+                        <li>어떤 메서드가 무슨일을 하고, 또 그 일을 수행하는지 효과적으로 표현한다. </li>
+                        <li>동등한 수준의 작업을 하며 이름이 적절하게 붙은 몇 단계로 내부를 나눔으로써, 메서드를 단순하게 만든다. </li>
+                        <li>작은 메서드가 지나치게 많이 생길 수 있다.</li>
+                        <li>로직이 여러 곳에 흩어지기 때문에 디버깅이 어려울 수 있다. </li>
+                      </ul>
+                      <hr>
+                      절차 
+                      <ul>
+                        <li>
+                          <strong>작게 만든다.</strong> 
+                          Composed Method의 코드는 10줄을 잘 넘어가지 않는다. 보통 5줄 정도다. 
+                        </li>
+                        <li>
+                          <strong>사용되지 않거나 중복된 코드를 제거한다. </strong> 
+                          이렇게 함으로써 메서드 내부의 코드량을 줄일 수 있다. 중복된 코드 중에는 명확하게 드러나는 것도 있지만 유심히 살펴봐야 발견할 수 있는 경우도 있음을 명심하기 바란다. 
+                        </li>
+                        <li>
+                          <strong>코드의 의도가 잘 드러나도록 한다. </strong> 
+                          변수와 메서드, 파라미터의 이름이 그 목적을 잘 표현하도록 짓는다. ( 예를 들어, public void addChildTo(Nodeparent) 와 같은 식으로 )
+                        </li>
+                        <li>
+                          <strong>단순화 한다.</strong>
+                          코드를 가능한 한 단순하게 변경한다. 기존의 코드가 어떻게 작성됐는지 고착하고, 다른 대안을 시험해본다. 
+                        </li>
+                        <li>
+                          <strong>동등한 수준으로 단계를 나눈다.</strong>
+                          메서드를 여러 작업 단계로 나눌 때, 각 단계가 동등한 수준이 되도록 해야한다. 예를 들어, 세부 조건을 검사하는 로직과 몇 개의 고수준 메서드를 호출하는 코드가 섞여 있다면, 동등하지 않은 수준의 단계들로 이루어진것이다. 세부 조건 로직을 이름이 잘 지어진 별도의 메서드로 뽑아내, 다른 
+                          고수준 메서드와 동등한 수준으로 맞춰야 한다. 
+                        </li>
+                      </ul>
+                      예제 
+                      <pre>
+                        <code class="java" >
+  public class List... 
+   
+    // 매직 넘버 10은 그 목적을 전혀 표현하지 못하는 숫자로 하드 코딩 되어 있으므로, 먼저 이를 상수로 변경한다. 
+    private final static int GROWTH_INCREMENT = 10;                        
+  
+    public void add(Object element) {
+      // 조건 문으로 메서드 전체를 감싸기보다는 다음과 같이 초반에 메서드를 빠져 나가도록 함으로써 메서드의 실행 요건을 명시하는 것이 낫다. 
+      if ( readOnly )
+        return;
+      
+      // elements 배열의 크기를 늘릴 필요가 있는지를 검사하는 코드에 Extract Method 리팩터링을 적용한다. 
+      if(atCapacity()){
+        grow();
+      }
+      addElement(elements);
+    }  
+    
+    private boolean atCapacity(){
+      return (size + 1) > elements.length;
+    }
+  
+    private void grow() {
+      Object[] newElements = new Object[elements.length + GROWTH_INCREMENT];
+      for ( int i = 0; i &lt; size ; i ++ ){
+        newElements[i] = elements[i];
+      }
+      elements = newElements;
+    }
+  
+    private void addElement(Object element){
+      element[size++] = element;
+    }
+                        </code>
+                      </pre>
                     </div>
                   </div>
                 </div>
                 <div class="card">
-                  <div class="card-header" id="h1">
+                  <div class="card-header" id="h9">
                     <h2 class="mb-0">
-                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c1" aria-expanded="true" aria-controls="c1">
-              
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c9" aria-expanded="true" aria-controls="c9">
+                        Replace Implicit Tree with Composite 
                       </button>
                     </h2>
                   </div>
-                  <div id="c1" class="collapse" aria-labelledby="h1" data-parent="#accordionExample">
+                  <div id="c9" class="collapse" aria-labelledby="h9" data-parent="#accordionExample">
                     <div class="card-body">
-                        
+                      실질적으로 트리 구조인 데이터를 String 과 같은 기본 타입으로 표현하고 있다면, 그 기본 타입의 표현을 컴포짓 구조로 바꾼다. 
+                      <ul>
+                        <li>코드를 더 단순하게 만들기 위해서 Composite 패턴을 사용한다. </li>
+                        <li>노드를 추가/삭제/포매팅하는 등의 반복적인 코드를 캡슐화 한다. </li>
+                        <li>빈번하게 사용하는 유사한 로직을 다루기 위한 일반화된 방법을 제공한다.</li>
+                        <li>클라이언트가 데이터를 생성하는 방법이 단순해진다. </li>
+                      </ul>
+                      <hr>
+                      묵시적 트리 중에서 새로운 클래스로 모델화할 수 있는 부분인, 묵시적 종단을 찾는다. 이 때 새로운 클래스는 종단 노드를 나타내는 것으로, Composite:Leaf에 해당한다. 종단 노드 클래스는 리팩터링 또는 테스트 주도 갭잘을 통해서 생성할 수 있다. 
+                      <pre>
+                        <code class="java" >
+  package pattern.sample.patternuse07;
+  
+  import pattern.sample.patternuse07.building.Barrack;
+  import pattern.sample.patternuse07.unit.UnitComposite;
+  import pattern.sample.patternuse07.unit.type.MarineType;
+  import pattern.sample.patternuse07.unit.type.MedicType;
+  
+  public class BattleGround {
+      public static void main(String[] args) {
+          UnitComposite unitList = Barrack.requestUnit();
+  
+          unitList.addTrainedUnit(new MedicType());
+          unitList.addTrainedUnit(new MarineType());
+          unitList.addTrainedUnit(new MarineType());
+          unitList.addTrainedUnit(new MarineType());
+          unitList.addTrainedUnit(new MarineType());
+          unitList.addTrainedUnit(new MedicType());
+          unitList.addTrainedUnit(new MedicType());
+          unitList.addTrainedUnit(new MedicType());
+          unitList.addTrainedUnit(new MedicType());
+  
+          unitList.trainingUnit();
+  
+          unitList.checkTrainedUnit();
+      }
+  }
+  
+  package pattern.sample.patternuse07.building;
+  
+  import pattern.sample.patternuse07.unit.UnitComposite;
+  
+  public class Barrack {
+      public static UnitComposite requestUnit(){
+          return new UnitComposite();
+      }
+  }
+  
+  
+  package pattern.sample.patternuse07.unit;
+  
+  import lombok.RequiredArgsConstructor;
+  import pattern.sample.patternuse07.unit.impl.Marine;
+  import pattern.sample.patternuse07.unit.impl.Medic;
+  import pattern.sample.patternuse07.unit.inf.Unit;
+  import pattern.sample.patternuse07.unit.type.MarineType;
+  import pattern.sample.patternuse07.unit.type.MedicType;
+  
+  import java.util.ArrayList;
+  import java.util.List;
+  import java.util.stream.Collectors;
+  
+  @RequiredArgsConstructor
+  public class UnitComposite {
+  
+      private final List&lt;UnitComposite> unitCompositeList = new ArrayList&lt;>();
+      private List&lt;Unit> unitList;
+  
+      public void trainingUnit(){
+          unitList = unitCompositeList.stream().map(trainingType -> {
+              trainingType.trainingUnit();
+  
+              if(trainingType instanceof MarineType){
+                  return new Marine();
+              }else if(trainingType instanceof MedicType){
+                  return new Medic();
+              }else {
+                  return null;
+              }
+          }).collect(Collectors.toList());
+      }
+  
+      public void checkTrainedUnit(){
+          unitList.forEach(Unit::checkUnit);
+      }
+  
+      public void addTrainedUnit(UnitComposite unitComposite){
+          unitCompositeList.add(unitComposite);
+      }
+  }
+  
+  package pattern.sample.patternuse07.unit.type;
+  
+  import lombok.extern.slf4j.Slf4j;
+  import pattern.sample.patternuse07.unit.UnitComposite;
+  
+  @Slf4j
+  public class MedicType extends UnitComposite {
+      @Override
+      public void trainingUnit() {
+          log.info("메딕 훈련을 시작합니다. ");
+      }
+  }
+  
+  package pattern.sample.patternuse07.unit.type;
+  
+  import lombok.extern.slf4j.Slf4j;
+  import pattern.sample.patternuse07.unit.UnitComposite;
+  
+  @Slf4j
+  public class MarineType extends UnitComposite {
+  
+      @Override
+      public void trainingUnit() {
+          log.info("마린 훈련을 시작합니다. ");
+      }
+  }
+  
+  package pattern.sample.patternuse07.unit.inf;
+  
+  public interface Unit {
+      public void checkUnit();
+  }
+  
+  package pattern.sample.patternuse07.unit.impl;
+  
+  import lombok.extern.slf4j.Slf4j;
+  import pattern.sample.patternuse07.unit.inf.Unit;
+  
+  @Slf4j
+  public class Marine implements Unit {
+      @Override
+      public void checkUnit() {
+          log.info("Marine 입니다.");
+      }
+  }
+  
+  package pattern.sample.patternuse07.unit.impl;
+  
+  import lombok.extern.slf4j.Slf4j;
+  import pattern.sample.patternuse07.unit.inf.Unit;
+  
+  @Slf4j
+  public class Medic implements Unit {
+      @Override
+      public void checkUnit() {
+          log.info("Medic 입니다.");
+      }
+  }
+  
+  
+  
+                        </code>
+                      </pre>
                     </div>
                   </div>
                 </div>
                 <div class="card">
-                  <div class="card-header" id="h1">
+                  <div class="card-header" id="h10">
                     <h2 class="mb-0">
-                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c1" aria-expanded="true" aria-controls="c1">
-              
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c10" aria-expanded="true" aria-controls="c10">
+                        Encapsulate Composite with Builder
                       </button>
                     </h2>
                   </div>
-                  <div id="c1" class="collapse" aria-labelledby="h1" data-parent="#accordionExample">
+                  <div id="c10" class="collapse" aria-labelledby="h10" data-parent="#accordionExample">
                     <div class="card-body">
-                        
+                      컴포짓 구조를 생성하는 과정이 반복적으로 수행되고 복잡하며 에러 발생 가능성도 많은 상태라면, 그 세부 사항을 처리하는 별도의 빌더를 제공하여 
+                      컴포짓 구조를 쉽게 생성할 수 있도록 한다. 
+                      <hr>                  
+                      <ul>
+                        <li>컴포짓 구조를 생성하는 클라이언트의 코드를 단순화 한다.</li>
+                        <li>반복적이고 에러 발생 가능성이 높은 컴포짓 구조 생성 작업의 단점을 개선한다. </li>
+                        <li>클라이언트 코드의 컴포짓 구조 사이의 결합을 느슨하게 한다.</li>
+                        <li>캡슐화된 컴포짓 구조 또는 복잡한 객체의 여러 다양한 표현이 가능하게 한다.</li>
+                        <li>인터페이스의 의도가 덜 명확해질 수 있다. </li>
+                      </ul>
+                      <pre>
+                        <code class="java" >
+  package pattern.sample.patternuse08;
+  
+  import pattern.sample.patternuse08.building.Barrack;
+  import pattern.sample.patternuse08.code.UnitType;
+  import pattern.sample.patternuse08.unit.inf.Unit;
+  import pattern.sample.patternuse08.unitBuilder.UnitBuilder;
+  
+  public class BattleGround {
+      public static void main(String[] args) {
+          Unit marine = Barrack.createUnit(UnitBuilder.builder()
+                                      .unitName("Marine")
+                                      .unitType(UnitType.MARINE).build());
+  
+  
+      }
+  }
+  
+  package pattern.sample.patternuse08.building;
+  
+  import pattern.sample.patternuse08.unit.inf.Unit;
+  import pattern.sample.patternuse08.unitBuilder.UnitBuilder;
+  
+  public class Barrack {
+  
+      public static Unit createUnit(UnitBuilder unitBuilder){
+          return unitBuilder.createUnit();
+      }
+  
+  }
+  
+  package pattern.sample.patternuse08.code;
+  
+  public enum UnitType {
+      MARINE,
+      MEDIC,
+      SCV
+  }
+  
+  package pattern.sample.patternuse08.unit.inf;
+  
+  public interface Unit {
+  }
+  
+  package pattern.sample.patternuse08.unit;
+  
+  import lombok.extern.slf4j.Slf4j;
+  import pattern.sample.patternuse08.unit.inf.Unit;
+  
+  @Slf4j
+  public class Marine implements Unit {
+      public Marine() {
+          log.info("Marine이 생성되었습니다. ");
+      }
+  }
+  
+  package pattern.sample.patternuse08.unit;
+  
+  import lombok.extern.slf4j.Slf4j;
+  import pattern.sample.patternuse08.unit.inf.Unit;
+  
+  @Slf4j
+  public class Medic implements Unit {
+      public Medic(){
+          log.info("Medic이 생성되었습니다.");
+      }
+  }
+  
+  package pattern.sample.patternuse08.unit;
+  
+  import lombok.extern.slf4j.Slf4j;
+  import pattern.sample.patternuse08.unit.inf.Unit;
+  
+  @Slf4j
+  public class SCV implements Unit {
+      public SCV() {
+          log.info("SCV이 생성되었습니다.");
+      }
+  }
+  
+  package pattern.sample.patternuse08.unitBuilder;
+  
+  import lombok.Builder;
+  import pattern.sample.patternuse08.code.UnitType;
+  import pattern.sample.patternuse08.unit.Marine;
+  import pattern.sample.patternuse08.unit.Medic;
+  import pattern.sample.patternuse08.unit.SCV;
+  import pattern.sample.patternuse08.unit.inf.Unit;
+  
+  public class UnitBuilder {
+  
+      private final String unitName;
+      private final UnitType unitType;
+  
+      @Builder
+      public UnitBuilder(String unitName, UnitType unitType){
+          this.unitName = unitName;
+          this.unitType = unitType;
+      }
+  
+      public Unit createUnit(){
+          switch (unitType){
+              case MEDIC:
+                  return new Medic();
+              case MARINE:
+                  return new Marine();
+              default:
+                  return new SCV();
+          }
+      }
+  }                    
+                        </code>
+                      </pre>
                     </div>
                   </div>
                 </div>
                 <div class="card">
-                  <div class="card-header" id="h1">
+                  <div class="card-header" id="h11">
                     <h2 class="mb-0">
-                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c1" aria-expanded="true" aria-controls="c1">
-              
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c11" aria-expanded="true" aria-controls="c11">
+                        Move Accumulation to Collecting Parameter
                       </button>
                     </h2>
                   </div>
-                  <div id="c1" class="collapse" aria-labelledby="h1" data-parent="#accordionExample">
+                  <div id="c11" class="collapse" aria-labelledby="h11" data-parent="#accordionExample">
                     <div class="card-body">
-                        
+                      지역변수에 정보를 축적하는 매우 긴 메서드가 있다면, 그것을 여러 메서드로 분해하고 각 메서드에 수집 파라미터를 넘겨 정보를 축적하도록 한다. 
+                      <hr>
+                      다루기 어려울 정도로 비대한 메서드를 분해해 Composed Method로 만들려면, 
+                      Composed Method에 의해 호출되는 각 메서드로부터 정보를 얻어 어떻게 축적할 것인지 
+                      결정해야 한다. 각 메서드가 리턴한 정보를 보관해 두었다가 나중에 최종 형태로 합칠 수도 있지만 각 메서드에 수집 파라미터를 넘겨 정보를 점진적으로 축적할 수도 있다. 각 메서드는 자신의 정보를 수집 파라미터에 쓰고, 그 결과로 정보가 축적된다. 
+                      
+                      <ul>
+                        <li>다루기 어려울 정도로 비대한 메서드를 작고 간단하며 이해하기 쉬운 여러 개의 메서드로 분해하는 데 도움이 된다. </li>
+                        <li>코드의 실행 속도가 향상될 수 있다. </li>
+                      </ul>
+                      <pre>
+                        <code class="java" >
+  package pattern.sample.patternuse09;
+  
+  import lombok.extern.slf4j.Slf4j;
+  import pattern.sample.patternuse09.building.Barrack;
+  import pattern.sample.patternuse09.code.UnitType;
+  import pattern.sample.patternuse09.unit.inf.Unit;
+  
+  @Slf4j
+  public class BattleGround {
+      public static void main(String[] args) {
+          Unit unit = Barrack.getUnit(UnitType.MARINE);
+  
+          Unit unitMedic = Barrack.getUnit(UnitType.MEDIC);
+  
+          log.info("결과 : {}" ,unit.checkAbility());
+          log.info("결과 : {}" ,unitMedic.checkAbility());
+      }
+  }
+  
+  package pattern.sample.patternuse09.builder;
+  
+  import lombok.Builder;
+  import pattern.sample.patternuse09.order.inf.Training;
+  import pattern.sample.patternuse09.unit.inf.Unit;
+  
+  @Builder
+  public class TrainingBuilder {
+      private final Training walking;
+      private final Training running;
+      private final Training jumping;
+      private final Training hiding;
+      private final Training watching;
+      private final Unit unit;
+  
+      public Unit trainingUnit(){
+  
+          walking.practice(unit);
+  
+          running.practice(unit);
+  
+          jumping.practice(unit);
+  
+          hiding.practice(unit);
+  
+          watching.practice(unit);
+  
+          return unit;
+      }
+  }
+  
+  package pattern.sample.patternuse09.building;
+  
+  import pattern.sample.patternuse09.builder.TrainingBuilder;
+  import pattern.sample.patternuse09.code.UnitType;
+  import pattern.sample.patternuse09.order.*;
+  import pattern.sample.patternuse09.unit.Marine;
+  import pattern.sample.patternuse09.unit.Medic;
+  import pattern.sample.patternuse09.unit.inf.Unit;
+  
+  public class Barrack {
+      public static Unit getUnit(UnitType unitType){
+  
+          if(unitType == UnitType.MARINE){
+              return TrainingBuilder
+                      .builder()
+                      .unit(new Marine())
+                      .hiding(new Hiding())
+                      .jumping(new Jumping())
+                      .running(new Running())
+                      .walking(new Walking())
+                      .watching(new Watching())
+                      .build().trainingUnit();
+          }else{
+              return TrainingBuilder
+                      .builder()
+                      .unit(new Medic())
+                      .hiding(new Hiding())
+                      .jumping(new Jumping())
+                      .running(new Running())
+                      .walking(new Walking())
+                      .watching(new Watching())
+                      .build().trainingUnit();
+          }
+      }
+  }
+  
+  package pattern.sample.patternuse09.code;
+  
+  public enum UnitType {
+      MARINE,
+      MEDIC,
+      SCV
+  }
+  
+  package pattern.sample.patternuse09.order.inf;
+  
+  public interface Training&lt;ReturnR> {
+  
+      public ReturnR practice(ReturnR returnR);
+  }
+  
+  package pattern.sample.patternuse09.order;
+  
+  import lombok.RequiredArgsConstructor;
+  import pattern.sample.patternuse09.order.inf.Training;
+  import pattern.sample.patternuse09.unit.inf.Unit;
+  
+  @RequiredArgsConstructor
+  public class Hiding implements Training&lt;Unit> {
+  
+      @Override
+      public Unit practice(Unit unit) {
+  
+          unit.trainAbility(" 숨기 능력이 추가되었습니다.");
+  
+          return unit;
+      }
+  }
+  
+  package pattern.sample.patternuse09.order;
+  
+  import lombok.RequiredArgsConstructor;
+  import pattern.sample.patternuse09.order.inf.Training;
+  import pattern.sample.patternuse09.unit.inf.Unit;
+  
+  @RequiredArgsConstructor
+  public class Jumping implements Training&lt;Unit> {
+  
+      @Override
+      public Unit practice(Unit unit) {
+          unit.trainAbility(" 점프 능력이 추가되었습니다.");
+          return unit;
+      }
+  }
+  
+  package pattern.sample.patternuse09.order;
+  
+  import lombok.RequiredArgsConstructor;
+  import pattern.sample.patternuse09.order.inf.Training;
+  import pattern.sample.patternuse09.unit.inf.Unit;
+  
+  @RequiredArgsConstructor
+  public class Running  implements Training&lt;Unit> {
+  
+      @Override
+      public Unit practice(Unit unit) {
+          unit.trainAbility(" 달리기 능력이 추가되었습니다.");
+          return unit;
+      }
+  }
+  
+  package pattern.sample.patternuse09.order;
+  
+  import lombok.RequiredArgsConstructor;
+  import pattern.sample.patternuse09.order.inf.Training;
+  import pattern.sample.patternuse09.unit.inf.Unit;
+  
+  @RequiredArgsConstructor
+  public class Walking  implements Training&lt;Unit> {
+  
+      @Override
+      public Unit practice(Unit unit) {
+          unit.trainAbility(" 걷기 능력이 추가되었습니다.");
+          return unit;
+      }
+  }
+  
+  package pattern.sample.patternuse09.order;
+  
+  import lombok.RequiredArgsConstructor;
+  import pattern.sample.patternuse09.order.inf.Training;
+  import pattern.sample.patternuse09.unit.inf.Unit;
+  
+  @RequiredArgsConstructor
+  public class Watching  implements Training&lt;Unit> {
+  
+      @Override
+      public Unit practice(Unit unit) {
+          unit.trainAbility(" 보기 능력이 추가되었습니다.");
+          return unit;
+      }
+  }
+  
+  package pattern.sample.patternuse09.unit.inf;
+  
+  public interface Unit {
+  
+      public void trainAbility(String ability);
+  
+      public String checkAbility();
+  }
+  
+  package pattern.sample.patternuse09.unit;
+  
+  import pattern.sample.patternuse09.unit.inf.Unit;
+  
+  public class Marine implements Unit {
+  
+      private StringBuilder abilities = new StringBuilder();
+      private final String unitName;
+  
+      public Marine(){
+          unitName = "Marine";
+      }
+  
+      public void trainAbility(String ability){
+          abilities.append("능력 : " + ability + "\r\n");
+      }
+  
+      public String checkAbility(){
+          return abilities.toString();
+      }
+  
+  }
+  
+  package pattern.sample.patternuse09.unit;
+  
+  import pattern.sample.patternuse09.unit.inf.Unit;
+  
+  public class Medic implements Unit {
+  
+      private StringBuilder abilities = new StringBuilder();
+      private final String unitName;
+  
+      public Medic(){
+          unitName = "Medic";
+      }
+  
+      public void trainAbility(String ability){
+          abilities.append("능력 : " + ability + "\r\n");
+      }
+  
+      public String checkAbility(){
+          return abilities.toString();
+      }
+  }
+  
+  
+                          
+                        </code>
+                      </pre>
                     </div>
                   </div>
                 </div>
                 <div class="card">
-                  <div class="card-header" id="h1">
+                  <div class="card-header" id="h12">
                     <h2 class="mb-0">
-                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c1" aria-expanded="true" aria-controls="c1">
-              
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c12" aria-expanded="true" aria-controls="c12">
+                        Extract Composite
                       </button>
                     </h2>
                   </div>
-                  <div id="c1" class="collapse" aria-labelledby="h1" data-parent="#accordionExample">
+                  <div id="c12" class="collapse" aria-labelledby="h12" data-parent="#accordionExample">
                     <div class="card-body">
-                        
+                      한 상속 구조 내의 서브 클래스가 동일한 컴포짓 기능을 각자 구현하고 있다면, 컴포짓 기능을 수퍼 클래스로 옮겨 구현한다. 
+                    <hr>
+                    어떤 상속 구조 내의 서브 클래스들이 자신의 자식 객체를 컬렉션에 저장하고 그 자식 객체들의 기능에 접근하기 위한 메서드를 각자 구현하는 것은 자주 볼 수 있다. 
+                    이때 만약 자식 객체의 타입이 부모 객체와 동일한 상속 구조 내의 타임이라면 , Composite패턴으로 리팩터링하여 많은 코드 중복을 제거할 수 있다. 
+                    <ul>
+                      <li>중복된 자식 객체 저장/처리 로직을 제거한다.</li>
+                      <li>자식 객체 처리 로직을 상속 받아 그대로 사용할 수 있음이 명확히 드러난다. </li>
+                    </ul>
+                    <pre>
+                      <code class="java" >
+package pattern.sample.patternuse10;
+
+import pattern.sample.patternuse10.action.Act;
+import pattern.sample.patternuse10.action.Hiding;
+import pattern.sample.patternuse10.action.Running;
+import pattern.sample.patternuse10.action.Walking;
+import pattern.sample.patternuse10.action.composite.Action;
+import pattern.sample.patternuse10.code.ActionType;
+import pattern.sample.patternuse10.unit.Marine;
+import pattern.sample.patternuse10.unit.inf.Unit;
+
+public class BattleGround {
+    public static void main(String[] args) {
+
+        Action action = new Act();
+
+        action.actionAdd(new Running());
+        action.actionAdd(new Hiding());
+        action.actionAdd(new Walking());
+
+        Unit marine = new Marine(action);
+
+        marine.act(ActionType.HIDING);
+        marine.act(ActionType.HIDING);
+        marine.act(ActionType.WALK);
+        marine.act(ActionType.RUNNING);
+    }
+}
+
+package pattern.sample.patternuse10.action.composite;
+
+import pattern.sample.patternuse10.action.Hiding;
+import pattern.sample.patternuse10.action.Running;
+import pattern.sample.patternuse10.action.Walking;
+import pattern.sample.patternuse10.code.ActionType;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
+
+public abstract class Action {
+
+    protected List&lt;Action> actionList = new ArrayList&lt;>();
+
+    public void actionAdd(Action action){
+        actionList.add(action);
+    }
+
+    public Action action(ActionType actionType){
+
+        AtomicReference&lt;Action> action = new AtomicReference&lt;>();
+
+        actionList.forEach(actionFromList -> {
+            switch (actionType){
+                case RUNNING:
+                    if(actionFromList instanceof Running){
+                        action.set(actionFromList);
+                    }
+                    return;
+                case HIDING:
+                    if(actionFromList instanceof Hiding) {
+                        action.set(actionFromList);
+                    }
+                    return;
+                case WALK:
+                    if(actionFromList instanceof Walking ){
+                        action.set(actionFromList);
+                    }
+                    return;
+                }
+        });
+
+        return action.get();
+    }
+
+    public abstract void act();
+}
+
+package pattern.sample.patternuse10.action;
+
+import pattern.sample.patternuse10.action.composite.Action;
+import pattern.sample.patternuse10.code.ActionType;
+
+import java.util.concurrent.atomic.AtomicReference;
+
+public class Act extends Action {
+
+    @Override
+    public Action action(ActionType actionType){
+
+        AtomicReference&lt;Action> action = new AtomicReference&lt;>();
+
+        super.actionList.forEach(actionFromList -> {
+            switch (actionType){
+                case RUNNING:
+                    if(actionFromList instanceof Running){
+                        action.set(actionFromList);
+                    }
+                    return;
+                case HIDING:
+                    if(actionFromList instanceof Hiding) {
+                        action.set(actionFromList);
+                    }
+                    return;
+                case WALK:
+                    if(actionFromList instanceof Walking ){
+                        action.set(actionFromList);
+                    }
+                    return;
+            }
+        });
+
+        return action.get();
+    }
+
+    @Override
+    public void act() {
+
+    }
+}
+
+package pattern.sample.patternuse10.action;
+
+import lombok.extern.slf4j.Slf4j;
+import pattern.sample.patternuse10.action.composite.Action;
+
+@Slf4j
+public class Hiding extends Action {
+    @Override
+    public void act() {
+        log.info("Hiding Action start!");
+    }
+}
+
+package pattern.sample.patternuse10.action;
+
+import lombok.extern.slf4j.Slf4j;
+import pattern.sample.patternuse10.action.composite.Action;
+
+@Slf4j
+public class Running  extends Action {
+    @Override
+    public void act() {
+        log.info("Running Action start!");
+    }
+}
+
+package pattern.sample.patternuse10.action;
+
+import lombok.extern.slf4j.Slf4j;
+import pattern.sample.patternuse10.action.composite.Action;
+
+@Slf4j
+public class Walking  extends Action {
+    @Override
+    public void act() {
+        log.info("Waling Action start!");
+    }
+}
+
+package pattern.sample.patternuse10.code;
+
+public enum ActionType {
+    WALK,
+    RUNNING,
+    HIDING
+}
+
+package pattern.sample.patternuse10.unit.inf;
+
+import pattern.sample.patternuse10.code.ActionType;
+
+public interface Unit {
+
+    public void act(ActionType actionType);
+}
+
+package pattern.sample.patternuse10.unit;
+
+import lombok.RequiredArgsConstructor;
+import pattern.sample.patternuse10.action.composite.Action;
+import pattern.sample.patternuse10.code.ActionType;
+import pattern.sample.patternuse10.unit.inf.Unit;
+
+@RequiredArgsConstructor
+public class Marine implements Unit {
+    private final Action action;
+
+    @Override
+    public void act(ActionType actionType) {
+        action.action(actionType).act();
+    }
+}                    
+                      </code>
+                    </pre>  
                     </div>
                   </div>
                 </div>
@@ -1346,863 +2146,6 @@ public class Medic implements Unit {
               </div>
 
               <div class="list-group">
-               
-               
-                
-               
-                
-                
-               
-                <a href="#" class="list-group-item list-group-item-action">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">
-                      Compose Method
-                    </h5>
-                  </div>
-                  <p class="mb-1">
-                    어떤 메서드의 내부 로직이 한 눈에 이해하기 어렵다면, 그 로직을 의도가 잘 드러나며 동등한 수준의 작업을 하는 여러 단계로 나눈다. 
-                    <ul>
-                      <li>어떤 메서드가 무슨일을 하고, 또 그 일을 수행하는지 효과적으로 표현한다. </li>
-                      <li>동등한 수준의 작업을 하며 이름이 적절하게 붙은 몇 단계로 내부를 나눔으로써, 메서드를 단순하게 만든다. </li>
-                      <li>작은 메서드가 지나치게 많이 생길 수 있다.</li>
-                      <li>로직이 여러 곳에 흩어지기 때문에 디버깅이 어려울 수 있다. </li>
-                    </ul>
-                    <hr>
-                    절차 
-                    <ul>
-                      <li>
-                        <strong>작게 만든다.</strong> 
-                        Composed Method의 코드는 10줄을 잘 넘어가지 않는다. 보통 5줄 정도다. 
-                      </li>
-                      <li>
-                        <strong>사용되지 않거나 중복된 코드를 제거한다. </strong> 
-                        이렇게 함으로써 메서드 내부의 코드량을 줄일 수 있다. 중복된 코드 중에는 명확하게 드러나는 것도 있지만 유심히 살펴봐야 발견할 수 있는 경우도 있음을 명심하기 바란다. 
-                      </li>
-                      <li>
-                        <strong>코드의 의도가 잘 드러나도록 한다. </strong> 
-                        변수와 메서드, 파라미터의 이름이 그 목적을 잘 표현하도록 짓는다. ( 예를 들어, public void addChildTo(Nodeparent) 와 같은 식으로 )
-                      </li>
-                      <li>
-                        <strong>단순화 한다.</strong>
-                        코드를 가능한 한 단순하게 변경한다. 기존의 코드가 어떻게 작성됐는지 고착하고, 다른 대안을 시험해본다. 
-                      </li>
-                      <li>
-                        <strong>동등한 수준으로 단계를 나눈다.</strong>
-                        메서드를 여러 작업 단계로 나눌 때, 각 단계가 동등한 수준이 되도록 해야한다. 예를 들어, 세부 조건을 검사하는 로직과 몇 개의 고수준 메서드를 호출하는 코드가 섞여 있다면, 동등하지 않은 수준의 단계들로 이루어진것이다. 세부 조건 로직을 이름이 잘 지어진 별도의 메서드로 뽑아내, 다른 
-                        고수준 메서드와 동등한 수준으로 맞춰야 한다. 
-                      </li>
-                    </ul>
-                    예제 
-                    <pre>
-                      <code class="java" >
-public class List... 
- 
-  // 매직 넘버 10은 그 목적을 전혀 표현하지 못하는 숫자로 하드 코딩 되어 있으므로, 먼저 이를 상수로 변경한다. 
-  private final static int GROWTH_INCREMENT = 10;                        
-
-  public void add(Object element) {
-    // 조건 문으로 메서드 전체를 감싸기보다는 다음과 같이 초반에 메서드를 빠져 나가도록 함으로써 메서드의 실행 요건을 명시하는 것이 낫다. 
-    if ( readOnly )
-      return;
-    
-    // elements 배열의 크기를 늘릴 필요가 있는지를 검사하는 코드에 Extract Method 리팩터링을 적용한다. 
-    if(atCapacity()){
-      grow();
-    }
-    addElement(elements);
-  }  
-  
-  private boolean atCapacity(){
-    return (size + 1) > elements.length;
-  }
-
-  private void grow() {
-    Object[] newElements = new Object[elements.length + GROWTH_INCREMENT];
-    for ( int i = 0; i &lt; size ; i ++ ){
-      newElements[i] = elements[i];
-    }
-    elements = newElements;
-  }
-
-  private void addElement(Object element){
-    element[size++] = element;
-  }
-                      </code>
-                    </pre>
-                  </p>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">
-                      Replace Implicit Tree with Composite 
-                    </h5>
-                  </div>
-                  <p class="mb-1">
-                    실질적으로 트리 구조인 데이터를 String 과 같은 기본 타입으로 표현하고 있다면, 그 기본 타입의 표현을 컴포짓 구조로 바꾼다. 
-                    <ul>
-                      <li>코드를 더 단순하게 만들기 위해서 Composite 패턴을 사용한다. </li>
-                      <li>노드를 추가/삭제/포매팅하는 등의 반복적인 코드를 캡슐화 한다. </li>
-                      <li>빈번하게 사용하는 유사한 로직을 다루기 위한 일반화된 방법을 제공한다.</li>
-                      <li>클라이언트가 데이터를 생성하는 방법이 단순해진다. </li>
-                    </ul>
-                    <hr>
-                    묵시적 트리 중에서 새로운 클래스로 모델화할 수 있는 부분인, 묵시적 종단을 찾는다. 이 때 새로운 클래스는 종단 노드를 나타내는 것으로, Composite:Leaf에 해당한다. 종단 노드 클래스는 리팩터링 또는 테스트 주도 갭잘을 통해서 생성할 수 있다. 
-                    <pre>
-                      <code class="java" >
-package pattern.sample.patternuse07;
-
-import pattern.sample.patternuse07.building.Barrack;
-import pattern.sample.patternuse07.unit.UnitComposite;
-import pattern.sample.patternuse07.unit.type.MarineType;
-import pattern.sample.patternuse07.unit.type.MedicType;
-
-public class BattleGround {
-    public static void main(String[] args) {
-        UnitComposite unitList = Barrack.requestUnit();
-
-        unitList.addTrainedUnit(new MedicType());
-        unitList.addTrainedUnit(new MarineType());
-        unitList.addTrainedUnit(new MarineType());
-        unitList.addTrainedUnit(new MarineType());
-        unitList.addTrainedUnit(new MarineType());
-        unitList.addTrainedUnit(new MedicType());
-        unitList.addTrainedUnit(new MedicType());
-        unitList.addTrainedUnit(new MedicType());
-        unitList.addTrainedUnit(new MedicType());
-
-        unitList.trainingUnit();
-
-        unitList.checkTrainedUnit();
-    }
-}
-
-package pattern.sample.patternuse07.building;
-
-import pattern.sample.patternuse07.unit.UnitComposite;
-
-public class Barrack {
-    public static UnitComposite requestUnit(){
-        return new UnitComposite();
-    }
-}
-
-
-package pattern.sample.patternuse07.unit;
-
-import lombok.RequiredArgsConstructor;
-import pattern.sample.patternuse07.unit.impl.Marine;
-import pattern.sample.patternuse07.unit.impl.Medic;
-import pattern.sample.patternuse07.unit.inf.Unit;
-import pattern.sample.patternuse07.unit.type.MarineType;
-import pattern.sample.patternuse07.unit.type.MedicType;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
-@RequiredArgsConstructor
-public class UnitComposite {
-
-    private final List&lt;UnitComposite> unitCompositeList = new ArrayList&lt;>();
-    private List&lt;Unit> unitList;
-
-    public void trainingUnit(){
-        unitList = unitCompositeList.stream().map(trainingType -> {
-            trainingType.trainingUnit();
-
-            if(trainingType instanceof MarineType){
-                return new Marine();
-            }else if(trainingType instanceof MedicType){
-                return new Medic();
-            }else {
-                return null;
-            }
-        }).collect(Collectors.toList());
-    }
-
-    public void checkTrainedUnit(){
-        unitList.forEach(Unit::checkUnit);
-    }
-
-    public void addTrainedUnit(UnitComposite unitComposite){
-        unitCompositeList.add(unitComposite);
-    }
-}
-
-package pattern.sample.patternuse07.unit.type;
-
-import lombok.extern.slf4j.Slf4j;
-import pattern.sample.patternuse07.unit.UnitComposite;
-
-@Slf4j
-public class MedicType extends UnitComposite {
-    @Override
-    public void trainingUnit() {
-        log.info("메딕 훈련을 시작합니다. ");
-    }
-}
-
-package pattern.sample.patternuse07.unit.type;
-
-import lombok.extern.slf4j.Slf4j;
-import pattern.sample.patternuse07.unit.UnitComposite;
-
-@Slf4j
-public class MarineType extends UnitComposite {
-
-    @Override
-    public void trainingUnit() {
-        log.info("마린 훈련을 시작합니다. ");
-    }
-}
-
-package pattern.sample.patternuse07.unit.inf;
-
-public interface Unit {
-    public void checkUnit();
-}
-
-package pattern.sample.patternuse07.unit.impl;
-
-import lombok.extern.slf4j.Slf4j;
-import pattern.sample.patternuse07.unit.inf.Unit;
-
-@Slf4j
-public class Marine implements Unit {
-    @Override
-    public void checkUnit() {
-        log.info("Marine 입니다.");
-    }
-}
-
-package pattern.sample.patternuse07.unit.impl;
-
-import lombok.extern.slf4j.Slf4j;
-import pattern.sample.patternuse07.unit.inf.Unit;
-
-@Slf4j
-public class Medic implements Unit {
-    @Override
-    public void checkUnit() {
-        log.info("Medic 입니다.");
-    }
-}
-
-
-
-                      </code>
-                    </pre>
-                  </p>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">
-                      Encapsulate Composite with Builder
-                    </h5>
-                  </div>
-                  <p class="mb-1">
-                    컴포짓 구조를 생성하는 과정이 반복적으로 수행되고 복잡하며 에러 발생 가능성도 많은 상태라면, 그 세부 사항을 처리하는 별도의 빌더를 제공하여 
-                    컴포짓 구조를 쉽게 생성할 수 있도록 한다. 
-                    <hr>                  
-                    <ul>
-                      <li>컴포짓 구조를 생성하는 클라이언트의 코드를 단순화 한다.</li>
-                      <li>반복적이고 에러 발생 가능성이 높은 컴포짓 구조 생성 작업의 단점을 개선한다. </li>
-                      <li>클라이언트 코드의 컴포짓 구조 사이의 결합을 느슨하게 한다.</li>
-                      <li>캡슐화된 컴포짓 구조 또는 복잡한 객체의 여러 다양한 표현이 가능하게 한다.</li>
-                      <li>인터페이스의 의도가 덜 명확해질 수 있다. </li>
-                    </ul>
-                    <pre>
-                      <code class="java" >
-package pattern.sample.patternuse08;
-
-import pattern.sample.patternuse08.building.Barrack;
-import pattern.sample.patternuse08.code.UnitType;
-import pattern.sample.patternuse08.unit.inf.Unit;
-import pattern.sample.patternuse08.unitBuilder.UnitBuilder;
-
-public class BattleGround {
-    public static void main(String[] args) {
-        Unit marine = Barrack.createUnit(UnitBuilder.builder()
-                                    .unitName("Marine")
-                                    .unitType(UnitType.MARINE).build());
-
-
-    }
-}
-
-package pattern.sample.patternuse08.building;
-
-import pattern.sample.patternuse08.unit.inf.Unit;
-import pattern.sample.patternuse08.unitBuilder.UnitBuilder;
-
-public class Barrack {
-
-    public static Unit createUnit(UnitBuilder unitBuilder){
-        return unitBuilder.createUnit();
-    }
-
-}
-
-package pattern.sample.patternuse08.code;
-
-public enum UnitType {
-    MARINE,
-    MEDIC,
-    SCV
-}
-
-package pattern.sample.patternuse08.unit.inf;
-
-public interface Unit {
-}
-
-package pattern.sample.patternuse08.unit;
-
-import lombok.extern.slf4j.Slf4j;
-import pattern.sample.patternuse08.unit.inf.Unit;
-
-@Slf4j
-public class Marine implements Unit {
-    public Marine() {
-        log.info("Marine이 생성되었습니다. ");
-    }
-}
-
-package pattern.sample.patternuse08.unit;
-
-import lombok.extern.slf4j.Slf4j;
-import pattern.sample.patternuse08.unit.inf.Unit;
-
-@Slf4j
-public class Medic implements Unit {
-    public Medic(){
-        log.info("Medic이 생성되었습니다.");
-    }
-}
-
-package pattern.sample.patternuse08.unit;
-
-import lombok.extern.slf4j.Slf4j;
-import pattern.sample.patternuse08.unit.inf.Unit;
-
-@Slf4j
-public class SCV implements Unit {
-    public SCV() {
-        log.info("SCV이 생성되었습니다.");
-    }
-}
-
-package pattern.sample.patternuse08.unitBuilder;
-
-import lombok.Builder;
-import pattern.sample.patternuse08.code.UnitType;
-import pattern.sample.patternuse08.unit.Marine;
-import pattern.sample.patternuse08.unit.Medic;
-import pattern.sample.patternuse08.unit.SCV;
-import pattern.sample.patternuse08.unit.inf.Unit;
-
-public class UnitBuilder {
-
-    private final String unitName;
-    private final UnitType unitType;
-
-    @Builder
-    public UnitBuilder(String unitName, UnitType unitType){
-        this.unitName = unitName;
-        this.unitType = unitType;
-    }
-
-    public Unit createUnit(){
-        switch (unitType){
-            case MEDIC:
-                return new Medic();
-            case MARINE:
-                return new Marine();
-            default:
-                return new SCV();
-        }
-    }
-}                    
-                      </code>
-                    </pre>
-                  </p>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">
-                      Move Accumulation to Collecting Parameter
-                    </h5>
-                  </div>
-                  <p class="mb-1">
-                    지역변수에 정보를 축적하는 매우 긴 메서드가 있다면, 그것을 여러 메서드로 분해하고 각 메서드에 수집 파라미터를 넘겨 정보를 축적하도록 한다. 
-                    <hr>
-                    다루기 어려울 정도로 비대한 메서드를 분해해 Composed Method로 만들려면, 
-                    Composed Method에 의해 호출되는 각 메서드로부터 정보를 얻어 어떻게 축적할 것인지 
-                    결정해야 한다. 각 메서드가 리턴한 정보를 보관해 두었다가 나중에 최종 형태로 합칠 수도 있지만 각 메서드에 수집 파라미터를 넘겨 정보를 점진적으로 축적할 수도 있다. 각 메서드는 자신의 정보를 수집 파라미터에 쓰고, 그 결과로 정보가 축적된다. 
-                    
-                    <ul>
-                      <li>다루기 어려울 정도로 비대한 메서드를 작고 간단하며 이해하기 쉬운 여러 개의 메서드로 분해하는 데 도움이 된다. </li>
-                      <li>코드의 실행 속도가 향상될 수 있다. </li>
-                    </ul>
-                    <pre>
-                      <code class="java" >
-package pattern.sample.patternuse09;
-
-import lombok.extern.slf4j.Slf4j;
-import pattern.sample.patternuse09.building.Barrack;
-import pattern.sample.patternuse09.code.UnitType;
-import pattern.sample.patternuse09.unit.inf.Unit;
-
-@Slf4j
-public class BattleGround {
-    public static void main(String[] args) {
-        Unit unit = Barrack.getUnit(UnitType.MARINE);
-
-        Unit unitMedic = Barrack.getUnit(UnitType.MEDIC);
-
-        log.info("결과 : {}" ,unit.checkAbility());
-        log.info("결과 : {}" ,unitMedic.checkAbility());
-    }
-}
-
-package pattern.sample.patternuse09.builder;
-
-import lombok.Builder;
-import pattern.sample.patternuse09.order.inf.Training;
-import pattern.sample.patternuse09.unit.inf.Unit;
-
-@Builder
-public class TrainingBuilder {
-    private final Training walking;
-    private final Training running;
-    private final Training jumping;
-    private final Training hiding;
-    private final Training watching;
-    private final Unit unit;
-
-    public Unit trainingUnit(){
-
-        walking.practice(unit);
-
-        running.practice(unit);
-
-        jumping.practice(unit);
-
-        hiding.practice(unit);
-
-        watching.practice(unit);
-
-        return unit;
-    }
-}
-
-package pattern.sample.patternuse09.building;
-
-import pattern.sample.patternuse09.builder.TrainingBuilder;
-import pattern.sample.patternuse09.code.UnitType;
-import pattern.sample.patternuse09.order.*;
-import pattern.sample.patternuse09.unit.Marine;
-import pattern.sample.patternuse09.unit.Medic;
-import pattern.sample.patternuse09.unit.inf.Unit;
-
-public class Barrack {
-    public static Unit getUnit(UnitType unitType){
-
-        if(unitType == UnitType.MARINE){
-            return TrainingBuilder
-                    .builder()
-                    .unit(new Marine())
-                    .hiding(new Hiding())
-                    .jumping(new Jumping())
-                    .running(new Running())
-                    .walking(new Walking())
-                    .watching(new Watching())
-                    .build().trainingUnit();
-        }else{
-            return TrainingBuilder
-                    .builder()
-                    .unit(new Medic())
-                    .hiding(new Hiding())
-                    .jumping(new Jumping())
-                    .running(new Running())
-                    .walking(new Walking())
-                    .watching(new Watching())
-                    .build().trainingUnit();
-        }
-    }
-}
-
-package pattern.sample.patternuse09.code;
-
-public enum UnitType {
-    MARINE,
-    MEDIC,
-    SCV
-}
-
-package pattern.sample.patternuse09.order.inf;
-
-public interface Training&lt;ReturnR> {
-
-    public ReturnR practice(ReturnR returnR);
-}
-
-package pattern.sample.patternuse09.order;
-
-import lombok.RequiredArgsConstructor;
-import pattern.sample.patternuse09.order.inf.Training;
-import pattern.sample.patternuse09.unit.inf.Unit;
-
-@RequiredArgsConstructor
-public class Hiding implements Training&lt;Unit> {
-
-    @Override
-    public Unit practice(Unit unit) {
-
-        unit.trainAbility(" 숨기 능력이 추가되었습니다.");
-
-        return unit;
-    }
-}
-
-package pattern.sample.patternuse09.order;
-
-import lombok.RequiredArgsConstructor;
-import pattern.sample.patternuse09.order.inf.Training;
-import pattern.sample.patternuse09.unit.inf.Unit;
-
-@RequiredArgsConstructor
-public class Jumping implements Training&lt;Unit> {
-
-    @Override
-    public Unit practice(Unit unit) {
-        unit.trainAbility(" 점프 능력이 추가되었습니다.");
-        return unit;
-    }
-}
-
-package pattern.sample.patternuse09.order;
-
-import lombok.RequiredArgsConstructor;
-import pattern.sample.patternuse09.order.inf.Training;
-import pattern.sample.patternuse09.unit.inf.Unit;
-
-@RequiredArgsConstructor
-public class Running  implements Training&lt;Unit> {
-
-    @Override
-    public Unit practice(Unit unit) {
-        unit.trainAbility(" 달리기 능력이 추가되었습니다.");
-        return unit;
-    }
-}
-
-package pattern.sample.patternuse09.order;
-
-import lombok.RequiredArgsConstructor;
-import pattern.sample.patternuse09.order.inf.Training;
-import pattern.sample.patternuse09.unit.inf.Unit;
-
-@RequiredArgsConstructor
-public class Walking  implements Training&lt;Unit> {
-
-    @Override
-    public Unit practice(Unit unit) {
-        unit.trainAbility(" 걷기 능력이 추가되었습니다.");
-        return unit;
-    }
-}
-
-package pattern.sample.patternuse09.order;
-
-import lombok.RequiredArgsConstructor;
-import pattern.sample.patternuse09.order.inf.Training;
-import pattern.sample.patternuse09.unit.inf.Unit;
-
-@RequiredArgsConstructor
-public class Watching  implements Training&lt;Unit> {
-
-    @Override
-    public Unit practice(Unit unit) {
-        unit.trainAbility(" 보기 능력이 추가되었습니다.");
-        return unit;
-    }
-}
-
-package pattern.sample.patternuse09.unit.inf;
-
-public interface Unit {
-
-    public void trainAbility(String ability);
-
-    public String checkAbility();
-}
-
-package pattern.sample.patternuse09.unit;
-
-import pattern.sample.patternuse09.unit.inf.Unit;
-
-public class Marine implements Unit {
-
-    private StringBuilder abilities = new StringBuilder();
-    private final String unitName;
-
-    public Marine(){
-        unitName = "Marine";
-    }
-
-    public void trainAbility(String ability){
-        abilities.append("능력 : " + ability + "\r\n");
-    }
-
-    public String checkAbility(){
-        return abilities.toString();
-    }
-
-}
-
-package pattern.sample.patternuse09.unit;
-
-import pattern.sample.patternuse09.unit.inf.Unit;
-
-public class Medic implements Unit {
-
-    private StringBuilder abilities = new StringBuilder();
-    private final String unitName;
-
-    public Medic(){
-        unitName = "Medic";
-    }
-
-    public void trainAbility(String ability){
-        abilities.append("능력 : " + ability + "\r\n");
-    }
-
-    public String checkAbility(){
-        return abilities.toString();
-    }
-}
-
-
-                        
-                      </code>
-                    </pre>
-                  </p>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">
-                      Extract Composite
-                    </h5>
-                  </div>
-                  <p class="mb-1">
-                    한 상속 구조 내의 서브 클래스가 동일한 컴포짓 기능을 각자 구현하고 있다면, 컴포짓 기능을 수퍼 클래스로 옮겨 구현한다. 
-                    <hr>
-                    어떤 상속 구조 내의 서브 클래스들이 자신의 자식 객체를 컬렉션에 저장하고 그 자식 객체들의 기능에 접근하기 위한 메서드를 각자 구현하는 것은 자주 볼 수 있다. 
-                    이때 만약 자식 객체의 타입이 부모 객체와 동일한 상속 구조 내의 타임이라면 , Composite패턴으로 리팩터링하여 많은 코드 중복을 제거할 수 있다. 
-                    <ul>
-                      <li>중복된 자식 객체 저장/처리 로직을 제거한다.</li>
-                      <li>자식 객체 처리 로직을 상속 받아 그대로 사용할 수 있음이 명확히 드러난다. </li>
-                    </ul>
-                    <pre>
-                      <code class="java" >
-package pattern.sample.patternuse10;
-
-import pattern.sample.patternuse10.action.Act;
-import pattern.sample.patternuse10.action.Hiding;
-import pattern.sample.patternuse10.action.Running;
-import pattern.sample.patternuse10.action.Walking;
-import pattern.sample.patternuse10.action.composite.Action;
-import pattern.sample.patternuse10.code.ActionType;
-import pattern.sample.patternuse10.unit.Marine;
-import pattern.sample.patternuse10.unit.inf.Unit;
-
-public class BattleGround {
-    public static void main(String[] args) {
-
-        Action action = new Act();
-
-        action.actionAdd(new Running());
-        action.actionAdd(new Hiding());
-        action.actionAdd(new Walking());
-
-        Unit marine = new Marine(action);
-
-        marine.act(ActionType.HIDING);
-        marine.act(ActionType.HIDING);
-        marine.act(ActionType.WALK);
-        marine.act(ActionType.RUNNING);
-    }
-}
-
-package pattern.sample.patternuse10.action.composite;
-
-import pattern.sample.patternuse10.action.Hiding;
-import pattern.sample.patternuse10.action.Running;
-import pattern.sample.patternuse10.action.Walking;
-import pattern.sample.patternuse10.code.ActionType;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
-
-public abstract class Action {
-
-    protected List&lt;Action> actionList = new ArrayList&lt;>();
-
-    public void actionAdd(Action action){
-        actionList.add(action);
-    }
-
-    public Action action(ActionType actionType){
-
-        AtomicReference&lt;Action> action = new AtomicReference&lt;>();
-
-        actionList.forEach(actionFromList -> {
-            switch (actionType){
-                case RUNNING:
-                    if(actionFromList instanceof Running){
-                        action.set(actionFromList);
-                    }
-                    return;
-                case HIDING:
-                    if(actionFromList instanceof Hiding) {
-                        action.set(actionFromList);
-                    }
-                    return;
-                case WALK:
-                    if(actionFromList instanceof Walking ){
-                        action.set(actionFromList);
-                    }
-                    return;
-                }
-        });
-
-        return action.get();
-    }
-
-    public abstract void act();
-}
-
-package pattern.sample.patternuse10.action;
-
-import pattern.sample.patternuse10.action.composite.Action;
-import pattern.sample.patternuse10.code.ActionType;
-
-import java.util.concurrent.atomic.AtomicReference;
-
-public class Act extends Action {
-
-    @Override
-    public Action action(ActionType actionType){
-
-        AtomicReference&lt;Action> action = new AtomicReference&lt;>();
-
-        super.actionList.forEach(actionFromList -> {
-            switch (actionType){
-                case RUNNING:
-                    if(actionFromList instanceof Running){
-                        action.set(actionFromList);
-                    }
-                    return;
-                case HIDING:
-                    if(actionFromList instanceof Hiding) {
-                        action.set(actionFromList);
-                    }
-                    return;
-                case WALK:
-                    if(actionFromList instanceof Walking ){
-                        action.set(actionFromList);
-                    }
-                    return;
-            }
-        });
-
-        return action.get();
-    }
-
-    @Override
-    public void act() {
-
-    }
-}
-
-package pattern.sample.patternuse10.action;
-
-import lombok.extern.slf4j.Slf4j;
-import pattern.sample.patternuse10.action.composite.Action;
-
-@Slf4j
-public class Hiding extends Action {
-    @Override
-    public void act() {
-        log.info("Hiding Action start!");
-    }
-}
-
-package pattern.sample.patternuse10.action;
-
-import lombok.extern.slf4j.Slf4j;
-import pattern.sample.patternuse10.action.composite.Action;
-
-@Slf4j
-public class Running  extends Action {
-    @Override
-    public void act() {
-        log.info("Running Action start!");
-    }
-}
-
-package pattern.sample.patternuse10.action;
-
-import lombok.extern.slf4j.Slf4j;
-import pattern.sample.patternuse10.action.composite.Action;
-
-@Slf4j
-public class Walking  extends Action {
-    @Override
-    public void act() {
-        log.info("Waling Action start!");
-    }
-}
-
-package pattern.sample.patternuse10.code;
-
-public enum ActionType {
-    WALK,
-    RUNNING,
-    HIDING
-}
-
-package pattern.sample.patternuse10.unit.inf;
-
-import pattern.sample.patternuse10.code.ActionType;
-
-public interface Unit {
-
-    public void act(ActionType actionType);
-}
-
-package pattern.sample.patternuse10.unit;
-
-import lombok.RequiredArgsConstructor;
-import pattern.sample.patternuse10.action.composite.Action;
-import pattern.sample.patternuse10.code.ActionType;
-import pattern.sample.patternuse10.unit.inf.Unit;
-
-@RequiredArgsConstructor
-public class Marine implements Unit {
-    private final Action action;
-
-    @Override
-    public void act(ActionType actionType) {
-        action.action(actionType).act();
-    }
-}                    
-                      </code>
-                    </pre>
-                  </p>
-                </a>
                 <a href="#" class="list-group-item list-group-item-action">
                   <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">
