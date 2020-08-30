@@ -1889,84 +1889,544 @@ public class Marine implements Unit {
                   </div>
                 </div>
                 <div class="card">
-                  <div class="card-header" id="h1">
+                  <div class="card-header" id="h13">
                     <h2 class="mb-0">
-                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c1" aria-expanded="true" aria-controls="c1">
-              
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c13" aria-expanded="true" aria-controls="c13">
+                        Replace One/Many Distinctions with Composite
                       </button>
                     </h2>
                   </div>
-                  <div id="c1" class="collapse" aria-labelledby="h1" data-parent="#accordionExample">
+                  <div id="c13" class="collapse" aria-labelledby="h13" data-parent="#accordionExample">
                     <div class="card-body">
-                        
+                      어떤 클래스에서 주어진 객체를 처리 할 때, 그 객체의 개수에 따라 서로 다른 로직을 사용하고 있다면, 컴포짓을 사용해 객체의 개수에 상관없이 한 로직으로 처리할 수 있도록 만든다. 
+                      <hr>
+                      어떤 클래스에 하나의 객체를 처리하는 메서드가 있는데, 로직이 이와 거의 비슷하면서 여러 객체를 처리하는 메서드가 있다면, 이는 한 객체와 여러 객체를 구별하고 있는 것이다. 이와 같은 경우에는 
+                      코드가 중복되고, 클라이언트의 코드가 복잡해지고, 처리 결과를 취합하기 위해서 추가적인 처리가 필요해진다. `
+                      <ul>
+                        <li>객체가 하나일 때와 여러 개일 때를 처리하기 위해 각각 존재했던 중복된 처리 코드를 제거할 수 있다. </li>
+                        <li>객체 하나를 처리하는 방법과 객체 여러 개를 처리하는 방법이 하나로 통일된다. </li>
+                        <li>여러 개의 객체를 처리하기 위해 필요한 추가적인 기능을 부여할 수 있다. ( 예를 들어, OR 조건 표현 ) </li>
+                        <li>컴포짓을 생성하는 동안 타입 안전성을 위해 런타임 타입 검사가 필요할 수 있다. </li>
+                      </ul> 
+                      <hr>
+                      <pre>
+                        <code class="java" >
+  package pattern.sample.patternuse11;
+  
+  import pattern.sample.patternuse11.building.Barrack;
+  import pattern.sample.patternuse11.unit.Marine;
+  import pattern.sample.patternuse11.unit.Medic;
+  
+  import java.util.Arrays;
+  
+  public class BattleGround {
+      public static void main(String[] args) {
+  
+          Barrack barrack = new Barrack();
+  
+          barrack.isTrainedUnit(new Marine());
+  
+          barrack.isTrainedUnit(Arrays.asList(new Marine(), new Medic()));
+      }
+  }
+  
+  package pattern.sample.patternuse11.building;
+  
+  import pattern.sample.patternuse11.unit.UnitPackage;
+  import pattern.sample.patternuse11.unit.composit.Unit;
+  
+  import java.util.List;
+  
+  public class Barrack {
+  
+      public boolean isTrainedUnit(Unit unit){
+  
+          // isTrainedUnit에 대한 중복 로직을 해당 메소드에서 공통적으로 처리할 수 있다.
+  
+          return unit.checkUnitStatus();
+      }
+  
+      public boolean isTrainedUnit(List&lt;Unit> unitList){
+          return isTrainedUnit(new UnitPackage(unitList));
+      }
+  }
+  
+  package pattern.sample.patternuse11.unit.composit;
+  public abstract class Unit {
+  
+      public abstract boolean checkUnitStatus();
+  }
+  
+  package pattern.sample.patternuse11.unit;
+  
+  import pattern.sample.patternuse11.unit.composit.Unit;
+  
+  public class Marine extends Unit {
+      @Override
+      public boolean checkUnitStatus() {
+          return false;
+      }
+  }
+  
+  package pattern.sample.patternuse11.unit;
+  
+  import pattern.sample.patternuse11.unit.composit.Unit;
+  
+  public class Medic extends Unit {
+      @Override
+      public boolean checkUnitStatus() {
+          return false;
+      }
+  }
+  
+  package pattern.sample.patternuse11.unit;
+  
+  import lombok.RequiredArgsConstructor;
+  import pattern.sample.patternuse11.unit.composit.Unit;
+  
+  import java.util.ArrayList;
+  import java.util.List;
+  
+  @RequiredArgsConstructor
+  public class UnitPackage extends Unit {
+  
+      private final List&lt;Unit> unitList;
+      private List&lt;Unit> filteredUnitList = new ArrayList&lt;>();
+  
+      public void add(Unit unit){
+          unitList.add(unit);
+      }
+  
+      public List&lt;Unit> getSpecs(){
+          return filteredUnitList;
+      }
+  
+      @Override
+      public boolean checkUnitStatus() {
+          return false;
+      }
+  }                       
+                        </code>
+                      </pre>  
                     </div>
                   </div>
                 </div>
                 <div class="card">
-                  <div class="card-header" id="h1">
+                  <div class="card-header" id="h14">
                     <h2 class="mb-0">
-                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c1" aria-expanded="true" aria-controls="c1">
-              
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c14" aria-expanded="true" aria-controls="c14">
+                        Replace Conditional Dispatcher with Command
                       </button>
                     </h2>
                   </div>
-                  <div id="c1" class="collapse" aria-labelledby="h1" data-parent="#accordionExample">
+                  <div id="c14" class="collapse" aria-labelledby="h14" data-parent="#accordionExample">
                     <div class="card-body">
-                        
+                      요청에 대한 디스패처가 조건 로직으로 구현되어 있다면, 각 액션에 대한 커맨드 객체를 만들어 컬렉션에 저장해두고, 
+                    조건 로직은 컬렉션에서 원하는 커맨드를 찾아 실행하는 코드로 대체한다. 
+                    <hr>
+                    많은 시스템에서 외부 요청을 받아 분배하고 실행하는 동작이 일어난다. 이때 요청을 분배하고 실행하는 조건문을 조건적 디스패처라 부른다. 어떤 경우에는 조건적 디스패처로 충분히 작업을 수행할 수 있지만, 그렇지 못한 경우도 있다. 
+                    <ul>
+                      <li>다양한 액션을 단일한 방식으로 실행하는 단순한 구조를 제공한다. </li>
+                      <li>요청을 처리하는 로직의 구성을 런타임에 변경할 수 있다.</li>
+                      <li>간단한 코드로 구현할 수 있다.</li>
+                      <li>조건적 디스패처로도 충분한 상황에서는 괜히 설계만 복잡하게 만드는 것이다. </li>
+                    </ul>
+                    <pre>
+                      <code class="java" >
+package pattern.sample.patternuse12;
+
+import pattern.sample.patternuse12.building.Barrack;
+import pattern.sample.patternuse12.code.UnitType;
+import pattern.sample.patternuse12.unit.inf.Unit;
+
+public class BattleGround {
+    public static void main(String[] args) {
+        Barrack barrack = new Barrack();
+
+        Unit marineUnit = barrack.createUnit(UnitType.MARINE);
+        Unit medicUnit = barrack.createUnit(UnitType.MEDIC);
+    }
+}
+
+package pattern.sample.patternuse12.building;
+
+import pattern.sample.patternuse12.code.UnitType;
+import pattern.sample.patternuse12.unit.Marine;
+import pattern.sample.patternuse12.unit.Medic;
+import pattern.sample.patternuse12.unit.inf.Unit;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class Barrack {
+
+    private final Map&lt;UnitType, Unit> unitMap;
+
+    public Barrack(){
+        unitMap = new HashMap&lt;>();
+
+        unitMap.put(UnitType.MARINE, new Marine());
+        unitMap.put(UnitType.MEDIC, new Medic());
+    }
+
+    public Unit createUnit(UnitType unitType){
+        return unitMap.get(unitType);
+    }
+}
+
+package pattern.sample.patternuse12.code;
+
+public enum UnitType {
+    MARINE,
+    MEDIC
+}
+
+package pattern.sample.patternuse12.unit.inf;
+
+public interface Unit {
+}
+
+package pattern.sample.patternuse12.unit;
+
+import pattern.sample.patternuse12.unit.inf.Unit;
+
+public class Marine implements Unit {
+}
+
+package pattern.sample.patternuse12.unit;
+
+import pattern.sample.patternuse12.unit.inf.Unit;
+
+public class Medic implements Unit {
+}
+                      </code>
+                    </pre>                       
                     </div>
                   </div>
                 </div>
                 <div class="card">
-                  <div class="card-header" id="h1">
+                  <div class="card-header" id="h15">
                     <h2 class="mb-0">
-                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c1" aria-expanded="true" aria-controls="c1">
-              
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c15" aria-expanded="true" aria-controls="c15">
+                        Extract Adapter 
                       </button>
                     </h2>
                   </div>
-                  <div id="c1" class="collapse" aria-labelledby="h1" data-parent="#accordionExample">
+                  <div id="c15" class="collapse" aria-labelledby="h15" data-parent="#accordionExample">
                     <div class="card-body">
-                        
+                      하나의 클래스가 컴포넌트, 라이브러리, API 등의 여러 버전을 동시에 지원하기 위한 어댑터 역할을 하고 있다면, 각 버전을 위한 기능을 별도의 어댑터로 뽑아낸다. 
+                      <hr>
+                      <div class="card">
+                        <div class="card-header">
+                          Adapter 와 Facade
+                        </div>
+                        <div class="card-body">
+                          <p class="card-text">
+                            Adapter 패턴은 Facade 패턴과 자주 혼동된다. 두 패턴이 모두 어떤 코드를 더 쉽게 사용할 수 있도록 만든다는 공통점이 있지만 적용하는 수준이 다르다. Adapter 패턴은 객체 수준에서의 어댑팅을 수행하는 것이고, Facade 패턴은 어떤 
+                            서브 시스템 전체를 어댑팅하는 것이다. Facade 패턴은 레거시 시스템과 통신하기 위해 사용하는 경우가 많다. 예를 들어, 어떤 기업에 COBOL 로 작성된 시스템이 있는데, 이 시스템의 코드가 매우 복잡 미묘하고 2백만 줄이나 된다고 하자. 이 시스템은 한번도 리팩토링 작업을 
+                            거친 적이 없기 때문에 확장과 유지보수가 매우 어렵다. 그럼에도 불구하고 , 이 시스템에는 중욯나 기능이 포함되어 있기 때문에 새로 만드는 시스템도 이 레거시 시스템에 의존할 수 밖에 없다. 
+                            이런 상황에서는 Facade패턴이 유용하다. 퍼사드는 새 시스템에 설계가 좋지 않고 복잡한 게러시 코드에 대한 좀더 단순한 뷰를 제공한다. 새 시스템은 퍼사드 객체와 통신하고 이 퍼사드 객체가 레거시 코드와 관련된 복잡한 작업을 대신하는 것이다. 
+                            레거시 시스템의 서브시스템 하나씩을 퍼사드로 대체해 나가면서, 결국에는 레거시 시스템 전체를 안전하게 새로 구현할 수 있다. 
+                            <ul>
+                              <li>주어진 레거시 시스템의 서브시스템을 확인한다.</li>
+                              <li>그 서브시스템을 위한 퍼사드를 구현한다.</li>
+                              <li>앞서 만든 퍼사드를 사용하도록 클라이언트 코드를 수정한다.</li>
+                              <li>레거시 시스템의 기능을 신기술로 다시 구현하고, 그를 어댑팅하는 새 퍼사드를 만든다. </li>
+                              <li>기존의 퍼사드와 새 퍼사드가 동일하게 동작하는지 테스트한다.</li>
+                              <li>새 퍼사드를 사용하도록 클라이언트 코드를 수정한다.</li>
+                              <li>나머지 서브 시스템에 대해서 위의 과정을 반복한다. </li>
+                            </ul>
+                          </p>
+                        </div>
+                      </div>
+                      <hr>
+                      <ul>
+                        <li>컴포넌트, 라이브러리 또는 API의 버전에 따른 차이점을 격리한다. </li>
+                        <li>클래스가 하나의 버전만 책임지도록 한다.</li>
+                        <li>자주 변하는 코드를 시스템과 분리할 수 있다. </li>
+                        <li>원래 있던 중요 기능을 어댑터에서 제공하지 못하면, 클라이언트가 그런 중요 기능에 접근하는데 장벽이 될 수 있다. </li>
+                      </ul>
+                      <hr>
+                      <pre>
+                        <code>
+  Java의 첫 버전에서는 Enumeration이라는 인터페이스가 있어서 Vector나 HashTable 같은 컬렉션을 순회하는 데 사용되었다. 그런데 Java가 점점더 발전하면서
+  JDK에 더 나은 컬렉션 클래스들이 추가되었고 Iterater 인터페이스가 그 역할을 대신하게 되었다. 그러나 Enumeration 인터페이스를 사용해 작성된 코드와도 상호 동작이 가능해 하므로, 
+  JDK 에는 다음과 같이 익명 내부 클래스 기능을 이용해 Iterator를 어댑팅하는 생성 메서드를 제공한다. 
+  
+  public class Collections ... 
+      public static Enumeration enumeration(filnal Collection c){
+          return new Enumeration() {
+              Iterator i = c.iterator();
+  
+              public boolean hasMoreElements() {
+                return i.hasNext();
+              }
+  
+              public Object nextElement() {
+                return i.next();
+              }
+          }
+      }                        
+  }
+                        </code>
+                      </pre>  
                     </div>
                   </div>
                 </div>
                 <div class="card">
-                  <div class="card-header" id="h1">
+                  <div class="card-header" id="h16">
                     <h2 class="mb-0">
-                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c1" aria-expanded="true" aria-controls="c1">
-              
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c16" aria-expanded="true" aria-controls="c16">
+                        Unify Interfaces with Adapter
                       </button>
                     </h2>
                   </div>
-                  <div id="c1" class="collapse" aria-labelledby="h1" data-parent="#accordionExample">
+                  <div id="c16" class="collapse" aria-labelledby="h16" data-parent="#accordionExample">
                     <div class="card-body">
-                        
+                      클라이언트가 두 개의 유사한 클래스를 사용하고 있는데, 그중 한 인터페이스가 다른 하나보다 더 좋아 보이면, 어댑터를 도입해 인터페이스를 도입한다. 
+                      <hr>
+                      아래와 같은 상황 일 경우 Adapter 패턴으로 리팩터링하는 것이 좋다. 
+                      <ul>
+                        <li>두 클래스가 동일하거나 유사한 작업을 수행하지만 인터페이스가 서로 다른 경우, </li>
+                        <li>두 클래스가 공통 인터페이스를 가지면, 클라이언트 코드가 더 간단하고 명료해질 수 있는 경우,</li>
+                        <li>외부 라이브러리 라서 인터페이스를 바꾸고 싶어도 쉽게 바꿀 수 없는 경ㅇ, 또는 인터페이스가 프레임워크의 일부라거 이미 많은 클라이언트에서 사용되고 있는 경으, 또는 소스 코드를 갖고 있지 않는 경우, </li>
+                      </ul>
+                      <ul>
+                        <li>클라이언트가 대체 클래스들을 하나의 인터페이스를 통해서 사용하도록 통합함으로써, 코드의 중복을 업애거나 줄인다. </li>
+                        <li>클라이언트의 코드가 간단해진다. </li>
+                        <li>클라이언트가 대체 클래스들을 사용하는 방식이 통합된다. </li>
+                        <li>해당 클래스의 인터페이스를 직접 바꾸는 것이 가능한 상황에서 Adapter 패턴을 구현하면, 쓸데 없이 설계만 복잡해진다. </li>
+                      </ul>
+                      <pre>
+                        <code class="java" >
+  package pattern.sample.patternuse14;
+  
+  import pattern.sample.patternuse14.v1.weapon.WeaponAdapter;
+  import pattern.sample.patternuse14.v1.weapon.inf.Weapon;
+  import pattern.sample.patternuse14.v2.weapon.SpeedGun;
+  
+  public class Barrack {
+      public static void main(String[] args)
+      {
+          Weapon weapon = new WeaponAdapter(new SpeedGun());
+  
+          weapon.checkStatus();
+      }
+  }
+  
+  package pattern.sample.patternuse14.v2.weapon;
+  
+  public interface NewWeapon {
+      public void checkStatus();
+  }
+  
+  
+  package pattern.sample.patternuse14.v2.weapon;
+  
+  public class SpeedGun implements NewWeapon {
+      @Override
+      public void checkStatus() {
+  
+      }
+  }
+  
+  package pattern.sample.patternuse14.v1.weapon.inf;
+  
+  public interface Weapon {
+  
+      public void checkStatus();
+  }
+  
+  
+  package pattern.sample.patternuse14.v1.weapon;
+  
+  import pattern.sample.patternuse14.v1.weapon.inf.Weapon;
+  
+  public class Gun implements Weapon {
+      @Override
+      public void checkStatus() {
+  
+      }
+  }
+  
+  package pattern.sample.patternuse14.v1.weapon;
+  
+  import lombok.RequiredArgsConstructor;
+  import pattern.sample.patternuse14.v1.weapon.inf.Weapon;
+  import pattern.sample.patternuse14.v2.weapon.NewWeapon;
+  
+  @RequiredArgsConstructor
+  public class WeaponAdapter implements Weapon {
+  
+      private final NewWeapon newWeapon;
+  
+      @Override
+      public void checkStatus() {
+          newWeapon.checkStatus();
+      }
+  }
+  
+                          
+                        </code>
+                      </pre>
                     </div>
                   </div>
                 </div>
                 <div class="card">
-                  <div class="card-header" id="h1">
+                  <div class="card-header" id="h17">
                     <h2 class="mb-0">
-                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c1" aria-expanded="true" aria-controls="c1">
-              
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c17" aria-expanded="true" aria-controls="c17">
+                        Replace Type Code with Class
                       </button>
                     </h2>
                   </div>
-                  <div id="c1" class="collapse" aria-labelledby="h1" data-parent="#accordionExample">
+                  <div id="c17" class="collapse" aria-labelledby="h17" data-parent="#accordionExample">
                     <div class="card-body">
-                        
+                      어떤 필드 타입이 부적합한 값의 대입이나 유효하지 않은 동일성 검사(비교)를 방지하지 못한다면, 필드의 타입을 클래스로 바꿔 값의 대입과 동일성 검사에 제약 조건을 부여한다. 
+                      <hr>
+                      타입 코드를 클래스로 리팩터링하는 주된 이유는 코드의 타입 안정성을 보장하려는 것이다. 그러기 위한 한 가지 방법은 대입이나 동일성 검사에 사용될 수 있는 값을 제한하는 것이다. <br>
+                      아래의 코드는 그 타입 안정성을 보장하지 않는 주된 예이다. 현재 해당 클래스는 String 값으로 값을 비교하고 세팅하는 구조이기 때문에 언제든지 오탈자의 문제나 문자열로 비교 및 값을 세팅하기 때문에 
+                      타입에 대한 안정성을 보장하기 어렵게 된다. <br>
+                      예를 들어 문자열을 실수로 잘못 입력해도 컴파일 에러는 발생하지 않는다. 
+                      <pre>
+                        <code class="java" >
+public void testHelloWorld() {
+  HelloWorld helloWorld = new HelloWrold();
+
+  assertEquals(helloWorld.state(), "GOOD_WORLD");
+}
+
+// 아래의 HelloWorld에서 정의된 state와 HELLO_WORLD가 String 값이라고 할 때, 
+// 해당 값이 타입 안정성을 지킬 수 있는 구조는 절대 아니다. 
+public class HelloWorld {
+
+  public String BYE_WORLD = "BYE_WORLD";
+  public String HELLO_WORLD = "HELLO_WORLD";
+
+  private String state = "";
+
+  public HelloWorld () {
+    state = HELLO_WORLD;
+  }
+
+  public String state(){
+    return state;
+  }
+}
+                        </code>
+                      </pre>
+                      <hr>
+                      <ul>
+                        <li>부적절할 값의 대입이나 유요하지 않은 동일성 검사로부터 코드를 보호한다. </li>
+                        <li>타입 안정성이 결여된 경우보다 더 많은 코드가 필요하다. </li>
+                      </ul>
+                      <hr>
+                      <pre>
+                        <code class="java" >
+public class PermissionState {
+  public final static PermissionState REQUESTED = new PermissionState();
+  public final static PermissionState CLAIMED = new PermissionState();
+  public final static PermissionState GRANTED = new PermissionState();
+  public final static PermissionState DENIED = new PermissionState();
+}
+                        </code>
+                      </pre>
+                      <Strong>Sample Code</Strong>
+                      <pre>
+                        <code class="java" >
+package pattern.sample.patternuse15;
+
+import pattern.sample.patternuse15.unit.impl.Marine;
+import pattern.sample.patternuse15.unit.impl.Medic;
+import pattern.sample.patternuse15.unit.inf.Unit;
+import pattern.sample.patternuse15.unit.state.UnitState;
+
+public class BattleGround {
+    public static void main(String[] args) {
+        Unit marine = new Marine(UnitState.NORMAL);
+        Unit medic = new Medic(UnitState.HURT);
+
+        marine.checkStatus();
+        medic.checkStatus();
+
+    }
+}
+
+package pattern.sample.patternuse15.unit.state;
+
+public class UnitState {
+    private final String name;
+
+    private UnitState(String name){
+        this.name = name;
+    }
+
+    public String toString(){
+        return name;
+    }
+
+    public final static UnitState NORMAL = new UnitState("NORMAL");
+    public final static UnitState HURT = new UnitState("HURT");
+    public final static UnitState DEAD = new UnitState("DEAD");
+}
+
+package pattern.sample.patternuse15.unit.inf;
+
+public interface Unit {
+    public void checkStatus();
+}
+
+package pattern.sample.patternuse15.unit.impl;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import pattern.sample.patternuse15.unit.inf.Unit;
+import pattern.sample.patternuse15.unit.state.UnitState;
+
+@RequiredArgsConstructor
+@Slf4j
+public class Marine implements Unit {
+
+    private final UnitState unitState;
+
+    @Override
+    public void checkStatus() {
+        log.info(unitState.toString());
+    }
+}
+
+package pattern.sample.patternuse15.unit.impl;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import pattern.sample.patternuse15.unit.inf.Unit;
+import pattern.sample.patternuse15.unit.state.UnitState;
+
+@RequiredArgsConstructor
+@Slf4j
+public class Medic implements Unit {
+
+    private final UnitState unitState;
+
+    @Override
+    public void checkStatus() {
+        log.info(unitState.toString());
+    }
+}    
+                        </code>
+                      </pre> 
                     </div>
                   </div>
                 </div>
                 <div class="card">
-                  <div class="card-header" id="h1">
+                  <div class="card-header" id="h18">
                     <h2 class="mb-0">
-                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c1" aria-expanded="true" aria-controls="c1">
-              
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c18" aria-expanded="true" aria-controls="c18">
+                        Replace State-Altering Conditional with State
                       </button>
                     </h2>
                   </div>
-                  <div id="c1" class="collapse" aria-labelledby="h1" data-parent="#accordionExample">
+                  <div id="c18" class="collapse" aria-labelledby="h18" data-parent="#accordionExample">
                     <div class="card-body">
                         
                     </div>
@@ -2146,706 +2606,35 @@ public class Marine implements Unit {
               </div>
 
               <div class="list-group">
+               
                 <a href="#" class="list-group-item list-group-item-action">
                   <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">
-                      Replace One/Many Distinctions with Composite
+                      
                     </h5>
                   </div>
                   <p class="mb-1">
-                    어떤 클래스에서 주어진 객체를 처리 할 때, 그 객체의 개수에 따라 서로 다른 로직을 사용하고 있다면, 컴포짓을 사용해 객체의 개수에 상관없이 한 로직으로 처리할 수 있도록 만든다. 
-                    <hr>
-                    어떤 클래스에 하나의 객체를 처리하는 메서드가 있는데, 로직이 이와 거의 비슷하면서 여러 객체를 처리하는 메서드가 있다면, 이는 한 객체와 여러 객체를 구별하고 있는 것이다. 이와 같은 경우에는 
-                    코드가 중복되고, 클라이언트의 코드가 복잡해지고, 처리 결과를 취합하기 위해서 추가적인 처리가 필요해진다. `
-                    <ul>
-                      <li>객체가 하나일 때와 여러 개일 때를 처리하기 위해 각각 존재했던 중복된 처리 코드를 제거할 수 있다. </li>
-                      <li>객체 하나를 처리하는 방법과 객체 여러 개를 처리하는 방법이 하나로 통일된다. </li>
-                      <li>여러 개의 객체를 처리하기 위해 필요한 추가적인 기능을 부여할 수 있다. ( 예를 들어, OR 조건 표현 ) </li>
-                      <li>컴포짓을 생성하는 동안 타입 안전성을 위해 런타임 타입 검사가 필요할 수 있다. </li>
-                    </ul> 
-                    <hr>
-                    <pre>
-                      <code class="java" >
-package pattern.sample.patternuse11;
-
-import pattern.sample.patternuse11.building.Barrack;
-import pattern.sample.patternuse11.unit.Marine;
-import pattern.sample.patternuse11.unit.Medic;
-
-import java.util.Arrays;
-
-public class BattleGround {
-    public static void main(String[] args) {
-
-        Barrack barrack = new Barrack();
-
-        barrack.isTrainedUnit(new Marine());
-
-        barrack.isTrainedUnit(Arrays.asList(new Marine(), new Medic()));
-    }
-}
-
-package pattern.sample.patternuse11.building;
-
-import pattern.sample.patternuse11.unit.UnitPackage;
-import pattern.sample.patternuse11.unit.composit.Unit;
-
-import java.util.List;
-
-public class Barrack {
-
-    public boolean isTrainedUnit(Unit unit){
-
-        // isTrainedUnit에 대한 중복 로직을 해당 메소드에서 공통적으로 처리할 수 있다.
-
-        return unit.checkUnitStatus();
-    }
-
-    public boolean isTrainedUnit(List&lt;Unit> unitList){
-        return isTrainedUnit(new UnitPackage(unitList));
-    }
-}
-
-package pattern.sample.patternuse11.unit.composit;
-public abstract class Unit {
-
-    public abstract boolean checkUnitStatus();
-}
-
-package pattern.sample.patternuse11.unit;
-
-import pattern.sample.patternuse11.unit.composit.Unit;
-
-public class Marine extends Unit {
-    @Override
-    public boolean checkUnitStatus() {
-        return false;
-    }
-}
-
-package pattern.sample.patternuse11.unit;
-
-import pattern.sample.patternuse11.unit.composit.Unit;
-
-public class Medic extends Unit {
-    @Override
-    public boolean checkUnitStatus() {
-        return false;
-    }
-}
-
-package pattern.sample.patternuse11.unit;
-
-import lombok.RequiredArgsConstructor;
-import pattern.sample.patternuse11.unit.composit.Unit;
-
-import java.util.ArrayList;
-import java.util.List;
-
-@RequiredArgsConstructor
-public class UnitPackage extends Unit {
-
-    private final List&lt;Unit> unitList;
-    private List&lt;Unit> filteredUnitList = new ArrayList&lt;>();
-
-    public void add(Unit unit){
-        unitList.add(unit);
-    }
-
-    public List&lt;Unit> getSpecs(){
-        return filteredUnitList;
-    }
-
-    @Override
-    public boolean checkUnitStatus() {
-        return false;
-    }
-}                       
-                      </code>
-                    </pre>
+                    
                   </p>
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">
                   <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">
-                      Replace Conditional Dispatcher with Command 
+                      
                     </h5>
                   </div>
                   <p class="mb-1">
-                    요청에 대한 디스패처가 조건 로직으로 구현되어 있다면, 각 액션에 대한 커맨드 객체를 만들어 컬렉션에 저장해두고, 
-                    조건 로직은 컬렉션에서 원하는 커맨드를 찾아 실행하는 코드로 대체한다. 
-                    <hr>
-                    많은 시스템에서 외부 요청을 받아 분배하고 실행하는 동작이 일어난다. 이때 요청을 분배하고 실행하는 조건문을 조건적 디스패처라 부른다. 어떤 경우에는 조건적 디스패처로 충분히 작업을 수행할 수 있지만, 그렇지 못한 경우도 있다. 
-                    <ul>
-                      <li>다양한 액션을 단일한 방식으로 실행하는 단순한 구조를 제공한다. </li>
-                      <li>요청을 처리하는 로직의 구성을 런타임에 변경할 수 있다.</li>
-                      <li>간단한 코드로 구현할 수 있다.</li>
-                      <li>조건적 디스패처로도 충분한 상황에서는 괜히 설계만 복잡하게 만드는 것이다. </li>
-                    </ul>
-                    <pre>
-                      <code class="java" >
-package pattern.sample.patternuse12;
-
-import pattern.sample.patternuse12.building.Barrack;
-import pattern.sample.patternuse12.code.UnitType;
-import pattern.sample.patternuse12.unit.inf.Unit;
-
-public class BattleGround {
-    public static void main(String[] args) {
-        Barrack barrack = new Barrack();
-
-        Unit marineUnit = barrack.createUnit(UnitType.MARINE);
-        Unit medicUnit = barrack.createUnit(UnitType.MEDIC);
-    }
-}
-
-package pattern.sample.patternuse12.building;
-
-import pattern.sample.patternuse12.code.UnitType;
-import pattern.sample.patternuse12.unit.Marine;
-import pattern.sample.patternuse12.unit.Medic;
-import pattern.sample.patternuse12.unit.inf.Unit;
-
-import java.util.HashMap;
-import java.util.Map;
-
-public class Barrack {
-
-    private final Map&lt;UnitType, Unit> unitMap;
-
-    public Barrack(){
-        unitMap = new HashMap&lt;>();
-
-        unitMap.put(UnitType.MARINE, new Marine());
-        unitMap.put(UnitType.MEDIC, new Medic());
-    }
-
-    public Unit createUnit(UnitType unitType){
-        return unitMap.get(unitType);
-    }
-}
-
-package pattern.sample.patternuse12.code;
-
-public enum UnitType {
-    MARINE,
-    MEDIC
-}
-
-package pattern.sample.patternuse12.unit.inf;
-
-public interface Unit {
-}
-
-package pattern.sample.patternuse12.unit;
-
-import pattern.sample.patternuse12.unit.inf.Unit;
-
-public class Marine implements Unit {
-}
-
-package pattern.sample.patternuse12.unit;
-
-import pattern.sample.patternuse12.unit.inf.Unit;
-
-public class Medic implements Unit {
-}
-                      </code>
-                    </pre>
+                      
                   </p>
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">
                   <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">
-                      Extract Adapter 
+                      
                     </h5>
                   </div>
                   <p class="mb-1">
-                    하나의 클래스가 컴포넌트, 라이브러리, API 등의 여러 버전을 동시에 지원하기 위한 어댑터 역할을 하고 있다면, 각 버전을 위한 기능을 별도의 어댑터로 뽑아낸다. 
-                    <hr>
-                    <div class="card">
-                      <div class="card-header">
-                        Adapter 와 Facade
-                      </div>
-                      <div class="card-body">
-                        <p class="card-text">
-                          Adapter 패턴은 Facade 패턴과 자주 혼동된다. 두 패턴이 모두 어떤 코드를 더 쉽게 사용할 수 있도록 만든다는 공통점이 있지만 적용하는 수준이 다르다. Adapter 패턴은 객체 수준에서의 어댑팅을 수행하는 것이고, Facade 패턴은 어떤 
-                          서브 시스템 전체를 어댑팅하는 것이다. Facade 패턴은 레거시 시스템과 통신하기 위해 사용하는 경우가 많다. 예를 들어, 어떤 기업에 COBOL 로 작성된 시스템이 있는데, 이 시스템의 코드가 매우 복잡 미묘하고 2백만 줄이나 된다고 하자. 이 시스템은 한번도 리팩토링 작업을 
-                          거친 적이 없기 때문에 확장과 유지보수가 매우 어렵다. 그럼에도 불구하고 , 이 시스템에는 중욯나 기능이 포함되어 있기 때문에 새로 만드는 시스템도 이 레거시 시스템에 의존할 수 밖에 없다. 
-                          이런 상황에서는 Facade패턴이 유용하다. 퍼사드는 새 시스템에 설계가 좋지 않고 복잡한 게러시 코드에 대한 좀더 단순한 뷰를 제공한다. 새 시스템은 퍼사드 객체와 통신하고 이 퍼사드 객체가 레거시 코드와 관련된 복잡한 작업을 대신하는 것이다. 
-                          레거시 시스템의 서브시스템 하나씩을 퍼사드로 대체해 나가면서, 결국에는 레거시 시스템 전체를 안전하게 새로 구현할 수 있다. 
-                          <ul>
-                            <li>주어진 레거시 시스템의 서브시스템을 확인한다.</li>
-                            <li>그 서브시스템을 위한 퍼사드를 구현한다.</li>
-                            <li>앞서 만든 퍼사드를 사용하도록 클라이언트 코드를 수정한다.</li>
-                            <li>레거시 시스템의 기능을 신기술로 다시 구현하고, 그를 어댑팅하는 새 퍼사드를 만든다. </li>
-                            <li>기존의 퍼사드와 새 퍼사드가 동일하게 동작하는지 테스트한다.</li>
-                            <li>새 퍼사드를 사용하도록 클라이언트 코드를 수정한다.</li>
-                            <li>나머지 서브 시스템에 대해서 위의 과정을 반복한다. </li>
-                          </ul>
-                        </p>
-                      </div>
-                    </div>
-                    <hr>
-                    <ul>
-                      <li>컴포넌트, 라이브러리 또는 API의 버전에 따른 차이점을 격리한다. </li>
-                      <li>클래스가 하나의 버전만 책임지도록 한다.</li>
-                      <li>자주 변하는 코드를 시스템과 분리할 수 있다. </li>
-                      <li>원래 있던 중요 기능을 어댑터에서 제공하지 못하면, 클라이언트가 그런 중요 기능에 접근하는데 장벽이 될 수 있다. </li>
-                    </ul>
-                    <hr>
-                    <pre>
-                      <code>
-Java의 첫 버전에서는 Enumeration이라는 인터페이스가 있어서 Vector나 HashTable 같은 컬렉션을 순회하는 데 사용되었다. 그런데 Java가 점점더 발전하면서
-JDK에 더 나은 컬렉션 클래스들이 추가되었고 Iterater 인터페이스가 그 역할을 대신하게 되었다. 그러나 Enumeration 인터페이스를 사용해 작성된 코드와도 상호 동작이 가능해 하므로, 
-JDK 에는 다음과 같이 익명 내부 클래스 기능을 이용해 Iterator를 어댑팅하는 생성 메서드를 제공한다. 
-
-public class Collections ... 
-    public static Enumeration enumeration(filnal Collection c){
-        return new Enumeration() {
-            Iterator i = c.iterator();
-
-            public boolean hasMoreElements() {
-              return i.hasNext();
-            }
-
-            public Object nextElement() {
-              return i.next();
-            }
-        }
-    }                        
-}
-                      </code>
-                    </pre>
-                  </p>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">
-                      Unify Interfaces with Adapter
-                    </h5>
-                  </div>
-                  <p class="mb-1">
-                    클라이언트가 두 개의 유사한 클래스를 사용하고 있는데, 그중 한 인터페이스가 다른 하나보다 더 좋아 보이면, 어댑터를 도입해 인터페이스를 도입한다. 
-                    <hr>
-                    아래와 같은 상황 일 경우 Adapter 패턴으로 리팩터링하는 것이 좋다. 
-                    <ul>
-                      <li>두 클래스가 동일하거나 유사한 작업을 수행하지만 인터페이스가 서로 다른 경우, </li>
-                      <li>두 클래스가 공통 인터페이스를 가지면, 클라이언트 코드가 더 간단하고 명료해질 수 있는 경우,</li>
-                      <li>외부 라이브러리 라서 인터페이스를 바꾸고 싶어도 쉽게 바꿀 수 없는 경ㅇ, 또는 인터페이스가 프레임워크의 일부라거 이미 많은 클라이언트에서 사용되고 있는 경으, 또는 소스 코드를 갖고 있지 않는 경우, </li>
-                    </ul>
-                    <ul>
-                      <li>클라이언트가 대체 클래스들을 하나의 인터페이스를 통해서 사용하도록 통합함으로써, 코드의 중복을 업애거나 줄인다. </li>
-                      <li>클라이언트의 코드가 간단해진다. </li>
-                      <li>클라이언트가 대체 클래스들을 사용하는 방식이 통합된다. </li>
-                      <li>해당 클래스의 인터페이스를 직접 바꾸는 것이 가능한 상황에서 Adapter 패턴을 구현하면, 쓸데 없이 설계만 복잡해진다. </li>
-                    </ul>
-                    <pre>
-                      <code class="java" >
-package pattern.sample.patternuse14;
-
-import pattern.sample.patternuse14.v1.weapon.WeaponAdapter;
-import pattern.sample.patternuse14.v1.weapon.inf.Weapon;
-import pattern.sample.patternuse14.v2.weapon.SpeedGun;
-
-public class Barrack {
-    public static void main(String[] args)
-    {
-        Weapon weapon = new WeaponAdapter(new SpeedGun());
-
-        weapon.checkStatus();
-    }
-}
-
-package pattern.sample.patternuse14.v2.weapon;
-
-public interface NewWeapon {
-    public void checkStatus();
-}
-
-
-package pattern.sample.patternuse14.v2.weapon;
-
-public class SpeedGun implements NewWeapon {
-    @Override
-    public void checkStatus() {
-
-    }
-}
-
-package pattern.sample.patternuse14.v1.weapon.inf;
-
-public interface Weapon {
-
-    public void checkStatus();
-}
-
-
-package pattern.sample.patternuse14.v1.weapon;
-
-import pattern.sample.patternuse14.v1.weapon.inf.Weapon;
-
-public class Gun implements Weapon {
-    @Override
-    public void checkStatus() {
-
-    }
-}
-
-package pattern.sample.patternuse14.v1.weapon;
-
-import lombok.RequiredArgsConstructor;
-import pattern.sample.patternuse14.v1.weapon.inf.Weapon;
-import pattern.sample.patternuse14.v2.weapon.NewWeapon;
-
-@RequiredArgsConstructor
-public class WeaponAdapter implements Weapon {
-
-    private final NewWeapon newWeapon;
-
-    @Override
-    public void checkStatus() {
-        newWeapon.checkStatus();
-    }
-}
-
-                        
-                      </code>
-                    </pre>
-                  </p>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">
-                      Replace Type Code wit Class
-                    </h5>
-                  </div>
-                  <p class="mb-1">
-                      어떤 필드 타입이 부적합한 값의 대입이나 유효하지 않은 동일성 검사(비교)를 방지하지 못한다면, 필드의 타입을 클래스로 바꿔 값의 대입과 동일성 검사에 제약 조건을 부여한다. 
-                      <hr>
-                      타입 코드를 클래스로 리팩터링하는 주된 이유는 코드의 타입 안정성을 보장하려는 것이다. 그러기 위한 한 가지 방법은 대입이나 동일성 검사에 사용될 수 있는 값을 제한하는 것이다. <br>
-                      아래의 코드는 그 타입 안정성을 보장하지 않는 주된 예이다. 현재 해당 클래스는 String 값으로 값을 비교하고 세팅하는 구조이기 때문에 언제든지 오탈자의 문제나 문자열로 비교 및 값을 세팅하기 때문에 
-                      타입에 대한 안정성을 보장하기 어렵게 된다. <br>
-                      예를 들어 문자열을 실수로 잘못 입력해도 컴파일 에러는 발생하지 않는다. 
-                      <pre>
-                        <code class="java" >
-public void testHelloWorld() {
-  HelloWorld helloWorld = new HelloWrold();
-
-  assertEquals(helloWorld.state(), "GOOD_WORLD");
-}
-
-// 아래의 HelloWorld에서 정의된 state와 HELLO_WORLD가 String 값이라고 할 때, 
-// 해당 값이 타입 안정성을 지킬 수 있는 구조는 절대 아니다. 
-public class HelloWorld {
-
-  public String BYE_WORLD = "BYE_WORLD";
-  public String HELLO_WORLD = "HELLO_WORLD";
-
-  private String state = "";
-
-  public HelloWorld () {
-    state = HELLO_WORLD;
-  }
-
-  public String state(){
-    return state;
-  }
-}
-                        </code>
-                      </pre>
-                      <hr>
-                      <ul>
-                        <li>부적절할 값의 대입이나 유요하지 않은 동일성 검사로부터 코드를 보호한다. </li>
-                        <li>타입 안정성이 결여된 경우보다 더 많은 코드가 필요하다. </li>
-                      </ul>
-                      <hr>
-                      <pre>
-                        <code class="java" >
-public class PermissionState {
-  public final static PermissionState REQUESTED = new PermissionState();
-  public final static PermissionState CLAIMED = new PermissionState();
-  public final static PermissionState GRANTED = new PermissionState();
-  public final static PermissionState DENIED = new PermissionState();
-}
-                        </code>
-                      </pre>
-                      <Strong>Sample Code</Strong>
-                      <pre>
-                        <code class="java" >
-package pattern.sample.patternuse15;
-
-import pattern.sample.patternuse15.unit.impl.Marine;
-import pattern.sample.patternuse15.unit.impl.Medic;
-import pattern.sample.patternuse15.unit.inf.Unit;
-import pattern.sample.patternuse15.unit.state.UnitState;
-
-public class BattleGround {
-    public static void main(String[] args) {
-        Unit marine = new Marine(UnitState.NORMAL);
-        Unit medic = new Medic(UnitState.HURT);
-
-        marine.checkStatus();
-        medic.checkStatus();
-
-    }
-}
-
-package pattern.sample.patternuse15.unit.state;
-
-public class UnitState {
-    private final String name;
-
-    private UnitState(String name){
-        this.name = name;
-    }
-
-    public String toString(){
-        return name;
-    }
-
-    public final static UnitState NORMAL = new UnitState("NORMAL");
-    public final static UnitState HURT = new UnitState("HURT");
-    public final static UnitState DEAD = new UnitState("DEAD");
-}
-
-package pattern.sample.patternuse15.unit.inf;
-
-public interface Unit {
-    public void checkStatus();
-}
-
-package pattern.sample.patternuse15.unit.impl;
-
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import pattern.sample.patternuse15.unit.inf.Unit;
-import pattern.sample.patternuse15.unit.state.UnitState;
-
-@RequiredArgsConstructor
-@Slf4j
-public class Marine implements Unit {
-
-    private final UnitState unitState;
-
-    @Override
-    public void checkStatus() {
-        log.info(unitState.toString());
-    }
-}
-
-package pattern.sample.patternuse15.unit.impl;
-
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import pattern.sample.patternuse15.unit.inf.Unit;
-import pattern.sample.patternuse15.unit.state.UnitState;
-
-@RequiredArgsConstructor
-@Slf4j
-public class Medic implements Unit {
-
-    private final UnitState unitState;
-
-    @Override
-    public void checkStatus() {
-        log.info(unitState.toString());
-    }
-}    
-                        </code>
-                      </pre>
-                  </p>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">
-                      Replace State-Altering Conditional with State
-                    </h5>
-                  </div>
-                  <p class="mb-1">
-                      어떤 객체의 상태 전이를 제어하는 조건 로직이 복잡하다면, 각 상태에 해당하는 스테이트 클래스를 하나씩 만들고 그들이 스스로 다른 상태로 전이하는 것을 책임지도록하는 복잡한 조건 로직을 제거한다. 
-                      <hr>
-                      State 패턴으로 리팩터링하는 주된 목적은 상태 전이를 위한 조건 로직이 지나치게 복잡한 경우 이를 해소하는 것이다. 상태 전이 로직이란 객체의 상태와 이들 같의 전이 방법을 제어하는 것으로 , 
-                      클래스 내부 여기 저기에 흩어져 존재하는 경향이 있다. State 패턴을 구현한다는 것은 각 상태에 대응하는 별도의 클래스를 만들고 상태 전이 로직을 그 클래스들로 옮기는 작업을 뜻한다. 
-                      <hr>
-                      State 패턴은 이떤 객체가 여러 상태 간의 전이를 쉽게 하는 데 유용한 반면, Strategy 패턴은 대리 객체를 런타임에 바꿀 수 있게 하여 상황에 맞는 로직 선택을 쉽게 하는 데 유용하다. 
-                      <ul>
-                        <li>상태 전이를 위한 조건 로직을 줄이거나 제거할 수 있다. </li>
-                        <li>복잡한 상태 전이 로직이 단순해진다. </li>
-                        <li>상태 전이 로직을 더 쉽게 알아볼 수 있다. </li>
-                        <li>원래의 상태 전이 로직이 별로 복잡하지 않다면, 괜히 설계만 복잡하게 만드는 것이다. </li>
-                      </ul>
-                      <pre>
-                        <code class="java" >
-package pattern.sample.patternuse16;
-
-import pattern.sample.patternuse16.unit.Marine;
-import pattern.sample.patternuse16.unit.code.ActionType;
-
-public class BattleGround {
-    public static void main(String[] args) {
-        Marine marine = new Marine();
-
-        marine.actionByMouse(ActionType.MOVING);
-
-        marine.actionByMouse(ActionType.ATTACK);
-
-        marine.actionByMouse(ActionType.MOVING);
-
-        marine.actionByMouse(ActionType.HEALING);
-    }
-}
-
-package pattern.sample.patternuse16.unit;
-
-import pattern.sample.patternuse16.unit.action.Action;
-import pattern.sample.patternuse16.unit.code.ActionType;
-import pattern.sample.patternuse16.unit.state.structure.UnitState;
-
-public class Marine {
-
-    public void actionByMouse(ActionType actionType){
-
-        Action action = UnitState
-                .byState(actionType)
-                .byAction();
-
-        action.act();
-    }
-}
-
-package pattern.sample.patternuse16.unit.state.structure;
-
-import pattern.sample.patternuse16.unit.action.Action;
-import pattern.sample.patternuse16.unit.code.ActionType;
-import pattern.sample.patternuse16.unit.state.AttackState;
-import pattern.sample.patternuse16.unit.state.HealingState;
-import pattern.sample.patternuse16.unit.state.MovingState;
-
-public abstract class UnitState {
-
-    public final static UnitState MOVING = new MovingState();
-    public final static UnitState ATTACK = new AttackState();
-    public final static UnitState HEALING = new HealingState();
-
-    public static UnitState byState(ActionType actionType){
-        switch (actionType){
-            case ATTACK:
-                return ATTACK;
-            case MOVING:
-                return MOVING;
-            case HEALING:
-                return HEALING;
-            default:
-                return null;
-        }
-    }
-
-    public abstract Action byAction();
-}
-
-package pattern.sample.patternuse16.unit.state;
-
-
-import lombok.extern.slf4j.Slf4j;
-import pattern.sample.patternuse16.unit.action.Action;
-import pattern.sample.patternuse16.unit.action.impl.Attack;
-import pattern.sample.patternuse16.unit.code.ActionType;
-import pattern.sample.patternuse16.unit.state.structure.UnitState;
-
-@Slf4j
-public class AttackState extends UnitState {
-
-    @Override
-    public Action byAction() {
-        return new Attack();
-    }
-}
-
-package pattern.sample.patternuse16.unit.state;
-
-
-import pattern.sample.patternuse16.unit.action.Action;
-import pattern.sample.patternuse16.unit.action.impl.Healing;
-import pattern.sample.patternuse16.unit.code.ActionType;
-import pattern.sample.patternuse16.unit.state.structure.UnitState;
-
-public class HealingState extends UnitState {
-    @Override
-    public Action byAction() {
-        return new Healing();
-    }
-}
-
-package pattern.sample.patternuse16.unit.state;
-
-
-import pattern.sample.patternuse16.unit.action.Action;
-import pattern.sample.patternuse16.unit.action.impl.Moving;
-import pattern.sample.patternuse16.unit.state.structure.UnitState;
-
-public class MovingState extends UnitState {
-    @Override
-    public Action byAction() {
-        return new Moving();
-    }
-}
-
-package pattern.sample.patternuse16.unit.code;
-
-public enum ActionType {
-    MOVING,
-    ATTACK,
-    HEALING
-}
-
-package pattern.sample.patternuse16.unit.action;
-
-public interface Action {
-    public void act();
-}
-
-package pattern.sample.patternuse16.unit.action.impl;
-
-import lombok.extern.slf4j.Slf4j;
-import pattern.sample.patternuse16.unit.action.Action;
-
-@Slf4j
-public class Attack implements Action {
-    @Override
-    public void act() {
-        log.info("Attack 합니다. ");
-    }
-}
-
-package pattern.sample.patternuse16.unit.action.impl;
-
-import lombok.extern.slf4j.Slf4j;
-import pattern.sample.patternuse16.unit.action.Action;
-
-@Slf4j
-public class Healing implements Action {
-    @Override
-    public void act() {
-        log.info("치료합니다. ");
-    }
-}
-
-
-package pattern.sample.patternuse16.unit.action.impl;
-
-import lombok.extern.slf4j.Slf4j;
-import pattern.sample.patternuse16.unit.action.Action;
-
-@Slf4j
-public class Moving implements Action {
-    @Override
-    public void act() {
-        log.info("움직입니다. ");
-    }
-}
-                        </code>
-                      </pre>
+                      
                   </p>
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">
