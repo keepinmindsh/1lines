@@ -2428,49 +2428,402 @@ public class Medic implements Unit {
                   </div>
                   <div id="c18" class="collapse" aria-labelledby="h18" data-parent="#accordionExample">
                     <div class="card-body">
-                        
+                      어떤 객체의 상태 전이를 제어하는 조건 로직이 복잡하다면, 각 상태에 해당하는 스테이트 클래스를 하나씩 만들고 그들이 스스로 다른 상태로 전이하는 것을 책임지도록하는 복잡한 조건 로직을 제거한다. 
+                      <hr>
+                      State 패턴으로 리팩터링하는 주된 목적은 상태 전이를 위한 조건 로직이 지나치게 복잡한 경우 이를 해소하는 것이다. 상태 전이 로직이란 객체의 상태와 이들 같의 전이 방법을 제어하는 것으로 , 
+                      클래스 내부 여기 저기에 흩어져 존재하는 경향이 있다. State 패턴을 구현한다는 것은 각 상태에 대응하는 별도의 클래스를 만들고 상태 전이 로직을 그 클래스들로 옮기는 작업을 뜻한다. 
+                      <hr>
+                      State 패턴은 이떤 객체가 여러 상태 간의 전이를 쉽게 하는 데 유용한 반면, Strategy 패턴은 대리 객체를 런타임에 바꿀 수 있게 하여 상황에 맞는 로직 선택을 쉽게 하는 데 유용하다. 
+                      <ul>
+                        <li>상태 전이를 위한 조건 로직을 줄이거나 제거할 수 있다. </li>
+                        <li>복잡한 상태 전이 로직이 단순해진다. </li>
+                        <li>상태 전이 로직을 더 쉽게 알아볼 수 있다. </li>
+                        <li>원래의 상태 전이 로직이 별로 복잡하지 않다면, 괜히 설계만 복잡하게 만드는 것이다. </li>
+                      </ul>
+                      <pre>
+                        <code class="java" >
+package pattern.sample.patternuse16;
+
+import pattern.sample.patternuse16.unit.Marine;
+import pattern.sample.patternuse16.unit.code.ActionType;
+
+public class BattleGround {
+    public static void main(String[] args) {
+        Marine marine = new Marine();
+
+        marine.actionByMouse(ActionType.MOVING);
+
+        marine.actionByMouse(ActionType.ATTACK);
+
+        marine.actionByMouse(ActionType.MOVING);
+
+        marine.actionByMouse(ActionType.HEALING);
+    }
+}
+
+package pattern.sample.patternuse16.unit;
+
+import pattern.sample.patternuse16.unit.action.Action;
+import pattern.sample.patternuse16.unit.code.ActionType;
+import pattern.sample.patternuse16.unit.state.structure.UnitState;
+
+public class Marine {
+
+    public void actionByMouse(ActionType actionType){
+
+        Action action = UnitState
+                .byState(actionType)
+                .byAction();
+
+        action.act();
+    }
+}
+
+package pattern.sample.patternuse16.unit.state.structure;
+
+import pattern.sample.patternuse16.unit.action.Action;
+import pattern.sample.patternuse16.unit.code.ActionType;
+import pattern.sample.patternuse16.unit.state.AttackState;
+import pattern.sample.patternuse16.unit.state.HealingState;
+import pattern.sample.patternuse16.unit.state.MovingState;
+
+public abstract class UnitState {
+
+    public final static UnitState MOVING = new MovingState();
+    public final static UnitState ATTACK = new AttackState();
+    public final static UnitState HEALING = new HealingState();
+
+    public static UnitState byState(ActionType actionType){
+        switch (actionType){
+            case ATTACK:
+                return ATTACK;
+            case MOVING:
+                return MOVING;
+            case HEALING:
+                return HEALING;
+            default:
+                return null;
+        }
+    }
+
+    public abstract Action byAction();
+}
+
+package pattern.sample.patternuse16.unit.state;
+
+
+import lombok.extern.slf4j.Slf4j;
+import pattern.sample.patternuse16.unit.action.Action;
+import pattern.sample.patternuse16.unit.action.impl.Attack;
+import pattern.sample.patternuse16.unit.code.ActionType;
+import pattern.sample.patternuse16.unit.state.structure.UnitState;
+
+@Slf4j
+public class AttackState extends UnitState {
+
+    @Override
+    public Action byAction() {
+        return new Attack();
+    }
+}
+
+package pattern.sample.patternuse16.unit.state;
+
+
+import pattern.sample.patternuse16.unit.action.Action;
+import pattern.sample.patternuse16.unit.action.impl.Healing;
+import pattern.sample.patternuse16.unit.code.ActionType;
+import pattern.sample.patternuse16.unit.state.structure.UnitState;
+
+public class HealingState extends UnitState {
+    @Override
+    public Action byAction() {
+        return new Healing();
+    }
+}
+
+package pattern.sample.patternuse16.unit.state;
+
+
+import pattern.sample.patternuse16.unit.action.Action;
+import pattern.sample.patternuse16.unit.action.impl.Moving;
+import pattern.sample.patternuse16.unit.state.structure.UnitState;
+
+public class MovingState extends UnitState {
+    @Override
+    public Action byAction() {
+        return new Moving();
+    }
+}
+
+package pattern.sample.patternuse16.unit.code;
+
+public enum ActionType {
+    MOVING,
+    ATTACK,
+    HEALING
+}
+
+package pattern.sample.patternuse16.unit.action;
+
+public interface Action {
+    public void act();
+}
+
+package pattern.sample.patternuse16.unit.action.impl;
+
+import lombok.extern.slf4j.Slf4j;
+import pattern.sample.patternuse16.unit.action.Action;
+
+@Slf4j
+public class Attack implements Action {
+    @Override
+    public void act() {
+        log.info("Attack 합니다. ");
+    }
+}
+
+package pattern.sample.patternuse16.unit.action.impl;
+
+import lombok.extern.slf4j.Slf4j;
+import pattern.sample.patternuse16.unit.action.Action;
+
+@Slf4j
+public class Healing implements Action {
+    @Override
+    public void act() {
+        log.info("치료합니다. ");
+    }
+}
+
+
+package pattern.sample.patternuse16.unit.action.impl;
+
+import lombok.extern.slf4j.Slf4j;
+import pattern.sample.patternuse16.unit.action.Action;
+
+@Slf4j
+public class Moving implements Action {
+    @Override
+    public void act() {
+        log.info("움직입니다. ");
+    }
+}
+                        </code>
+                      </pre>      
                     </div>
                   </div>
                 </div>
                 <div class="card">
-                  <div class="card-header" id="h1">
+                  <div class="card-header" id="h19">
                     <h2 class="mb-0">
-                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c1" aria-expanded="true" aria-controls="c1">
-              
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c19" aria-expanded="true" aria-controls="c19">
+                        Introduce Null Object
                       </button>
                     </h2>
                   </div>
-                  <div id="c1" class="collapse" aria-labelledby="h1" data-parent="#accordionExample">
+                  <div id="c19" class="collapse" aria-labelledby="h19" data-parent="#accordionExample">
                     <div class="card-body">
-                        
+                      어떤 필드나 변수의 값이 널인지 검사하는 로직이 코드의 여기 저기 중복되어 있다면, 값이 널인 경우에 행할 작업을 대신하는 널 객체를 사용하도록 수정한다. 
+                      <hr>
+                      <pre>
+                        <code class="java" >
+if ( someObject != null ){
+  someObject.doSomething();
+} else {
+  performAlternativeBehavior();
+}
+                        </code>
+                      </pre>
+                      위와 같은 널 검사 로직이 시스템의 한두 곳에서 반복되는 것은 별도 문제되지 않는다. 그러나 여러 곳에서 반복된다면 얘기가 다른다. 널 검사 로직이 없는 코드와 비교했을 때, 그런 코드는 이해하기가 더 어렵고
+                      확장을 하려먼 더 많은 생각을 해야한다. 또 기존의 널 검사 로직으로는 새로 추가한 코드를 보호할 수가 없다. 따라서 새로운 코드를 작성할 때 프로그래머가 널 검사 로직을 빠뜨린다면,
+                      널 관련 오류가 발생하기 시작한다. 
+                      <hr> 
+                      Null Object 패턴은 이런 문제를 위한 해결책으로, 필드나 변수가 항상 설이 아니도록 유지하여 별도의 검사를 하지 않아도 된다. 이 방법은 사실 약간의 속임수다. 평소에는 필드나 변수에 적당한 객체를 대입하고, 
+                      널 일 경우에는 널 객체를 대입하는 것이다. 이 때 널 객체의 해당 메서드는 아무일도 하지 않거나 디폴드 대입하는 것이다. 
+                      <ul>
+                        <li>수많은 널 검사 로직 없이도 널 값으로 인한 에러를 막을 수 있다.</li>
+                        <li>널 검사 로직이 최소화되어 코드가 간단해진다. </li>
+                        <li>시스템에 널 검사 로직이 별도 필요하지 않은 상황에서는 설꼐만 복잡하게 된다. </li>
+                        <li>프로그래머가 널 객체의 존재를 모르고 있다면 , 동일한 널 검사를 쓸데 없이 여러번 하게 될 수 도 있다. </li>
+                        <li>유지보수가 복잡해진다. 널 객체의 수퍼클래스에 새 public 메서드를 추가할 때 마다 널 객체 클래스에서 이를 오버라이드 해야 한다. </li>
+                      </ul>
+                      <pre>
+                        <code class="java" >
+package pattern.sample.patternuse17;
+
+import pattern.sample.patternuse17.unit.Marine;
+import pattern.sample.patternuse17.unit.action.impl.Move;
+import pattern.sample.patternuse17.unit.action.impl.NullAction;
+
+public class BattleGround {
+    public static void main(String[] args) {
+        Marine marine = new Marine();
+
+        marine.setAction(new Move());
+
+        marine.act();
+
+        marine.setAction(new NullAction());
+
+        marine.act();
+    }
+}
+
+package pattern.sample.patternuse17.unit;
+
+import pattern.sample.patternuse17.unit.action.Action;
+
+import java.util.Optional;
+
+public class Marine {
+
+    public Action action;
+
+    public void setAction(Action action){
+        this.action = action;
+    }
+
+    public void act(){
+        Optional.ofNullable(this.action)
+                .ifPresent(action -> {
+                    action.act();
+                });
+    }
+}
+
+package pattern.sample.patternuse17.unit.action;
+
+public interface Action {
+    public void act();
+}
+
+package pattern.sample.patternuse17.unit.action.impl;
+
+import lombok.extern.slf4j.Slf4j;
+import pattern.sample.patternuse17.unit.action.Action;
+
+@Slf4j
+public class Move implements Action {
+    @Override
+    public void act() {
+        log.info("Move!!");
+    }
+}
+
+package pattern.sample.patternuse17.unit.action.impl;
+
+import lombok.extern.slf4j.Slf4j;
+import pattern.sample.patternuse17.unit.action.Action;
+
+@Slf4j
+public class NullAction implements Action {
+    @Override
+    public void act() {
+        log.info("Null Action");
+    }
+}
+
+package pattern.sample.patternuse17.unit.action.impl;
+
+import lombok.extern.slf4j.Slf4j;
+import pattern.sample.patternuse17.unit.action.Action;
+
+@Slf4j
+public class Run implements Action {
+    @Override
+    public void act() {
+        log.info("Run!");
+    }
+}                          
+                        </code>
+                      </pre>
                     </div>
                   </div>
                 </div>
                 <div class="card">
-                  <div class="card-header" id="h1">
+                  <div class="card-header" id="h20">
                     <h2 class="mb-0">
-                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c1" aria-expanded="true" aria-controls="c1">
-              
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c20" aria-expanded="true" aria-controls="c20">
+                        Inline Singleton
                       </button>
                     </h2>
                   </div>
-                  <div id="c1" class="collapse" aria-labelledby="h1" data-parent="#accordionExample">
+                  <div id="c20" class="collapse" aria-labelledby="h20" data-parent="#accordionExample">
                     <div class="card-body">
-                        
+                      코드의 여러곳에서 접근할 수 있어야 하지만 전역적일 필요 까지는 없는 객체가 싱글턴으로 구현되어 있다면, 싱글턴 객체를 저장하고 그에 대한 접근 경로를 제공하는 클래스로 싱글턴의 기능을 옮긴다. 그리고 싱글턴은 제거한다. 
+                      <hr>
+                      Singleton 패턴에 집착하는 사람들을 가리켜 싱글턴 중독자라고 한다. 물론 내가 지어낸 말이다. Singleton 패턴의 의도는 '어떤 클래스의 단 하나만 허용하고, 그에 대한 전역적인 접근을 가능하게 하려는 것이다. ' Singleton 패턴에 대한 생각이 
+                      뼈속 깊이 침투해 있어 다른 패턴 또는 더 단순한 설계보다 싱글턴이 좋다고 믿기 시작해 지나치게 많은 싱글턴을 만들고 있다면, 싱글턴에 중독된 것이다. 
+                      <hr>
+                      Singleton 패턴에 대한 Ward Cunningham의 견해  <br>
+                      실제로 구현되는 싱클턴의 대부분은 프로그래밍 언어가 제공하는 여러 보호 기능을 '유일성'이라는 하나의 측면으로 몰아가는 것이다. 물론 개인적으로는 유일성을 보장하는 것이 중요할 수도 있다고 생각하지만, 너무 지나치게 강조되는 면이 있다. 
+                      모든 데이터는 적당한 컨텍스트에서 사용되어야 한다. 많은 객체지향 프로그래밍 기법이 컨텍스트를 설정하고 그에 따라 변수의 생존 기간을 적절하게 조절해 필요한 동안만 존재하다가 우아하게 소멸될 수 있도록 하는 것이다. 전역 데이터가 몇 개 정도 존재하는 것은
+                      별 문제가 되지 않는다. 시스템의 모든 곳에서 이해할 수 있는 컨텍스트에서 사용되는 데이터라면 말이다. 그러나 너무 많은 전역데이터가 존재해서는 안된다. 그런 시스템을 나더러 수정하라고 하면, 나는 줄행랑을 칠 것이다. 
+                      <hr>
+                      Singleton 패턴에 대한 Kent Beck의 견해 <br>
+                      싱글턴이 야기하는 진짜 문제는 어떤 객체의 가시 범위를 어떻게 정할지를 크게 고민하지 않아도 되게 만든다는 점이다. 객체의 노출 영역과 보호 영역에 대한 균형을 적절하게 맞추는 것은 융통성을 유지하기 위한 필수 조건이다. 
+                      Massimo Arnoldi 와 싱글턴에 환전율을 저장하는 어떤 시스템을 개발하던 때였다. 여러 통화를 한꺼번에 다루는 테스트 코드를 작성할 때 마다, 기존의 환전율을 따로 저장했다가 새 환전율을 입력하고 다시 기존의 환전율을 복원하는 과정을 반복해야 했다. 따라서 
+                      실수로 잘못된 환전율을 테스트에 사용하는 일이 계속 발생했고, 우리는 그런 상황을 더는 견딜 수 없었다. 그러나 그 환전율은 시스템 전체에서 사용하는 데이터 였으므로 , 그것을 처리하는 방법을 바꾸는 작업은 보통 일이 아닐거라 생각했다. 그래도 한번 시도해보기로 마음 먹고, 
+                      환전율을 사용하는 코드를 모두 찾아 필요한 환전율을 파라미터를 통해 명시적으로 넘겨줬다. 처음에는 매우 많은 곳을 고쳐야할 것라고 생각했지만, 막상 해보니 30분 밖에 걸리지 않았다. 때로는 필요한 환전율을 접근하기 어려운 위치에 코드도 있었지만, 그것을 어떻기 리팬터링해야할지는 자명했다. 
+                      그리고 그렇게 리팩터링한 결과로, 어떻게 해결할지를 몰라 난감했던 몇몇 설계문제도 함께 해결되었다. 
+                      <br>
+                      <ul>
+                        <li>전체 설꼐가 더 명확하고 유연해졌다.</li>
+                        <li>안정적인 테스트 코드 작성이 가능해졌다. </li>
+                        <li>시스템에 대한 신뢰도가 높아졌다. </li>
+                      </ul>
+                      <hr>
+                      <ul>
+                        <li>객체 간의 협력 관곌ㄹ 좀더 명확하게 만든다.</li>
+                        <li>싱글턴 객체를 보호하기 위한 특수 코드가 필요 없어진다. </li>
+                        <li>객체의 참조를 호출 트리의 여러 계층에서 넘겨야 해서 불편하고 힘들어졌다면, 설계를 더 복잡하게 만든 것이다. </li>
+                      </ul>
+                      <hr>
+                      <strong>싱글턴 뽀개기</strong>
+                      <ul>
+                        <li>
+                          싱글턴이 구현하고 있는 public 메서드를 흡수클래스에 선언한다. 그리기고 이 새 메서드의 구현은 기존의 싱글턴에 위임하도록 한다. 이 때 그 메서드 중에 static에 메서드가 있다면, 흡수 클래스에 그에 대응하는 메서드를 선언할 때 
+                          static 키워드를 제거한다. 만약 기존 싱글턴 클래스를 그대로 흡수 클래스로 삼을 생각이라면, static 메서드를 그대로 놔두어도 무방하다. 
+                        </li>
+                        <li>
+                          클라이언트 코드에서 싱글턴을 참조하는 부분을 모두 흡수 클래스를 참조하도록 수정한다. 
+                        </li>
+                        <li>
+                          싱글턴에 아무 기등도 남아있지 않도록, Move Method와 Move Field 리팩터링을 통해 싱글 턴의 모든 기능을 흡수 클래스로 옮긴다. 
+                        </li>
+                        <li>
+                          싱글턴을 제거한다. 
+                        </li>
+                      </ul>
                     </div>
                   </div>
                 </div>
                 <div class="card">
-                  <div class="card-header" id="h1">
+                  <div class="card-header" id="h21">
                     <h2 class="mb-0">
-                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c1" aria-expanded="true" aria-controls="c1">
-              
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c21" aria-expanded="true" aria-controls="c21">
+                        Limit Instantiation with Singleton
                       </button>
                     </h2>
                   </div>
-                  <div id="c1" class="collapse" aria-labelledby="h1" data-parent="#accordionExample">
+                  <div id="c21" class="collapse" aria-labelledby="h21" data-parent="#accordionExample">
                     <div class="card-body">
-                        
+                      어떤 클래스의 인스턴스를 여러 개 생성해 사용하고 있는데, 그로 인해 메모리 사용량이 너무 커지거나 시스템 성능이 저하된다면, 여러개의 객체를 하나의 싱글턴 객체로 대체한다. 
+                      <hr>
+                      훌륭한 소프트웨어 설계자가 되고 싶다면, 코드를 조금하게 최적화하는 것을 피해야 한다. 조금하게 최적화를 시도한 코드는 그렇지 않는 코드보다 리팩터링하기 어렵다. 
+                      만약 여러분이 '코드를 더 효율적으로 만들어준다'는 이유로 Singleton 패턴을 습관적으로 사용하고 있다면, 이는 조급하게 코드를 최적화하고 있는 것이다. 반면에 아래와 같은 상황의 경우라면 
+                      Singleton패턴으로 리팩터링 하는 것이 적합하다. 
+                      <ul>
+                        <li>시스템 성능에 대한 사용자의 불만이 높다. </li>
+                        <li>프로파일러를 통해 확인한 결과, 어떤 객체를 계속 반복해서 생성하는 것이 시스템 성능에 악영향을 미치고 있다. </li>
+                        <li>공유하려는 객체가 상태를 갖지 않거나, 갖더라도 상태를 공유할 수 있다. </li>
+                      </ul>
+                      <ul>
+                        <li>성능을 향상시킨다. </li>
+                        <li>어느 곳에서나 객체에 접근할 수 있게 된다. 많은 경우, 이는 좋지 않는 설계로 평가된다. </li>
+                        <li>객체를 공유하면 안되는 상태가 존재할 때에는 적용할 수 없다. </li>
+                      </ul>
                     </div>
                   </div>
                 </div>
@@ -2640,202 +2993,31 @@ public class Medic implements Unit {
                 <a href="#" class="list-group-item list-group-item-action">
                   <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">
-                      Introduce Null Object
+                      
                     </h5>
                   </div>
                   <p class="mb-1">
-                      어떤 필드나 변수의 값이 널인지 검사하는 로직이 코드의 여기 저기 중복되어 있다면, 값이 널인 경우에 행할 작업을 대신하는 널 객체를 사용하도록 수정한다. 
-                      <hr>
-                      <pre>
-                        <code class="java" >
-if ( someObject != null ){
-  someObject.doSomething();
-} else {
-  performAlternativeBehavior();
-}
-                        </code>
-                      </pre>
-                      위와 같은 널 검사 로직이 시스템의 한두 곳에서 반복되는 것은 별도 문제되지 않는다. 그러나 여러 곳에서 반복된다면 얘기가 다른다. 널 검사 로직이 없는 코드와 비교했을 때, 그런 코드는 이해하기가 더 어렵고
-                      확장을 하려먼 더 많은 생각을 해야한다. 또 기존의 널 검사 로직으로는 새로 추가한 코드를 보호할 수가 없다. 따라서 새로운 코드를 작성할 때 프로그래머가 널 검사 로직을 빠뜨린다면,
-                      널 관련 오류가 발생하기 시작한다. 
-                      <hr> 
-                      Null Object 패턴은 이런 문제를 위한 해결책으로, 필드나 변수가 항상 설이 아니도록 유지하여 별도의 검사를 하지 않아도 된다. 이 방법은 사실 약간의 속임수다. 평소에는 필드나 변수에 적당한 객체를 대입하고, 
-                      널 일 경우에는 널 객체를 대입하는 것이다. 이 때 널 객체의 해당 메서드는 아무일도 하지 않거나 디폴드 대입하는 것이다. 
-                      <ul>
-                        <li>수많은 널 검사 로직 없이도 널 값으로 인한 에러를 막을 수 있다.</li>
-                        <li>널 검사 로직이 최소화되어 코드가 간단해진다. </li>
-                        <li>시스템에 널 검사 로직이 별도 필요하지 않은 상황에서는 설꼐만 복잡하게 된다. </li>
-                        <li>프로그래머가 널 객체의 존재를 모르고 있다면 , 동일한 널 검사를 쓸데 없이 여러번 하게 될 수 도 있다. </li>
-                        <li>유지보수가 복잡해진다. 널 객체의 수퍼클래스에 새 public 메서드를 추가할 때 마다 널 객체 클래스에서 이를 오버라이드 해야 한다. </li>
-                      </ul>
-                      <pre>
-                        <code class="java" >
-package pattern.sample.patternuse17;
-
-import pattern.sample.patternuse17.unit.Marine;
-import pattern.sample.patternuse17.unit.action.impl.Move;
-import pattern.sample.patternuse17.unit.action.impl.NullAction;
-
-public class BattleGround {
-    public static void main(String[] args) {
-        Marine marine = new Marine();
-
-        marine.setAction(new Move());
-
-        marine.act();
-
-        marine.setAction(new NullAction());
-
-        marine.act();
-    }
-}
-
-package pattern.sample.patternuse17.unit;
-
-import pattern.sample.patternuse17.unit.action.Action;
-
-import java.util.Optional;
-
-public class Marine {
-
-    public Action action;
-
-    public void setAction(Action action){
-        this.action = action;
-    }
-
-    public void act(){
-        Optional.ofNullable(this.action)
-                .ifPresent(action -> {
-                    action.act();
-                });
-    }
-}
-
-package pattern.sample.patternuse17.unit.action;
-
-public interface Action {
-    public void act();
-}
-
-package pattern.sample.patternuse17.unit.action.impl;
-
-import lombok.extern.slf4j.Slf4j;
-import pattern.sample.patternuse17.unit.action.Action;
-
-@Slf4j
-public class Move implements Action {
-    @Override
-    public void act() {
-        log.info("Move!!");
-    }
-}
-
-package pattern.sample.patternuse17.unit.action.impl;
-
-import lombok.extern.slf4j.Slf4j;
-import pattern.sample.patternuse17.unit.action.Action;
-
-@Slf4j
-public class NullAction implements Action {
-    @Override
-    public void act() {
-        log.info("Null Action");
-    }
-}
-
-package pattern.sample.patternuse17.unit.action.impl;
-
-import lombok.extern.slf4j.Slf4j;
-import pattern.sample.patternuse17.unit.action.Action;
-
-@Slf4j
-public class Run implements Action {
-    @Override
-    public void act() {
-        log.info("Run!");
-    }
-}                          
-                        </code>
-                      </pre>
+                     
                   </p>
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">
                   <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">
-                      Inline Singleton
+                      
                     </h5>
                   </div>
                   <p class="mb-1">
-                    코드의 여러곳에서 접근할 수 있어야 하지만 전역적일 필요 까지는 없는 객체가 싱글턴으로 구현되어 있다면, 싱글턴 객체를 저장하고 그에 대한 접근 경로를 제공하는 클래스로 싱글턴의 기능을 옮긴다. 그리고 싱글턴은 제거한다. 
-                    <hr>
-                    Singleton 패턴에 집착하는 사람들을 가리켜 싱글턴 중독자라고 한다. 물론 내가 지어낸 말이다. Singleton 패턴의 의도는 '어떤 클래스의 단 하나만 허용하고, 그에 대한 전역적인 접근을 가능하게 하려는 것이다. ' Singleton 패턴에 대한 생각이 
-                    뼈속 깊이 침투해 있어 다른 패턴 또는 더 단순한 설계보다 싱글턴이 좋다고 믿기 시작해 지나치게 많은 싱글턴을 만들고 있다면, 싱글턴에 중독된 것이다. 
-                    <hr>
-                    Singleton 패턴에 대한 Ward Cunningham의 견해  <br>
-                    실제로 구현되는 싱클턴의 대부분은 프로그래밍 언어가 제공하는 여러 보호 기능을 '유일성'이라는 하나의 측면으로 몰아가는 것이다. 물론 개인적으로는 유일성을 보장하는 것이 중요할 수도 있다고 생각하지만, 너무 지나치게 강조되는 면이 있다. 
-                    모든 데이터는 적당한 컨텍스트에서 사용되어야 한다. 많은 객체지향 프로그래밍 기법이 컨텍스트를 설정하고 그에 따라 변수의 생존 기간을 적절하게 조절해 필요한 동안만 존재하다가 우아하게 소멸될 수 있도록 하는 것이다. 전역 데이터가 몇 개 정도 존재하는 것은
-                    별 문제가 되지 않는다. 시스템의 모든 곳에서 이해할 수 있는 컨텍스트에서 사용되는 데이터라면 말이다. 그러나 너무 많은 전역데이터가 존재해서는 안된다. 그런 시스템을 나더러 수정하라고 하면, 나는 줄행랑을 칠 것이다. 
-                    <hr>
-                    Singleton 패턴에 대한 Kent Beck의 견해 <br>
-                    싱글턴이 야기하는 진짜 문제는 어떤 객체의 가시 범위를 어떻게 정할지를 크게 고민하지 않아도 되게 만든다는 점이다. 객체의 노출 영역과 보호 영역에 대한 균형을 적절하게 맞추는 것은 융통성을 유지하기 위한 필수 조건이다. 
-                    Massimo Arnoldi 와 싱글턴에 환전율을 저장하는 어떤 시스템을 개발하던 때였다. 여러 통화를 한꺼번에 다루는 테스트 코드를 작성할 때 마다, 기존의 환전율을 따로 저장했다가 새 환전율을 입력하고 다시 기존의 환전율을 복원하는 과정을 반복해야 했다. 따라서 
-                    실수로 잘못된 환전율을 테스트에 사용하는 일이 계속 발생했고, 우리는 그런 상황을 더는 견딜 수 없었다. 그러나 그 환전율은 시스템 전체에서 사용하는 데이터 였으므로 , 그것을 처리하는 방법을 바꾸는 작업은 보통 일이 아닐거라 생각했다. 그래도 한번 시도해보기로 마음 먹고, 
-                    환전율을 사용하는 코드를 모두 찾아 필요한 환전율을 파라미터를 통해 명시적으로 넘겨줬다. 처음에는 매우 많은 곳을 고쳐야할 것라고 생각했지만, 막상 해보니 30분 밖에 걸리지 않았다. 때로는 필요한 환전율을 접근하기 어려운 위치에 코드도 있었지만, 그것을 어떻기 리팬터링해야할지는 자명했다. 
-                    그리고 그렇게 리팩터링한 결과로, 어떻게 해결할지를 몰라 난감했던 몇몇 설계문제도 함께 해결되었다. 
-                    <br>
-                    <ul>
-                      <li>전체 설꼐가 더 명확하고 유연해졌다.</li>
-                      <li>안정적인 테스트 코드 작성이 가능해졌다. </li>
-                      <li>시스템에 대한 신뢰도가 높아졌다. </li>
-                    </ul>
-                    <hr>
-                    <ul>
-                      <li>객체 간의 협력 관곌ㄹ 좀더 명확하게 만든다.</li>
-                      <li>싱글턴 객체를 보호하기 위한 특수 코드가 필요 없어진다. </li>
-                      <li>객체의 참조를 호출 트리의 여러 계층에서 넘겨야 해서 불편하고 힘들어졌다면, 설계를 더 복잡하게 만든 것이다. </li>
-                    </ul>
-                    <hr>
-                    <strong>싱글턴 뽀개기</strong>
-                    <ul>
-                      <li>
-                        싱글턴이 구현하고 있는 public 메서드를 흡수클래스에 선언한다. 그리기고 이 새 메서드의 구현은 기존의 싱글턴에 위임하도록 한다. 이 때 그 메서드 중에 static에 메서드가 있다면, 흡수 클래스에 그에 대응하는 메서드를 선언할 때 
-                        static 키워드를 제거한다. 만약 기존 싱글턴 클래스를 그대로 흡수 클래스로 삼을 생각이라면, static 메서드를 그대로 놔두어도 무방하다. 
-                      </li>
-                      <li>
-                        클라이언트 코드에서 싱글턴을 참조하는 부분을 모두 흡수 클래스를 참조하도록 수정한다. 
-                      </li>
-                      <li>
-                        싱글턴에 아무 기등도 남아있지 않도록, Move Method와 Move Field 리팩터링을 통해 싱글 턴의 모든 기능을 흡수 클래스로 옮긴다. 
-                      </li>
-                      <li>
-                        싱글턴을 제거한다. 
-                      </li>
-                    </ul>
+                   
                   </p>
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">
                   <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">
-                      Limit Instantiation with Singleton
+                      
                     </h5>
                   </div>
                   <p class="mb-1">
-                    어떤 클래스의 인스턴스를 여러 개 생성해 사용하고 있는데, 그로 인해 메모리 사용량이 너무 커지거나 시스템 성능이 저하된다면, 여러개의 객체를 하나의 싱글턴 객체로 대체한다. 
-                    <hr>
-                    훌륭한 소프트웨어 설계자가 되고 싶다면, 코드를 조금하게 최적화하는 것을 피해야 한다. 조금하게 최적화를 시도한 코드는 그렇지 않는 코드보다 리팩터링하기 어렵다. 
-                    만약 여러분이 '코드를 더 효율적으로 만들어준다'는 이유로 Singleton 패턴을 습관적으로 사용하고 있다면, 이는 조급하게 코드를 최적화하고 있는 것이다. 반면에 아래와 같은 상황의 경우라면 
-                    Singleton패턴으로 리팩터링 하는 것이 적합하다. 
-                    <ul>
-                      <li>시스템 성능에 대한 사용자의 불만이 높다. </li>
-                      <li>프로파일러를 통해 확인한 결과, 어떤 객체를 계속 반복해서 생성하는 것이 시스템 성능에 악영향을 미치고 있다. </li>
-                      <li>공유하려는 객체가 상태를 갖지 않거나, 갖더라도 상태를 공유할 수 있다. </li>
-                    </ul>
-                    <ul>
-                      <li>성능을 향상시킨다. </li>
-                      <li>어느 곳에서나 객체에 접근할 수 있게 된다. 많은 경우, 이는 좋지 않는 설계로 평가된다. </li>
-                      <li>객체를 공유하면 안되는 상태가 존재할 때에는 적용할 수 없다. </li>
-                    </ul>
+                    
                   </p>
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">
