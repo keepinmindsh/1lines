@@ -2644,7 +2644,7 @@ if ( someObject != null ){
                       <ul>
                         <li>수많은 널 검사 로직 없이도 널 값으로 인한 에러를 막을 수 있다.</li>
                         <li>널 검사 로직이 최소화되어 코드가 간단해진다. </li>
-                        <li>시스템에 널 검사 로직이 별도 필요하지 않은 상황에서는 설꼐만 복잡하게 된다. </li>
+                        <li>시스템에 널 검사 로직이 별도 필요하지 않은 상황에서는 설계만 복잡하게 된다. </li>
                         <li>프로그래머가 널 객체의 존재를 모르고 있다면 , 동일한 널 검사를 쓸데 없이 여러번 하게 될 수 도 있다. </li>
                         <li>유지보수가 복잡해진다. 널 객체의 수퍼클래스에 새 public 메서드를 추가할 때 마다 널 객체 클래스에서 이를 오버라이드 해야 한다. </li>
                       </ul>
@@ -2769,7 +2769,7 @@ public class Run implements Action {
                       그리고 그렇게 리팩터링한 결과로, 어떻게 해결할지를 몰라 난감했던 몇몇 설계문제도 함께 해결되었다. 
                       <br>
                       <ul>
-                        <li>전체 설꼐가 더 명확하고 유연해졌다.</li>
+                        <li>전체 설계가 더 명확하고 유연해졌다.</li>
                         <li>안정적인 테스트 코드 작성이 가능해졌다. </li>
                         <li>시스템에 대한 신뢰도가 높아졌다. </li>
                       </ul>
@@ -2828,580 +2828,415 @@ public class Run implements Action {
                   </div>
                 </div>
                 <div class="card">
-                  <div class="card-header" id="h1">
+                  <div class="card-header" id="h22">
                     <h2 class="mb-0">
-                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c1" aria-expanded="true" aria-controls="c1">
-              
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c22" aria-expanded="true" aria-controls="c22">
+                        Replace Hard-Coded Notifications with Observer
                       </button>
                     </h2>
                   </div>
-                  <div id="c1" class="collapse" aria-labelledby="h1" data-parent="#accordionExample">
+                  <div id="c22" class="collapse" aria-labelledby="h22" data-parent="#accordionExample">
                     <div class="card-body">
-                        
-                    </div>
-                  </div>
-                </div>
-                <div class="card">
-                  <div class="card-header" id="h1">
-                    <h2 class="mb-0">
-                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c1" aria-expanded="true" aria-controls="c1">
-              
-                      </button>
-                    </h2>
-                  </div>
-                  <div id="c1" class="collapse" aria-labelledby="h1" data-parent="#accordionExample">
-                    <div class="card-body">
-                        
-                    </div>
-                  </div>
-                </div>
-                <div class="card">
-                  <div class="card-header" id="h1">
-                    <h2 class="mb-0">
-                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c1" aria-expanded="true" aria-controls="c1">
-              
-                      </button>
-                    </h2>
-                  </div>
-                  <div id="c1" class="collapse" aria-labelledby="h1" data-parent="#accordionExample">
-                    <div class="card-body">
-                        
-                    </div>
-                  </div>
-                </div>
-                <div class="card">
-                  <div class="card-header" id="h1">
-                    <h2 class="mb-0">
-                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c1" aria-expanded="true" aria-controls="c1">
-              
-                      </button>
-                    </h2>
-                  </div>
-                  <div id="c1" class="collapse" aria-labelledby="h1" data-parent="#accordionExample">
-                    <div class="card-body">
-                        
-                    </div>
-                  </div>
-                </div>
-                <div class="card">
-                  <div class="card-header" id="h1">
-                    <h2 class="mb-0">
-                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c1" aria-expanded="true" aria-controls="c1">
-              
-                      </button>
-                    </h2>
-                  </div>
-                  <div id="c1" class="collapse" aria-labelledby="h1" data-parent="#accordionExample">
-                    <div class="card-body">
-                        
-                    </div>
-                  </div>
-                </div>
-                <div class="card">
-                  <div class="card-header" id="h1">
-                    <h2 class="mb-0">
-                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c1" aria-expanded="true" aria-controls="c1">
-              
-                      </button>
-                    </h2>
-                  </div>
-                  <div id="c1" class="collapse" aria-labelledby="h1" data-parent="#accordionExample">
-                    <div class="card-body">
-                        
-                    </div>
-                  </div>
-                </div>
-                <div class="card">
-                  <div class="card-header" id="h1">
-                    <h2 class="mb-0">
-                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c1" aria-expanded="true" aria-controls="c1">
-              
-                      </button>
-                    </h2>
-                  </div>
-                  <div id="c1" class="collapse" aria-labelledby="h1" data-parent="#accordionExample">
-                    <div class="card-body">
-                        
-                    </div>
-                  </div>
-                </div>
-                <div class="card">
-                  <div class="card-header" id="h1">
-                    <h2 class="mb-0">
-                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c1" aria-expanded="true" aria-controls="c1">
-              
-                      </button>
-                    </h2>
-                  </div>
-                  <div id="c1" class="collapse" aria-labelledby="h1" data-parent="#accordionExample">
-                    <div class="card-body">
-                        
-                    </div>
-                  </div>
-                </div>
-                <div class="card">
-                  <div class="card-header" id="h1">
-                    <h2 class="mb-0">
-                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c1" aria-expanded="true" aria-controls="c1">
-              
-                      </button>
-                    </h2>
-                  </div>
-                  <div id="c1" class="collapse" aria-labelledby="h1" data-parent="#accordionExample">
-                    <div class="card-body">
-                        
-                    </div>
-                  </div>
-                </div>
-
-              
-              
-              </div>
-
-              <div class="list-group">
-               
-                <a href="#" class="list-group-item list-group-item-action">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">
-                      
-                    </h5>
-                  </div>
-                  <p class="mb-1">
-                    
-                  </p>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">
-                      
-                    </h5>
-                  </div>
-                  <p class="mb-1">
-                      
-                  </p>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">
-                      
-                    </h5>
-                  </div>
-                  <p class="mb-1">
-                      
-                  </p>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">
-                      
-                    </h5>
-                  </div>
-                  <p class="mb-1">
-                     
-                  </p>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">
-                      
-                    </h5>
-                  </div>
-                  <p class="mb-1">
-                   
-                  </p>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">
-                      
-                    </h5>
-                  </div>
-                  <p class="mb-1">
-                    
-                  </p>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">
-                      Replace Hard-Coded Notifications with Observer
-                    </h5>
-                  </div>
-                  <p class="mb-1">
-                    어떤 상속 구조 내의 서브클래스들이 자신과 관련된 클래스에 통보하는 기능을 하드 코딩으로 각자 구현하고 있다면, 
-                    Observer 인터페이스를 통해 그 수퍼 클래스가 임의의 다른 클래스에 통보할 수 있도록 일반적인 통보 기능을 만들고 서브 클래스는 제거한다. 
-                    <hr>
-                    <ul>
-                      <li>통보 주체 클래스와 관찰자 클래스 사이의 결합을 느슨하게 하간다. </li>
-                      <li>관찰자가 여럿인 경우도 지원한다.</li>
-                      <li>하드 코딩으로 구현된 통보 기능으로도 충분한 상황에서 적용한다면 설계만 복작해진다.</li>
-                      <li>통보 체인이 불가피한 상황에서는 설계가 더 복잡해진다. </li>
-                      <li>관찰자 객체에 대한 참조를 제때 삭제하지 않으면 메모리 누수가 발생한다. </li>
-                    </ul>
-                    <pre>
-                      <code class="java" > 
-package pattern.sample.patternuse19.action;
-
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
-public class Move implements Action {
-    @Override
-    public void act() {
-        log.info("Moving");
-    }
-}
-
-package pattern.sample.patternuse19.action;
-
-public interface Action {
-    public void act();
-}
-
-package pattern.sample.patternuse19.mouse;
-
-import pattern.sample.patternuse19.action.Action;
-
-import java.util.ArrayList;
-import java.util.List;
-
-public class Mouse {
-
-    private final List&lt;Action> actionList = new ArrayList&lt;>();
-
-    public void addAction(Action action){
-        actionList.add(action);
-    }
-
-    public void notifyForAction(){
-        actionList.forEach(Action::act);
-    }
-}
-
-                        
-package pattern.sample.patternuse19;
-
-import pattern.sample.patternuse19.action.Move;
-import pattern.sample.patternuse19.mouse.Mouse;
-
-public class BattleGround {
-    public static void main(String[] args) {
-        Mouse mouse = new Mouse();
-
-        mouse.addAction(new Move());
-        mouse.addAction(new Move());
-        mouse.addAction(new Move());
-        mouse.addAction(new Move());
-
-        mouse.notifyForAction();
-    }
-}
-                        
-                      </code>
-                    </pre>
-                  </p>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">
-                      Move Embellishment to Decorator
-                    </h5>
-                  </div>
-                  <p class="mb-1">
-                    어떤 클래스에서 핵심 기능을 위한 코드와 꾸밈 코드가 뒤섞여 있으면, 꾸밈 코드를 데코레이터로 옮긴다. 
-                    <hr>
-                    시스템에 새 기능을 추가해야 할 때면, 보톤은 기존 클래스에 코드를 덧붙인다. 이렇게 새로 추가된 코드는 기존 클래스의 핵심 기능 도는 주된 행동 양식에 대한 꾸밈 코드로서 동작하는 경우가 많다. 
-                    문제는 이런 꾸밈 코드로 인해 새로운 필드 또는 메서드, 로직이 추가되고 호스트 클래스가 복잡해진다는 것이다. 게다가 새로 추가된 부분은 특정 조건에서만 쓰이는 것이다. 
-                    <hr>
-                    위와 같은 문제의 해결책은 바로 Decorator패턴이다. 즉 꾸밈 코드를 각자의 클래스로 옮기고, 그 객체가 호스트 객체를 감싸도록 만드는 것이다. 그렇게 하면 , 특별한 처리가 필요한 때에 클라이언트가 호스트 객체를 꾸밈 객체로 감싸 사용함으로써 
-                    특수 기능을 수행할 수 있다. 
-                    <hr>
-                    <strong>Decorator 와 strategy</strong> <br>
-                    Decorator와 Strategy는 서로 대비된다. 공통점은 둘 다 특수한 경우나 별도의 동작 방식을 처리하기 위한 조건 로직을 하나 이상의 새로운 클래스로 옮겨 호스트 클래스에서 제거한다는 것이다. 
-                    그러나 새로 생성된 클래스가 사용되는 방법에는 차이가 있다. 
-                    <ul>
-                      <li>
-                        데코레이터는 공유 할 수 없다. 데코레이터는 각각 자신이 꾸밀 객체를 참조하고 있기 때문이다. 반면에 스트레티지는 Singleton 이나 Flyweight 패턴을 통해서 쉽게 공유할 수 있다. 
-                      </li>
-                      <li>
-                        스트레티지 클래스의 인터페이스는 자유롭게 구성할 수 있는 반면, 데코레이터 클래스는 호스트 클래스와 인터페이스에 맞춰야 한다. 
-                      </li>
-                      <li>
-                        데코레이터는 호스트 클래스와 인터페이스를 공유하는 한 호스트 클래스에 영향을 끼치지 않고 기능을 추가할 수 있다. 반면, 스트레티지를 사용하는 클래스는 스트레티지의 존재와 사용법을 알아야 한다. 
-                      </li>
-                      <li>
-                        Strategy 패턴을 적용할 때는 호스트 클래스에 데이터나 public메서드가 많다고 해서 장애가 되지 않는다. 그러나 그런 호스트 클래스에 Decorator 패턴을 적용한다면, 데코레이터 클래스가 무거워지고 
-                        지나치게 많은 메모리가 필요하게 될 것이다. 
-                      </li>
-                    </ul>
-                    <hr>
-                    <ul>
-                      <li>꾸밈 코드를 제거해 호스트 클래스를 단순하게 만든다. </li>
-                      <li>어떤 클래스의 핵심 기능과 부가 기능을 손쉽게 구별할 수 있다. </li>
-                      <li>서로 관련된 클래스에서 중복된 꾸밈 코드를 줄일 수 있다. </li>
-                      <li>클라이언트의 입장에서는 대상 객체의 타입이 바뀐다. </li>
-                      <li>코드를 이해하고 디버깅하기 어려워질 수도 있다. </li>
-                      <li>데코레이터 객체의 조합 방식이 서로에게 영향을 끼친다면, 설계를 더 복잡하게 만들어야 한다. </li>
-                    </ul>
-                    <pre>
-                      <code class="java" >
-package pattern.sample.patternuse20;
-
-import pattern.sample.patternuse20.property.WeaponProperty;
-import pattern.sample.patternuse20.upgrade.GunUpgrade;
-import pattern.sample.patternuse20.weapon.Gun;
-
-public class BattleGround {
-    public static void main(String[] args) {
-
-        WeaponProperty weaponProperty = new Gun();
-
-        weaponProperty.checkProperty();
-
-        WeaponProperty weaponPropertyByUpgrade = new GunUpgrade(weaponProperty);
-
-        weaponPropertyByUpgrade.checkProperty();
-    }
-}
-
-package pattern.sample.patternuse20.weapon;
-
-import lombok.extern.slf4j.Slf4j;
-import pattern.sample.patternuse20.property.WeaponProperty;
-
-@Slf4j
-public class Gun implements WeaponProperty {
-    @Override
-    public void checkProperty() {
-        log.info("기본 설정 값이 세팅되었습니다. 공격력 : 10");
-    }
-}
-
-package pattern.sample.patternuse20.upgrade;
-
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import pattern.sample.patternuse20.property.WeaponProperty;
-
-@RequiredArgsConstructor
-@Slf4j
-public class GunUpgrade implements WeaponProperty {
-
-    private final WeaponProperty weaponProperty;
-
-    @Override
-    public void checkProperty() {
-        weaponProperty.checkProperty();
-
-        applyAdditionalProperty();
-    }
-
-    public void applyAdditionalProperty(){
-        log.info("공격력이 업그레이드 되었습니다. 공격력 : 10 + 5 ");
-    }
-}
-
-package pattern.sample.patternuse20.property;
-
-public interface WeaponProperty {
-    public void checkProperty();
-}
-
-                      </code>
-                    </pre>
-                  </p>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">
-                      Unify Interfaces
-                    </h5>
-                  </div>
-                  <p class="mb-1">
-                    수퍼클래스(또는 인터페이스)가 서브 클래스와 동일한 인터페이스를 가질 필요가 있다면, 
-                    서브 클래스에서 수퍼클래스에 없는 모든 public 메서드를 찾아 이를 수퍼 클래스에 추가한다. 이때 메서드 몸체는 비워놓아 아무 일도 하지 않도록 만든다. 
-                    <hr>
-                    여러 객체를 다형적으로 처리하려면, 그 클래스들은 수퍼클래스가 됐든 인터페이스가 됐든 동일한 인터페이스를 공유해야 한다. 이 리팩터링은 수퍼 클래스나 인터페이스가 자신의 서브 클래스와 동일한 인터페이스를 가져야할 필요가 있는 경우를 위한 것이다. 
-                  </p>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">
-                      Extract Parameter
-                    </h5>
-                  </div>
-                  <p class="mb-1">
-                    메서드나 생성자 내에서 생성한 값을 필드에 저장하고 있다면,
-                    대입문의 우변을 새 파라미터로 대체해 클라이언트가 그 값을 저장할 수 있도록 한다. 
-                    <hr>
-                    때로는 객체 내의 필드에 대입할 값을 다른 객체가 지정하도록 하고 싶을 수 있다. 만약 그 필드에 지역 값이 할당되고 있다면, 대입문의 우변을 새로운 파라미터로 대체해 클라이언트가 그 값을 지정하도록 할 수 있다. 
-                    나는 Replace Inheritance with Delegation 리팩터링을 수행한 후에 이 리팩터링이 필요했다. 작업을 위임하는 클래스는 대리 객체에 대한 필드를 가지고 있고, 여기에 새로운 대리 객체 인스턴스를 할당한다. 
-                    그러나 클라이언트가 이 대리 객체를 지정할 수 있어야 했다. Extract Parameters 리팩터링을 통해 대리 객체 생성 코드를 클라이언트가 제공하는 파라미터 값으로 간단히 대체할 수 있었다. 
-
-                  </p>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">
-                      Move Creation Knowlege to Factory
-                    </h5>
-                  </div>
-                  <p class="mb-1">
-                    어떤 클래스에 인스턴스를 생성하는데 사용되는 데이터와 코드가 여러 클래스에 퍼져있다면 , 
-                    그 생성  지식을 하나의 팩터리 클래스로 옮긴다. 
-                    <hr>
-                    객체 생성을 위한 지식이 여러 클래스에 퍼져 있을 때, 이를 문어발 생성이라 한다. 이것은 객체 생성과 상관없는 클래스가 그 책임의 일부를 맡고 있음을 뜻한다. 문어발 생성은 문어발 솔루션 냄새의 한 경우로, 초기의 설꼐 문제 
-                    때문에 발생하는 경우가 많다. 예를 들어 클라이언트가 주어진 외부 설정값에 맞춰 객체의 상태를 조정할 필요가 있지만, 그 객체의 생성을 담당하는 코드에는 쉽게 접근할 수 없다면, 클라이언트가 어떻게 그 객체의 상태를 조정 할 수 있을 것인가? 
-                    <br>
-                    이와 같은 경우 팩터리 메서드 패턴이 도움이 된다. 지나치게 많은 생성 옵션을 지원하려다 보니 팩터리 내의 생성 로직 이 너무 복잡해졌다면, 이를 추상 팩터리로 발전시키는 것도 의미가 있다. 
-                    <ul>
-                      <li>생성 로직과 외부 설정값 처리 로직을 한 곳으로 모은다.</li>
-                      <li>생성 로직으로부터 클라이언트를 분리한다. </li>
-                      <li>직접 생성으로도 충분한 경우라면, 괜히 설계만 복잡하게 만들 뿐이다.</li>
-                    </ul>
-                  </p>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">
-                      Move Accumulation to Visitor 
-                    </h5>
-                  </div>
-                  <p class="mb-1">
-                    어떤 메서드가 이질적인 여러 클래스들로 부터 정보를 언더 축적하고 있다면,
-                    각 클래스를 방문해 정보를 축적하는 방문자 객체로 축적 기능을 옮긴다. 
-                    <hr>
-                    방문자 클래스는 주어진 객체 구조에 대해 어떤 연산을 수행하는데, 이질적인 클래스들을 대상으로 한다. 즉, 방문을 받는 클래스들이 각가 서로 다른 종류의 정보를 담고, 그에 대한 인터페이스 또한 서로 다를 경우에 사용한다. 
-                    방문자 객체는 이질적인 대상 클래스들로부터 정보를 얻기 위해 이중 대스패티를 이용한다. 즉, 대상 클래스가 제공하는 accept와 같은 수납 메서드의 파라미터를 통해 방문자 객체 자신을 넘기고, 대상 클래스는 수납한 방문자 객체의 
-                    콜백 메서드를 호출하여 정보를 제공하는 것이다. 
-                    <hr>
-                    <ul>
-                      <li>이질적인 클래스들로 이루어진 객체 구조를 처리하는 여러 알고리즘을 수용한다. </li>
-                      <li>하나의 상속 구조 또는 여러 다른 상속 구조 내의 클래스들을 처리할 수 있다. </li>
-                      <li>이질적인 클래스들이 제공하는 메서드들을 타입 변환 없이 호출 할 수 있다. </li>
-                      <li>공통 인터페이스를 도입하여 이질적인 클래스들을 동질적으로 만들 수 있다면 괜히 설꼐만 복잡하게 만드는 것이다. </li>
-                      <li>방문 대상 클래스가 새로 추가되면, '수납' 메서드로 함께 구형해야 하고, 새 클래스에 대응하는 visit...(...) 메서드를 각 방문자 클래스에 추가해야 한다. </li>
-                      <li>대상 클래스의 캡슐화 특성을 깨뜨릴 수 있다. </li>
-                    </ul>
-                    <hr>
-                  </p>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">
-                      Replace Implicit Language with Interpreter
-                    </h5>
-                  </div>
-                  <p class="mb-1">
-                    한 클래스 내의 여러 메서드에서 일종의 묵시적 언어를 이루는 요소들을 조합하고 있다면, 
-                    그 묵시적 언어의 요소들을 각각의 클래스로 정의하고 그 객체의 조합을 해석 가능한 수식을 만들어 낼 수 있도록 한다. 
-                    <hr>
-                    Interpreter 는 단순한 언어를 해석할 때 유용한 패턴이다. 문법을 불과 클래스 몇 개로 모델화 할 수 있을 때, 그 언어는 단순하다고 말한다. 단순한 언어의 문장이나 수식은 그 문법을 정의하는 클래스들의 인스턴스를 조합해 표현할 수 있다. <
-                    <hr>
-                    <ul>
-                      <li>언어를 묵시적으로 처리할 때보다 언어 요소를 쉽게 조합할 수 있다. </li>
-                      <li>언어 요소의 새 조합을 지원하기 위해 코드를 추가 작성할 필요가 없다. </li>
-                      <li>시스템의 동작 설정을 런타임에 변경할 수 있게 된다. </li>
-                      <li>문법을 정의하고 이를 이용하도록 클라이언트 코드를 수정하는 초기 비용이 든다. </li>
-                      <li>언어가 복잡하면, 지나치게 많은 작업이 필요하다. </li>
-                      <li>언어가 단순하면, 설계만 복잡해지는 것이다. </li>
-                    </ul>        
-                    <hr>                         
-                    <pre>
-                      <code class="java" >
-
-public interface Expression {
-    public boolean interpret(String context);
-}
-
-public class AndExpression implements Expression {
-    
-    private Expression expr1 = null;
-    private Expression expr2 = null;
-
-    public AndExpression(Expression expr1, Expression expr2) { 
-      this.expr1 = expr1;
-      this.expr2 = expr2;
-    }
-
-    @Override
-    public boolean interpret(String context) {	
-
-      return expr1.interpret(context) && expr2.interpret(context);
-    }
-}
-
-public class OrExpression implements Expression {
-    
-    private Expression expr1 = null;
-    private Expression expr2 = null;
-
-    public OrExpression(Expression expr1, Expression expr2) {
-      this.expr1 = expr1;
-      this.expr2 = expr2;
-    }
-
-    @Override
-    public boolean interpret(String context) {		
-
-      return expr1.interpret(context) || expr2.interpret(context);
-    }
-}
-
-public class TerminalExpression implements Expression {
+                      어떤 상속 구조 내의 서브클래스들이 자신과 관련된 클래스에 통보하는 기능을 하드 코딩으로 각자 구현하고 있다면, 
+                      Observer 인터페이스를 통해 그 수퍼 클래스가 임의의 다른 클래스에 통보할 수 있도록 일반적인 통보 기능을 만들고 서브 클래스는 제거한다. 
+                      <hr>
+                      <ul>
+                        <li>통보 주체 클래스와 관찰자 클래스 사이의 결합을 느슨하게 하간다. </li>
+                        <li>관찰자가 여럿인 경우도 지원한다.</li>
+                        <li>하드 코딩으로 구현된 통보 기능으로도 충분한 상황에서 적용한다면 설계만 복작해진다.</li>
+                        <li>통보 체인이 불가피한 상황에서는 설계가 더 복잡해진다. </li>
+                        <li>관찰자 객체에 대한 참조를 제때 삭제하지 않으면 메모리 누수가 발생한다. </li>
+                      </ul>
+                      <pre>
+                        <code class="java" > 
+  package pattern.sample.patternuse19.action;
   
-    private String data;
-
-    public TerminalExpression(String data){
-      this.data = data; 
-    }
-
-    @Override
-    public boolean interpret(String context) {
-    
-      if(context.contains(data)){
-          return true;
+  import lombok.extern.slf4j.Slf4j;
+  
+  @Slf4j
+  public class Move implements Action {
+      @Override
+      public void act() {
+          log.info("Moving");
       }
-
-      return false;
-    }
-}
-
-@Slf4j
-public class InterpreterPatternDemo {
-
-    public static Expression getMaleExpression(){
-
-      Expression robert = new TerminalExpression("Robert");
-
-      Expression john = new TerminalExpression("John");
-
-      return new OrExpression(robert, john);
-    }
-
-    public static Expression getMarriedWomanExpression(){
-
-      Expression julie = new TerminalExpression("Julie");
-
-      Expression married = new TerminalExpression("Married");
-
-      return new AndExpression(julie, married);		
-    }
-
-    public static void main(String[] args) {
-
-      Expression isMale = getMaleExpression();
-
-      Expression isMarriedWoman = getMarriedWomanExpression();
-
-      log.info("John is male? {} " , isMale.interpret("John male"));
-
-      log.info("Julie is a married women? {} " , isMarriedWoman.interpret("Married Julie"));
-    }
-}
-                      </code>
-                    </pre>
-                  </p>
-                </a>
+  }
+  
+  package pattern.sample.patternuse19.action;
+  
+  public interface Action {
+      public void act();
+  }
+  
+  package pattern.sample.patternuse19.mouse;
+  
+  import pattern.sample.patternuse19.action.Action;
+  
+  import java.util.ArrayList;
+  import java.util.List;
+  
+  public class Mouse {
+  
+      private final List&lt;Action> actionList = new ArrayList&lt;>();
+  
+      public void addAction(Action action){
+          actionList.add(action);
+      }
+  
+      public void notifyForAction(){
+          actionList.forEach(Action::act);
+      }
+  }
+  
+                          
+  package pattern.sample.patternuse19;
+  
+  import pattern.sample.patternuse19.action.Move;
+  import pattern.sample.patternuse19.mouse.Mouse;
+  
+  public class BattleGround {
+      public static void main(String[] args) {
+          Mouse mouse = new Mouse();
+  
+          mouse.addAction(new Move());
+          mouse.addAction(new Move());
+          mouse.addAction(new Move());
+          mouse.addAction(new Move());
+  
+          mouse.notifyForAction();
+      }
+  }
+                          
+                        </code>
+                      </pre>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="h23">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c23" aria-expanded="true" aria-controls="c23">
+                        Move Embellishment to Decorator
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="c23" class="collapse" aria-labelledby="h23" data-parent="#accordionExample">
+                    <div class="card-body">
+                      어떤 클래스에서 핵심 기능을 위한 코드와 꾸밈 코드가 뒤섞여 있으면, 꾸밈 코드를 데코레이터로 옮긴다. 
+                      <hr>
+                      시스템에 새 기능을 추가해야 할 때면, 보톤은 기존 클래스에 코드를 덧붙인다. 이렇게 새로 추가된 코드는 기존 클래스의 핵심 기능 도는 주된 행동 양식에 대한 꾸밈 코드로서 동작하는 경우가 많다. 
+                      문제는 이런 꾸밈 코드로 인해 새로운 필드 또는 메서드, 로직이 추가되고 호스트 클래스가 복잡해진다는 것이다. 게다가 새로 추가된 부분은 특정 조건에서만 쓰이는 것이다. 
+                      <hr>
+                      위와 같은 문제의 해결책은 바로 Decorator패턴이다. 즉 꾸밈 코드를 각자의 클래스로 옮기고, 그 객체가 호스트 객체를 감싸도록 만드는 것이다. 그렇게 하면 , 특별한 처리가 필요한 때에 클라이언트가 호스트 객체를 꾸밈 객체로 감싸 사용함으로써 
+                      특수 기능을 수행할 수 있다. 
+                      <hr>
+                      <strong>Decorator 와 strategy</strong> <br>
+                      Decorator와 Strategy는 서로 대비된다. 공통점은 둘 다 특수한 경우나 별도의 동작 방식을 처리하기 위한 조건 로직을 하나 이상의 새로운 클래스로 옮겨 호스트 클래스에서 제거한다는 것이다. 
+                      그러나 새로 생성된 클래스가 사용되는 방법에는 차이가 있다. 
+                      <ul>
+                        <li>
+                          데코레이터는 공유 할 수 없다. 데코레이터는 각각 자신이 꾸밀 객체를 참조하고 있기 때문이다. 반면에 스트레티지는 Singleton 이나 Flyweight 패턴을 통해서 쉽게 공유할 수 있다. 
+                        </li>
+                        <li>
+                          스트레티지 클래스의 인터페이스는 자유롭게 구성할 수 있는 반면, 데코레이터 클래스는 호스트 클래스와 인터페이스에 맞춰야 한다. 
+                        </li>
+                        <li>
+                          데코레이터는 호스트 클래스와 인터페이스를 공유하는 한 호스트 클래스에 영향을 끼치지 않고 기능을 추가할 수 있다. 반면, 스트레티지를 사용하는 클래스는 스트레티지의 존재와 사용법을 알아야 한다. 
+                        </li>
+                        <li>
+                          Strategy 패턴을 적용할 때는 호스트 클래스에 데이터나 public메서드가 많다고 해서 장애가 되지 않는다. 그러나 그런 호스트 클래스에 Decorator 패턴을 적용한다면, 데코레이터 클래스가 무거워지고 
+                          지나치게 많은 메모리가 필요하게 될 것이다. 
+                        </li>
+                      </ul>
+                      <hr>
+                      <ul>
+                        <li>꾸밈 코드를 제거해 호스트 클래스를 단순하게 만든다. </li>
+                        <li>어떤 클래스의 핵심 기능과 부가 기능을 손쉽게 구별할 수 있다. </li>
+                        <li>서로 관련된 클래스에서 중복된 꾸밈 코드를 줄일 수 있다. </li>
+                        <li>클라이언트의 입장에서는 대상 객체의 타입이 바뀐다. </li>
+                        <li>코드를 이해하고 디버깅하기 어려워질 수도 있다. </li>
+                        <li>데코레이터 객체의 조합 방식이 서로에게 영향을 끼친다면, 설계를 더 복잡하게 만들어야 한다. </li>
+                      </ul>
+                      <pre>
+                        <code class="java" >
+  package pattern.sample.patternuse20;
+  
+  import pattern.sample.patternuse20.property.WeaponProperty;
+  import pattern.sample.patternuse20.upgrade.GunUpgrade;
+  import pattern.sample.patternuse20.weapon.Gun;
+  
+  public class BattleGround {
+      public static void main(String[] args) {
+  
+          WeaponProperty weaponProperty = new Gun();
+  
+          weaponProperty.checkProperty();
+  
+          WeaponProperty weaponPropertyByUpgrade = new GunUpgrade(weaponProperty);
+  
+          weaponPropertyByUpgrade.checkProperty();
+      }
+  }
+  
+  package pattern.sample.patternuse20.weapon;
+  
+  import lombok.extern.slf4j.Slf4j;
+  import pattern.sample.patternuse20.property.WeaponProperty;
+  
+  @Slf4j
+  public class Gun implements WeaponProperty {
+      @Override
+      public void checkProperty() {
+          log.info("기본 설정 값이 세팅되었습니다. 공격력 : 10");
+      }
+  }
+  
+  package pattern.sample.patternuse20.upgrade;
+  
+  import lombok.RequiredArgsConstructor;
+  import lombok.extern.slf4j.Slf4j;
+  import pattern.sample.patternuse20.property.WeaponProperty;
+  
+  @RequiredArgsConstructor
+  @Slf4j
+  public class GunUpgrade implements WeaponProperty {
+  
+      private final WeaponProperty weaponProperty;
+  
+      @Override
+      public void checkProperty() {
+          weaponProperty.checkProperty();
+  
+          applyAdditionalProperty();
+      }
+  
+      public void applyAdditionalProperty(){
+          log.info("공격력이 업그레이드 되었습니다. 공격력 : 10 + 5 ");
+      }
+  }
+  
+  package pattern.sample.patternuse20.property;
+  
+  public interface WeaponProperty {
+      public void checkProperty();
+  }
+  
+                        </code>
+                      </pre>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="h24">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c24" aria-expanded="true" aria-controls="c24">
+                        Unify Interfaces
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="c24" class="collapse" aria-labelledby="h24" data-parent="#accordionExample">
+                    <div class="card-body">
+                      수퍼클래스(또는 인터페이스)가 서브 클래스와 동일한 인터페이스를 가질 필요가 있다면, 
+                      서브 클래스에서 수퍼클래스에 없는 모든 public 메서드를 찾아 이를 수퍼 클래스에 추가한다. 이때 메서드 몸체는 비워놓아 아무 일도 하지 않도록 만든다. 
+                      <hr>
+                      여러 객체를 다형적으로 처리하려면, 그 클래스들은 수퍼클래스가 됐든 인터페이스가 됐든 동일한 인터페이스를 공유해야 한다. 이 리팩터링은 수퍼 클래스나 인터페이스가 자신의 서브 클래스와 동일한 인터페이스를 가져야할 필요가 있는 경우를 위한 것이다. 
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="h25">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c25" aria-expanded="true" aria-controls="c25">
+                        Extract Parameter
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="c25" class="collapse" aria-labelledby="h25" data-parent="#accordionExample">
+                    <div class="card-body">
+                      메서드나 생성자 내에서 생성한 값을 필드에 저장하고 있다면,
+                      대입문의 우변을 새 파라미터로 대체해 클라이언트가 그 값을 저장할 수 있도록 한다. 
+                      <hr>
+                      때로는 객체 내의 필드에 대입할 값을 다른 객체가 지정하도록 하고 싶을 수 있다. 만약 그 필드에 지역 값이 할당되고 있다면, 대입문의 우변을 새로운 파라미터로 대체해 클라이언트가 그 값을 지정하도록 할 수 있다. 
+                      나는 Replace Inheritance with Delegation 리팩터링을 수행한 후에 이 리팩터링이 필요했다. 작업을 위임하는 클래스는 대리 객체에 대한 필드를 가지고 있고, 여기에 새로운 대리 객체 인스턴스를 할당한다. 
+                      그러나 클라이언트가 이 대리 객체를 지정할 수 있어야 했다. Extract Parameters 리팩터링을 통해 대리 객체 생성 코드를 클라이언트가 제공하는 파라미터 값으로 간단히 대체할 수 있었다. 
+  
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="h26">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c26" aria-expanded="true" aria-controls="c26">
+                        Move Creation Knowlege to Factory
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="c26" class="collapse" aria-labelledby="h26" data-parent="#accordionExample">
+                    <div class="card-body">
+                      어떤 클래스에 인스턴스를 생성하는데 사용되는 데이터와 코드가 여러 클래스에 퍼져있다면 , 
+                      그 생성  지식을 하나의 팩터리 클래스로 옮긴다. 
+                      <hr>
+                      객체 생성을 위한 지식이 여러 클래스에 퍼져 있을 때, 이를 문어발 생성이라 한다. 이것은 객체 생성과 상관없는 클래스가 그 책임의 일부를 맡고 있음을 뜻한다. 문어발 생성은 문어발 솔루션 냄새의 한 경우로, 초기의 설계 문제 
+                      때문에 발생하는 경우가 많다. 예를 들어 클라이언트가 주어진 외부 설정값에 맞춰 객체의 상태를 조정할 필요가 있지만, 그 객체의 생성을 담당하는 코드에는 쉽게 접근할 수 없다면, 클라이언트가 어떻게 그 객체의 상태를 조정 할 수 있을 것인가? 
+                      <br>
+                      이와 같은 경우 팩터리 메서드 패턴이 도움이 된다. 지나치게 많은 생성 옵션을 지원하려다 보니 팩터리 내의 생성 로직 이 너무 복잡해졌다면, 이를 추상 팩터리로 발전시키는 것도 의미가 있다. 
+                      <ul>
+                        <li>생성 로직과 외부 설정값 처리 로직을 한 곳으로 모은다.</li>
+                        <li>생성 로직으로부터 클라이언트를 분리한다. </li>
+                        <li>직접 생성으로도 충분한 경우라면, 괜히 설계만 복잡하게 만들 뿐이다.</li>
+                      </ul> 
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="h27">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c27" aria-expanded="true" aria-controls="c27">
+                        Move Accumulation to Visitor 
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="c27" class="collapse" aria-labelledby="h27" data-parent="#accordionExample">
+                    <div class="card-body">
+                      어떤 메서드가 이질적인 여러 클래스들로 부터 정보를 언더 축적하고 있다면,
+                      각 클래스를 방문해 정보를 축적하는 방문자 객체로 축적 기능을 옮긴다. 
+                      <hr>
+                      방문자 클래스는 주어진 객체 구조에 대해 어떤 연산을 수행하는데, 이질적인 클래스들을 대상으로 한다. 즉, 방문을 받는 클래스들이 각가 서로 다른 종류의 정보를 담고, 그에 대한 인터페이스 또한 서로 다를 경우에 사용한다. 
+                      방문자 객체는 이질적인 대상 클래스들로부터 정보를 얻기 위해 이중 디스패치를 이용한다. 즉, 대상 클래스가 제공하는 accept와 같은 수납 메서드의 파라미터를 통해 방문자 객체 자신을 넘기고, 대상 클래스는 수납한 방문자 객체의 
+                      콜백 메서드를 호출하여 정보를 제공하는 것이다. 
+                      <hr>
+                      <ul>
+                        <li>이질적인 클래스들로 이루어진 객체 구조를 처리하는 여러 알고리즘을 수용한다. </li>
+                        <li>하나의 상속 구조 또는 여러 다른 상속 구조 내의 클래스들을 처리할 수 있다. </li>
+                        <li>이질적인 클래스들이 제공하는 메서드들을 타입 변환 없이 호출 할 수 있다. </li>
+                        <li>공통 인터페이스를 도입하여 이질적인 클래스들을 동질적으로 만들 수 있다면 괜히 설계만 복잡하게 만드는 것이다. </li>
+                        <li>방문 대상 클래스가 새로 추가되면, '수납' 메서드로 함께 구현해야 하고, 새 클래스에 대응하는 visit...(...) 메서드를 각 방문자 클래스에 추가해야 한다. </li>
+                        <li>대상 클래스의 캡슐화 특성을 깨뜨릴 수 있다. </li>
+                      </ul>
+                      <hr> 
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="h28">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c28" aria-expanded="true" aria-controls="c28">
+                        Replace Implicit Language with Interpreter
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="c28" class="collapse" aria-labelledby="h28" data-parent="#accordionExample">
+                    <div class="card-body">
+                      한 클래스 내의 여러 메서드에서 일종의 묵시적 언어를 이루는 요소들을 조합하고 있다면, 
+                      그 묵시적 언어의 요소들을 각각의 클래스로 정의하고 그 객체의 조합을 해석 가능한 수식을 만들어 낼 수 있도록 한다. 
+                      <hr>
+                      Interpreter 는 단순한 언어를 해석할 때 유용한 패턴이다. 문법을 불과 클래스 몇 개로 모델화 할 수 있을 때, 그 언어는 단순하다고 말한다. 단순한 언어의 문장이나 수식은 그 문법을 정의하는 클래스들의 인스턴스를 조합해 표현할 수 있다. <
+                      <hr>
+                      <ul>
+                        <li>언어를 묵시적으로 처리할 때보다 언어 요소를 쉽게 조합할 수 있다. </li>
+                        <li>언어 요소의 새 조합을 지원하기 위해 코드를 추가 작성할 필요가 없다. </li>
+                        <li>시스템의 동작 설정을 런타임에 변경할 수 있게 된다. </li>
+                        <li>문법을 정의하고 이를 이용하도록 클라이언트 코드를 수정하는 초기 비용이 든다. </li>
+                        <li>언어가 복잡하면, 지나치게 많은 작업이 필요하다. </li>
+                        <li>언어가 단순하면, 설계만 복잡해지는 것이다. </li>
+                      </ul>        
+                      <hr>                         
+                      <pre>
+                        <code class="java" >
+  
+  public interface Expression {
+      public boolean interpret(String context);
+  }
+  
+  public class AndExpression implements Expression {
+      
+      private Expression expr1 = null;
+      private Expression expr2 = null;
+  
+      public AndExpression(Expression expr1, Expression expr2) { 
+        this.expr1 = expr1;
+        this.expr2 = expr2;
+      }
+  
+      @Override
+      public boolean interpret(String context) {	
+  
+        return expr1.interpret(context) && expr2.interpret(context);
+      }
+  }
+  
+  public class OrExpression implements Expression {
+      
+      private Expression expr1 = null;
+      private Expression expr2 = null;
+  
+      public OrExpression(Expression expr1, Expression expr2) {
+        this.expr1 = expr1;
+        this.expr2 = expr2;
+      }
+  
+      @Override
+      public boolean interpret(String context) {		
+  
+        return expr1.interpret(context) || expr2.interpret(context);
+      }
+  }
+  
+  public class TerminalExpression implements Expression {
+    
+      private String data;
+  
+      public TerminalExpression(String data){
+        this.data = data; 
+      }
+  
+      @Override
+      public boolean interpret(String context) {
+      
+        if(context.contains(data)){
+            return true;
+        }
+  
+        return false;
+      }
+  }
+  
+  @Slf4j
+  public class InterpreterPatternDemo {
+  
+      public static Expression getMaleExpression(){
+  
+        Expression robert = new TerminalExpression("Robert");
+  
+        Expression john = new TerminalExpression("John");
+  
+        return new OrExpression(robert, john);
+      }
+  
+      public static Expression getMarriedWomanExpression(){
+  
+        Expression julie = new TerminalExpression("Julie");
+  
+        Expression married = new TerminalExpression("Married");
+  
+        return new AndExpression(julie, married);		
+      }
+  
+      public static void main(String[] args) {
+  
+        Expression isMale = getMaleExpression();
+  
+        Expression isMarriedWoman = getMarriedWomanExpression();
+  
+        log.info("John is male? {} " , isMale.interpret("John male"));
+  
+        log.info("Julie is a married women? {} " , isMarriedWoman.interpret("Married Julie"));
+      }
+  }
+                        </code>
+                      </pre>  
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
         </div>
