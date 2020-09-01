@@ -5845,6 +5845,75 @@ for i &lt;- 0 to n - 2 do
     i ++;
                         </code>
                       </pre>
+                      <hr>
+                      <pre>
+                        <code class="C" >
+#define SWAP(x, y, t) ( (t)=(x), (x)=(y), (y)=(t) )
+
+void selection_sort(int list[], int n){
+  int i, j, least, temp;
+
+  for ( i = 0; i &lt; n -1 ; i ++){
+    least = i;
+    for ( j = i + 1 ; j &lt; n ; j ++ ){
+      if ( list[j] &lt; list[least]) least = j;
+    }
+    SWAP(list[i], list[least], temp);
+  }
+}
+                        </code>
+                      </pre>
+                      <hr>
+                      <pre>
+                        <code class="C" >
+#include &lt;stdio.h>
+#include &lt;stdlib.h> 
+#define MAX_SIZE 10
+#define SWAP(x, y, t) ( (t)=(x), (x)=(y), (y)=(t) ) 
+
+int list[MAX_SIZE];
+int n;
+
+
+void selection_sort(int list[], int n){
+  int i, j, least, temp;
+
+/*
+   n = 5
+
+  1회차 - i = 0 , j = 1 , n = 5
+  2회차 - i = 1 , j = 2 , n = 5
+  3회차 - i = 2 , j = 3 , n = 5
+  4회차 - i = 3 , j = 4 , n = 5
+*/
+
+  for ( i = 0; i &lt; n -1 ; i ++){
+    least = i;
+    for ( j = i + 1 ; j &lt; n ; j ++ ){
+      if ( list[j] &lt; list[least]) least = j;
+    }
+    SWAP(list[i], list[least], temp);
+  }
+}
+
+int main(void){
+  int i;
+  n = MAX_SIZE;
+  srand(time(NULL));
+  for ( i = 0; i &lt; n ; i ++){  // 난수 생성 및 출력 
+    list[i] = rand() % 100;       // 난수 발생 범위 0 ~ 99
+  }
+
+  selection_sort(list, n);        // 선택 정렬 
+
+  for ( i = 0; i &lt; n ; i ++){
+    printf("%d ", list[i]);
+  }
+  printf("\n");
+  return 0;
+}
+                        </code>
+                      </pre>
                     </div>
                   </div>
                 </div> 
