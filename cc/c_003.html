@@ -5983,6 +5983,32 @@ for i &lt;- 1 to 1 do
     i--; 
                         </code>
                       </pre>
+                      버블 정렬의 알고리즘은 간단한데, 한번 실행 시 j = 0 부터 j = i -1 까지 반복하는 루프로 구성되고 j번째 요소와 j + 1번째 요소를 비교하여 크기 순으로 되어 있지 않으면 교환한다. i는 
+                      하나의 스캔이 감소할 때 마다 1씩 감소한다. 이런 스캔 과정이 n - 1 번 되풀이되면 정렬이 끝나게 된다. 
+                      <pre>
+                        <code class="C">
+#define SWAP(x, y, t )  ( (t)=(x), (x)=(y), (y)=(t))
+
+void bubble_sort(int list[], int n){
+  int i, j, temp;
+  for ( i = n - 1; i > 0 ; i -- ){
+    if ( list[j] > list[j+1]) {
+      SWAP(list[j], list[j + 1], temp );
+    }
+  }
+}
+                        </code>
+                      </pre>
+                      버블 정렬의 복잡도 분석 <br>
+                      버블 정렬의 비교 횟수와 이동 횟수를 계한하여 보자. 버블 정렬의 비교 횟수는 최선, 평균, 최악의 어떠한 경우에도 항상 일정하다. <br>
+                      이동 횟수는 입력 자료가 역순으로 정렬되어 있는 경우에 발생하고 그 횟수는 비교 연산의 횟수에 3을 곱한 값이다. 왜냐하면 하나의 SWAP 함수가 3개의 이동을 
+                      포함하고 있기 때문이다. <br>
+                      이런 경우에는 자료 이동이 한 번도 발생하지 않는다. 평균적인 경우에는 자료 이동이 0번에서 i번까지 같은 확률로 일어날 것이다. 따라서 이를 기반으로 계산하여 보면 O(n^2)의 알고리즘임을 알 수 있다. 
+                      버블 정렬의 가장 큰 문제 점은 순서에 맞지 않은 요소를 인접한 요소와 교확한다는 것이다. 하나의 요소가 가장 왼쪽에서 가장 오른쪽으로 이동하기 위해서는 배열에서 모든 다른 요소들과 
+                      교환되어야 한다. 특히 특정 요소가 최종 정렬 위치에 이미 있는 경우라도 교환되은 일이 일어난다. 일반적으로 자료의 교환 작업이 자료의 이동 작업보다 더 복잡하기 때문에 버블 벙렬은 
+                      그 단순성에도 불구하고 거의 쓰이지 않는다. 
+                      <hr>
+                      <strong>쉘 정렬</strong>
                     </div>
                   </div>
                 </div> 
@@ -5990,7 +6016,7 @@ for i &lt;- 1 to 1 do
                   <div class="card-header" id="heading1700">
                     <h2 class="mb-0">
                       <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#heading1700" aria-expanded="false" aria-controls="heading1700">
-                        
+
                       </button>                    
                     </h2>
                   </div>
