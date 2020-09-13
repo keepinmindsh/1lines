@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>1lines - REST API</title>
+    <title>1lines - 훌륭한 프로그래머가 되는 법</title>
 
     <!-- Bootstrap core CSS-->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -79,40 +79,77 @@
             <li class="breadcrumb-item">
               <a href="#">Dashboard</a>
             </li>
-            <li class="breadcrumb-item active">참조글</li>
+            <li class="breadcrumb-item active"></li>
           </ol>
 
-          <!-- Area Chart Example-->
-          <div class="card mb-3">
-            <div class="card-header">
-            
-            </div>
-            <div class="card-body">
-                <div class="accordion" id="accordionExample">
-                  <div class="card">
-                    <div class="card-header" id="headingOne">
-                      <h2 class="mb-0">
-                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                          참조글 
-                        </button>
-                      </h2>
-                    </div>
-                
-                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                      <div class="card-body">
-                         <strong>마틴 파울러 ( A website on building software effectively ) </strong><br>
-                         Creating software that has a good architecture isn't something that can be done first time. Like good prose, it needs regular revisions and programmers learn more about what the product needs to do and how best to design the product to achieve its goals. Refactoring is an essential technique to allow a program to be changed safely. It consists of making small changes that don't alter the observable behavior of the software. By combining lots of small changes, developers can revise the software's structure supporting significant modifications that weren't planned when the system was first conceived.
-                         <hr>
-                        
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>   
-              <div class="card-footer small text-muted">https://gmlwjd9405.github.io/2018/09/21/rest-and-restful.html 참고, 조대협 사이트 https://bcho.tistory.com/914 참고 </div>      
-            </div>
+        <div class="card mb-3">
+          <div class="card-header">
+            훌륭한 프로그래머가 되는 법
+          </div>
+          <div class="card-body">
+            <strong>
+              코드에 신경쓰기 
+            </strong>
+            <hr>
+            <strong>
+              정돈된 코드 유지하기 
+            </strong>
+            <hr>
+            <strong>
+              코드 적게 쓰기 
+            </strong>
+            <hr>
+            <strong>
+              코드 줄여 개선하기 
+            </strong>
+            <hr>
+            <strong>
+              경로 탐색하기 
+            </strong>
+            <hr>
+            <strong>
+              똥통에서 뒹굴기 
+            </strong>
+            <hr>
+            <strong>
+              버그 사냥하기 
+            </strong>
+            <br>
+            버그가 생긴뒤 고치기 보다는 처음부터 버그가 생기지 않도록 적극적으로 예방하는 편이 훨씬 낫다. 유비무환이다. 
+            항상 적절한 공학적 방법론을 채택함으로써 불쾌하게 경악할 가능성을 최소화 하는 것만으로도 충분하다. 
+            <br>
+            <ul>
+              <li>섬세한 설계</li>
+              <li>코드 검토</li>
+              <li>짝 프로그래밍</li>
+              <li>TDD 테스트를 포함하는 완전히 자동화된 단위 테스트 모음</li>
+              <li>어썰트 </li>
+              <li>방어 프로그래밍</li>
+              <li>코드 커버리지 도구</li>
+            </ul>
+            "미련한 프로그래머는 컴퓨터가 이해할 수 있는 코드를 만들고, 좋은 프로그래머는 이해할 수 있는 코드를 만든다. "
+            <br>
+            버그를 잘 잡을 수 있는 방법 <br>
+            <ul>
+              <li>버그 재현 과정을 가능한 한 가장 단순하게 줄이라. 이는 필수 요소이다. 산만하기만 하고 도움이 되지 않는 모든 관련 없는 항목들을 걸러내라. </li>
+              <li>단 하나의 문제에 집중할 수 있도록 한다. 서로 관련된 두 버그를 하나로 착각한채로 이를 깨닫지 못할 경우, 코드는 금세 뒤죽박죽이 될 수 있다. </li>
+              <li>해당 문제를 얼마나 반복할 수 있는지 알아보자. 재현 과정을 거쳤을 때 문제가 얼마나 자주 재현되는가? 그것은 간단한 일련의 행위에 의존하는가? 소프트웨어 설정이나 실행된 기계 타입에 따라 발생하는가? 혹은 연결되는 주변 장치에 따라 차이가 있는가? 이 모든 것은 조사 작업의 중요한 요소다. </li>
+            </ul>
+            <strong>이진 탐색 전략 - 버그 찾기</strong><br>
+            <strong>소프트웨어 고고학</strong><br>
+            최대한 빨리 버그를 고치라. 코드 오물통에 빠질 때 까지 쌓이게 놓아두어서는 안된다. <br>
+            <strong>디버깅이 잘 안되는 경우</strong><br>
+            <ul>
+              <li>쉬어가기 : 작업을 멈추고 코드에서 떨어져 있어야 할 때를 배우는 것은 중요하다. </li>
+              <li>다른 사람에게 설명해 보라 : 문제를 다른 사람에게 설명해보라. 종종 어떤 문제를 다른 사람에게 설명하다보면 , 동시에 자신에게도 설명하게 되고 문제를 해결하게 된다. </li>
+            </ul>
+            도망가지 말라. 코드의 어느 부분에 더 많은 문제가 있는지 메모해두라. 어디에나 핫스팟이 있기 마련이다. 이같은 핫스팟은 80%의 사용자가 실제로 쓰고 있는 코드의 20%이거나 
+            상태가 엉망이거나 품질이 낮은 소프트웨어라는 신호다. 
+
+            <hr>
+
+          </div>
         </div>
-        <!-- /.container-fluid -->
 
         <!-- Sticky Footer -->
         <footer class="sticky-footer">
@@ -127,6 +164,7 @@
       <!-- /.content-wrapper -->
 
     </div>
+   
     <!-- /#wrapper -->
 
     <!-- Scroll to Top Button-->
@@ -136,7 +174,6 @@
 
     <!-- Logout Modal-->
  
-
     <!-- Bootstrap core JavaScript-->
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
