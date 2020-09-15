@@ -6044,13 +6044,99 @@ void shell_sort(int list[], int n ){
                       <ul>
                         <li>
                           연속적이지 않은 부분 리스트에서 자료의 교환이 일어나면 더 큰 거리를 이동한다. 반면 삽입 정렬에서는 한 번에 한 칸만 이동된다. 
-                          따라서 교확되는 아이템들이 삽업 졍렬보다는 최종 위치에 더 가까이 있을 가능성이 높아진다. 
+                          따라서 교환되는 아이템들이 삽업 졍렬보다는 최종 위치에 더 가까이 있을 가능성이 높아진다. 
                         </li>
                         <li>
                           부분 리스트는 어느 정도 정렬이 된 상태이기 때문에 부분 리스트의 개수가 1이 되게 되면 셀 정렬은 기본적으로 삽입 정렬을 수행하는 것이지만 
                           빠르게 수행된다. 이것은 삽입 정렬이 거의 정렬된 리스트에 대해서는 빠르게 수행되기 때문이다. 
                         </li>
                       </ul>
+                      <hr>
+                      <strong>합병 정렬</strong><br>
+                      합병 정렬은 하나의 리스트를 두 개의 균등한 크기로 분할하고 분할된 부분 리스트를 정렬한 다음, 두 개의 정렬된 부분 리스트를 합하여 전체가 정렬된 리스트를 얻고자 하는 것이다. 합병 정렬은 분할 정복 기법에 바탕을 두고 있다. 
+                      분할 정복 기법은 문제를 작은 2개의 문제로 분리하고 각각 해결한 다음, 결과를 모아서 원래의 문제를 해결하는 전략이다. 분리된 문제가 아직도 해결하기 어렵다면, 즉 충분히 작지 않다면 분할 정복 방법을 연속하여 다시 적용한다. 
+                      <ul>
+                        <li>분할 : 입력 배열을 같은 크기의 2개의 부분 배열로 분할한다. </li>
+                        <li>정복 : 부분 배열을 정렬한다. 부분 배열의 크기가 충분히 작지 않으면 순환 호출을 이용하여 다시 분할 정복 기법을 적용한다. </li>
+                        <li>결합 : 정렬된 부분 배열들을 하나의 배열에 통합한다.  </li>
+                      </ul>
+                      합병 정렬 알고리즘 <br>
+                      <pre>
+                        <code class="C" >
+merge_sort(list, left, right);
+
+1. if left &lt; right
+2.    mid = ( left + right ) / 2;
+3.    merge_sort(list, left, mid);
+4.    merge_sort(list, mid + 1, right);
+5.    merge(list, left, mid, right);
+
+                        </code>
+                      </pre>
+                      합병 정렬에서 실제로 정렬이 이루어지는 시점은 2개의 리스트를 합병하는 단걔이다. 
+                      <pre>
+                        <code class="C" >
+merge(list, left, mid, last);
+// 2개의 인접한 배열 list[left..mid] 와 list[mid+1..right]를 합병 
+
+i &lt;- left;
+j &lt;- mid + 1;
+k &lt;- left;
+
+sorted 배열을 생성;
+while ismid and j &lt; right do 
+    if ( list[i] &lt; list[j] ) {
+      then 
+        sorted[k] &lt;- list[i];
+        k ++;
+        i ++;
+      else 
+        sorted[k] &lt;- list[j];
+        k ++;
+        j ++;
+    }
+
+요소가 남아 있는 부분 배열을 sorted로 복사한다. 
+sorted를 list로 복사한다. 
+                        </code>
+                      </pre>
+                      <pre>
+                        <code class="C" >
+int sorted[MAX_SIZE]; // 추가 공간이 필요 
+
+/*
+  i는 정렬된 왼쪽 리스트에 대한 인덱스 
+  j는 정렬된 오른쪽 리스트에 대한 인덱스 
+  k는 정렬된 리스트에 대한 인덱스 
+*/
+void merge(int list[], int left, int right){
+  int i, j, k, l;
+  i = left; j = mid - 1; k = left;
+
+  /* 분할 정렬된 list의 합병 */ 
+  while (i &lt;= mid && j &lt;= right){
+    if ( list[i] &lt;= list[j] ){
+      sorted[k++] = list[i++];
+    }else {
+      sorted[k++] = list[j++];
+    }
+  }
+  if ( i > mid ){
+    for ( l = j ; l &lt;= right ; l ++){
+      sorted[k++] = list[l];
+    }
+  }else{
+    for ( l = i ; l &lt;= right ; l ++ ){
+      sorted[k++] = list[l];
+    }
+  }
+
+  for ( l = left; l &lt;= right ; l ++ ){
+    list[l] = sorted[l];
+  }
+}
+                        </code>
+                      </pre>
                     </div>
                   </div>
                 </div> 
