@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>1lines - Charts</title>
+    <title>1lines - Script</title>
 
     <!-- Bootstrap core CSS-->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -64,7 +64,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">Clean Code</h6>
-            <a class="dropdown-item" href="../javascript/javascript_001.html">JavaScript 기본문법</a>
+            <a class="dropdown-item" href="../javascript/javascript_001.html">JavaScript Style Guide</a>
             <a class="dropdown-item" href="../javascript/javascript_002.html">ECMA Script 6</a>
             <a class="dropdown-item" href="../javascript/javascript_003.html"></a>
             <a class="dropdown-item" href="../javascript/javascript_004.html"></a>
@@ -114,10 +114,304 @@
           <!-- Area Chart Example-->
           <div class="card mb-3">
             <div class="card-header">
-                Java Script 기본 문법 
+                JavaScript Style Guide
               </div>
             <div class="card-body">
-                
+              <div class="list-group">
+                <div class="row">
+                  <div class="col-4">
+                    <div class="list-group" id="list-tab" role="tablist">
+                      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-13" role="tab" aria-controls="settings">파일 주석</a>
+                      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-14" role="tab" aria-controls="settings"></a>
+                      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-15" role="tab" aria-controls="settings"></a>
+                      <a class="list-group-item list-group-item-action" id="list-home-list" data-toggle="list" href="#list-1" role="tab" aria-controls="home">Source Importing시 규칙</a>
+                      <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-2" role="tab" aria-controls="profile">export default class를 사용하지 말것</a>
+                      <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-3" role="tab" aria-controls="messages">Switch 문장 처리 </a>
+                      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-4" role="tab" aria-controls="settings">동등성 체크</a>
+                      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-5" role="tab" aria-controls="settings">허용하지 않는 것</a>
+                      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-6" role="tab" aria-controls="settings">네이밍</a>
+                      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-7" role="tab" aria-controls="settings">for loop에 대한 검토</a>
+                      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-8" role="tab" aria-controls="settings">문자열에 대한 Multi Line 작성시</a>
+                      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-9" role="tab" aria-controls="settings">문자열 Template</a>
+                      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-10" role="tab" aria-controls="settings">블록문 코드 처리</a>
+                      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-11" role="tab" aria-controls="settings">블록 및 주석 블록 정의</a>
+                      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-12" role="tab" aria-controls="settings"></a>
+                    </div>
+                  </div>
+                  <div class="col-8">
+                    <div class="tab-content" id="nav-tabContent">
+                      <div class="tab-pane fade" id="list-13" role="tabpanel" aria-labelledby="list-home-list">
+                          <ul>
+                            <li>
+                              파일 재상위 영역 정의 
+                              <pre>
+                                <code class="script" >
+/**
+* @fileoverview Description of file, its uses and information
+* about its dependencies.
+* @package
+*/
+                                </code>
+                              </pre>
+                            </li>
+                            <li>
+                              Class 컴포넌트에 대한 정의 
+                              <pre>
+                                <code class="script" >
+/**
+* A fancier event target that does cool things.
+* @implements {Iterable&lt;string>}
+*/
+class MyFancyTarget extends EventTarget {
+  /**
+  * @param {string} arg1 An argument that makes this more interesting.
+  * @param {!Array&lt;number>} arg2 List of numbers to be processed.
+  */
+  constructor(arg1, arg2) {
+    // ...
+  }
+};
+
+/**
+* Records are also helpful.
+* @extends {Iterator&lt;TYPE>}
+* @record
+* @template TYPE
+*/
+class Listable {
+  /** @return {TYPE} The next item in line to be returned. */
+  next() {}
+}
+                                </code>
+                              </pre>
+                            </li>
+                            <li>
+                              함수/메서드 주석 
+                              <pre>
+                                <code class="script" >
+/** A class that does something. */
+class SomeClass extends SomeBaseClass {
+  /**
+    * Operates on an instance of MyClass and returns something.
+    * @param {!MyClass} obj An object that for some reason needs detailed
+    *     explanation that spans multiple lines.
+    * @param {!OtherClass} obviousOtherClass
+    * @return {boolean} Whether something occurred.
+    */
+  someMethod(obj, obviousOtherClass) { ... }
+
+  /** @override */
+  overriddenMethod(param) { ... }
+}
+
+/**
+  * Demonstrates how top-level functions follow the same rules.  This one
+  * makes an array.
+  * @param {TYPE} arg
+  * @return {!Array&lt;TYPE>}
+  * @template TYPE
+  */
+function makeArray(arg) { ... }
+
+function /** string */ foo(/** number */ arg) {...}
+
+class MyClass {
+  /**
+   * @param {number} arg
+   * @return {string}
+   */
+  bar(arg) {...}
+}
+                                </code>
+                              </pre>
+                            </li>
+                            <li>
+                              프로퍼티 주석 
+                              <pre>
+                                <code class="script" >
+/** My class. */
+class MyClass {
+  /** @param {string=} someString */
+  constructor(someString = 'default string') {
+    /** @private @const {string} */
+    this.someString_ = someString;
+
+    /** @private @const {!OtherType} */
+    this.someOtherThing_ = functionThatReturnsAThing();
+
+    /**
+      * Maximum number of things per pane.
+      * @type {number}
+      */
+    this.someProperty = 4;
+  }
+}
+
+/**
+  * The number of times we'll try before giving up.
+  * @const {number}
+  */
+MyClass.RETRY_COUNT = 33;
+                                </code>
+                              </pre>
+                            </li>
+                          </ul>
+                      </div>
+                      <div class="tab-pane fade" id="list-1" role="tabpanel" aria-labelledby="list-home-list">
+                        JS 파일명은 모두 소문자여야 한다. 
+                        import 되어 실제 호출되는 파일명은 camelCase에 의거하여 작성하라. 
+                        <pre>
+                          <code class="script" >
+import * as fileOne from '../file-one.js';
+import * as fileTwo from '../file_two.js';
+import * as fileThree from '../filethree.js';
+                          </code>
+                        </pre>
+                      </div>
+                      <div class="tab-pane fade" id="list-2" role="tabpanel" aria-labelledby="list-profile-list">
+                        아래의 방식을 사용한다. 
+                        <pre>
+                          <code class="script" >
+// Alternate style named exports:
+class Foo { ... }
+
+
+export {Foo};
+                          </code>
+                        </pre>
+                      </div>
+                      <div class="tab-pane fade" id="list-3" role="tabpanel" aria-labelledby="list-messages-list">
+switch 문장 사용시에 break 문이 존재하지 않는 경우, 주석으로 다음으로 이어짐을 표기하라. 
+<pre>
+  <code class="script" >
+switch (input) {
+  case 1:
+  case 2:
+    prepareOneOrTwo();
+  // fall through
+  case 3:
+    handleOneTwoOrThree();
+    break;
+  default:
+    handleLargeNumber(input);
+}
+  </code>
+</pre>
+                      </div>
+                      <div class="tab-pane fade" id="list-4" role="tabpanel" aria-labelledby="list-settings-list">
+값을 비교할 때는 과 타입을 모두 비교하는 아래의 예시를 반드시 사용해야한다. 
+<br>                        
+=== / ==! 를 사용할 것 
+<pre>
+  <code class="script" >
+if( value !== 300 ){
+  console.log("타입을 비교한다. ")
+}
+  </code>
+</pre>
+                      </div>
+                      <div class="tab-pane fade" id="list-5" role="tabpanel" aria-labelledby="list-settings-list">
+<ul>
+  <li>with는 사용하지 말 것</li>
+  <li>eval은 사용하지 말 것</li>
+  <li>세미 콜론은 반드시 붙일 것</li>
+  <li>비표준 함수 및 특성을 사용하지 말 것</li>
+  <li>Wrapper Object 를 Primitive Type을 위해서 사용하지 말 것</li>
+</ul>
+                      </div>
+                      <div class="tab-pane fade" id="list-6" role="tabpanel" aria-labelledby="list-settings-list">
+변수명에 대한 명명 규칙은 아래의 규칙을 따르라. 
+<hr>
+허용하는 방식
+<pre>
+  <code class="script" >
+errorCount          // No abbreviation.
+dnsConnectionIndex  // Most people know what "DNS" stands for.
+referrerUrl         // Ditto for "URL".
+customerId          // "Id" is both ubiquitous and unlikely to be misunderstood.
+  </code>
+</pre>
+<hr>
+허용하지 않는 방식
+<hr>
+<pre>
+  <code class="script" >
+n                   // Meaningless.
+nErr                // Ambiguous abbreviation.
+nCompConns          // Ambiguous abbreviation.
+wgcConnections      // Only your group knows what this stands for.
+pcReader            // Lots of things can be abbreviated "pc".
+cstmrId             // Deletes internal letters.
+kSecondsPerDay      // Do not use Hungarian notation.
+  </code>
+</pre>
+                      </div>
+                      <div class="tab-pane fade" id="list-7" role="tabpanel" aria-labelledby="list-settings-list">
+for ~ in 보다 for ~ of 를 사용하여 작성하는 것을 권장한다. 
+                      </div>
+                      <div class="tab-pane fade" id="list-8" role="tabpanel" aria-labelledby="list-settings-list">
+문자열 사용시 Multiline을 구현해야하는 경우, 아래와 같은 방식 허용 
+<pre>
+  <code class="script"  >
+const longString = 'This is a very long string that far exceeds the 80 ' +
+'column limit. It does not contain long stretches of spaces since ' +
+'the concatenated strings are cleaner.';
+  </code>
+</pre>
+                      </div>
+                        <div class="tab-pane fade" id="list-9" role="tabpanel" aria-labelledby="list-settings-list">
+<pre>
+  <code class="script" >
+function arithmetic(a, b) {
+  return `Here is a table of arithmetic operations:
+${a} + ${b} = ${a + b}
+${a} - ${b} = ${a - b}
+${a} * ${b} = ${a * b}
+${a} / ${b} = ${a / b}`;
+}
+  </code>
+</pre>
+                        </div>
+                          <div class="tab-pane fade" id="list-10" role="tabpanel" aria-labelledby="list-settings-list">
+                            블록문은 모든 코드에서 사용되어야 하나, 만약 심플한 연결문일 경우 반드시 아래와 같이 작성하라.
+<pre>
+  <code class="script" >
+if (shortCondition()) foo();
+  </code>
+</pre>                            
+                          </div>
+                          <div class="tab-pane fade" id="list-11" role="tabpanel" aria-labelledby="list-settings-list">
+<ul>
+  <li>코드가 존재하지 않은 블록일 경우, 한라인에 {} 와 같이 표시한다. </li>
+  <li>각 블록문은 자신의 Scope 영역 라인에 맞춰 구성되어야 한다. </li>
+  <li>주석의 경우, 설명하려는 코드의 블록문 위치 선상과 동일하게 작성해야 한다.</li>
+</ul>
+                            <pre>
+                              <code class="script" >
+class InnerClass {
+  constructor() {}
+
+  /** @param {number} foo */
+  method(foo) {
+    if (condition(foo)) {
+      try {
+        // Note: this might fail.
+        something();
+      } catch (err) {
+        recover();
+      }
+    }
+  }
+}
+                              </code>
+                            </pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="card-footer small text-muted"></div>
           </div>
