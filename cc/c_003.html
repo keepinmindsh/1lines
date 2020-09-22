@@ -6166,6 +6166,130 @@ void merge_sort(int list[], int left, int right){
                       <strong>퀵 정렬</strong><br>
                       퀵 정렬은 평균적으로 매우 빠른 수행 속도를 자랑하는 정렬 방법이다. 퀵 정렬도 분할-정복 법에 근거한다. 퀵 정렬은 합병 정렬과 비슷하게 전체 리스트를 2개의 부분 리스트로 분할하고 , 
                       각각의 부분 리스트를 다시 퀵 정렬하는 전형적인 분할-정복법을 사용한다.
+                      <hr>
+                      퀵 정렬은 리스트를 비균등하게 분할 한다. 먼저 리스트 안에 있는 한 요소를 피벗으로 선택한다. 피벗보다 작은 요소들은 모두 피벗의 왼쪽으로 옮겨지고 피벗보다 큰 요소들은 
+                      모두 피벗의 오른쪽으로 옮겨진다. 결과적으로 피벗을 중심으로 왼쪽은 피벗보다 작은 요소들로 구성되고, 오른쪽은 피벗보다 큰 요소들로 구성된다. 이 상태에서 피벗을 제외한 왼쪽 리스트와
+                      오른쪽 리스트를 다시 정렬하게 되면 전체리스트가 정렬된다. 
+                      <strong>퀵 정렬 알고리즘</strong><br>
+                      <pre>
+                        <code class="c" >
+void quick_sort(int list[], int left, int right){
+  if ( left &lt; right ) {
+    int q = partition(list, left, right );
+    quick_sort(list, left, q - 1);
+    quick_sort(list, q + 1 , right);
+  }
+}
+                        </code>
+                      </pre>
+                      <ul>
+                        <li>정렬할 범위가 2개 이상의 데이터 이면</li>
+                        <li>partition 함수를 호출하여 피벗을 기준으로 2개이 리스트로 분할한다. partition 함수의 반환 값은 피봇의 위치가 된다. </li>
+                        <li>left 에서 피봇 위치 바로 앞까지를 대상으로 순환 호출한다. </li>
+                        <li>피봇 위치 바로 다음부터 right 까지를 대상으로 순환 호출한다. </li>
+                      </ul>
+                      <pre>
+                        <code class="C" >
+int partition(int list[], int left, int right ){
+  int pivot, temp;
+  int low, high;
+
+  low = left;
+  high = right + 1;
+  pivot = list[left];
+
+  do {
+    do 
+      low ++;
+    while( list[low] &lt; pivot );
+    do 
+      high --;
+    while ( list[high] > pivot );
+    if ( low &lt; high ) SWAP(list[low], list[high], temp);
+  } while ( low &lt; high );
+
+  SWAP(list[left], list[high], temp);
+
+  return high;
+}
+                        </code>
+                      </pre>
+                      <ul>
+                        <li>low 는 left + 1 에서 출발, do-while 루프에서 먼저 증가 시킴을 주의하라. </li>
+                        <li>high 는 right에서 출발, do-while 푸르에서 먼저 감소 시킴을 주의하라. </li>
+                        <li>정렬할 리스트의 가장 왼쪽 데이터를 피벗으로 선택한다. </li>
+                        <li>low 와 high 교차할 때 까지 계속 반복 한다. </li>
+                        <li>list[low] 가 pivot 보다 작으면 계속 low를 증가시킨다. </li>
+                        <li>list[high] 가 pivot 보다 크면 계속 high를 증가시킨다. </li>
+                        <li>low 와 high가 아직 교차하지 않았으면 list[low] 와 list[high]를 교환한다. </li>
+                        <li>만약 low와 high 가 교차하였으면 반복을 종료한다. </li>
+                        <li>피봇을 중앙에 위치시킨다. </li>
+                        <li>피봇의 위치를 반환한다.</li>
+                      </ul>
+                      <pre>
+                        <code class="C" >
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+#include &lt;time.h>
+
+#define MAX_SIZE 10
+#define SWAP(x, y, t) ( (t) = (x) , (x) = (y) , (y) = (t) )
+
+int list[MAX_SIZE];
+int n;
+
+int partition(int list[], int left, int right ){
+  int pivot, temp;
+  int low, high;
+
+  low = left;
+  high = right + 1;
+  pivot = list[left];
+
+  do {
+    do 
+      low ++;
+    while( list[low] &lt; pivot );
+    do 
+      high --;
+    while ( list[high] > pivot );
+    if ( low &lt; high ) SWAP(list[low], list[high], temp);
+  } while ( low &lt; high );
+
+  SWAP(list[left], list[high], temp);
+
+  return high;
+}
+
+void quick_sort(int list[], int left, int right){
+  if ( left &lt; right ) {
+    int q = partition(list, left, right );
+    quick_sort(list, left, q - 1);
+    quick_sort(list, q + 1 , right);
+  }
+}
+
+int main(void){
+  int i;
+  n = MAX_SIZE;
+  srand(time(NULL));
+  for ( i = 0 ; i &lt; n ; i ++){
+    list[i] = rand() % 100;
+  }
+
+  quick_sort(list, 0, n -1 );
+  for( i = 0; i &lt; n ; i ++ ){
+    printf("%d ", list[i]);
+  }
+  printf("\n");
+  return 0;
+}
+                        </code>
+                      </pre>
+                      <strong>시간 복잡도</strong><br>
+                      
+                      <hr>
+
                     </div>
                   </div>
                 </div> 
