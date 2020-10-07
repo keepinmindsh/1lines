@@ -6417,8 +6417,57 @@ void enqueue(QueueType *q, element item){
   q -> rear = ( q -> rear + 1) % MAX_QUEUE_SIZE;
   q -> data[q->rear] = item;
 }
+
+// 삭제 함수 
+element dequeue(QueueType *q){
+  if(is_empty(q))
+    error("큐가 공백 상태입니다.");
+  
+    q -> front = ( q -> front + 1) % MAX_QUEUE_SIZE;
+    return q -> data[ q -> front ];
+}
+
+#define BUCKETS 10
+#define BUCKETS 4
+void radix_sort(int list[], int n){
+  int i, b, d, factor = 1;
+  QueueType queues[BUCKETS];
+
+  for ( b = 0; b &lt; BUCKETS; b ++ ) init_queue(&queues[b]);
+
+  for ( d = 0; d &lt; DIGITS ; d ++){
+    for ( i = 0; i &lt; n ; i ++ )
+      enqueue(&queues[(list[i] / factor) % 10], list[i]);
+
+    for ( b = i = 0; b &lt; BUCKETS; b ++ ){
+      while(!is_empty(&queues[b]))
+        list[i++] = dequeue(&queues[b]);
+    }
+
+    factor *= 10;
+  }
+}
+
+#define SIZE 10
+
+int main(void) {
+  int list[SIZE];
+  srand(time(NULL));
+  for ( int i = 0; i &lt; SIZE ; i ++){
+    list[i] = rand() % 100;
+  }
+
+  radix_sort(list, SIZE);
+  for ( int i = 0; i &lt; SIZE ; i++ ){
+    printf("%d", list[i]);
+  }
+  printf("\n");
+  return 0;
+}
                         </code>
                       </pre>
+                      만약 입력 리스트가 n개의 정수를 가지고 있다고 하면 알고리즘의 내부 루프는 n번 반복될 것이다. 만약 각 정수가 d개의 자리수를 가지고 있다고 하면 외부 루프는 d번 반복 된다,. 
+                      따라서 기수 정렬언 O(d*n) 의 시간복잡도를 가진다. 시간 복잡도가 d 에 비례하기 때문에 기수 정렬의 수행 시간은 정수의 크기와 관련이 있다 
 
                     </div>
                   </div>
