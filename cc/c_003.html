@@ -6468,7 +6468,55 @@ int main(void) {
                       </pre>
                       만약 입력 리스트가 n개의 정수를 가지고 있다고 하면 알고리즘의 내부 루프는 n번 반복될 것이다. 만약 각 정수가 d개의 자리수를 가지고 있다고 하면 외부 루프는 d번 반복 된다,. 
                       따라서 기수 정렬언 O(d*n) 의 시간복잡도를 가진다. 시간 복잡도가 d 에 비례하기 때문에 기수 정렬의 수행 시간은 정수의 크기와 관련이 있다 
+                      <hr>
+                      <strong>정렬 알고리즘의 비교</strong><br>
+                      <ul>
+                        <li>삽입 정렬 : 최선 - O(n)       , 평균 - O(n^2)     , 최악 - O(n^2) </li>
+                        <li>선택 정렬 : 최선 - O(n^2)     , 평균 - O(n^2)     , 최악 - O(n^2) </li>
+                        <li>버블 정렬 : 최선 - O(n^2)     , 평균 - O(n^2)     , 최악 - O(n^2) </li>
+                        <li>쉘 정렬   : 최선 - O(n)       , 평균 - O(n^1.5)   , 최악 - O(n^1.5)  </li>
+                        <li>퀵 정렬   : 최선 - O(nlog2n)  , 평균 - O(nlog2n)  , 최악 - O(n^2)  </li>
+                        <li>히프 정렬 : 최선 - O(nlog2n)  , 평균 - O(nlog2n)  , 최악 - O(nlog2n)  </li>
+                        <li>합병 정렬 : 최선 - O(nlog2n)  , 평균 - O(nlog2n)  , 최악 - O(nlog2n)  </li>
+                        <li>기수 정렬 : 최선 - O(dn)      , 평균 - O(dn)      , 최악 - O(dn)  </li>
+                      </ul>
+                      <pre>
+                        <code class="C" >
+#include &lt;stdio.h>
+#include &lt;string.h>
 
+#define SWAP(x, y, t) ( (t)=(x), (x)=(y), (y)=(t) )
+#define MAX_WORD_SIZE 50
+#define MAX_MEANING_SIZE 500
+#define SIZE 5
+
+typedef struct {
+  char word[MAX_WORD_SIZE];
+  char meaning[MAX_MEANING_SIZE];
+} element;
+
+element list[SIZE];
+
+int main(void){
+  int i, j;
+  element temp;
+
+  printf("5개의 단어와 의미를 입력하시오. ");
+
+  for ( i = 0; i &lt; SIZE - i ; i++){
+    scanf("%s[^\n]", list[i].word);
+    scanf("%s[^\n]", list[i].meaning);
+  }
+
+  // 버블 정렬 
+  for ( i = 0; i &lt; SIZE - 1; ++i ){
+    for ( j = i + 1 ; j &lt; SIZE ; j++ ) {
+      
+    }
+  }
+}
+                        </code>
+                      </pre>
                     </div>
                   </div>
                 </div> 
