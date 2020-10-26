@@ -6511,8 +6511,15 @@ int main(void){
   // 버블 정렬 
   for ( i = 0; i &lt; SIZE - 1; ++i ){
     for ( j = i + 1 ; j &lt; SIZE ; j++ ) {
-      
+      if(strcmp(list[i].word, list[j].word) > 0 ) {
+        SWAP(list[i], list[j], temp);
+      }
     }
+  }
+
+  printf("\n 정렬 후 사전의 내용 : \n");
+  for ( i = 0; i &lt; SIZE; i ++ ){
+    printf("%s: %s \n", list[i].word , list[i].meaning);
   }
 }
                         </code>
@@ -6524,13 +6531,57 @@ int main(void){
                   <div class="card-header" id="heading1700">
                     <h2 class="mb-0">
                       <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#heading1700" aria-expanded="false" aria-controls="heading1700">
-
+                        탐색 
                       </button>                    
                     </h2>
                   </div>
                   <div id="heading1700" class="collapse" aria-labelledby="heading1700" data-parent="#accordionExample">
                     <div class="card-body">
-                      
+                      탐색은 기본적으로 여러 개의 자료 중에서 원하는 자료를 찾는 작업이다. 탐색을 위하여 사용되는 자료 구조는 배열, 연결 리스트, 트리, 그래프 등 매우 다양할 수 있다. 
+                      탐색 중에서 가장 기초적인 방법은 배열을 사용하여 자료를 저장하고 찾는 것이다. 그러나 탐색 성능을 향상하고자 한다면 이진 탐색 트리와 같은 보다 진보된 방법으로 자료를 저장하고 
+                      탐색해야 한다. 
+                      <hr>
+                      탐색의 단위는 항목이다. 항목은 가장 간단하게는 숫자일 수도 있고 아니면 구조체가 될 수 도 있다. 항목 안에는 항목과 항목을 구별시켜주는 키가 존재한다. 이를 탐색 키라고 한다. 
+                      탐색이란 탐색키와 데이터로 이루어진 여러 개의 항목 중에서 원하는 탐색 키를 가지고 있는 항목을 찾는 것이다. 
+                      <hr>
+                      탐색의 다양항 방법들에 대해서 순차적으로 알아보겠다. 
+                      <ul>
+                        <li>순차 탐색
+                          <pre>
+                            <code class="C" >
+int seq_search(int key, int low, int high){
+  int i;
+
+  for ( i = low; i &lt;= high ; i ++ )
+    if ( list[i] == key ) {
+      return i;
+    }
+    return -1;
+}
+                            </code>
+                          </pre>
+                        </li>
+                        <li>개선된 순차 탐색
+                          <br>
+                          리스트의 끝을 테스트하는 비교연산이 있고 반복문 안에 키 값의 비교 연산이 있다.리스트의 끝을 테스트 하는 비교 연산을 줄이기 위해 
+                          리스트의 끝에 찾고자 하는 키 값을 저장하고 반복문의 탈출 조건을 키 값을 찾을 때 까지로 설정하도록 아래와 같이 수정되었다. 탐색이 성공했을 때는 
+                          반복문의 인덱스 i는 찾는 항목의 위치를 가리키게 되고, 이 값을 반환하는 반면에 탐색이 실패했을 경우에는 -1을 반환한다. 이는 비교 연산의 수를 반으로 줄일 수 있으므로 탐색 
+                          성능을 향상 시킨다. 즉 i 값이 리스트의 끝에 도달하였는지를 매번 비교하지 않아도 된다. 
+                          <pre>
+                            <code class="C" >
+int seq_search2(int key, int low, int high){
+  int i;
+
+  list[high + 1] = key;
+  for ( i = low; list[i] != key; i ++)
+    ;
+  if ( i == ( high + 1)) return -1;
+  else return i;
+}
+                            </code>
+                          </pre>
+                        </li>
+                      </ul>
                     </div>
                   </div>
                 </div>
