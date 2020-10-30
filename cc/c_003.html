@@ -6611,6 +6611,84 @@ search_binary( list, low, high ) :
       return list[middle + 1]부터 list[high] 에서의 탐색;                             
                             </code>
                           </pre>
+                          <strong>이진 탐색 구현(순환)</strong>
+                          <pre>
+                            <code class="C" >
+int search_binary(int key, int low, int high){
+  int middle;
+
+  if ( low &lt;= high ){
+    middle = ( low + high ) / 2;
+    if ( key == list[middle] )
+      return middle;
+    else if ( key &lt; list[middle] )
+      return search_binary(key, low, middle - 1);
+    else 
+      return search_binary(key, middle + 1, high);
+  }
+  return -1;
+}
+                            </code>
+                          </pre>
+                          <strong>이진 탐색 구현(반복)</strong>
+                          <pre>
+                            <code class="C" >
+int search_binary2(int key, int low, int high ){
+  int middle;
+
+  while (low &lt;= high ) {
+    middle = ( low + high ) / 2;
+    if ( key == list[middle] )
+      return middle;
+    else if ( key > list[middle] ) 
+      low = middle + 1;
+    else 
+      high = middle - 1;
+  }
+  return -1;
+}
+                            </code>
+                          </pre>
+                        </li>
+                        <li>
+                          <strong>정렬된 배열에서의 색인 순차 탐색</strong><br>
+                          색인 순차 탐색 방법은 인덱스라 불리는 테이블을 사용하여 탐색의 효율을 높이는 방법이다. 인덱스 테이블은 주 자료 리스트에서 일정 간격으로 발췌한 자료를 가지고 있다. 
+                          <pre>
+                            <code class="C" >
+#define INDEX_SIZE 256
+typedef struct {
+  int key;
+  int index;
+} itable;
+itable index_list[INDEX_SIZE];
+
+// INDEX_SIZE는 인덱스 테이블의 크기, n은 전체 데이터의 수 
+int search_index(int key, int n ){
+  int i, low, high;
+
+  // 키 값이 리스트 범위 내의 값이 아니면 탐색 종료 
+  if( key &lt; list[0] || key > list[n - 1] ){
+    return -1;
+  }
+
+  // 인덱스 테이블을 조사하여 해당키의 구간 결정 
+  for ( i = 0 ; i &lt; INDEX_SIZE ; i ++ ) {
+    if(index_list[i].key &lt;= key && index_list[i + 1].key > key )
+      break;
+  }
+
+  if ( i == INDEX_SIZE ) {
+    low = index_list[i - 1].index;
+    high = n;
+  }elseP{
+    low = index_list[i].index;
+    high = index_list[i + 1].index;
+  }
+  // 예상되는 범위만 순차 탐색 
+  return seq_search(key, low, high);
+}
+                            </code>
+                          </pre>
                         </li>
                       </ul>
                     </div>
