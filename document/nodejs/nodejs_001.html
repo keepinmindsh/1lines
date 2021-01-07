@@ -528,15 +528,6 @@ process.on('uncaughtException', (err) => {
                                </li>
                             </ul>
                           </li>
-                          <li class="list-group-item">
-
-                          </li>
-                          <li class="list-group-item">
-
-                          </li>
-                          <li class="list-group-item">
-
-                          </li>
                         </ul>
                       </div>
                     </div>
@@ -545,16 +536,107 @@ process.on('uncaughtException', (err) => {
                     <div class="card-header" id="heading8">
                       <h2 class="mb-0">
                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapse8">
-                          
+                          모듈 시스템과 패턴 
                         </button>
                       </h2>
                     </div>
                     <div id="collapse8" class="collapse" aria-labelledby="heading8" data-parent="#accordionExample">
                       <div class="card-body">
+                        모듈은 복잡한 어플리케이션을 구성하기 위한 블록 역할을 하기도 하지만, 명시적으로 익스포트 표시 되지 않은 모든 내부적인 함수와 변수들을 비공개로 유지하여 정보를 숨기는 중요한 매커니즘을 합니다. 
+                        <hr>
+                        <strong>노출식 모듈 패턴</strong>
+                        <pre>
+                          <code class="script" >
+const module = (() => {
+  const privateFoo = () => { ... };
+  const privateBar = [];
 
+  const exported = {
+    publicFoo : () => { ... },
+    publicBar : () => { ... }
+  };
+
+  return exported;
+});
+console.log(module);                
+
+                          </code>
+                        </pre>
+                        자기 호출 함수를 사용하여 private 범위를 만들고 공개될 부분만 익스포트합니다. 앞의 코드에서 출력되는 module 변수는 익스포트된 ( exported ) API 만 포함하고 있으며, 
+                        나머지 모듈 컨텐츠는 실제로 외부에서 엑세스 할 수 없습니다. 잠시 후에 살펴 보겠지만, 이 패턴의 사상은 Node.js 모듈 시스템의 기반으로 사용됩니다. 
+                        <hr>
+                        <strong>Node.js 모듈 설명</strong>
+                        <br>
+                        직접 만드는 모듈 로더 <br>
+                        <pre>
+                          <code class="script" >
+function loadModule(filename, module, require) {
+  const wrappedSrc = `(function(module, exports, require){
+                        ${fs.readFileSync(filename, 'utf8')}
+                      })(module, module.exports, require);`;
+  eval(wrappedSrc);
+}                            
+                          </code>
+                        </pre>
                       </div>
                     </div>
                   </div>   
+                  <div class="card">
+                    <div class="card-header" id="heading9">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse9" aria-expanded="false" aria-controls="collapse9">
+                          
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse9" class="collapse" aria-labelledby="heading9" data-parent="#accordionExample">
+                      <div class="card-body">
+
+                      </div>
+                    </div>
+                  </div> 
+                  <div class="card">
+                    <div class="card-header" id="heading10">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse10" aria-expanded="false" aria-controls="collapse10">
+                          
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse10" class="collapse" aria-labelledby="heading10" data-parent="#accordionExample">
+                      <div class="card-body">
+
+                      </div>
+                    </div>
+                  </div> 
+                  <div class="card">
+                    <div class="card-header" id="heading11">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse11" aria-expanded="false" aria-controls="collapse11">
+                          
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse11" class="collapse" aria-labelledby="heading11" data-parent="#accordionExample">
+                      <div class="card-body">
+
+                      </div>
+                    </div>
+                  </div> 
+                  <div class="card">
+                    <div class="card-header" id="heading12">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse12" aria-expanded="false" aria-controls="collapse12">
+                          
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse12" class="collapse" aria-labelledby="heading12" data-parent="#accordionExample">
+                      <div class="card-body">
+
+                      </div>
+                    </div>
+                  </div> 
             </div>
             <div class="card-footer small text-muted"></div>
             </div>
