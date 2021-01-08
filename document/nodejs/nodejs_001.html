@@ -578,6 +578,38 @@ function loadModule(filename, module, require) {
 }                            
                           </code>
                         </pre>
+                        모듈의 소스 코드는 노출 모듈 패턴과 마찬가지로 기본적으로 함수로 싸여집니다. 여기서 차이점은 일련의 변수들을 모듈에 전달한다는 것입니다. 
+                        <pre>
+                          <code class="script" >
+const require = (moduleName) => {
+  console.log(`Require invoked for module : ${moduleName} `);
+  const id = require.resolve(moduleName); // [1]
+  if(require.cache[id]) {
+    return require.cache[id].exports;
+  }
+
+  // 모듈의 메타 데이터 a 
+  const module = { 
+    exports : {},
+    id : id
+  };
+
+  // 캐시 갱신 
+  require.cache[id] = module;
+
+  // 모듈 로드 
+  loadModule(id, module, require);
+
+  // 익스포트된 변수들을 반환 
+  return module.exprots; 
+}
+
+require.cache = {};
+require.resolve = ( moduleName ) => {
+  /* moduleName 에서 모듈 ID를 확인 */ 
+}
+                          </code>
+                        </pre>
                       </div>
                     </div>
                   </div>   
