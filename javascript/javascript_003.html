@@ -117,6 +117,7 @@
               Vanilla JS
               </div>
             <div class="card-body">
+              <strong>Query</strong>
               <pre>
                 <code class="script" >
 // QuerySelector                   
@@ -126,6 +127,51 @@ const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
 // Array.from 
 const keys = Array.from(document.querySelectorAll('.key'));
 
+// QuerySelectorAll 
+const checkboxes = document.querySelectorAll('.inbox input[type="checkbox"]');                 
+                </code>
+              </pre>
+              <hr>
+              <strong>CheckBox</strong><br>
+              <pre>
+                <code class="script" >
+// QuerySelectorAll 
+const checkboxes = document.querySelectorAll('.inbox input[type="checkbox"]');  
+                  
+let lastChecked;
+
+function handleCheck(e) {
+  // Check if they had the shift key down
+  // AND check that they are checking it
+  let inBetween = false;
+  if (e.shiftKey && this.checked) {
+    // go ahead and do what we please
+    // loop over every single checkbox
+    checkboxes.forEach(checkbox => {
+      console.log(checkbox);
+      if (checkbox === this || checkbox === lastChecked) {
+        inBetween = !inBetween;
+        console.log('Starting to check them in between!');
+      }
+
+      if (inBetween) {
+        checkbox.checked = true;
+      }
+    });
+  }
+
+  lastChecked = this;
+}
+
+checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck));
+                </code>
+              </pre>
+              <hr>
+              <strong>Video 샘플 </strong><br>
+              <a href="https://github.com/wesbos/JavaScript30/tree/master/11%20-%20Custom%20Video%20Player" target="_blank" >Video Link</a>
+              <hr>
+              <pre>
+                <code class="script" >
 
 // addEventLitner 
 keys.forEach(key => key.addEventListener('transitionend', removeTransition)
@@ -275,7 +321,6 @@ const newComments = [
   ...comments.slice(0, index),
   ...comments.slice(index + 1)
 ];
-
 
 // Canvas 객체의 활용
 &lt;canvas id="draw" width="800" height="800">&lt;/canvas>
