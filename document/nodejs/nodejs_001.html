@@ -578,7 +578,8 @@ function loadModule(filename, module, require) {
 }                            
                           </code>
                         </pre>
-                        모듈의 소스 코드는 노출 모듈 패턴과 마찬가지로 기본적으로 함수로 싸여집니다. 여기서 차이점은 일련의 변수들을 모듈에 전달한다는 것입니다. 
+                        모듈의 소스 코드는 노출 모듈 패턴과 마찬가지로 기본적으로 함수로 싸여집니다. 여기서 차이점은 일련의 변수들을 모듈에 전달한다는 것입니다. <br>
+                        모듈을 로드하는데 사용하는 Node.js의 원래 require() 함수의 동작을 모방하고 있습니다. 
                         <pre>
                           <code class="script" >
 const require = (moduleName) => {
@@ -610,6 +611,69 @@ require.resolve = ( moduleName ) => {
 }
                           </code>
                         </pre>
+                        <hr>
+                        <strong>모듈정의</strong><br>
+                        위에서 정의한 require 함수를 이용해서 모듈을 로드하면 아래와 같습니다. 
+                        module.exports 변수에 할당되지 않은 한, 모듈 내부의 모든 항목은 private 이라는 것이 기억해야 할 핵심 개념입니다. 
+                        <pre>
+                          <code class="script" >
+// 다른 종속성 로드 
+const dependency = require('./anotherModule');
+
+// private 함수 
+function log() {
+  console.log(`Well don ${dependency.username}`);
+}
+
+// 익스포트되어 외부에서 사용될 API 
+module.exports.run = () => {
+  log();
+};
+                          </code>
+                        </pre>
+                        <hr>
+                        <strong>전역 정의</strong>
+                        <hr>
+                        public API를 공개하기 위해 사용하는 exports와 module.exports의 차이점을 이해하는 것은 매우 어려운 일입니다. 앞서 작성한 require 함수를 통해 이 차이를 명확하게 이해할 수 있습니다. 
+                        변수 exports는 module.exports의 초기 값에 대한 참소 일 뿐입니다. 
+                        <pre>
+                          <code>
+// 아래의 코드와 같이 exports가 참조하는 객체에만 새로운 속성을 추가할수 있다.                             
+exports.hello = () => {
+  console.log('Hello');
+}                       
+
+// exports 변수의 재할당은 module.exports의 내용을 변경하지 않기 때문에 효과가 없습니다. 
+exports = () => {
+  console.log('Hello');
+}
+
+// 함수, 인스턴스 또는 문자열과 같은 객체 리터럴 이외의 것을 내보내려면 다음과 같이 module.exports 를 재할당 합니다. 
+module.exports = () => {
+  console.log('Hello');
+}
+                          </code>
+                        </pre>
+                        <hr>
+                        <strong>require 함수는 동기적이다. </strong>
+                        <pre>
+                          <code class="script" >
+setTimeout(() => {
+  module.exports - function() { ... };
+}, 100)
+                          </code>
+                        </pre>
+                        모듈을 동기적으로 초기화해야하는 과정이 필요한 경우에는 모듈이 미래 시점에 비동기적으로 초기화되기 때문에 미처 초기화되지 않은 모듈을 정의하고 
+                        익스포트할 수 도 있습니다. 따라서 이런 접근 방식의 문제점은 require를 사용하여 모듈을 로드한다고 해서 사용할 준비가 된다는 보장이 없습니다. 
+                        <br>
+                        <hr>
+                        <strong>해결(resolving) 알고리즘</strong><br>
+                        '의존성 지옥'이라는 용어는 소프트웨어의 의존성이 서로 공통된 라이브러리들을 의존하지만 호환되지 않는 서로 다른 버전을 필료로 하는 상황을 나타냅니다. 
+                        Node.js 는 모듈은 로드되는 위치에 따라 다른 버전의 모듈을 로드할 수 있도록 하여 이 문제를 우아하게 해결합니다. 이 기능의 모든 장점은 npm 뿐 아니라 
+                        require 함수에서 사용하느 해결 알고리즘에도 적용됩니다. 
+                        <br>
+                        
+
                       </div>
                     </div>
                   </div>   
