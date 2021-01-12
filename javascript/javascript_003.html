@@ -170,6 +170,26 @@ checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck));
               <strong>Video 샘플 </strong><br>
               <a href="https://github.com/wesbos/JavaScript30/tree/master/11%20-%20Custom%20Video%20Player" target="_blank" >Video Link</a>
               <hr>
+              <strong>Key 감지</strong>
+              <br>
+              <pre>
+                <code class="script" >
+const pressed = [];
+const secretCode = 'wesbos';
+
+window.addEventListener('keyup', (e) => {
+  console.log(e.key);
+  pressed.push(e.key);
+  pressed.splice(-secretCode.length - 1, pressed.length - secretCode.length);
+  if (pressed.join('').includes(secretCode)) {
+    console.log('DING DING!');
+    cornify_add();
+  }
+  console.log(pressed);
+});
+                </code>
+              </pre>
+              <hr>
               <pre>
                 <code class="script" >
 
