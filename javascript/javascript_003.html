@@ -67,7 +67,7 @@
             <a class="dropdown-item" href="../javascript/javascript_001.html">JavaScript Style Guide</a>
             <a class="dropdown-item" href="../javascript/javascript_002.html">ECMA Script 6</a>
             <a class="dropdown-item" href="../javascript/javascript_003.html">Vanilla JS</a>
-            <a class="dropdown-item" href="../javascript/javascript_004.html"></a>
+            <a class="dropdown-item" href="../javascript/javascript_004.html">ECMA Script 11</a>
             <a class="dropdown-item" href="../javascript/javascript_005.html"></a>
             <a class="dropdown-item" href="../javascript/javascript_006.html"></a>
             <a class="dropdown-item" href="../javascript/javascript_007.html"></a>
@@ -372,6 +372,39 @@ function shadow(e) {
 }
 
 hero.addEventListener('mousemove', shadow);
+                </code>
+              </pre>
+              <hr>
+              <pre>
+                <code class="script" >
+const bands = [ 
+'The Plot in You', 
+'The Devil Wears Prada', 
+'Pierce the Veil', 
+'Norma Jean', 
+'The Bled', 
+'Say Anything', 
+'The Midway State', 
+'We Came as Romans', 
+'Counterparts', 
+'Oh, Sleeper', 
+'A Skylit Drive', 
+'Anywhere But Here', 
+'An Old Dog' ];
+
+function strip(bandName) {
+  return bandName.replace(/^(a |the |an )/i, '').trim();
+}
+
+// sorting을 처리하는 함수 
+const sortedBands = bands.sort((a, b) => strip(a) > strip(b) ? 1 : -1);
+
+document.querySelector('#bands').innerHTML =
+  sortedBands
+    .map(band => `&lt;li>${band}&lt;/li>`)
+    .join('');
+
+console.log(sortedBands);
                 </code>
               </pre>
               <hr>
