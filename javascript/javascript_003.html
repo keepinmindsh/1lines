@@ -117,6 +117,8 @@
               Vanilla JS
               </div>
             <div class="card-body">
+              <a href="https://github.com/wesbos/JavaScript30" target="_blank" rel="noopener noreferrer">references - javascript sample</a>
+              <hr>
               <strong>Query</strong>
               <pre>
                 <code class="script" >
@@ -433,7 +435,43 @@ console.log(hours, mins, secondsLeft);
                 </code>
               </pre>
               reduce() 메서드는 배열의 각 요소에 대해 주어진 리듀서(reducer) 함수를 실행하고, 하나의 결과값을 반환합니다.
+              <hr>
+              <strong>Web Cam</strong><br>
+              <a href="https://github.com/wesbos/JavaScript30/tree/master/19%20-%20Webcam%20Fun" target="_blank" rel="noopener noreferrer"></a>
               <hr> 
+              <strong>Speech Detection</strong><br>
+              <pre>
+                <code class="script" >
+window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+const recognition = new SpeechRecognition();
+recognition.interimResults = true;
+recognition.lang = 'en-US';
+
+let p = document.createElement('p');
+const words = document.querySelector('.words');
+words.appendChild(p);
+
+recognition.addEventListener('result', e => {
+  const transcript = Array.from(e.results)
+    .map(result => result[0])
+    .map(result => result.transcript)
+    .join('');
+
+    const poopScript = transcript.replace(/poop|poo|shit|dump/gi, '💩');
+    p.textContent = poopScript;
+
+    if (e.results[0].isFinal) {
+      p = document.createElement('p');
+      words.appendChild(p);
+    }
+});
+
+recognition.addEventListener('end', recognition.start);
+
+recognition.start();
+                </code>
+              </pre>
               <pre>
                 <code class="script" >
 const array1 = [1, 2, 3, 4];
@@ -455,6 +493,37 @@ console.log(array1.reduce(reducer, 5));
 [0, 1, 2, 3, 4].reduce(function(accumulator, currentValue, currentIndex, array) {
   return accumulator + currentValue;
 }, 10);
+                </code>
+              </pre>
+              <hr>
+              <strong>Geo Location</strong><br>
+              <a href="https://github.com/wesbos/JavaScript30/tree/master/21%20-%20Geolocation" target="_blank" rel="noopener noreferrer"></a>
+              <hr>
+              <strong>Link highlighter</strong><br>
+              <pre>
+                <code class="script" >
+const triggers = document.querySelectorAll('a');
+const highlight = document.createElement('span');
+highlight.classList.add('highlight');
+document.body.appendChild(highlight);
+
+function highlightLink() {
+  const linkCoords = this.getBoundingClientRect();
+  console.log(linkCoords);
+  const coords = {
+    width: linkCoords.width,
+    height: linkCoords.height,
+    top: linkCoords.top + window.scrollY,
+    left: linkCoords.left + window.scrollX
+  };
+
+  highlight.style.width = `${coords.width}px`;
+  highlight.style.height = `${coords.height}px`;
+  highlight.style.transform = `translate(${coords.left}px, ${coords.top}px)`;
+
+}
+
+triggers.forEach(a => a.addEventListener('mouseenter', highlightLink));
                 </code>
               </pre>
               <hr>
