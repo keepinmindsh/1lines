@@ -691,7 +691,60 @@ require.cache
                         </pre>
                         <hr>
                         <strong>순환 의존성</strong><br>
+                        아래의 문제로 순환 종속성에 대한 문제를 알 수 있습니다. 
+<pre>
+  <code class="script" >
+// Module a.js     
+exports.loaded = false;
+const b = require('./b');
+module.exports = {
+  bWasLoaded : b.loaded,
+  loaded : true
+};
+  </code>
+</pre>
 
+<pre>
+  <code>
+// Module b.js:    
+exports.loaded = false;
+const a = require('./a');
+module.exports = {
+  bWasLoaded : b.loaded,
+  loaded : true
+};    
+  </code>
+</pre>
+
+<pre>
+  <code class="script" >
+const a = require('./a');
+const b = require('./b');
+console.log(a);
+console.log(b);
+  </code>
+</pre>
+
+<pre>
+  <code class="script" >
+// 아래 결과를 출력함. 
+{ aWasLoaded : true, loaded : false }
+{ aWasLoaded : false, loaded : true }
+  </code>
+</pre>
+두 모듈 각자 main에서 require 로 불려지면 완전하게 초기화 되지만, b.js 에서 a.js 모듈을 로드하면 모듈의 로드가 완료되지 않습니다. 
+a.js 가 b.js를 required 하는 순간에 다다르게 되는 것입니다. 
+<br>
+<strong>모듈 정의 패턴</strong><br>
+모듈 시스템은 의존성을 로드하는 매커니즘이 되는 것 외에 API를 정의하기 위한 도구이기도 합니다. API 디자인과 관련된 다른 문제의 경우 고려해야할 주요 요소는 private 함수와 public 함수 간의 균형입니다. 
+이것의 목표는 확장성과 코드 재사용과 같은 소프트웨어 품질의 균형을 유지하면서 정보 은닉 및 API 유용성을 극대화하는 것입니다. 
+<strong>exports 지정하기</strong><br>
+public API를 공개하는 가장 기본적인 방법은 export로 명기하는 것입니다. 이것은 export에서 참조하는 객체의 속성에 공개할 모든 값을 할당하는 것입니다. 
+<pre>
+  <code class="script">
+
+  </code>
+</pre>
                         <hr>
                         
 
