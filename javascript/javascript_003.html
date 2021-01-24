@@ -532,7 +532,90 @@ triggers.forEach(a => a.addEventListener('mouseenter', highlightLink));
               <hr>
               <strong>stick nav</strong><br>
               <a href="https://github.com/wesbos/JavaScript30/tree/master/24%20-%20Sticky%20Nav" target="_blank" rel="noopener noreferrer">Link</a>
+              <hr>
+              <strong>Event Capture, Propagation, Bublling and Once</strong><br>
+              <pre>
+                <code class="script" >
+const divs = document.querySelectorAll('div');
+const button = document.querySelector('button');
 
+function logHelloWorld(e) {
+  console.log(this.classList.value);
+  // e.stopPropagation(); // stop bubbling!
+  // console.log(this);
+}
+
+// 실행시 한번만 실행되기하기 위한 Event 처리 
+divs.forEach(div => div.addEventListener(
+  'click', 
+  logHelloWorld, 
+  {
+    capture: false,
+    once: true
+  }));
+
+button.addEventListener('click', 
+() => {
+  console.log('Click!!!');
+}, {
+  once: true
+});
+                
+                </code>
+              </pre>
+              <hr>
+              <strong>Stripe Follow Along Nav</strong><br>
+              <pre>
+                <code class="script" >
+const triggers = document.querySelectorAll('.cool > li');
+const background  = document.querySelector('.dropdownBackground');
+const nav  = document.querySelector('.top');
+
+function handleEnter() {
+  this.classList.add('trigger-enter');
+  setTimeout(() => this.classList.contains('trigger-enter') && this.classList.add('trigger-enter-active'), 150);
+  background.classList.add('open');
+
+  const dropdown = this.querySelector('.dropdown');
+  
+  /**
+
+  출력된 결과를 보면 top, bottom, left, right, width, height, x, y의 값이 출력됩니다.
+
+  top or y // 화면 상단 부터 대상의 처음 위치 값
+  bottom // 화면 상단 부터 대상의 끝 위치 값
+  left or x // 화면 좌측 부터 대상의 처음 위치 값
+  right // 화면 좌측 부터 대상의 끝 위치 값
+  width // 대상의 길이
+  height // 대상의 높이
+  
+  이와 같이 간단하게 대상 엘리먼트의 위치 정보를 얻을 수 있습니다.
+
+  */
+  const dropdownCoords = dropdown.getBoundingClientRect();
+  const navCoords = nav.getBoundingClientRect();
+
+  const coords = {
+    height: dropdownCoords.height,
+    width: dropdownCoords.width,
+    top: dropdownCoords.top - navCoords.top,
+    left: dropdownCoords.left - navCoords.left
+  };
+
+  background.style.setProperty('width', `${coords.width}px`);
+  background.style.setProperty('height', `${coords.height}px`);
+  background.style.setProperty('transform', `translate(${coords.left}px, ${coords.top}px)`);
+}
+
+function handleLeave() {
+  this.classList.remove('trigger-enter', 'trigger-enter-active');
+  background.classList.remove('open');
+}
+
+triggers.forEach(trigger => trigger.addEventListener('mouseenter', handleEnter));
+triggers.forEach(trigger => trigger.addEventListener('mouseleave', handleLeave));
+                </code>
+              </pre>
               <hr>
               <pre>
                 <code class="script" >
