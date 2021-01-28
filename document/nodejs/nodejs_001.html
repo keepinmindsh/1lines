@@ -742,10 +742,50 @@ a.js 가 b.js를 required 하는 순간에 다다르게 되는 것입니다.
 public API를 공개하는 가장 기본적인 방법은 export로 명기하는 것입니다. 이것은 export에서 참조하는 객체의 속성에 공개할 모든 값을 할당하는 것입니다. 
 <pre>
   <code class="script">
+// logger.js 파일 
+exports.info = ( message ) => {
+  console.log('info: ' + message);
+};
 
+exports.value = ( message ) => {
+  console.log('verbose : ' + message);
+}
+
+// 실제 사용할 경우 
+const logger = require('./logger');
+logger.info('This is an informational message');
+logger.verbose('This is a verbose message');
   </code>
 </pre>
+NodeJS의 코어 모듈은 대부분 이 패턴을 사용합니다. 
                         <hr>
+                        <strong>함수 내보내기</strong><br>
+                        가장 일반적인 모듈 정의 패턴 중의 하나가 module.exports 변수 전체를 함수에 재할당하는 것입니다. 주요 장점은 모듈에 대한 명확한 진입점을 제공하는 단일 기능을 제공하여 그것에 대한 이해와 사용을 
+                        단순화한다는 것입니다. 또한 최소한의 노출이라는 원리에 잘 맞아 떨어집니다. 모듈의 정의하는 이 방법은 제임스 할리데이가 많이 사용한 이후로, 커뮤니티에서 substack으로 알려져 있습니다. 
+                        <pre>
+                          <code class="script" >
+// logger.js 
+module.exports = ( message ) => {
+  console.log(`info: ${message} `);
+}
+
+                          </code>
+                        </pre>
+                        이를 통해서 생각해볼 수 있는 응용은 익스포트된 함수를 다른 public API 의 네임스페이스로 사용하는 것입니다. 이렇게 하면, 모듈에 단일 진입점의 명확성을 제공하므로 매우 강력한 조합입니다. 또한 이 접근 방식을 응용하여 그 이상의 
+                        고급 유스 케이스를 만들 수 있는 부가적인 기능들을 노출할 수 있습니다. 
+                        <pre>
+                          <code class="script" >
+module.exports.verbose = ( message ) => {
+  console.log(`verbose: ${message} `);
+};
+
+// 실제 사용할 경우 
+const logger = require('./logger');
+logger('This is an informational message');
+logger.verbose('This is a verbose message');
+                          </code>
+                        </pre>
+                        
                         
 
                       </div>
