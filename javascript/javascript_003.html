@@ -68,7 +68,7 @@
             <a class="dropdown-item" href="../javascript/javascript_002.html">ECMA Script 6</a>
             <a class="dropdown-item" href="../javascript/javascript_003.html">Vanilla JS</a>
             <a class="dropdown-item" href="../javascript/javascript_004.html">ECMA Script 11</a>
-            <a class="dropdown-item" href="../javascript/javascript_005.html"></a>
+            <a class="dropdown-item" href="../javascript/javascript_005.html">SvelteJS</a>
             <a class="dropdown-item" href="../javascript/javascript_006.html"></a>
             <a class="dropdown-item" href="../javascript/javascript_007.html"></a>
             <a class="dropdown-item" href="../javascript/javascript_008.html"></a>          
@@ -621,6 +621,135 @@ triggers.forEach(trigger => trigger.addEventListener('mouseleave', handleLeave))
 
                 </code>
               </pre>
+              <hr>
+              <strong>Click And Drag</strong>
+              <pre>
+                <code class="script" >
+/**
+
+ Java Script의 절대 위치, 상대 위치  ( 출처: https://mommoo.tistory.com/85 [개발자로 홀로 서기] )
+ 
+  절대 위치 : 시작점으로 부터 떨어진 위치. 
+  상대 위치 : 어떤 기준 점으로 부터 떨어진 위치.
+
+  브라우저 상에서 컨텐츠의 내용이 보여지는 부분이 ViewPort이며, 그외의 안보여지는 부분이 존재합니다. 
+  ViewPort 의 위치는 화면의 스크롤링이 일어남에 따라 점점 내용 및 위치가 변경될 수 있습니다. 
+
+  절대위치는 ViewPort 의 위치가 아닌, 실제 페이지(컨텐츠)으로 부터 떨어진 거리를 의미합니다. 
+  상대위치는 어떤 기준을 선택하느냐에 따라서 기준 위치가 달라지겠지만, 브라우저가 보여주는 스크롤된 페이지의 위치부분, 즉 ViewPort 의 시작지점을 기준으로 가정하면, 현재 보여지는 페이지의 위치가 시작지점이 됩니다.     
+  
+  const target = document.getElementById('position'); 
+  const clientRect = target.getBoundingClientRect(); // DomRect 구하기 (각종 좌표값이 들어있는 객체)
+  const relativeTop = clientRect.top; // Viewport의 시작지점을 기준으로한 상대좌표 Y 값.
+
+  부모 요소의 시작 지점 기준 
+
+   부모 요소의 position 정책에 따라서 offsetTop이 반환하는 위치가 달라지게 됩니다. 
+     position:relative 일 경우, offsetTop은 부모요소를 기점으로 상대위치를 가져올 수 있습니다. 
+     position:absolute 일 경우, offsetTop은 부모요소의 기준이 아닌 상위 요소의 포지셔닝을 계속 탐색하여 relative가 있는 부모를 기준으로 좌표값을 계산합니다. 
+     만약 자식 요소의 상위 요소들이 전무 relative 포지셔닝이 아니라면, 결국 offsetTop은 페이지의 시작지점 , 절대위치를 반환하게 됩니다. 
+
+     offsetTop, offsetLeft, offsetWidth, offsetHeight 가 요소로 존재합니다. 
+
+  절대좌표 구하기 
+
+  const target = document.getElementById('target'); // 요소의 id 값이 target이라 가정
+​
+  const clientRect = target.getBoundingClientRect(); // DomRect 구하기 (각종 좌표값이 들어있는 객체)
+  const relativeTop = clientRect.top; // Viewport의 시작지점을 기준으로한 상대좌표 Y 값.
+  ​
+  const scrolledTopLength = window.pageYOffset; // 스크롤된 길이
+  //const scrolledTopLength = pageYOffset; // window 객체 없이 pageYOffset 메서드를 써도 가능하다.
+  const absoluteTop = scrolledTopLength + relativeTop; // 절대좌표
+
+  절대좌표 구하기 
+  const absoluteTop = window.pageYOffset + element.getBoundingClientRect().top;
+
+  상대좌표 구하기 
+  const relativeTop = element.getBoundingClientRect().top;
+
+  부모 요소의 시작지점을 기준으로 한 상대 좌표 
+  // 1번에서 안내한 절대좌표 구하는 방법을 함수로 구현
+  function getAbsoluteTop(element) {
+      return window.pageYOffset + element.getBoundingClientRect().top;
+  }
+  ​
+  const parentElement = element.parentElement;
+  const parentAbsoluteTop = getAbsoluteTop(parentElement);
+  const absoulteTop = getAbsoluteTop(element);
+  ​
+  const relativeTop = absoluteTop - parentAbsoluteTop;
+
+*/
+
+const slider = document.querySelector('.items');
+let isDown = false;
+let startX;
+let scrollLeft;
+
+slider.addEventListener('mousedown', (e) => {
+  isDown = true;
+  slider.classList.add('active');
+  startX = e.pageX - slider.offsetLeft;
+  scrollLeft = slider.scrollLeft;
+});
+
+slider.addEventListener('mouseleave', () => {
+  isDown = false;
+  slider.classList.remove('active');
+});
+
+slider.addEventListener('mouseup', () => {
+  isDown = false;
+  slider.classList.remove('active');
+});
+
+slider.addEventListener('mousemove', (e) => {
+  if (!isDown) return;  // stop the fn from running
+  e.preventDefault();
+  const x = e.pageX - slider.offsetLeft;
+  const walk = (x - startX) * 3;
+  slider.scrollLeft = scrollLeft - walk;
+});
+                </code>
+              </pre>
+              <hr>
+              <strong>Video Speed Controller</strong>
+              <pre>
+                <code class="html" >
+&lt;div class="wrapper">
+  &lt;video class="flex" width="765" height="430" src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" loop controls>&lt;/video>
+  &lt;p>
+  &lt;div class="speed">
+    &lt;div class="speed-bar">1×</div>
+  &lt;/div>
+&lt;/div>
+                </code>
+              </pre>
+              <pre>
+                <code class="script">
+const speed = document.querySelector('.speed');
+const bar = speed.querySelector('.speed-bar');
+const video = document.querySelector('.flex');
+
+function handleMove(e) {
+    const y = e.pageY - this.offsetTop;
+    const percent = y / this.offsetHeight;
+    const min = 0.4;
+    const max = 4;
+    const height = Math.round(percent * 100) + '%';
+    const playbackRate = percent * (max - min) + min;
+    bar.style.height = height;
+    bar.textContent = playbackRate.toFixed(2) + '×';
+    video.playbackRate = playbackRate;
+  }
+
+speed.addEventListener('mousemove', handleMove);
+                </code>
+              </pre>
+              <hr>
+              <strong><a href="https://github.com/wesbos/JavaScript30/tree/master/29%20-%20Countdown%20Timer" target="_blank" rel="noopener noreferrer">Timer</a> </strong>
+              <hr>
               <hr>
               <pre>
                 <code class="script" >

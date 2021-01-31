@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>1lines - ECMA Script 11</title>
+    <title>1lines - SvelteJS</title>
 
     <!-- Bootstrap core CSS-->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -108,38 +108,36 @@
             <li class="breadcrumb-item">
               <a href="#">Dashboard</a>
             </li>
-            <li class="breadcrumb-item active">JavaScript</li>
+            <li class="breadcrumb-item active">SvelteJS</li>
           </ol>
 
           <!-- Area Chart Example-->
           <div class="card mb-3">
             <div class="card-header">
-                ECMA Script 11
               </div>
             <div class="card-body">
+              <a href="https://svelte.dev" target="_blank" rel="noopener noreferrer">Svelte 개발 참조 링크</a>
+              <hr>
+              SvelteJS는 Virtual DOM을 사용하지 않는다. 이 때문에 No Diffing , No Overheading이 발생하지 않는다. 
+              <hr>
+              <strong>Svelte REPL 사용법</strong><br>
+              <a href="https://svelte.dev/repl/" target="_blank" rel="noopener noreferrer">Svelte REPL</a>
+              <br>
+              <strong>Svelte Template</strong><br>
               <ul>
-                <li>
-                  <a href="https://github.com/tc39/proposal-optional-chaining" target="_blank">Optional Chaining</a> 
-                </li>
-                <li>
-                  <a href="https://github.com/tc39/proposal-nullish-coalescing" target="_blank">Nullish Coalescing for JavaScript</a>
-                </li>
-                <li>
-                  <a href="https://github.com/tc39/proposal-global" target="_blank" rel="noopener noreferrer">globalThis</a>
-                </li>
-                <li>
-                  <a href="https://github.com/tc39/proposal-dynamic-import" target="_blank" rel="noopener noreferrer">import()</a>
-                </li>
-                <li>
-                  <a href="https://github.com/tc39/proposal-bigint" target="_blank" rel="noopener noreferrer">BigInt: Arbitrary precision integers in JavaScript</a>
-                </li>
-                <li>
-                  <a href="https://github.com/tc39/proposal-string-matchall" target="_blank" rel="noopener noreferrer">String.prototype.matchAll</a>
-                </li>
-                <li>
-                  <a href="https://github.com/tc39/proposal-promise-allSettled" target="_blank" rel="noopener noreferrer">Promise.allSettled</a>
-                </li>
+                <li>rollup bundler - sveltejs/template </li>
+                <li>webpack budler = sveltejs/template-webpack</li>
               </ul>
+              <br>
+              <pre>
+                <code class="shell" >
+npx degit sveltejs/template svelte-lines-templates
+                </code>
+              </pre>
+              이후 위의 Shell을 통해서 Svelte Js Template을 작성할 수 있다. 
+              만약 Svelte 빌드 환경을 rollup이나 webpack을 활용하여 setup이 가능하다. 
+
+              
             </div>
             <div class="card-footer small text-muted"></div>
           </div>
