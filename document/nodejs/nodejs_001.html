@@ -786,7 +786,58 @@ logger.verbose('This is a verbose message');
                           </code>
                         </pre>
                         
-                        
+                        단순히 함수를 내보내는 것이 제약처럼 보일 수도 있지만 실제로는 단일 기능에 중점을 두도록 하는 완벽한 방법이며, 내부 형태에 대한 가시성을 줄이면서 이외 보조적인 사항들은 익스포트된 함수의 속성으로 노출하여 단일 진입점을 제공합니다.
+                        Node.JS 의 모듈성은 한 가지만 책임지는 원칙을 지킬 것을 강력히 권장합니다. 
+                        <pre>
+                          <code class="script" >
+// logger.js 파일 
+function Logger(name) {
+  this.name = name;
+}
+
+Logger.prototype.log = function(message) {
+  console.log(`[${this.name}] ${message}`);
+}
+
+Logger.prototype.log = function(message) {
+  console.log(`info : ${message}`);
+}
+
+Logger.prototype.verbose = function(message) {
+  this.log(`verbose : ${message}`);
+};
+
+module.exports = Logger;
+
+// main.js 파일 
+const Logger = require('./logger');
+const dbLogger = new Logger('DB');
+dbLogger.info('This is an infromational message');
+const acessLogger = new Logger('ACCESS');
+accessLogger.verbose('This is a verbose message');
+
+// ES6 버전 사용의 경우에는
+class Logger {
+  constructor(name) {
+    this.name = name;
+  }
+
+  log(message) {
+    console.log(`[${this.name}] ${message}`);
+  }
+
+  info(message) {
+    this.log(`info : ${message}`);
+  }
+
+  verbose(message) {
+    this.log(`verbose : ${message} `);
+  }
+}
+
+module.exports = Logger;
+                          </code>
+                        </pre>
 
                       </div>
                     </div>
