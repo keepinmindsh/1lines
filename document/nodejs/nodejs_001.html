@@ -838,7 +838,80 @@ class Logger {
 module.exports = Logger;
                           </code>
                         </pre>
+                        생성자나 클래스를 내보내는 것은 여전히 모듈에 대한 단일 진입점을 제공하지만 substack 패턴과 비교할 때 더 많은 모듈의 내부를 노출합니다.  <br>
+                        이 패턴의 변형은 new 명령을 사용하지 않는 호출에 대한 보호자(guard)를 적용하는 것으로 구성됩니다. 이 작은 트릭으로 우리는 모듈을 팩토리로 사용할 수 있습니다
+                        <pre>
+                          <code class="script" >
+// 모듈을 팩토리로 사용하는 경우,                             
+function Logger(name){
+  if(!(this instanceof Logger)) {
+    return new Logger(name);
+  }
+  this.name = name;
+}
 
+// 실 사용례
+const Logger = require('./logger');
+const dbLogger = Logger('DB');
+dbLogger.verbose('This is a verbose message');
+                          </code>
+                        </pre>
+                        보호자 ( guard )를 구현하는 훨씬 더 깨끗한 접근법은 new.target 구문을 사용하는 것입니다. 해당 속성은 모든 함수에서 사용할 수 있는 
+                        '메타 속성'이며 함수가 new 키워드를 사용하여 호출된 경우 런타임 시에 true 평가됩니다. 
+                        <pre>
+                          <code class="script" >
+// 좀더 가독성 있고, 자연스러운 ES 2015 문법 활용 -  new.target                            
+function Logger(name) {
+  if(!new.target){
+    return new LoggerConstructor(name);
+  }
+  this.name = name;
+}                            
+                          </code>
+                        </pre>
+                        <hr>
+                        <strong>인스턴스 익스포트 하기</strong><br>
+                        require() 함수는 캐싱 메커니즘을 이용하여 생성자나 팩토리를 통해 모듈을 생서아므로 서로 다른 모듈 간에 공유할 수 있는 상태 저장 인스턴스를 쉽게 정의할 수 있습니다. 
+                        <pre>
+                          <code class="script" >
+// logger.js 파일 
+function Logger(name) {
+  this.count = 0;
+  this.name = name;
+}
+
+Logger.prototype.log = function(message){
+  this.count ++;
+  console.log('[' + this.name + ']' + message );
+};
+
+module.exports = new Logger('DEFAULT');
+
+// 사용하기 
+const logger = require('./logger');
+logger.log('This is an informational message');
+                          </code>
+                        </pre>
+                        모듈이 캐시되기 때문에 logger 모듈을 필요로 하는 모든 모듈들은 실제로 항상 동일한 객체의 인스턴스를 검색하여 상태를 공유합니다. 
+                        <hr>
+                        <strong>다른 모듈 혹은 글로벌 스코프 수정</strong>
+                        <br>
+                        <pre>
+                          <code class="script" >
+// patcher.js 파일 
+
+// ./logger는 다른 모듈임 
+require('./logger').customMessage = () => console.log('This is a new functionality');
+
+// 사용하기 
+require('./patcher');
+const logger = require('./logger');
+logger.customMessage();
+                          </code>
+                        </pre>
+                        <hr>
+                        <strong>관찰자 패턴</strong><br>
+                        
                       </div>
                     </div>
                   </div>   
