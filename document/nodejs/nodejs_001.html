@@ -909,9 +909,103 @@ const logger = require('./logger');
 logger.customMessage();
                           </code>
                         </pre>
+                        모듈이 아무것도 익스포트 하지 않을 수도 있습니다. 이는 다소 부적절하게 보일 수 있지만, 우리는 모듈이 캐시에 있는 다른 모듈을 포함하여 전역 범위와 그 안에 있는 모든 개체를 수정할 수 있다는 것을 잊어서는 안됩니다. 
+                        이 방식은 일반적으로 권장되지 않지만, 이 패턴은 일부 상황에서 유용하고 안전하며, 가끔 실전에서도 사용되기 때문에 이를 이해하고 있어야 합니다. 
                         <hr>
                         <strong>관찰자 패턴</strong><br>
-                        
+                        Node.js에서 사용되는 또 다른 중요하고 기본적인 패턴은 관찰자 패턴입니다. 리액터, 콜백, 그리고 모듈과 함께 관찰자 패턴은 플랫폼의 핵심 중 하나이며, 많은 Node 코어와 사용자 영역 모듈을 사용하는데 있어 필수적인 
+                        조건입니다. <br>
+                        <blockquote>
+                        관찰자 패턴은 상태 변화가 일어날 때 관찰자(또는 Listener)에게 알릴 수 있는 객체(Subject 라고 불립니다)를 정의하는 것입니다. 
+                        </blockquote>
+                        <hr>
+                        <strong>Event Emitter</strong><br>
+                        <pre>
+                          <code class="script" >
+// EventEmitter 구성 샘플                             
+const EventEmitter = require('events').EventEmitter;
+const fs = require('fs');
+
+function findPattern(files , regex) {
+  const emitter = new EventEmitter();
+  files.forEach(function(file){
+    fs.readFile(file, 'utf8' , (err, content) -> {
+      if(err)
+        return emitter.emit('error', err);
+      
+      emitter.emit('fileread', file);
+
+      let match;
+      if(match = content.match(regex)){
+        match.forEach(elem => emitter.emit('found', file, elem ));
+      }
+    });
+  });
+  return emitter;
+}
+
+// 사용하기 예제
+findPattern(
+  ['fileA.txt', 'fileB.json'],
+  /hello \w + /g
+)
+ .on('fileread', file => console.log(file + ' was read'))
+ .on('found', (file, match) => console.log('Matched "' + match + '" in file ' + file))
+ .on('error', err => console.log('Error emitted : ' + err.message ));
+                          </code>
+                        </pre>
+                        <strong>오류 전파</strong><br>
+                        Node.js는 특별한 방식으로 에러 이벤트를 처리하고 예외를 자동으로 throw하며, 이에 연결된 리스너가 없는 경우 프로그램을 종료하므로 항상 에러 이벤트에 대한 리스너를 등록하는 것이 좋습니다. 
+                        <br>
+                        관찰 가능한 객체를 만드는 것은 EventEmitter 클래스를 확장함으로써 가능합니다. 
+                        <pre>
+                          <code class="script" >
+const EventEmitter = require('events').EventEmitter;
+const fs = require('fs');
+
+class FindPattern extends EventEmitter {
+  constructor ( regex ) {
+    super();
+    this.regex = regex ;
+    this.files = [];
+  }
+
+  addFile(file) {
+    this.files.push(file);
+    return this;
+  }
+
+  find() {
+    this.files.foreach( file => {
+      fs.readFile(file , 'utf8', ( err, content ) => {
+        if(err) {
+          return this.emit('error', err);
+        }
+
+        this.emit('fileread', file);
+
+        let match = null;
+        if( match = content.match(this.regex)) {
+          mach.foreach(elem => this.emit('found', file, elem ));
+        }
+      });
+    });
+    return this;
+  }
+}
+
+// 사용하기 예제 
+const findPatternObject = new FindPattern(/hello \w+/);
+findPatternObject
+  .addFile('fileA.txt')
+  .addFile('fileB.json')
+  .find()
+  .on('found', (file, match) => console.log(`Matched "${match}" in file ${file}`))
+  .on('error', err => console.log(`Error emitted ${err.message}`));
+                          </code>
+                        </pre>
+이것은 Node.JS에서 꽤 일반적인 패턴입니다. 예를 들어 핵심 HTTP 모듈인 Server 객체는 listen(), close(), setTimeout()과 같은 메소드를 정의하며 내부적으로 EventEmitter 함수에서 상속받습니다. 
+따라서 새로운 요청이 수신될때 request 이벤트, 새로운 연결이 설정되면 connection 이벤트 그리고 서버가 닫히면 closed 이벤트가 생성됩니다. 
                       </div>
                     </div>
                   </div>   
