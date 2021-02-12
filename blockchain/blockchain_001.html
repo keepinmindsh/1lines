@@ -199,7 +199,7 @@
                   <ul>
                     <li>transactionHash : 트랜잭션의 해시값</li>
                     <li>transactionIndex : 트랜잭션의 인덱스 값</li>
-                    <li>blockHash : 이 트랜잭션이 추가된 블록의 해시값</li>
+                    <li>blockHash : 이 트랜잭션이 추가된 블록의 해시값 </li>
                     <li>blockNumber :이 트랜잭션이 추가된 블록의 번호 </li>
                     <li>gasUsed : 이 트랜잭션 호출에 소비한 가스양 </li>
                     <li>cumulativeGasUsed : 누적으로 사용된 가스량</li>
@@ -208,8 +208,98 @@
                   </ul>
                   이런 트랜잭션들이 모여 하나의 블록(block)을 이룹니다. 이더리움 네트워크 상에는 이러한 블록들이 체인처럼 엮인 모습을 하고 있기 때문에 블록체인(blockchain)이라고 부릅니다.
                   <hr>
+
+                </div>  
+              </div>
+              <div class="card">
+                <div class="card-body">
+                  <ul>
+                    <li>가나슈 : 내컴퓨터에서 이더리움 블록 체인을 실행해볼수 있도록 도와주는 역할 </li>
+                    <li>솔리디티 : 스마트 컨트랙트 작성을 위해 쓸 언어</li>
+                    <li>EVM(Ethereum Virtual Machine)</li>
+                    <li>RPC(Remote Procedure Call)</li>
+                    <li>Web3.js</li>
+                  </ul>
+                  <strong>MacOS 개발환경 설정</strong><br>
+                  <pre>
+                    <code class="shell" >
+brew update
+brew install nodejs
+mkdir  -p ethereum_voting_dapp/chapter1 
+cd ethereum_voting_dapp/chapter1 
+npm install ganache-cli web3@0.20.3 solc
+node_modules/.bin/ganache-cli 
+                    </code>
+                  </pre>
+                  실제 실행 예제 
+                  <pre>
+                    <code class="shell" >
+dreamui-MacBook-Pro:chapter1 dream$ node_modules/.bin/ganache-cli
+Ganache CLI v6.12.2 (ganache-core: 2.13.2)
+
+Available Accounts
+==================
+(0) 0x4FEecc563883e285d0cb94004659b905e5d4dd42 (100 ETH)
+(1) 0xd900F964e230316774770aed28d950006715f6f7 (100 ETH)
+(2) 0xd5f225Eb6F3b2286e4B33208A71998f199181740 (100 ETH)
+(3) 0x014ab6C9113b2f0FF63AaaBD2d3fA7B745625D4C (100 ETH)
+(4) 0x4B13b9DBe04886D8757FA894AD7f38767E4E32a4 (100 ETH)
+(5) 0x2E64a8d330f256D81f33fBF1e28C80f997b99936 (100 ETH)
+(6) 0x75670cb0aEfb4902d87910Cf1c3a41d524dE46D7 (100 ETH)
+(7) 0x5777C7F29140D743D4FD7AD0B9F310b8f65c38e5 (100 ETH)
+(8) 0xE5c3fb61F8E86D45fBe6872BB07F350fe4b7f58f (100 ETH)
+(9) 0x7a9D56cF047cCAaBA6a12d45686e1DCAA24Eb16c (100 ETH)
+
+Private Keys
+==================
+(0) 0x4b526bf7be4cd0299c2e65b04d2bc4ca74c826ffe677085c359b724f9b9c9713
+(1) 0x314f83368e190e67e1771e9f7c59b015c7223461a6f9c72c567aa84c64899aab
+(2) 0x7a5e92cc9c23abb8ced68301ab34a8c0688096ad722957b08270dcc77cfdb042
+(3) 0x02574f37f6a4c18354b52ea682b90f78f8898c3e72257239604fa979fa7e8bc3
+(4) 0x2ad3e5e527be640889b937dfb13864d18873ff538169227c0ba2bf4bf9bbb891
+(5) 0xf092955ea44d3c971022f1c2bb0e0c10b0f3ebca3a922d0e689b6c5c97dec426
+(6) 0xb34a11b4bd56fb026a7fb03843c69d78a16ec0fd331438bc8e65200deb38b6e5
+(7) 0xd0bedbbb905dadee7b68ded41dc72e938b57401568ee601c46943c1b91bb2b4c
+(8) 0x07e93abea438d687b827f1b4d5f801b41529e670fc463ab9744ce53553c863e5
+(9) 0x3bc1c00ba633a4142faae2ea6ce67368b979b3fe0ab1c7ebce4667bdc3728768
+
+HD Wallet
+==================
+Mnemonic:      predict sea prepare lake clump regular wheel wood marine whisper enforce setup
+Base HD Path:  m/44'/60'/0'/0/{account_index}
+
+Gas Price
+==================
+20000000000
+
+Gas Limit
+==================
+6721975
+
+Call Gas Limit
+==================
+9007199254740991                      
+                    </code>
+                  </pre>
+                  <hr>
+                  <strong>Linux 개발 환경 설정</strong>
+                  <pre>
+                    <code class="shell" >
+sudo apt-get update
+curl -sL https://deb.nodesource.com/setup_7.x -o nodesource_setup.sh
+sudo bash nodesource_setup.sh
+sudo apt-get install nodejs
+node --version
+v7.4.0
+npm --version
+4.0.5
+mkdir -p ethereum_voting_dapp/chapter1
+cd ethereum_voting_dapp/chapter1
+npm install ganache-cli web3@0.20.1 solc
+node_modules/.bin/ganache-cli
+                    </code>
+                  </pre>
                 </div>
-               
               </div>
             </div>
             <div class="card-footer small text-muted"></div>
