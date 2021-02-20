@@ -1028,6 +1028,35 @@ const syncEmit = new SyncEmit();
 syncEmit.on('ready', () => console.log('Object is ready to be used'));
                         </code>
                       </pre>
+                      ready 이벤트가 비동기적으로 발생된다면 앞의 코드는 완벽하게 동작합니다. 그러나 이벤트가 동기적으로 생성되면 이벤트가 이미 전송된 후 리스너가 등록되므로 결과적으로 리스너가 호출되지 않습니다. 
+                      <hr>
+                      <strong>EventEmitter vs 콜백</strong><br>
+                      비동기식 API를 정의할 때 공통적인 딜레마는 EventEmitter를 사용할 지 아니면 단순하게 콜백을 사용할지 결정하는 것입니다. 일반적인 판단 규칙은 그 의미에 있습니다. 
+                      결과가 비동기 식으로 반환되어야 하는 경우 콜백을 사용합니다. 대신 이벤트는 일어난 무엇인가를 전달할 필요가 있을 때 사용해야합니다. 
+                      <pre>
+                        <code class="script" >
+function helloEvents() {
+  const eventEmitter = new EventEmitter();
+  setTimeout(() => eventEmitter.emit('hello', 'hello world'), 100);
+  return eventEmitter;
+}
+
+function helloCallback(callback) {
+  setTimeout(() => callback('hello world'), 100);
+}
+                        </code>
+                      </pre>
+                      <hr>
+                      <strong>콜백과 EventEmitter의 결합</strong> <br>
+                      해당 패턴은 메인 함수로 전통적인 비동기 함수를 익스포트하여 최소한의 인터페이스라는 원칙을 지키면서도 EventEmitter를 반환하여 더 풍부한 기능과 제어를 제공하고자 할 대 매우 유용합니다. 
+                      이 패턴의 한 에는 glob 스타일 파일 검색 라이브러리인 node-glob 모듈이 보여주고 있습니다. 
+                      <pre>
+                        <code class="script" >
+const glob = require('glob');
+glob('data/*.txt', (error, files) => console.log(`All files found: ${JSON.stringify(files)}`))
+                          .on('match', match => console.log(`Match found: ${match}`));
+                        </code>
+                      </pre>
                       </div>
                     </div>
                   </div>   
