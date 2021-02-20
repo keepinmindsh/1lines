@@ -299,6 +299,29 @@ npm install ganache-cli web3@0.20.1 solc
 node_modules/.bin/ganache-cli
                     </code>
                   </pre>
+                  <hr>
+                  <strong>Solidity 공부</strong>
+                  <pre>
+                    <code class="shell" >
+pragma solidity ^0.4.23;
+
+contract Voting {
+    //  constructor to initialize candidates
+    
+    //  vote for candidates
+    
+    //  get count for votes for each candidates
+    
+    
+    bytes32[] public candidateList;
+    mapping (bytes32 => uint8) public votesReceived;
+    
+    constructor(bytes32[] candidateNames) public{
+        candidateList = candidateNames;
+    }
+}
+                    </code>
+                  </pre>
                 </div>
               </div>
             </div>
