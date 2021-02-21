@@ -149,6 +149,31 @@
                     </div>
                   </div>
                 </div>
+                <div class="card">
+                  <div class="card-header" id="heading2">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                        DockerFile 002 : Jenkins Publihsh ( Docker in Docker )
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapse2" class="collapse" aria-labelledby="heading2" data-parent="#accordionExample">
+                    <div class="card-body">
+                      <pre>
+                        <code class="shell" >
+# Jenkins 이미지 다운로드                           
+docker pull jenkins/jenkins:lts
+
+# 젠킨스를 호스트의 Jenkins 포트와 맞춰줍니다. 
+# 호스트 /home/jenkins/ 와 /var/jenkins_home의 불륨을 마운틴 처리한다. -> /home/jenkins:/var/jenkins_home 
+sudo docker run -d -p 8080:8080 -v /home/jenkins:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -u root 7e250da768ed
+
+
+                        </code>
+                      </pre>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="card-footer small text-muted"></div>
