@@ -307,21 +307,89 @@ pragma solidity ^0.4.23;
 
 contract Voting {
     //  constructor to initialize candidates
-    
     //  vote for candidates
-    
     //  get count for votes for each candidates
     
     
     bytes32[] public candidateList;
     mapping (bytes32 => uint8) public votesReceived;
     
-    constructor(bytes32[] candidateNames) public{
+    // when contract publishing,
+    constructor(bytes32[] candidateNames) public {
         candidateList = candidateNames;
     }
+    
+    function voteForCandidate(bytes32 candidate) public {
+        require(validCandidate(candidate));
+        votesReceived[candidate] += 1;
+    }
+    
+    function totalVotesFor(bytes32 candidate) view public returns(uint8) {
+        require(validCandidate(candidate));
+        return votesReceived[candidate];
+    }
+    
+    function validCandidate(bytes32 candidate) view public returns(bool) {
+        for(uint i = 0; i &lt; candidateList.length ; i ++){
+            if(candidateList[i] == candidate) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
 }
                     </code>
                   </pre>
+                  <hr>
+                  <strong>solidity compile</strong><br>
+                  <pre>
+                    <code class="shell" >
+root@00a8f8f4d1ed:/home/test/ethereum_voting_dapp/chapter1# node_modules/.bin/solcjs --bin --abi Voting.sol 
+
+drwxr-xr-x  3 root root  4096 Feb 21 14:09 .
+drwxr-xr-x  3 root root  4096 Feb 12 12:09 ..
+-rw-r--r--  1 root root  1002 Feb 21 14:08 Voting.sol
+-rw-r--r--  1 root root  1103 Feb 21 14:09 Voting_sol_Voting.abi
+-rw-r--r--  1 root root  4034 Feb 21 14:09 Voting_sol_Voting.bin
+drwxr-xr-x 36 root root  4096 Feb 12 12:21 node_modules
+-rw-r--r--  1 root root 25576 Feb 12 12:21 package-lock.json
+                    </code>
+                  </pre>
+                  생성한 solidity.sol 파일에 대해서 아래와 같이 컴파일해서 배포할 수 있다. <br>
+                  Compile시 에러 대응 ( 2021-02-22 ) : 인자에 memory를 붙이지 않아 에러가 발생함. storage와 memory에 대해서 공부 필요 <br>
+                  <ul>
+                    <li>
+                      storage : 함수 호출 사이에서 데이터를 저장하는 곳 <br>
+                      <pre>
+                        <code>
+// storage에 저장된다.                           
+bytes32[] public candidateList;
+                        </code>
+                      </pre>
+
+
+                    </li>
+                    <li>memory : 임시적인 데이터 저장소로 사용 
+
+                      <pre>
+                        <code>
+// memory - call by value
+int[] memory myLines = numbers;
+
+// storage - call by reference
+int[] storage myLines = numbers;
+                        </code>
+                      </pre>
+                    </li>
+                  </ul>
+                  Sol 파일을 컴파일 하면 아래의 2개의 파일이 나옴 <br>
+                  <ul>
+                    <li>.abi</li>
+                    <li>.bin</li>
+                  </ul>
+
+                  
                 </div>
               </div>
             </div>
