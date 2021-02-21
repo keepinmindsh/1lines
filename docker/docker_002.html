@@ -134,7 +134,7 @@
                     </code>
                   </pre>
                 </li>
-                <li>FROM
+                <li><strong>FROM</strong> 
                   <hr>
                   <pre>
                     <code class="shell" >
@@ -249,7 +249,8 @@ CMD ["hello"]
                   </pre>
                   ENTRYPOINT 에 설정한 명령에 매개변수를 전달하여 실행합니다. DockerFile에 ENTRYPOINT가 있으면 CMD는 ENTRYPOINT에 매개 변수만 전달하는 역할을 <br>
                   합니다. 그래서 CMD 독자적으로 파일을 실행할 수 없게 됩니다. 
-                  <hr>
+                  <br>
+                  <br>
                 </li>
                 <li>
                   ENTRYPOINT
@@ -370,7 +371,46 @@ docker run -e HELLO=4321 example
                     </code>
                   </pre>
                 </li>
-                
+                <li>
+                  <strong>ARG</strong>
+                  <hr>
+                  <pre>
+                    <code class="shell" >
+# ARG &lt;name>[=&lt;default value>]
+ARG centos_version=7
+ARG nginx_version
+                    </code>
+                  </pre>
+                  <ul>
+                    <li>이미지 빌드를 위해 Docker file 내에서 사용하기 위한 값</li>
+                    <li>빌드시점에서 사용, 그러므로 설정을 유지하지 않으려면 ARG를 사용 </li>
+                    <li>docker build 명령어에 --build 옵션으로 전달하거나 덮어쓸수 있음 
+                      <pre>
+                        <code class="shell" >
+docker build . \
+--no-cache \
+-t nginx:latest \
+-t nginx:${nginx_version}-$(date +"%y%m%d") \
+--build-arg CENTOS_VERSION=${centos_version} \
+--build-arg NGINX_VERSION=${nginx_version} \
+--build-arg NVAUTH_VERSION=${nvauth_version}
+                        </code>
+                      </pre>
+                      <br>
+                      FROM 이전에 있는 ARG는 FROM 에서만 사용 가능하다. 즉, 내부에서 사용하기 위해서 한번 더 선언해야 한다. 
+                      <pre>
+                        <code class="shell" >
+ARG centos_version
+FROM centos${centos_version} AS builder
+
+ARG centos_version # 안에서 사용하려면 또 ARG를 선언해야 한다.
+ENV CENTOS_VERSION=${centos_version}
+                        </code>
+                      </pre>
+                      <br>
+                    </li>
+                  </ul>
+                </li>
                 <li>ADD
                     <hr>
                       <pre>
@@ -406,6 +446,8 @@ ADD *.txt /root/
                     이미지에서 파일이 위치할 경로>는 항상 절대 경로를 설정해야 합니다. 그리고 마지막이 /로 끝나면 디렉터리가 생성되고 파일은 그 아래에 복사됩니다. 
                     <hr>
                     ADD ./ /hello 와 같이 현재 디렉터리를 추가할 때 .dockerignore 파일에 설정한 파일과 디렉터리는 제외됩니다. 
+                    <br>
+                    <br>
                   </li>
                   <li>COPY
                     <hr>
@@ -436,6 +478,8 @@ COPY *.txt /root/
                     &lt;이미지에서 파일이 위치할 경로>는 항상 절대 경로로 설정해야합니다. 그리고 마지막이 / 로 끝나면 디렉토리가 생성되고 파일은 그 아래에 복사됩니다. 
                     <hr>
                     COPY ./ /hello와 같이 현재 디렉터리를 추가할 때 .dockerignore 파일에 설정한 파일과 디렉터리는 제외됩니다. 
+                    <br>
+                    <br>
                   </li>
                   <li>VOLUME
                     <hr>
