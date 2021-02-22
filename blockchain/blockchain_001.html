@@ -357,6 +357,17 @@ drwxr-xr-x 36 root root  4096 Feb 12 12:21 node_modules
                     </code>
                   </pre>
                   생성한 solidity.sol 파일에 대해서 아래와 같이 컴파일해서 배포할 수 있다. <br>
+
+                  <strong>node console - compile </strong>
+                  <pre>
+                    <code class="shell" > 
+code = fs.readFileSync('Voting.sol').toString();
+solc = require('solc');
+compileCode = solc.compile(code);
+                    </code>
+                  </pre>
+
+
                   Compile시 에러 대응 ( 2021-02-22 ) : 인자에 memory를 붙이지 않아 에러가 발생함. storage와 memory에 대해서 공부 필요 <br>
                   <ul>
                     <li>
@@ -388,6 +399,40 @@ int[] storage myLines = numbers;
                     <li>.abi</li>
                     <li>.bin</li>
                   </ul>
+                  <hr>
+                  <strong>contract 배포하기</strong><br>
+                  <pre>
+                    <code class="nodejs" >
+web3 = require('web3')
+
+web3 = new Web3("http://localhost:8545")
+
+bytecode = fs.readFileSync('./Voting_sol_Voting.bin').toString();
+
+abi = fs.readFileSync('./Voting_sol_Voting.abi').toString();
+
+// Json Parser를 이용한 abi 확인
+abi = JSON.parse(fs.readFileSync('./Voting_sol_Voting.abi').toString())
+
+deployedContract = new web3.eth.contract(abi)
+
+// node 실행을 위한 아래 파일 생성
+
+deployedContract.deploy({
+        data: bytecode,
+        arguments : [['Rama', 'Nick', 'Jose'].map(name => web3.utils.asciiToHex(name))]
+}).send({
+        from : '0x4FEecc563883e285d0cb94004659b905e5d4dd42',
+        gas : 1500000,
+        gasPrice : web3.utils.toWei('0.0003', 'ether')
+}).then((newContractInstance) => {
+        deployedContract.options.address = newContractInstance.options.address;
+})
+
+web3.utils.asciiToHex('Rama')
+
+                    </code>
+                  </pre>
 
                   
                 </div>
