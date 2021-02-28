@@ -236,7 +236,9 @@ $ docker run -i -t --name hello ubuntu bin/bash
                           <code class="shell" >
 # docker 에서 외부로 연결할 포트를 지정할 경우 
 # docker container의 6379포트외 외부 80포트를 연결해준다.
-$ docker run -d -p 6379:80 --name redis-6379:0.1
+$ docker run -d -p 6379:80 --name lines-redis redis-6379:0.1
+
+$ docker run -it -p 5005:5005 ubuntu
                           </code>
                         </pre>      
                       </div>
