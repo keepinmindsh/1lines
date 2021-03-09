@@ -113,6 +113,31 @@
               <div class="card-header">
                 
               </div>
+              <div class="card-body" >
+                <ul>
+                  <li>
+                    kubectl : 쿠버네티스에게 task를 요청할 때 사용하는 명령어 <br>
+                    
+                    <pre>
+                      <code class="shell" >
+kubectl [command] [TYPE] [NAME] [flags] 
+
+command - create, get, delete, edit , etc
+
+TYPE - node, pod, service
+
+NAME - 자원의 이름 
+
+flags - 부가적으로 설정하는 옵션
+
+$ kubectl get pod webserver -o wide
+                      </code>
+                    </pre>
+
+                  </li>
+                  <li>kubeadm</li>
+                </ul>
+              </div>
             </div>
             <div class="card-footer small text-muted"></div>
         </div>
