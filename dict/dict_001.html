@@ -215,7 +215,24 @@
                     <a href="https://namu.wiki/w/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D%20%EC%96%B8%EC%96%B4/%EC%A2%85%EB%A5%98" target="_blank" rel="noopener noreferrer">프로그래밍 언어</a>
                   </div>
                 </div>
-              </div>                
+              </div>     
+              <div class="card">
+                <div class="card-header" id="heading3-2">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse3-2" aria-expanded="true" aria-controls="collapse3-2">
+                      무거운 스레드 문제 ( C10K 문제 )
+                    </button>
+                  </h2>
+                </div>
+                <div id="collapse3-2" class="collapse" aria-labelledby="heading3-2" data-parent="#accordionExample">
+                  <div class="card-body">
+                    OS 스레드는 생성 유지에 사용되는 메모리량이 크고 이용되는 스레드가 많아질수록 컨텍스트 스위칭이 빈번하게 발생하며 이때 수반되는 비용도 적지 않으므로 보통 무한정 스레드를 생성하지 않고 스레드풀을 만들어 재사용 하는 식으로 개발한다. (블로킹 시스템의 경우)
+                    이런 방식에서 특정 IO(예를 들면 연동하는 다른 서비스에 대한 호출) 응답이 느려진다면 해당 스레드는 거기서 응답이 올 때까지 대기(블로킹) 하게 된다. 
+                    이 상황이 지속되면 스레드 풀에 있는 모든 스레드들이 대부분 그 위치에 오랜 시간 대기하게 되고 결국 모두 소진되어 이후 발생하는 요청이 더이상 스레드를 확보할 수 없어 실패하게 된다.
+                    단 한 군데의 IO 지연이 발생했지만 결국 전체 시스템을 사용할 수 없는 경우가 되는 것이다.
+                  </div>
+                </div>
+              </div>              
               <div class="card">
                 <div class="card-header" id="heading4">
                   <h2 class="mb-0">
